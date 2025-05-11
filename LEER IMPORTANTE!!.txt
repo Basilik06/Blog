@@ -1,0 +1,2 @@
+para una ejecución correcta recomendamos ser abierto usando VsCode un la extensión ya instalada de springboot 
+asi mismo recordar que de la inserción de la base de datos llamada "dbpromonitorias.sql" al my sql por medio de Xampp

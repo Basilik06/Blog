@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD MONITORES</title>
+  <link href="https://cucuta.unisimon.edu.co/estudiante/views/layout/default/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-A65VpEyXjcEyAlfQBM+GZfFJpy9xK7avDUrOX02wE0nQmr5YHL0opBQMEaKf6sdfutGfAWtJmn2F++3ey0nVw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="Style.css">
+  <style>
+    /* Modal form styling */
+    .modal-content {
+      max-width: 400px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+    }
+
+    .modal-content form label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    .modal-content form input,
+    .modal-content form select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px;
+      margin-bottom: 15px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    /* Specific styling for dropdowns to make them more compact */
+    .modal-content form select#semestre,
+    .modal-content form select#proacademico {
+      width: 120px;
+      display: inline-block;
+    }
+
+    /* Handle long text in form inputs */
+    .modal-content form input[type="text"],
+    .modal-content form input[type="email"] {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Table styling to handle long text and make rows clickable */
+    #tablaMonitores td {
+      max-width: 130px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #tablaMonitores tbody tr {
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    #tablaMonitores tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Styling for the details modal */
+    #modalDetalles {
+      display: none; /* Ensure the modal is hidden by default */
+    }
+
+    #modalDetalles .modal-content {
+      max-width: 500px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+    }
+
+    #modalDetalles .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    #modalDetalles .modal-header h2 {
+      margin: 0;
+      font-size: 1.5em;
+      color: #333;
+    }
+
+    #modalDetalles .modal-body {
+      display: flex;
+      gap: 20px;
+    }
+
+    #modalDetalles .modal-photo {
+      flex: 0 0 150px;
+      text-align: center;
+    }
+
+    #modalDetalles .modal-photo img {
+      max-width: 150px;
+      max-height: 150px;
+      border-radius: 10px;
+      border: 2px solid #ddd;
+    }
+
+    #modalDetalles .modal-photo p {
+      margin-top: 10px;
+      color: #666;
+      font-style: italic;
+    }
+
+    #modalDetalles .modal-details {
+      flex: 1;
+    }
+
+    #modalDetalles .modal-details p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #333;
+    }
+
+    #modalDetalles .modal-details p strong {
+      display: inline-block;
+      width: 120px;
+      color: #555;
+    }
+
+    #modalDetalles .modal-footer {
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+      text-align: right;
+    }
+
+    #modalDetalles .modal-footer button {
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+
+    #modalDetalles .modal-footer button:hover {
+      background-color: #5a6268;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Botón para regresar al inicio en la esquina superior izquierda -->
+    <a href="index.html" id="homeButton" aria-label="Volver al inicio" style="position: absolute; top: 20px; left: 30px; background-color:rgb(66, 66, 66); color: white; border: none; padding: 10px 15px; border-radius: 7px; cursor: pointer; font-size: 1em; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: background-color 0.3s ease;">
+      <i class="fas fa-home"></i> Volver al Inicio
+    </a>
+
+    <!-- Botón de tema en la esquina superior derecha -->
+    <button id="themeToggle" aria-label="Cambiar tema"><i class="fas fa-moon"></i></button>
+
+    <h1>LISTA DE MONITORES <i class="fas fa-list"></i></h1>
+    <div class="header-controls">
+      <button onclick="abrirModal()"><i class="fas fa-user-plus"></i> Agregar Nuevo Monitor</button>
+      <div class="search-container" role="search">
+        <input type="text" id="searchInput" placeholder="Filtrar por Área de Apoyo..." aria-label="Filtrar monitores por área de apoyo">
+        <button id="searchButton" aria-label="Buscar monitores"><i class="fas fa-search"></i> Buscar</button>
+        <button id="clearButton" style="background-color: #dc3545;" aria-label="Limpiar filtro"><i class="fas fa-times"></i> Limpiar</button>
+      </div>
+    </div>
+
+    <div id="loader" style="display: none;">
+      <i class="fas fa-spinner fa-spin"></i> Cargando...
+    </div>
+
+    <div class="table-container">
+      <table id="tablaMonitores">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Semestre</th>
+            <th>Área Apoyo</th>
+            <th>Pro Académico</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Agregar/editar monitor -->
+  <div id="modalFormulario">
+    <div class="modal-content">
+      <h2 id="tituloModal">Agregar Monitor</h2>
+      <form id="formMonitor">
+        <label>ID Monitor:</label>
+        <input type="number" id="idmonitor" readonly required>
+        <label>Nombres:</label>
+        <input type="text" id="nombres" required>
+        <label>Apellidos:</label>
+        <input type="text" id="apellidos" required>
+        <label>Teléfono:</label>
+        <input type="text" id="telefono" required>
+        <label>Correo:</label>
+        <input type="email" id="correo" required>
+        <label>Semestre:</label>
+        <select id="semestre" required>
+          <option value="" disabled selected>Seleccione</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+        <label>Área Apoyo:</label>
+        <input type="text" id="areapoyo" required>
+        <label>Pro Académico:</label>
+        <select id="proacademico" required>
+          <option value="" disabled selected>Seleccione</option>
+          <option value="INGENIERÍA DE DATOS E INTELIGENCIA ARTIFICIAL">INGENIERÍA DE DATOS E INTELIGENCIA ARTIFICIAL</option>
+          <option value="MARKETING Y NEGOCIOS DIGITALES">MARKETING Y NEGOCIOS DIGITALES</option>
+          <option value="FISIOTERAPIA">FISIOTERAPIA</option>
+          <option value="DERECHO">DERECHO</option>
+          <option value="PSICOLOGÍA">PSICOLOGÍA</option>
+          <option value="ADMINISTRACIÓN DE EMPRESAS">ADMINISTRACIÓN DE EMPRESAS</option>
+          <option value="TRABAJO SOCIAL">TRABAJO SOCIAL</option>
+          <option value="COMERCIO Y NEGOCIOS INTERNACIONALES">COMERCIO Y NEGOCIOS INTERNACIONALES</option>
+          <option value="INGENIERÍA MULTIMEDIA">INGENIERÍA MULTIMEDIA</option>
+          <option value="INGENIERÍA INDUSTRIAL">INGENIERÍA INDUSTRIAL</option>
+          <option value="CONTADURÍA PÚBLICA">CONTADURÍA PÚBLICA</option>
+          <option value="MATEMATICAS Y CIENCIAS DE LA COMPUTACION">MATEMATICAS Y CIENCIAS DE LA COMPUTACION</option>
+          <option value="INGENIERÍA MECÁNICA">INGENIERÍA MECÁNICA</option>
+          <option value="INGENIERÍA DE SISTEMAS">INGENIERÍA DE SISTEMAS</option>
+          <option value="CURSO INTRODUCTORIO DE FISIOTERAPIA">CURSO INTRODUCTORIO DE FISIOTERAPIA</option>
+          <option value="CB - MATEMATICAS Y FISICA">CB - MATEMATICAS Y FISICA</option>
+          <option value="CB - CIENCIAS NATURALES">CB - CIENCIAS NATURALES</option>
+          <option value="CB - INFORMATICA">CB - INFORMATICA</option>
+          <option value="CB - LENGUAJE">CB - LENGUAJE</option>
+          <option value="CB - SOCIOHUMANIDADES">CB - SOCIOHUMANIDADES</option>
+          <option value="CB - INVESTIGACIONES">CB - INVESTIGACIONES</option>
+          <option value="CB - DEPORTES">CB - DEPORTES</option>
+          <option value="DEP - DEPARTAMENTO DE CIENCIAS SOCIALES Y HUMANAS">DEP - DEPARTAMENTO DE CIENCIAS SOCIALES Y HUMANAS</option>
+          <option value="DEP - DEPARTAMENTO DE CIENCIAS BASICAS">DEP - DEPARTAMENTO DE CIENCIAS BASICAS</option>
+          <option value="DEP - VICERRECTORIA DE INVESTIGACION E INNOVACION">DEP - VICERRECTORIA DE INVESTIGACION E INNOVACION</option>
+          <option value="ESPECIALIZACIÓN EN GERENCIA E INNOVACIÓN">ESPECIALIZACIÓN EN GERENCIA E INNOVACIÓN</option>
+          <option value="ESPECIALIZACIÓN EN DERECHO LABORAL Y SEGURIDAD SOCIAL">ESPECIALIZACIÓN EN DERECHO LABORAL Y SEGURIDAD SOCIAL</option>
+          <option value="ESPECIALIZACIÓN EN GOBIERNO Y ASUNTOS PÚBLICOS">ESPECIALIZACIÓN EN GOBIERNO Y ASUNTOS PÚBLICOS</option>
+          <option value="ESPECIALIZACIÓN EN DERECHO ADMINISTRATIVO">ESPECIALIZACIÓN EN DERECHO ADMINISTRATIVO</option>
+          <option value="ESPECIALIZACIÓN EN PROCESOS DE INTERVENCIÓN SOCIAL">ESPECIALIZACIÓN EN PROCESOS DE INTERVENCIÓN SOCIAL</option>
+          <option value="ESPECIALIZACIÓN EN LOGÍSTICA Y NEGOCIOS INTERNACIONALES">ESPECIALIZACIÓN EN LOGÍSTICA Y NEGOCIOS INTERNACIONALES</option>
+          <option value="ESPECIALIZACIÓN EN GESTIÓN DE TECNOLOGÍAS DE LA INFORMACIÓN">ESPECIALIZACIÓN EN GESTIÓN DE TECNOLOGÍAS DE LA INFORMACIÓN</option>
+          <option value="ESPECIALIZACIÓN EN GERENCIA DE PROYECTOS">ESPECIALIZACIÓN EN GERENCIA DE PROYECTOS</option>
+          <option value="ESPECIALIZACIÓN EN TRIBUTACIÓN">ESPECIALIZACIÓN EN TRIBUTACIÓN</option>
+          <option value="ESPECIALIZACIÓN EN SEGURIDAD Y SALUD EN EL TRABAJO">ESPECIALIZACIÓN EN SEGURIDAD Y SALUD EN EL TRABAJO</option>
+          <option value="ESPECIALIZACIÓN EN CRIMINOLOGÍA Y PSICOLOGÍA FORENSE APLICADA">ESPECIALIZACIÓN EN CRIMINOLOGÍA Y PSICOLOGÍA FORENSE APLICADA</option>
+          <option value="ESPECIALIZACIÓN EN PSICOLOGÍA CLÍNICA">ESPECIALIZACIÓN EN PSICOLOGÍA CLÍNICA</option>
+          <option value="ESPECIALIZACIÓN EN DERECHO CONSTITUCIONAL">ESPECIALIZACIÓN EN DERECHO CONSTITUCIONAL</option>
+          <option value="ESPECIALIZACIÓN EN ADICCIONES">ESPECIALIZACIÓN EN ADICCIONES</option>
+          <option value="ESPECIALIZACIÓN EN DERECHO PROBATORIO">ESPECIALIZACIÓN EN DERECHO PROBATORIO</option>
+          <option value="ESPECIALIZACIÓN EN MÉTODOS DE GESTIÓN Y RESOLUCIÓN DE CONFLICTOS">ESPECIALIZACIÓN EN MÉTODOS DE GESTIÓN Y RESOLUCIÓN DE CONFLICTOS</option>
+          <option value="MAESTRÍA EN EDUCACIÓN">MAESTRÍA EN EDUCACIÓN</option>
+          <option value="MAESTRÍA EN ADMINISTRACIÓN DE EMPRESAS E INNOVACIÓN">MAESTRÍA EN ADMINISTRACIÓN DE EMPRESAS E INNOVACIÓN</option>
+          <option value="MAESTRÍA EN DERECHO ADMINISTRATIVO">MAESTRÍA EN DERECHO ADMINISTRATIVO</option>
+          <option value="MAESTRÍA EN FAMILIAS">MAESTRÍA EN FAMILIAS</option>
+          <option value="MAESTRÍA EN DERECHO PENAL">MAESTRÍA EN DERECHO PENAL</option>
+          <option value="MAESTRÍA EN AUDITORÍA Y SISTEMAS DE LA CALIDAD EN SERVICIOS DE SALUD">MAESTRÍA EN AUDITORÍA Y SISTEMAS DE LA CALIDAD EN SERVICIOS DE SALUD</option>
+          <option value="MAESTRÍA EN DERECHO PROCESAL">MAESTRÍA EN DERECHO PROCESAL</option>
+          <option value="MAESTRÍA EN DESARROLLO Y GESTIÓN DE EMPRESAS SOCIALES">MAESTRÍA EN DESARROLLO Y GESTIÓN DE EMPRESAS SOCIALES</option>
+          <option value="MAESTRÍA EN PSICOLOGÍA">MAESTRÍA EN PSICOLOGÍA</option>
+          <option value="DOCTORADO EN CIENCIAS DE LA EDUCACIÓN">DOCTORADO EN CIENCIAS DE LA EDUCACIÓN</option>
+          <option value="MAESTRÍA EN DERECHO LABORAL Y SEGURIDAD SOCIAL">MAESTRÍA EN DERECHO LABORAL Y SEGURIDAD SOCIAL</option>
+          <option value="MAESTRIA EN ACTIVIDAD FISICA Y SALUD">MAESTRIA EN ACTIVIDAD FISICA Y SALUD</option>
+          <option value="MAESTRÍA EN EDUCACIÓN.">MAESTRÍA EN EDUCACIÓN.</option>
+          <option value="ESPECIALIZACION EN GERENCIA SOCIAL">ESPECIALIZACION EN GERENCIA SOCIAL</option>
+          <option value="CURSOS DE ENTRENAMIENTO SABER PRO">CURSOS DE ENTRENAMIENTO SABER PRO</option>
+          <option value="CENTRO DE APOYO A LAS MATEMÁTICAS Y A LA FÍSICA - CAMFI">CENTRO DE APOYO A LAS MATEMÁTICAS Y A LA FÍSICA - CAMFI</option>
+          <option value="CENTRO DE APOYO A LA BIOLOGÍA Y A LA QUÍMICA - CABIQUI">CENTRO DE APOYO A LA BIOLOGÍA Y A LA QUÍMICA - CABIQUI</option>
+        </select>
+        <button type="submit" style="background-color:#007bff;"><i class="fas fa-save"></i> Guardar</button>
+        <button type="button" onclick="cerrarModal()" style="background-color:#6c757d;"><i class="fas fa-times"></i> Cancelar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Gestionar la foto -->
+  <div id="modalFoto" style="display: none;">
+    <div class="modal-content" style="max-width: 400px;">
+      <h2 id="tituloModalFoto">Gestionar Foto</h2>
+      <div id="fotoContainer" style="text-align: center; margin-bottom: 15px;">
+        <img id="fotoMonitor" style="max-width: 200px; display: none;" alt="Foto del monitor" onerror="this.style.display='none'; document.getElementById('sinFotoMensaje').style.display='block'; document.getElementById('sinFotoMensaje').textContent='Error al cargar la imagen.';">
+        <p id="sinFotoMensaje" style="display: none;">Este monitor no tiene foto asignada.</p>
+      </div>
+      <form id="formFoto" enctype="multipart/form-data">
+        <input type="hidden" id="fotoCorreo">
+        <input type="hidden" id="fotoId">
+        <label for="fotoArchivo">Seleccionar Foto:</label>
+        <input type="file" id="fotoArchivo" accept="image/*">
+        <div id="botonesFoto">
+          <button type="submit" id="btnSubirFoto" style="background-color:#007bff; display: none;"><i class="fas fa-upload"></i> Subir Foto</button>
+          <button type="button" id="btnCambiarFoto" style="background-color:#007bff; display: none;" onclick="subirNuevaFoto()"><i class="fas fa-sync-alt"></i> Cambiar Foto</button>
+          <button type="button" id="btnEliminarFoto" style="background-color:#dc3545; display: none;" onclick="eliminarFoto()"><i class="fas fa-trash-alt"></i> Eliminar Foto</button>
+        </div>
+        <button type="button" onclick="cerrarModalFoto()" style="background-color:#6c757d; margin-top: 10px;"><i class="fas fa-times"></i> Cerrar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal para mostrar detalles del monitor -->
+  <div id="modalDetalles" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Detalles del Monitor</h2>
+        <button onclick="cerrarModalDetalles()" style="background: none; border: none; font-size: 1.2em; cursor: pointer;"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-photo">
+          <img id="detalleFotoMonitor" alt="Foto del monitor" style="display: none;" onerror="this.style.display='none'; document.getElementById('detalleSinFoto').style.display='block';">
+          <p id="detalleSinFoto" style="display: none;">Sin foto disponible</p>
+        </div>
+        <div class="modal-details">
+          <p><strong>ID Monitor:</strong> <span id="detalleId"></span></p>
+          <p><strong>Nombres:</strong> <span id="detalleNombres"></span></p>
+          <p><strong>Apellidos:</strong> <span id="detalleApellidos"></span></p>
+          <p><strong>Teléfono:</strong> <span id="detalleTelefono"></span></p>
+          <p><strong>Correo:</strong> <span id="detalleCorreo"></span></p>
+          <p><strong>Semestre:</strong> <span id="detalleSemestre"></span></p>
+          <p><strong>Área Apoyo:</strong> <span id="detalleAreaApoyo"></span></p>
+          <p><strong>Pro Académico:</strong> <span id="detalleProAcademico"></span></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button onclick="cerrarModalDetalles()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'http://localhost:8081/api/monitores';
+    const TUTORES_API_URL = 'http://localhost:8081/api/tutores';
+    const FOTOS_URL = 'http://localhost:8081/fotos';
+    let monitoresOriginales = [];
+
+    function cargarMonitores(data) {
+      const tbody = document.querySelector('#tablaMonitores tbody');
+      tbody.innerHTML = ''; // Clear the table body
+      if (!data || data.length === 0) {
+        // If no data, display a message or leave the table empty
+        tbody.innerHTML = '<tr><td colspan="9">No hay monitores disponibles.</td></tr>';
+        return;
+      }
+      data.forEach(monitor => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${monitor.idmonitor}</td>
+          <td>${monitor.nombres}</td>
+          <td>${monitor.apellidos}</td>
+          <td>${monitor.telefono}</td>
+          <td>${monitor.correo}</td>
+          <td>${monitor.semestre}</td>
+          <td>${monitor.areapoyo}</td>
+          <td>${monitor.proacademico}</td>
+          <td>
+            <button class="btn-edit" onclick="editar(${monitor.idmonitor}); event.stopPropagation();" aria-label="Editar monitor">
+              <i class="fas fa-edit"></i> ✏️
+            </button>
+            <button class="btn-photo" onclick="gestionarFoto('${monitor.correo}'); event.stopPropagation();" aria-label="Gestionar foto">
+              <i class="fas fa-camera"></i> 📷
+            </button>
+            <button class="btn-delete" onclick="eliminar(${monitor.idmonitor}); event.stopPropagation();" aria-label="Eliminar monitor">
+              <i class="fas fa-trash-alt"></i> 🗑️
+            </button>
+          </td>`;
+        row.addEventListener('click', (e) => {
+          // Prevent row click when clicking on action buttons
+          if (e.target.tagName === 'BUTTON' || e.target.tagName === 'I') return;
+          mostrarDetalles(monitor);
+        });
+        tbody.appendChild(row);
+      });
+    }
+
+    async function mostrarDetalles(monitor) {
+      const modalDetalles = document.getElementById('modalDetalles');
+      modalDetalles.style.display = 'flex'; // Only show the modal when explicitly called
+
+      // Fill in the details
+      document.getElementById('detalleId').textContent = monitor.idmonitor || 'N/A';
+      document.getElementById('detalleNombres').textContent = monitor.nombres || 'N/A';
+      document.getElementById('detalleApellidos').textContent = monitor.apellidos || 'N/A';
+      document.getElementById('detalleTelefono').textContent = monitor.telefono || 'N/A';
+      document.getElementById('detalleCorreo').textContent = monitor.correo || 'N/A';
+      document.getElementById('detalleSemestre').textContent = monitor.semestre || 'N/A';
+      document.getElementById('detalleAreaApoyo').textContent = monitor.areapoyo || 'N/A';
+      document.getElementById('detalleProAcademico').textContent = monitor.proacademico || 'N/A';
+
+      // Load the photo
+      try {
+        document.getElementById('loader').style.display = 'block';
+        const response = await fetch(`${FOTOS_URL}/buscar?correo=${monitor.correo}`);
+        if (!response.ok) throw new Error('Error al buscar la foto');
+
+        const fotos = await response.json();
+        const detalleFoto = document.getElementById('detalleFotoMonitor');
+        const detalleSinFoto = document.getElementById('detalleSinFoto');
+
+        if (fotos.length > 0) {
+          const foto = fotos[0];
+          detalleFoto.src = `${FOTOS_URL}/${foto.id}/imagen?t=${new Date().getTime()}`;
+          detalleFoto.style.display = 'block';
+          detalleSinFoto.style.display = 'none';
+        } else {
+          detalleFoto.style.display = 'none';
+          detalleSinFoto.style.display = 'block';
+        }
+      } catch (error) {
+        console.error('Error al cargar la foto:', error);
+        document.getElementById('detalleFotoMonitor').style.display = 'none';
+        document.getElementById('detalleSinFoto').style.display = 'block';
+      } finally {
+        document.getElementById('loader').style.display = 'none';
+      }
+    }
+
+    function cerrarModalDetalles() {
+      document.getElementById('modalDetalles').style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('loader').style.display = 'block';
+      fetch(API_URL)
+        .then(res => res.json())
+        .then(data => {
+          monitoresOriginales = data || []; // Ensure monitoresOriginales is an array
+          cargarMonitores(monitoresOriginales);
+          document.getElementById('loader').style.display = 'none';
+        })
+        .catch(err => {
+          console.error('Error al cargar monitores:', err);
+          monitoresOriginales = [];
+          cargarMonitores(monitoresOriginales);
+          document.getElementById('loader').style.display = 'none';
+        });
+    });
+
+    function filtrarMonitores() {
+      const searchValue = document.getElementById('searchInput').value.trim().toLowerCase();
+      const monitoresFiltrados = monitoresOriginales.filter(monitor => 
+        monitor.areapoyo.toLowerCase().includes(searchValue)
+      );
+      cargarMonitores(monitoresFiltrados);
+    }
+
+    document.getElementById('searchButton').addEventListener('click', filtrarMonitores);
+
+    document.getElementById('searchInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        filtrarMonitores();
+      }
+    });
+
+    document.getElementById('clearButton').addEventListener('click', () => {
+      document.getElementById('searchInput').value = '';
+      cargarMonitores(monitoresOriginales);
+    });
+
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+      const isDark = document.body.classList.contains('dark-theme');
+      document.getElementById('themeToggle').innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    function eliminar(id) {
+      if (confirm('¿Estás seguro de eliminar este monitor?')) {
+        document.getElementById('loader').style.display = 'block';
+        fetch(`${API_URL}/${id}`, {
+          method: 'DELETE'
+        })
+          .then(res => {
+            if (!res.ok) throw new Error('No se pudo eliminar');
+            monitoresOriginales = monitoresOriginales.filter(monitor => monitor.idmonitor !== id);
+            cargarMonitores(monitoresOriginales);
+            document.getElementById('loader').style.display = 'none';
+          })
+          .catch(error => {
+            console.error('Error al eliminar:', error);
+            document.getElementById('loader').style.display = 'none';
+          });
+      }
+    }
+
+    function editar(id) {
+      document.getElementById('loader').style.display = 'block';
+      fetch(`${API_URL}/${id}`)
+        .then(res => res.json())
+        .then(data => {
+          abrirModal(data);
+          document.getElementById('loader').style.display = 'none';
+        })
+        .catch(error => {
+          console.error('Error al obtener monitor:', error);
+          document.getElementById('loader').style.display = 'none';
+        });
+    }
+
+    function abrirModal(monitor = null) {
+      document.getElementById('modalFormulario').style.display = 'block';
+      document.getElementById('formMonitor').reset();
+      document.getElementById('idmonitor').value = '';
+      document.getElementById('tituloModal').textContent = monitor ? 'Editar Monitor' : 'Agregar Monitor';
+
+      if (monitor) {
+        document.getElementById('idmonitor').value = monitor.idmonitor;
+        document.getElementById('nombres').value = monitor.nombres;
+        document.getElementById('apellidos').value = monitor.apellidos;
+        document.getElementById('telefono').value = monitor.telefono;
+        document.getElementById('correo').value = monitor.correo;
+        document.getElementById('semestre').value = monitor.semestre;
+        document.getElementById('areapoyo').value = monitor.areapoyo;
+        document.getElementById('proacademico').value = monitor.proacademico;
+      } else {
+        document.getElementById('loader').style.display = 'block';
+        fetch(API_URL)
+          .then(res => res.json())
+          .then(data => {
+            const maxId = data.length > 0 ? Math.max(...data.map(m => m.idmonitor)) : 0;
+            document.getElementById('idmonitor').value = maxId + 1;
+            document.getElementById('loader').style.display = 'none';
+          })
+          .catch(err => {
+            console.error('Error al obtener monitores:', err);
+            document.getElementById('idmonitor').value = 1;
+            document.getElementById('loader').style.display = 'none';
+          });
+      }
+    }
+
+    function cerrarModal() {
+      document.getElementById('modalFormulario').style.display = 'none';
+    }
+
+    // Función para verificar si el correo ya existe
+    async function verificarCorreoExistente(correo, idmonitor = null) {
+      try {
+        // Verificar en la base de datos de monitores
+        const monitoresResponse = await fetch(API_URL);
+        if (!monitoresResponse.ok) throw new Error('Error al consultar monitores');
+        const monitores = await monitoresResponse.json();
+        const monitorExistente = monitores.find(monitor => monitor.correo === correo && (!idmonitor || monitor.idmonitor !== parseInt(idmonitor)));
+
+        // Verificar en la base de datos de tutores
+        const tutoresResponse = await fetch(TUTORES_API_URL);
+        if (!tutoresResponse.ok) throw new Error('Error al consultar tutores');
+        const tutores = await tutoresResponse.json();
+        const tutorExistente = tutores.find(tutor => tutor.correo === correo);
+
+        if (monitorExistente) {
+          return 'El correo ya está registrado como monitor.';
+        }
+        if (tutorExistente) {
+          return 'El correo ya está registrado como tutor.';
+        }
+        return null; // Correo no existe
+      } catch (error) {
+        console.error('Error al verificar correo:', error);
+        return 'Error al verificar el correo. Intente de nuevo.';
+      }
+    }
+
+    document.getElementById('formMonitor').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const telefono = document.getElementById('telefono').value;
+      const telefonoRegex = /^\d{10}$/;
+      if (!telefonoRegex.test(telefono)) {
+        alert('Por favor, ingrese un número de teléfono válido (10 dígitos).');
+        return;
+      }
+
+      const correo = document.getElementById('correo').value;
+      if (!correo.endsWith('@unisimon.edu.co')) {
+        alert('El correo debe tener el dominio @unisimon.edu.co');
+        return;
+      }
+
+      // Verificar si el correo ya existe
+      const idmonitor = document.getElementById('idmonitor').value;
+      const correoError = await verificarCorreoExistente(correo, idmonitor);
+      if (correoError) {
+        alert(correoError);
+        return;
+      }
+
+      // Convertir nombres y apellidos a mayúsculas
+      const nombres = document.getElementById('nombres').value.toUpperCase();
+      const apellidos = document.getElementById('apellidos').value.toUpperCase();
+
+      const monitor = {
+        idmonitor: idmonitor,
+        nombres: nombres,
+        apellidos: apellidos,
+        telefono: telefono,
+        correo: correo,
+        semestre: document.getElementById('semestre').value,
+        areapoyo: document.getElementById('areapoyo').value,
+        proacademico: document.getElementById('proacademico').value
+      };
+
+      const method = idmonitor && idmonitor !== '' ? 'PUT' : 'POST';
+      const url = idmonitor && idmonitor !== '' ? `${API_URL}/${idmonitor}` : API_URL;
+
+      document.getElementById('loader').style.display = 'block';
+      fetch(url, {
+        method: method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(monitor)
+      })
+        .then(res => {
+          if (!res.ok) throw new Error('Error al guardar');
+          return fetch(API_URL); // Volver a obtener los datos actualizados
+        })
+        .then(res => res.json())
+        .then(data => {
+          monitoresOriginales = data;
+          cargarMonitores(data);
+          cerrarModal();
+          document.getElementById('loader').style.display = 'none';
+          alert('Monitor guardado exitosamente.');
+        })
+        .catch(err => {
+          console.error(err);
+          alert('Error al guardar el monitor: ' + err.message);
+          document.getElementById('loader').style.display = 'none';
+        });
+    });
+
+    // Funciones para gestionar la foto
+    async function gestionarFoto(correo) {
+      document.getElementById('modalFoto').style.display = 'block';
+      document.getElementById('fotoCorreo').value = correo;
+      document.getElementById('fotoArchivo').value = ''; // Limpiar el input de archivo
+
+      // Limpiar estado previo
+      document.getElementById('fotoMonitor').style.display = 'none';
+      document.getElementById('sinFotoMensaje').style.display = 'none';
+      document.getElementById('btnSubirFoto').style.display = 'none';
+      document.getElementById('btnCambiarFoto').style.display = 'none';
+      document.getElementById('btnEliminarFoto').style.display = 'none';
+
+      try {
+        document.getElementById('loader').style.display = 'block';
+        const response = await fetch(`${FOTOS_URL}/buscar?correo=${correo}`);
+        if (!response.ok) throw new Error('Error al buscar la foto');
+
+        const fotos = await response.json();
+        if (fotos.length > 0) {
+          const foto = fotos[0]; // Tomamos la primera foto asociada al correo
+          document.getElementById('fotoId').value = foto.id;
+          document.getElementById('fotoMonitor').src = `${FOTOS_URL}/${foto.id}/imagen?t=${new Date().getTime()}`; // Añadimos un timestamp para evitar caché
+          document.getElementById('fotoMonitor').style.display = 'block';
+          document.getElementById('btnCambiarFoto').style.display = 'inline-block';
+          document.getElementById('btnEliminarFoto').style.display = 'inline-block';
+        } else {
+          document.getElementById('sinFotoMensaje').style.display = 'block';
+          document.getElementById('btnSubirFoto').style.display = 'inline-block';
+        }
+      } catch (error) {
+        console.error('Error al gestionar foto:', error);
+        document.getElementById('sinFotoMensaje').style.display = 'block';
+        document.getElementById('sinFotoMensaje').textContent = 'Error al cargar la foto: ' + error.message;
+        document.getElementById('btnSubirFoto').style.display = 'inline-block';
+      } finally {
+        document.getElementById('loader').style.display = 'none';
+      }
+    }
+
+    function cerrarModalFoto() {
+      document.getElementById('modalFoto').style.display = 'none';
+    }
+
+    document.getElementById('formFoto').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const correo = document.getElementById('fotoCorreo').value;
+      const archivo = document.getElementById('fotoArchivo').files[0];
+      if (!archivo) {
+        alert('Por favor, seleccione una foto para subir.');
+        return;
+      }
+
+      // Validar que el archivo sea una imagen
+      const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+      if (!tiposPermitidos.includes(archivo.type)) {
+        alert('Por favor, suba un archivo en formato JPEG, PNG, GIF o WebP.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('nombre', correo.split('@')[0]);
+      formData.append('correo', correo);
+      formData.append('imagen', archivo);
+
+      try {
+        document.getElementById('loader').style.display = 'block';
+        const response = await fetch(`${FOTOS_URL}/guardar`, {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Error ${response.status}: ${errorText}`);
+        }
+
+        const fotoId = await response.json();
+        document.getElementById('fotoId').value = fotoId;
+        document.getElementById('fotoMonitor').src = `${FOTOS_URL}/${fotoId}/imagen?t=${new Date().getTime()}`; // Añadimos un timestamp para evitar caché
+        document.getElementById('fotoMonitor').style.display = 'block';
+        document.getElementById('sinFotoMensaje').style.display = 'none';
+        document.getElementById('btnSubirFoto').style.display = 'none';
+        document.getElementById('btnCambiarFoto').style.display = 'inline-block';
+        document.getElementById('btnEliminarFoto').style.display = 'inline-block';
+        alert('Foto subida correctamente.');
+      } catch (error) {
+        console.error('Error al subir la foto:', error);
+        alert('No se pudo subir la foto: ' + error.message);
+      } finally {
+        document.getElementById('loader').style.display = 'none';
+      }
+    });
+
+    async function subirNuevaFoto() {
+      const correo = document.getElementById('fotoCorreo').value;
+      const archivo = document.getElementById('fotoArchivo').files[0];
+      if (!archivo) {
+        alert('Por favor, seleccione una nueva foto para cambiar.');
+        return;
+      }
+
+      // Validar que el archivo sea una imagen
+      const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+      if (!tiposPermitidos.includes(archivo.type)) {
+        alert('Por favor, suba un archivo en formato JPEG, PNG, GIF o WebP.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('nombre', correo.split('@')[0]);
+      formData.append('correo', correo);
+      formData.append('imagen', archivo);
+
+      try {
+        document.getElementById('loader').style.display = 'block';
+        const response = await fetch(`${FOTOS_URL}/guardar`, {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Error ${response.status}: ${errorText}`);
+        }
+
+        const fotoId = await response.json();
+        document.getElementById('fotoId').value = fotoId;
+        document.getElementById('fotoMonitor').src = `${FOTOS_URL}/${fotoId}/imagen?t=${new Date().getTime()}`; // Añadimos un timestamp para evitar caché
+        document.getElementById('fotoMonitor').style.display = 'block';
+        document.getElementById('sinFotoMensaje').style.display = 'none';
+        document.getElementById('btnSubirFoto').style.display = 'none';
+        document.getElementById('btnCambiarFoto').style.display = 'inline-block';
+        document.getElementById('btnEliminarFoto').style.display = 'inline-block';
+        alert('Foto cambiada correctamente.');
+      } catch (error) {
+        console.error('Error al cambiar la foto:', error);
+        alert('No se pudo cambiar la foto: ' + error.message);
+      } finally {
+        document.getElementById('loader').style.display = 'none';
+      }
+    }
+
+    async function eliminarFoto() {
+      const fotoId = document.getElementById('fotoId').value;
+      if (!fotoId) return;
+
+      try {
+        document.getElementById('loader').style.display = 'block';
+        const response = await fetch(`${FOTOS_URL}/${fotoId}`, {
+          method: 'DELETE'
+        });
+        if (!response.ok) throw new Error('Error al eliminar la foto');
+
+        document.getElementById('fotoId').value = '';
+        document.getElementById('fotoMonitor').style.display = 'none';
+        document.getElementById('sinFotoMensaje').style.display = 'block';
+        document.getElementById('sinFotoMensaje').textContent = 'Este monitor no tiene foto asignada.';
+        document.getElementById('btnSubirFoto').style.display = 'inline-block';
+        document.getElementById('btnCambiarFoto').style.display = 'none';
+        document.getElementById('btnEliminarFoto').style.display = 'none';
+        alert('Foto eliminada correctamente.');
+      } catch (error) {
+        console.error('Error al eliminar la foto:', error);
+        alert('No se pudo eliminar la foto: ' + error.message);
+      } finally {
+        document.getElementById('loader').style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
