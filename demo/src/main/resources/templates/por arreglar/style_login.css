@@ -1,0 +1,137 @@
+/* Estilos del contenedor de formularios */
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.form-container {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con transparencia */
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+}
+
+/* Estilos adicionales para ajustar el texto y botones */
+.form-container h2 {
+    color: #333;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.logo_menu{
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+.form-container input[type="email"],
+.form-container input[type="password"],
+.form-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.form-container button  {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Opciones de "Recordar" y enlaces de registro/login */
+.form-container .options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    gap: 15px;
+}
+.form-container .separador {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Añade espacio entre los elementos dentro de .separador */
+    margin-left: 20px; /* Ajusta este margen según lo necesites */
+    margin-right: 20px; /* Ajusta este margen según lo necesites */
+}
+.form-container .recordar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+.form-container a {
+    color: #007bff;
+    text-decoration: none;
+}
+.form-container p{
+    text-align: center;
+}
+.form-container a:hover {
+    text-decoration: underline;
+}
+
+.logo_menu{
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+/* Estilos del footer */
+.footer_page {
+    background-color: #000;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer_page .footer-text {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.footer_page .footer-links {
+    margin-bottom: 15px;
+}
+
+.footer_page .footer-link {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer_page .footer-link:hover {
+    color: #ffffff;
+}
+
+.footer_page .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer_page .social-icon {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.footer_page .social-icon:hover {
+    color: #ffffff;
+}
+
