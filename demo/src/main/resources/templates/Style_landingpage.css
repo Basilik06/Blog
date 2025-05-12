@@ -15,10 +15,10 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: #1a1a1a;
+            background-color: #06060657;
             padding: 15px 0;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
             z-index: 1000;
         }
@@ -58,7 +58,14 @@
         .login-btn:hover {
             background-color: #e0b028;
         }
-
+        .logo_menu{
+            width: 60px;
+            height: 60px;
+            color: white;
+            margin-left: 20px;
+            margin-right: 20px;
+            align-self: left;
+        }
         /* Hero Section */
         #inicio {
             height: 100vh;
@@ -233,15 +240,6 @@
             margin-top: 10px;
         }
 
-        /* Why Blog Section */
-        #porque-blog {
-            background-color: #1a1a1a;
-            color: #fff;
-        }
-
-        #porque-blog p {
-            color: #ccc;
-        }
 
         /* Footer */
         footer {
