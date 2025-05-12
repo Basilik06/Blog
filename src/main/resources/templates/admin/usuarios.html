@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tarjetas de Monitores y Tutores</title>
+  <link rel="shortcut icon" href="cr7.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-A65VpEyXjcEyAlfQBM+GZfFJpy9xK7avDUrOX02wE0nQmr5YHL0opBQMEaKf6sdfutGfAWtJmn2F++3ey0nVw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="Style.css">
+  <style>
+    /* Asegurar que el fondo de imagen sea visible */
+    body {
+      background-image: url('fondoverde.jpg'); /* Ajusta 'background.jpg' al nombre de tu imagen de fondo */
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .dark-theme {
+      background-image: url('background-dark.jpg'); /* Opcional: fondo diferente para el tema oscuro */
+    }
+
+    /* Contenedor principal */
+    .container {
+      padding-bottom: 40px; /* Espacio al final de la página */
+    }
+
+    /* Sección de filtrado */
+    .filter-section {
+      max-width: 1200px;
+      margin: 0 auto 20px auto;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .filter-section label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1em;
+      color: #333;
+      margin-right: 5px;
+    }
+
+    .dark-theme .filter-section label {
+      color: #ddd;
+    }
+
+    .filter-section input,
+    .filter-section select {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 0.9em;
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: #333;
+      transition: border-color 0.3s ease;
+    }
+
+    .filter-section input:focus,
+    .filter-section select:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    .dark-theme .filter-section input,
+    .dark-theme .filter-section select {
+      background-color: #444;
+      border-color: #555;
+      color: #ddd;
+    }
+
+    .filter-section button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9em;
+      transition: background-color 0.3s ease;
+    }
+
+    .filter-section button:hover {
+      background-color: #c82333;
+    }
+
+    /* Estilos para las tarjetas */
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* Fijar exactamente 3 columnas */
+      gap: 15px; /* Aumentado de 10px a 15px para mejor separación */
+      padding: 15px; /* Aumentado de 10px a 15px para más espacio alrededor */
+      max-width: 1200px; /* Aumentado de 1000px a 1200px */
+      margin: 0 auto;
+      margin-bottom: 30px; /* Espacio al final */
+    }
+
+    .card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 10px; /* Aumentado de 8px a 10px para más espacio interno */
+      display: flex;
+      gap: 10px; /* Aumentado de 8px a 10px */
+      position: relative;
+      transition: transform 0.2s ease;
+      cursor: pointer; /* Indicar que la tarjeta es clickable */
+      width: 100%; /* Asegurar que la tarjeta ocupe todo el ancho disponible */
+      box-sizing: border-box; /* Incluir padding y border en el ancho */
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100px; /* Aumentado de 80px a 100px para proporcionalidad */
+      height: 140px; /* Aumentado de 120px a 140px */
+      object-fit: cover;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    .card .no-photo {
+      width: 100px; /* Aumentado de 80px a 100px */
+      height: 140px; /* Aumentado de 120px a 140px */
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9em; /* Aumentado de 0.8em a 0.9em */
+      color: #666;
+      text-align: center;
+    }
+
+    .card .info {
+      flex: 1;
+      font-size: 0.9em; /* Aumentado de 0.85em a 0.9em para mejor legibilidad */
+    }
+
+    .card .info p {
+      margin: 3px 0; /* Aumentado de 2px a 3px */
+      line-height: 1.3; /* Aumentado de 1.2 a 1.3 */
+    }
+
+    .card .info p strong {
+      color: #333;
+    }
+
+    .card .label {
+      position: absolute;
+      top: 8px; /* Aumentado de 6px a 8px */
+      right: 8px; /* Aumentado de 6px a 8px */
+      background-color: #007bff;
+      color: white;
+      padding: 4px 8px; /* Aumentado de 3px 6px a 4px 8px */
+      border-radius: 4px; /* Aumentado de 3px a 4px */
+      font-size: 0.7em; /* Aumentado de 0.65em a 0.7em */
+      font-weight: bold;
+    }
+
+    .card .label.monitor {
+      background-color: #28a745; /* Verde para monitores */
+    }
+
+    .card .label.tutor {
+      background-color: #007bff; /* Azul para tutores */
+    }
+
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+    }
+
+    .dark-theme h1 {
+      color: #ddd;
+    }
+
+    #loader {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 1.2em;
+      color: #666;
+    }
+
+    .dark-theme #loader {
+      color: #aaa;
+    }
+
+    /* Estilo para el tema oscuro */
+    .dark-theme .card {
+      background-color: #333;
+      border-color: #555;
+      color: #ddd;
+    }
+
+    .dark-theme .card .info p strong {
+      color: #fff;
+    }
+
+    .dark-theme .card .no-photo {
+      background-color: #444;
+      color: #aaa;
+      border-color: #666;
+    }
+
+    /* Botón para regresar al inicio */
+    #homeButton {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      background-color: rgb(66, 66, 66);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 1em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    #homeButton:hover {
+      background-color: rgb(90, 90, 90);
+    }
+
+    /* Botón de tema */
+    #themeToggle {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background-color: transparent;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .dark-theme #themeToggle {
+      color: #ddd;
+    }
+
+    /* Estilo para el div de separación */
+    .spacer {
+      height: 50px; /* Ajusta la altura según el espacio deseado */
+      visibility: hidden; /* Hace que el div sea invisible */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Botón para regresar al inicio -->
+    <a href="index.html" id="homeButton" aria-label="Volver al inicio">
+      <i class="fas fa-home"></i> Volver al Inicio
+    </a>
+
+    <!-- Botón de tema -->
+    <button id="themeToggle" aria-label="Cambiar tema"><i class="fas fa-moon"></i></button>
+
+    <h1>TARJETAS DE MONITORES Y TUTORES <i class="fas fa-users"></i></h1>
+
+    <div id="loader" style="display: none;">
+      <i class="fas fa-spinner fa-spin"></i> Cargando...
+    </div>
+
+    <!-- Sección de filtrado -->
+    <div class="filter-section">
+      <div>
+        <label for="nameFilter">Buscar por Nombre:</label>
+        <input type="text" id="nameFilter" placeholder="Escribe un nombre..." aria-label="Filtrar por nombre">
+      </div>
+      <div>
+        <label for="programFilter">Programa Académico:</label>
+        <select id="programFilter" aria-label="Filtrar por programa académico">
+          <option value="">Todos</option>
+          <!-- Las opciones se llenarán dinámicamente -->
+        </select>
+      </div>
+      <button id="clearFilters" aria-label="Limpiar filtros">Limpiar Filtros</button>
+    </div>
+
+    <div class="cards-container" id="cardsContainer"></div>
+  </div>
+
+  <!-- Div invisible para separación -->
+  <div class="spacer"></div>
+
+  <script>
+    const MONITORES_API_URL = 'http://localhost:8081/api/monitores';
+    const TUTORES_API_URL = 'http://localhost:8081/api/tutores';
+    const FOTOS_URL = 'http://localhost:8081/fotos';
+
+    let personasOriginales = []; // Almacenar los datos originales para filtrar
+
+    async function cargarTarjetas(personasFiltradas = null) {
+      const cardsContainer = document.getElementById('cardsContainer');
+      cardsContainer.innerHTML = '';
+
+      const personas = personasFiltradas || personasOriginales;
+
+      if (personas.length === 0) {
+        cardsContainer.innerHTML = '<p style="text-align: center; color: #666;">No se encontraron resultados.</p>';
+        return;
+      }
+
+      // Procesar cada persona para obtener su foto y crear la tarjeta
+      for (const persona of personas) {
+        let fotoUrl = '';
+        try {
+          const fotoResponse = await fetch(`${FOTOS_URL}/buscar?correo=${persona.correo}`);
+          if (fotoResponse.ok) {
+            const fotos = await fotoResponse.json();
+            if (fotos.length > 0) {
+              fotoUrl = `${FOTOS_URL}/${fotos[0].id}/imagen?t=${new Date().getTime()}`;
+            }
+          }
+        } catch (error) {
+          console.error(`Error al obtener foto para ${persona.correo}:`, error);
+        }
+
+        // Crear la tarjeta
+        const card = document.createElement('div');
+        card.classList.add('card');
+
+        // Hacer la tarjeta clickable y redirigir según el tipo
+        card.addEventListener('click', () => {
+          if (persona.tipo === 'monitor') {
+            window.location.href = `lista-monitores.html`;
+          } else {
+            window.location.href = `lista-tutores.html`;
+          }
+        });
+
+        // Añadir la foto o un placeholder si no hay foto
+        if (fotoUrl) {
+          const img = document.createElement('img');
+          img.src = fotoUrl;
+          img.alt = `Foto de ${persona.nombres}`;
+          img.onerror = () => {
+            img.style.display = 'none';
+            const noPhoto = document.createElement('div');
+            noPhoto.classList.add('no-photo');
+            noPhoto.textContent = 'Sin foto';
+            card.insertBefore(noPhoto, img);
+          };
+          card.appendChild(img);
+        } else {
+          const noPhoto = document.createElement('div');
+          noPhoto.classList.add('no-photo');
+          noPhoto.textContent = 'Sin foto';
+          card.appendChild(noPhoto);
+        }
+
+        // Añadir la información
+        const info = document.createElement('div');
+        info.classList.add('info');
+        info.innerHTML = `
+          <p><strong>ID ${persona.tipo === 'monitor' ? 'Monitor' : 'Tutor'}:</strong> ${persona.idmonitor || persona.idtutor}</p>
+          <p><strong>Nombres:</strong> ${persona.nombres}</p>
+          <p><strong>Apellidos:</strong> ${persona.apellidos}</p>
+          <p><strong>Teléfono:</strong> ${persona.telefono}</p>
+          <p><strong>Correo:</strong> ${persona.correo}</p>
+          <p><strong>Semestre:</strong> ${persona.semestre}</p>
+          <p><strong>Área Apoyo:</strong> ${persona.areapoyo}</p>
+          <p><strong>Pro Académico:</strong> ${persona.proacademico}</p>
+        `;
+        card.appendChild(info);
+
+        // Añadir la etiqueta de tipo (Monitor o Tutor)
+        const label = document.createElement('div');
+        label.classList.add('label', persona.tipo);
+        label.textContent = persona.tipo === 'monitor' ? 'Monitor' : 'Tutor';
+        card.appendChild(label);
+
+        cardsContainer.appendChild(card);
+      }
+    }
+
+    async function inicializarDatos() {
+      document.getElementById('loader').style.display = 'block';
+
+      try {
+        // Obtener tutores
+        const tutoresResponse = await fetch(TUTORES_API_URL);
+        if (!tutoresResponse.ok) throw new Error('Error al cargar tutores');
+        const tutores = await tutoresResponse.json();
+
+        // Obtener monitores
+        const monitoresResponse = await fetch(MONITORES_API_URL);
+        if (!monitoresResponse.ok) throw new Error('Error al cargar monitores');
+        const monitores = await monitoresResponse.json();
+
+        // Combinar tutores y monitores, con tutores primero
+        personasOriginales = [
+          ...tutores.map(tutor => ({ ...tutor, tipo: 'tutor' })),
+          ...monitores.map(monitor => ({ ...monitor, tipo: 'monitor' }))
+        ];
+
+        // Ordenar por ID dentro de cada grupo (tutores y monitores)
+        const tutoresOrdenados = personasOriginales.filter(p => p.tipo === 'tutor').sort((a, b) => a.idtutor - b.idtutor);
+        const monitoresOrdenados = personasOriginales.filter(p => p.tipo === 'monitor').sort((a, b) => a.idmonitor - b.idmonitor);
+        personasOriginales = [...tutoresOrdenados, ...monitoresOrdenados];
+
+        // Obtener programas académicos únicos para el filtro
+        const programas = [...new Set(personasOriginales.map(p => p.proacademico))].sort();
+        const programFilter = document.getElementById('programFilter');
+        programas.forEach(programa => {
+          const option = document.createElement('option');
+          option.value = programa;
+          option.textContent = programa;
+          programFilter.appendChild(option);
+        });
+
+        // Cargar todas las tarjetas inicialmente
+        await cargarTarjetas();
+      } catch (error) {
+        console.error('Error al cargar tarjetas:', error);
+        document.getElementById('cardsContainer').innerHTML = '<p style="text-align: center; color: red;">Error al cargar los datos.</p>';
+      } finally {
+        document.getElementById('loader').style.display = 'none';
+      }
+    }
+
+    function filtrarTarjetas() {
+      const nameFilter = document.getElementById('nameFilter').value.toLowerCase();
+      const programFilter = document.getElementById('programFilter').value;
+
+      const personasFiltradas = personasOriginales.filter(persona => {
+        // Filtrar por nombre (coincidencia parcial en nombres o apellidos)
+        const nombreCompleto = `${persona.nombres} ${persona.apellidos}`.toLowerCase();
+        const coincideNombre = nameFilter ? nombreCompleto.includes(nameFilter) : true;
+
+        // Filtrar por programa académico
+        const coincidePrograma = programFilter ? persona.proacademico === programFilter : true;
+
+        return coincideNombre && coincidePrograma;
+      });
+
+      cargarTarjetas(personasFiltradas);
+    }
+
+    // Cargar los datos al cargar la página
+    document.addEventListener('DOMContentLoaded', inicializarDatos);
+
+    // Escuchar cambios en los filtros
+    document.getElementById('nameFilter').addEventListener('input', filtrarTarjetas);
+    document.getElementById('programFilter').addEventListener('change', filtrarTarjetas);
+
+    // Limpiar filtros
+    document.getElementById('clearFilters').addEventListener('click', () => {
+      document.getElementById('nameFilter').value = '';
+      document.getElementById('programFilter').value = '';
+      cargarTarjetas();
+    });
+
+    // Cambiar tema
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+      const isDark = document.body.classList.contains('dark-theme');
+      document.getElementById('themeToggle').innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+  </script>
+</body>
+</html>
