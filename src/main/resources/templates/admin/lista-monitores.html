@@ -1,4 +1,3 @@
-
 <html lang="es"
 xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
@@ -9,8 +8,18 @@ xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
   <link href="https://cucuta.unisimon.edu.co/estudiante/views/layout/default/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-A65VpEyXjcEyAlfQBM+GZfFJpy9xK7avDUrOX02wE0nQmr5YHL0opBQMEaKf6sdfutGfAWtJmn2F++3ey0nVw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="Style.css">
+  <link rel="stylesheet" href="css/Style.css">
   <style>
+    body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-image: url('img/fondoverde.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background 0.3s ease;
+}
     /* Modal form styling */
     .modal-content {
       max-width: 400px;
@@ -160,7 +169,7 @@ xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 <body>
   <div class="container">
     <!-- Botón para regresar al inicio en la esquina superior izquierda -->
-    <a th:href="@{/}" id="homeButton" aria-label="Volver al inicio" style="position: absolute; top: 20px; left: 30px; background-color:rgb(66, 66, 66); color: white; border: none; padding: 10px 15px; border-radius: 7px; cursor: pointer; font-size: 1em; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: background-color 0.3s ease;">
+    <a th:href="@{/index_crud}" id="homeButton" aria-label="Volver al inicio" style="position: absolute; top: 20px; left: 30px; background-color:rgb(66, 66, 66); color: white; border: none; padding: 10px 15px; border-radius: 7px; cursor: pointer; font-size: 1em; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: background-color 0.3s ease;">
       <i class="fas fa-home"></i> Volver al Inicio
     </a>
 
