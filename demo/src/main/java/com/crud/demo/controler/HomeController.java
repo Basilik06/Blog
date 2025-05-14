@@ -1,4 +1,4 @@
-package com.example.demo.controler;
+package com.crud.demo.controler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -7,11 +7,11 @@ public class HomeController {
 
     @GetMapping("/")
     public String redirectToInicio() {
-        return "blog/index";
+        return "landing-page/index";
     }
      @GetMapping("/login")
     public String redirectlogin() {
-        return "blog/login"; // sin ".html"
+        return "landing-page/login"; // sin ".html"
     }
 
     @GetMapping("/index_crud")
@@ -25,5 +25,9 @@ public class HomeController {
     @GetMapping("/usuarios-monitores")
     public String redirectusuarios() {
         return "admin/usuarios"; // sin ".html"
+    }
+    @GetMapping("/index_blog")
+    public String redirectblog() {
+        return "blog/index"; // sin ".html"
     }
 }

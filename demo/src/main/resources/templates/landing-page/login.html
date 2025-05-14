@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
+<html lang="es"
+    xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +30,7 @@
             </div>
             <button type="submit">LOGIN</button>
             <button><a th:href="@{/index_crud}" style="color: white;">Admin</a></button>
-            <button><a th:href="@{/#}" style="color: white;">Usuario</a></button>
+            <button><a th:href="@{/index_blog}" style="color: white;">Usuario</a></button>
             <div class="toggle-form">
                 ¿No tienes una cuenta? <a href="#" onclick="renderRegisterForm()">Registrarse</a>
             </div>
@@ -50,7 +52,7 @@
                     </div>
                     <button type="submit">LOGIN</button>
                     <button><a th:href="@{/index_crud}" style="color: white;">Admin</a></button>
-                    <button><a th:href="@{/#}"  style="color: white;">Usuario</a></button>
+                    <button><a th:href="@{/index_blog}"  style="color: white;">Usuario</a></button>
                     <div class="toggle-form">
                         ¿No tienes una cuenta? <a href="#" onclick="renderRegisterForm()">Registrarse</a>
                     </div>
