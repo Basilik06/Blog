@@ -2,11 +2,11 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>CRUD MONITORES</title>
+  <title>CRUD TUTORES</title>
   <link href="https://cucuta.unisimon.edu.co/estudiante/views/layout/default/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-A65VpEyXjcEyAlfQBM+GZfFJpy9xK7avDUrOX02wE0nQmr5YHL0opBQMEaKf6sdfutGfAWtJmn2F++3ey0nVw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="Style.css">
+  <link rel="stylesheet" href="css/Style.css">
   <style>
     /* Modal form styling */
     .modal-content {
@@ -49,19 +49,19 @@
     }
 
     /* Table styling to handle long text and make rows clickable */
-    #tablaMonitores td {
+    #tablaTutores td {
       max-width: 130px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
-    #tablaMonitores tbody tr {
+    #tablaTutores tbody tr {
       cursor: pointer;
       transition: background-color 0.2s;
     }
 
-    #tablaMonitores tbody tr:hover {
+    #tablaTutores tbody tr:hover {
       background-color: #f1f1f1;
     }
 
@@ -157,19 +157,19 @@
 <body>
   <div class="container">
     <!-- Botón para regresar al inicio en la esquina superior izquierda -->
-    <a href="index_crud.html" id="homeButton" aria-label="Volver al inicio" style="position: absolute; top: 20px; left: 30px; background-color:rgb(66, 66, 66); color: white; border: none; padding: 10px 15px; border-radius: 7px; cursor: pointer; font-size: 1em; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: background-color 0.3s ease;">
+    <a href="index.html" id="homeButton" aria-label="Volver al inicio" style="position: absolute; top: 20px; left: 30px; background-color:rgb(66, 66, 66); color: white; border: none; padding: 10px 15px; border-radius: 7px; cursor: pointer; font-size: 1em; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: background-color 0.3s ease;">
       <i class="fas fa-home"></i> Volver al Inicio
     </a>
 
     <!-- Botón de tema en la esquina superior derecha -->
     <button id="themeToggle" aria-label="Cambiar tema"><i class="fas fa-moon"></i></button>
 
-    <h1>LISTA DE MONITORES <i class="fas fa-list"></i></h1>
+    <h1>LISTA DE TUTORES <i class="fas fa-list"></i></h1>
     <div class="header-controls">
-      <button onclick="abrirModal()"><i class="fas fa-user-plus"></i> Agregar Nuevo Monitor</button>
+      <button onclick="abrirModal()"><i class="fas fa-user-plus"></i> Agregar Nuevo Tutor</button>
       <div class="search-container" role="search">
-        <input type="text" id="searchInput" placeholder="Filtrar por Área de Apoyo..." aria-label="Filtrar monitores por área de apoyo">
-        <button id="searchButton" aria-label="Buscar monitores"><i class="fas fa-search"></i> Buscar</button>
+        <input type="text" id="searchInput" placeholder="Filtrar por Área de Apoyo..." aria-label="Filtrar tutores por área de apoyo">
+        <button id="searchButton" aria-label="Buscar tutores"><i class="fas fa-search"></i> Buscar</button>
         <button id="clearButton" style="background-color: #dc3545;" aria-label="Limpiar filtro"><i class="fas fa-times"></i> Limpiar</button>
       </div>
     </div>
@@ -179,7 +179,7 @@
     </div>
 
     <div class="table-container">
-      <table id="tablaMonitores">
+      <table id="tablaTutores">
         <thead>
           <tr>
             <th>ID</th>
@@ -198,13 +198,13 @@
     </div>
   </div>
 
-  <!-- Agregar/editar monitor -->
+  <!-- Agregar/editar tutor -->
   <div id="modalFormulario">
     <div class="modal-content">
-      <h2 id="tituloModal">Agregar Monitor</h2>
-      <form id="formMonitor">
-        <label>ID Monitor:</label>
-        <input type="number" id="idmonitor" readonly required>
+      <h2 id="tituloModal">Agregar Tutor</h2>
+      <form id="formTutor">
+        <label>ID Tutor:</label>
+        <input type="number" id="idtutor" readonly required>
         <label>Nombres:</label>
         <input type="text" id="nombres" required>
         <label>Apellidos:</label>
@@ -302,8 +302,8 @@
     <div class="modal-content" style="max-width: 400px;">
       <h2 id="tituloModalFoto">Gestionar Foto</h2>
       <div id="fotoContainer" style="text-align: center; margin-bottom: 15px;">
-        <img id="fotoMonitor" style="max-width: 200px; display: none;" alt="Foto del monitor" onerror="this.style.display='none'; document.getElementById('sinFotoMensaje').style.display='block'; document.getElementById('sinFotoMensaje').textContent='Error al cargar la imagen.';">
-        <p id="sinFotoMensaje" style="display: none;">Este monitor no tiene foto asignada.</p>
+        <img id="fotoTutor" style="max-width: 200px; display: none;" alt="Foto del tutor" onerror="this.style.display='none'; document.getElementById('sinFotoMensaje').style.display='block'; document.getElementById('sinFotoMensaje').textContent='Error al cargar la imagen.';">
+        <p id="sinFotoMensaje" style="display: none;">Este tutor no tiene foto asignada.</p>
       </div>
       <form id="formFoto" enctype="multipart/form-data">
         <input type="hidden" id="fotoCorreo">
@@ -320,20 +320,20 @@
     </div>
   </div>
 
-  <!-- Modal para mostrar detalles del monitor -->
+  <!-- Modal para mostrar detalles del tutor -->
   <div id="modalDetalles" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center;">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>Detalles del Monitor</h2>
+        <h2>Detalles del Tutor</h2>
         <button onclick="cerrarModalDetalles()" style="background: none; border: none; font-size: 1.2em; cursor: pointer;"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
         <div class="modal-photo">
-          <img id="detalleFotoMonitor" alt="Foto del monitor" style="display: none;" onerror="this.style.display='none'; document.getElementById('detalleSinFoto').style.display='block';">
+          <img id="detalleFotoTutor" alt="Foto del tutor" style="display: none;" onerror="this.style.display='none'; document.getElementById('detalleSinFoto').style.display='block';">
           <p id="detalleSinFoto" style="display: none;">Sin foto disponible</p>
         </div>
         <div class="modal-details">
-          <p><strong>ID Monitor:</strong> <span id="detalleId"></span></p>
+          <p><strong>ID Tutor:</strong> <span id="detalleId"></span></p>
           <p><strong>Nombres:</strong> <span id="detalleNombres"></span></p>
           <p><strong>Apellidos:</strong> <span id="detalleApellidos"></span></p>
           <p><strong>Teléfono:</strong> <span id="detalleTelefono"></span></p>
@@ -350,72 +350,68 @@
   </div>
 
   <script>
-    const API_URL = 'http://localhost:8081/api/monitores';
-    const TUTORES_API_URL = 'http://localhost:8081/api/tutores';
+    const API_URL = 'http://localhost:8081/api/tutores';
+    const MONITORES_API_URL = 'http://localhost:8081/api/monitores';
     const FOTOS_URL = 'http://localhost:8081/fotos';
-    let monitoresOriginales = [];
+    let tutoresOriginales = [];
 
-    function cargarMonitores(data) {
-      const tbody = document.querySelector('#tablaMonitores tbody');
+    function cargarTutores(data) {
+      const tbody = document.querySelector('#tablaTutores tbody');
       tbody.innerHTML = ''; // Clear the table body
       if (!data || data.length === 0) {
-        // If no data, display a message or leave the table empty
-        tbody.innerHTML = '<tr><td colspan="9">No hay monitores disponibles.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="9">No hay tutores disponibles.</td></tr>';
         return;
       }
-      data.forEach(monitor => {
+      data.forEach(tutor => {
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td>${monitor.idmonitor}</td>
-          <td>${monitor.nombres}</td>
-          <td>${monitor.apellidos}</td>
-          <td>${monitor.telefono}</td>
-          <td>${monitor.correo}</td>
-          <td>${monitor.semestre}</td>
-          <td>${monitor.areapoyo}</td>
-          <td>${monitor.proacademico}</td>
+          <td>${tutor.idtutor}</td>
+          <td>${tutor.nombres}</td>
+          <td>${tutor.apellidos}</td>
+          <td>${tutor.telefono}</td>
+          <td>${tutor.correo}</td>
+          <td>${tutor.semestre}</td>
+          <td>${tutor.areapoyo}</td>
+          <td>${tutor.proacademico}</td>
           <td>
-            <button class="btn-edit" onclick="editar(${monitor.idmonitor}); event.stopPropagation();" aria-label="Editar monitor">
+            <button class="btn-edit" onclick="editar(${tutor.idtutor}); event.stopPropagation();" aria-label="Editar tutor">
               <i class="fas fa-edit"></i> ✏️
             </button>
-            <button class="btn-photo" onclick="gestionarFoto('${monitor.correo}'); event.stopPropagation();" aria-label="Gestionar foto">
+            <button class="btn-photo" onclick="gestionarFoto('${tutor.correo}'); event.stopPropagation();" aria-label="Gestionar foto">
               <i class="fas fa-camera"></i> 📷
             </button>
-            <button class="btn-delete" onclick="eliminar(${monitor.idmonitor}); event.stopPropagation();" aria-label="Eliminar monitor">
+            <button class="btn-delete" onclick="eliminar(${tutor.idtutor}); event.stopPropagation();" aria-label="Eliminar tutor">
               <i class="fas fa-trash-alt"></i> 🗑️
             </button>
           </td>`;
         row.addEventListener('click', (e) => {
-          // Prevent row click when clicking on action buttons
           if (e.target.tagName === 'BUTTON' || e.target.tagName === 'I') return;
-          mostrarDetalles(monitor);
+          mostrarDetalles(tutor);
         });
         tbody.appendChild(row);
       });
     }
 
-    async function mostrarDetalles(monitor) {
+    async function mostrarDetalles(tutor) {
       const modalDetalles = document.getElementById('modalDetalles');
-      modalDetalles.style.display = 'flex'; // Only show the modal when explicitly called
+      modalDetalles.style.display = 'flex';
 
-      // Fill in the details
-      document.getElementById('detalleId').textContent = monitor.idmonitor || 'N/A';
-      document.getElementById('detalleNombres').textContent = monitor.nombres || 'N/A';
-      document.getElementById('detalleApellidos').textContent = monitor.apellidos || 'N/A';
-      document.getElementById('detalleTelefono').textContent = monitor.telefono || 'N/A';
-      document.getElementById('detalleCorreo').textContent = monitor.correo || 'N/A';
-      document.getElementById('detalleSemestre').textContent = monitor.semestre || 'N/A';
-      document.getElementById('detalleAreaApoyo').textContent = monitor.areapoyo || 'N/A';
-      document.getElementById('detalleProAcademico').textContent = monitor.proacademico || 'N/A';
+      document.getElementById('detalleId').textContent = tutor.idtutor || 'N/A';
+      document.getElementById('detalleNombres').textContent = tutor.nombres || 'N/A';
+      document.getElementById('detalleApellidos').textContent = tutor.apellidos || 'N/A';
+      document.getElementById('detalleTelefono').textContent = tutor.telefono || 'N/A';
+      document.getElementById('detalleCorreo').textContent = tutor.correo || 'N/A';
+      document.getElementById('detalleSemestre').textContent = tutor.semestre || 'N/A';
+      document.getElementById('detalleAreaApoyo').textContent = tutor.areapoyo || 'N/A';
+      document.getElementById('detalleProAcademico').textContent = tutor.proacademico || 'N/A';
 
-      // Load the photo
       try {
         document.getElementById('loader').style.display = 'block';
-        const response = await fetch(`${FOTOS_URL}/buscar?correo=${monitor.correo}`);
+        const response = await fetch(`${FOTOS_URL}/buscar?correo=${tutor.correo}`);
         if (!response.ok) throw new Error('Error al buscar la foto');
 
         const fotos = await response.json();
-        const detalleFoto = document.getElementById('detalleFotoMonitor');
+        const detalleFoto = document.getElementById('detalleFotoTutor');
         const detalleSinFoto = document.getElementById('detalleSinFoto');
 
         if (fotos.length > 0) {
@@ -429,7 +425,7 @@
         }
       } catch (error) {
         console.error('Error al cargar la foto:', error);
-        document.getElementById('detalleFotoMonitor').style.display = 'none';
+        document.getElementById('detalleFotoTutor').style.display = 'none';
         document.getElementById('detalleSinFoto').style.display = 'block';
       } finally {
         document.getElementById('loader').style.display = 'none';
@@ -445,37 +441,37 @@
       fetch(API_URL)
         .then(res => res.json())
         .then(data => {
-          monitoresOriginales = data || []; // Ensure monitoresOriginales is an array
-          cargarMonitores(monitoresOriginales);
+          tutoresOriginales = data || [];
+          cargarTutores(tutoresOriginales);
           document.getElementById('loader').style.display = 'none';
         })
         .catch(err => {
-          console.error('Error al cargar monitores:', err);
-          monitoresOriginales = [];
-          cargarMonitores(monitoresOriginales);
+          console.error('Error al cargar tutores:', err);
+          tutoresOriginales = [];
+          cargarTutores(tutoresOriginales);
           document.getElementById('loader').style.display = 'none';
         });
     });
 
-    function filtrarMonitores() {
+    function filtrarTutores() {
       const searchValue = document.getElementById('searchInput').value.trim().toLowerCase();
-      const monitoresFiltrados = monitoresOriginales.filter(monitor => 
-        monitor.areapoyo.toLowerCase().includes(searchValue)
+      const tutoresFiltrados = tutoresOriginales.filter(tutor => 
+        tutor.areapoyo.toLowerCase().includes(searchValue)
       );
-      cargarMonitores(monitoresFiltrados);
+      cargarTutores(tutoresFiltrados);
     }
 
-    document.getElementById('searchButton').addEventListener('click', filtrarMonitores);
+    document.getElementById('searchButton').addEventListener('click', filtrarTutores);
 
     document.getElementById('searchInput').addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
-        filtrarMonitores();
+        filtrarTutores();
       }
     });
 
     document.getElementById('clearButton').addEventListener('click', () => {
       document.getElementById('searchInput').value = '';
-      cargarMonitores(monitoresOriginales);
+      cargarTutores(tutoresOriginales);
     });
 
     document.getElementById('themeToggle').addEventListener('click', () => {
@@ -485,15 +481,15 @@
     });
 
     function eliminar(id) {
-      if (confirm('¿Estás seguro de eliminar este monitor?')) {
+      if (confirm('¿Estás seguro de eliminar este tutor?')) {
         document.getElementById('loader').style.display = 'block';
         fetch(`${API_URL}/${id}`, {
           method: 'DELETE'
         })
           .then(res => {
             if (!res.ok) throw new Error('No se pudo eliminar');
-            monitoresOriginales = monitoresOriginales.filter(monitor => monitor.idmonitor !== id);
-            cargarMonitores(monitoresOriginales);
+            tutoresOriginales = tutoresOriginales.filter(tutor => tutor.idtutor !== id);
+            cargarTutores(tutoresOriginales);
             document.getElementById('loader').style.display = 'none';
           })
           .catch(error => {
@@ -512,38 +508,38 @@
           document.getElementById('loader').style.display = 'none';
         })
         .catch(error => {
-          console.error('Error al obtener monitor:', error);
+          console.error('Error al obtener tutor:', error);
           document.getElementById('loader').style.display = 'none';
         });
     }
 
-    function abrirModal(monitor = null) {
+    function abrirModal(tutor = null) {
       document.getElementById('modalFormulario').style.display = 'block';
-      document.getElementById('formMonitor').reset();
-      document.getElementById('idmonitor').value = '';
-      document.getElementById('tituloModal').textContent = monitor ? 'Editar Monitor' : 'Agregar Monitor';
+      document.getElementById('formTutor').reset();
+      document.getElementById('idtutor').value = '';
+      document.getElementById('tituloModal').textContent = tutor ? 'Editar Tutor' : 'Agregar Tutor';
 
-      if (monitor) {
-        document.getElementById('idmonitor').value = monitor.idmonitor;
-        document.getElementById('nombres').value = monitor.nombres;
-        document.getElementById('apellidos').value = monitor.apellidos;
-        document.getElementById('telefono').value = monitor.telefono;
-        document.getElementById('correo').value = monitor.correo;
-        document.getElementById('semestre').value = monitor.semestre;
-        document.getElementById('areapoyo').value = monitor.areapoyo;
-        document.getElementById('proacademico').value = monitor.proacademico;
+      if (tutor) {
+        document.getElementById('idtutor').value = tutor.idtutor;
+        document.getElementById('nombres').value = tutor.nombres;
+        document.getElementById('apellidos').value = tutor.apellidos;
+        document.getElementById('telefono').value = tutor.telefono;
+        document.getElementById('correo').value = tutor.correo;
+        document.getElementById('semestre').value = tutor.semestre;
+        document.getElementById('areapoyo').value = tutor.areapoyo;
+        document.getElementById('proacademico').value = tutor.proacademico;
       } else {
         document.getElementById('loader').style.display = 'block';
         fetch(API_URL)
           .then(res => res.json())
           .then(data => {
-            const maxId = data.length > 0 ? Math.max(...data.map(m => m.idmonitor)) : 0;
-            document.getElementById('idmonitor').value = maxId + 1;
+            const maxId = data.length > 0 ? Math.max(...data.map(t => t.idtutor)) : 0;
+            document.getElementById('idtutor').value = maxId + 1;
             document.getElementById('loader').style.display = 'none';
           })
           .catch(err => {
-            console.error('Error al obtener monitores:', err);
-            document.getElementById('idmonitor').value = 1;
+            console.error('Error al obtener tutores:', err);
+            document.getElementById('idtutor').value = 1;
             document.getElementById('loader').style.display = 'none';
           });
       }
@@ -554,25 +550,25 @@
     }
 
     // Función para verificar si el correo ya existe
-    async function verificarCorreoExistente(correo, idmonitor = null) {
+    async function verificarCorreoExistente(correo, idtutor = null) {
       try {
-        // Verificar en la base de datos de monitores
-        const monitoresResponse = await fetch(API_URL);
-        if (!monitoresResponse.ok) throw new Error('Error al consultar monitores');
-        const monitores = await monitoresResponse.json();
-        const monitorExistente = monitores.find(monitor => monitor.correo === correo && (!idmonitor || monitor.idmonitor !== parseInt(idmonitor)));
-
         // Verificar en la base de datos de tutores
-        const tutoresResponse = await fetch(TUTORES_API_URL);
+        const tutoresResponse = await fetch(API_URL);
         if (!tutoresResponse.ok) throw new Error('Error al consultar tutores');
         const tutores = await tutoresResponse.json();
-        const tutorExistente = tutores.find(tutor => tutor.correo === correo);
+        const tutorExistente = tutores.find(tutor => tutor.correo === correo && (!idtutor || tutor.idtutor !== parseInt(idtutor)));
 
-        if (monitorExistente) {
-          return 'El correo ya está registrado como monitor.';
-        }
+        // Verificar en la base de datos de monitores
+        const monitoresResponse = await fetch(MONITORES_API_URL);
+        if (!monitoresResponse.ok) throw new Error('Error al consultar monitores');
+        const monitores = await monitoresResponse.json();
+        const monitorExistente = monitores.find(monitor => monitor.correo === correo);
+
         if (tutorExistente) {
           return 'El correo ya está registrado como tutor.';
+        }
+        if (monitorExistente) {
+          return 'El correo ya está registrado como monitor.';
         }
         return null; // Correo no existe
       } catch (error) {
@@ -581,7 +577,7 @@
       }
     }
 
-    document.getElementById('formMonitor').addEventListener('submit', async function (e) {
+    document.getElementById('formTutor').addEventListener('submit', async function (e) {
       e.preventDefault();
 
       const telefono = document.getElementById('telefono').value;
@@ -598,8 +594,8 @@
       }
 
       // Verificar si el correo ya existe
-      const idmonitor = document.getElementById('idmonitor').value;
-      const correoError = await verificarCorreoExistente(correo, idmonitor);
+      const idtutor = document.getElementById('idtutor').value;
+      const correoError = await verificarCorreoExistente(correo, idtutor);
       if (correoError) {
         alert(correoError);
         return;
@@ -609,8 +605,8 @@
       const nombres = document.getElementById('nombres').value.toUpperCase();
       const apellidos = document.getElementById('apellidos').value.toUpperCase();
 
-      const monitor = {
-        idmonitor: idmonitor,
+      const tutor = {
+        idtutor: idtutor,
         nombres: nombres,
         apellidos: apellidos,
         telefono: telefono,
@@ -620,42 +616,40 @@
         proacademico: document.getElementById('proacademico').value
       };
 
-      const method = idmonitor && idmonitor !== '' ? 'PUT' : 'POST';
-      const url = idmonitor && idmonitor !== '' ? `${API_URL}/${idmonitor}` : API_URL;
+      const method = idtutor && idtutor !== '' ? 'PUT' : 'POST';
+      const url = idtutor && idtutor !== '' ? `${API_URL}/${idtutor}` : API_URL;
 
       document.getElementById('loader').style.display = 'block';
       fetch(url, {
         method: method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(monitor)
+        body: JSON.stringify(tutor)
       })
         .then(res => {
           if (!res.ok) throw new Error('Error al guardar');
-          return fetch(API_URL); // Volver a obtener los datos actualizados
+          return fetch(API_URL);
         })
         .then(res => res.json())
         .then(data => {
-          monitoresOriginales = data;
-          cargarMonitores(data);
+          tutoresOriginales = data;
+          cargarTutores(data);
           cerrarModal();
           document.getElementById('loader').style.display = 'none';
-          alert('Monitor guardado exitosamente.');
+          alert('Tutor guardado exitosamente.');
         })
         .catch(err => {
           console.error(err);
-          alert('Error al guardar el monitor: ' + err.message);
+          alert('Error al guardar el tutor: ' + err.message);
           document.getElementById('loader').style.display = 'none';
         });
     });
 
-    // Funciones para gestionar la foto
     async function gestionarFoto(correo) {
       document.getElementById('modalFoto').style.display = 'block';
       document.getElementById('fotoCorreo').value = correo;
-      document.getElementById('fotoArchivo').value = ''; // Limpiar el input de archivo
+      document.getElementById('fotoArchivo').value = '';
 
-      // Limpiar estado previo
-      document.getElementById('fotoMonitor').style.display = 'none';
+      document.getElementById('fotoTutor').style.display = 'none';
       document.getElementById('sinFotoMensaje').style.display = 'none';
       document.getElementById('btnSubirFoto').style.display = 'none';
       document.getElementById('btnCambiarFoto').style.display = 'none';
@@ -668,10 +662,10 @@
 
         const fotos = await response.json();
         if (fotos.length > 0) {
-          const foto = fotos[0]; // Tomamos la primera foto asociada al correo
+          const foto = fotos[0];
           document.getElementById('fotoId').value = foto.id;
-          document.getElementById('fotoMonitor').src = `${FOTOS_URL}/${foto.id}/imagen?t=${new Date().getTime()}`; // Añadimos un timestamp para evitar caché
-          document.getElementById('fotoMonitor').style.display = 'block';
+          document.getElementById('fotoTutor').src = `${FOTOS_URL}/${foto.id}/imagen?t=${new Date().getTime()}`;
+          document.getElementById('fotoTutor').style.display = 'block';
           document.getElementById('btnCambiarFoto').style.display = 'inline-block';
           document.getElementById('btnEliminarFoto').style.display = 'inline-block';
         } else {
@@ -702,7 +696,6 @@
         return;
       }
 
-      // Validar que el archivo sea una imagen
       const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
       if (!tiposPermitidos.includes(archivo.type)) {
         alert('Por favor, suba un archivo en formato JPEG, PNG, GIF o WebP.');
@@ -728,8 +721,8 @@
 
         const fotoId = await response.json();
         document.getElementById('fotoId').value = fotoId;
-        document.getElementById('fotoMonitor').src = `${FOTOS_URL}/${fotoId}/imagen?t=${new Date().getTime()}`; // Añadimos un timestamp para evitar caché
-        document.getElementById('fotoMonitor').style.display = 'block';
+        document.getElementById('fotoTutor').src = `${FOTOS_URL}/${fotoId}/imagen?t=${new Date().getTime()}`;
+        document.getElementById('fotoTutor').style.display = 'block';
         document.getElementById('sinFotoMensaje').style.display = 'none';
         document.getElementById('btnSubirFoto').style.display = 'none';
         document.getElementById('btnCambiarFoto').style.display = 'inline-block';
@@ -751,7 +744,6 @@
         return;
       }
 
-      // Validar que el archivo sea una imagen
       const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
       if (!tiposPermitidos.includes(archivo.type)) {
         alert('Por favor, suba un archivo en formato JPEG, PNG, GIF o WebP.');
@@ -777,8 +769,8 @@
 
         const fotoId = await response.json();
         document.getElementById('fotoId').value = fotoId;
-        document.getElementById('fotoMonitor').src = `${FOTOS_URL}/${fotoId}/imagen?t=${new Date().getTime()}`; // Añadimos un timestamp para evitar caché
-        document.getElementById('fotoMonitor').style.display = 'block';
+        document.getElementById('fotoTutor').src = `${FOTOS_URL}/${fotoId}/imagen?t=${new Date().getTime()}`;
+        document.getElementById('fotoTutor').style.display = 'block';
         document.getElementById('sinFotoMensaje').style.display = 'none';
         document.getElementById('btnSubirFoto').style.display = 'none';
         document.getElementById('btnCambiarFoto').style.display = 'inline-block';
@@ -804,9 +796,9 @@
         if (!response.ok) throw new Error('Error al eliminar la foto');
 
         document.getElementById('fotoId').value = '';
-        document.getElementById('fotoMonitor').style.display = 'none';
+        document.getElementById('fotoTutor').style.display = 'none';
         document.getElementById('sinFotoMensaje').style.display = 'block';
-        document.getElementById('sinFotoMensaje').textContent = 'Este monitor no tiene foto asignada.';
+        document.getElementById('sinFotoMensaje').textContent = 'Este tutor no tiene foto asignada.';
         document.getElementById('btnSubirFoto').style.display = 'inline-block';
         document.getElementById('btnCambiarFoto').style.display = 'none';
         document.getElementById('btnEliminarFoto').style.display = 'none';

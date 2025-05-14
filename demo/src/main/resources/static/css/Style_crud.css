@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CRUD MONITORES</title>
-  <link href="https://cucuta.unisimon.edu.co/estudiante/views/layout/default/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
+body {
       font-family: 'Poppins', sans-serif;
       display: flex;
       flex-direction: column;
@@ -152,23 +143,3 @@
     .purple {
       background: linear-gradient(45deg, #4b0082, #8a2be2); /* Gradiente morado para usuarios */
     }
-  </style>
-</head>
-<body>
-  <h1><span class="crud">CRUD</span></h1>
-  <div class="container">
-    <a href="lista-monitores.html" class="box blue">
-      <img src="IMG/LDM.png" alt="Monitores">
-      <span>LISTADO DE MONITORES</span>
-    </a>
-    <a href="#" class="box black">
-      <img src="IMG/LDT.png" alt="Analisis">
-      <span>  ANALISIS DE WEB  </span>
-    </a>
-    <a href="usuarios.html" class="box purple">
-      <img src="IMG/TDU.png" alt="Usuarios">
-      <span>TARJETAS DE USUARIOS</span>
-    </a>
-  </div>
-</body>
-</html>

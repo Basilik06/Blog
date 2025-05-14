@@ -3,15 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Style_landingpage.css">
+    <link rel="stylesheet" href="css/Style_landingpage.css">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <title>Blog Presentation Landing Page</title>
+    <title>Blog Academico</title>
 </head>
+<style>
+    #inicio {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/fondo.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+</style>
 <body>
     <!-- Navigation Bar -->
     <nav>
         <div class="logo-container">
-            <a href="#inicial"><img src="IMG/logo.png" alt="logo Blog" class="logo_menu"></a>
+            <a href="#inicial"><img src="img/logo.png" alt="logo Blog" class="logo_menu"></a>
         </div>
         <div class="nav-menu">
             <ul>
@@ -20,7 +31,7 @@
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#comentarios">Comentarios</a></li>
             </ul>
-            <a href="#" class="login-btn">Iniciar Sesión</a>
+            <a th:href="@{/login}" class="login-btn">Iniciar Sesión</a>
         </div>
     </nav>
     <!-- Hero Section -->
@@ -48,12 +59,12 @@
         <p>Somos un equipo de creadores apasionados por compartir historias, ideas y experiencias. Nos dedicamos a construir una comunidad que valore el aprendizaje y la creatividad.</p>
         <div class="carousel">
             <div class="carousel-images">
-                <img src="IMG/LDM.png" alt="Equipo trabajando">
-                <img src="IMG/LDT.png" alt="Reunión creativa">
-                <img src="IMG/TDU.png" alt="Colaboración en equipo">
-                <img src="IMG/TDU.png" alt="Colaboración en equipo">
-                <img src="IMG/TDU.png" alt="Colaboración en equipo">
-                <img src="IMG/TDU.png" alt="Colaboración en equipo">
+                <img src="img/LDM.png" alt="Equipo trabajando">
+                <img src="img/LDT.png" alt="Reunión creativa">
+                <img src="img/TDU.png" alt="Colaboración en equipo">
+                <img src="img/TDU.png" alt="Colaboración en equipo">
+                <img src="img/TDU.png" alt="Colaboración en equipo">
+                <img src="img/TDU.png" alt="Colaboración en equipo">
             </div>
             <button class="carousel-btn" id="prev-btn">❮</button>
             <button class="carousel-btn" id="next-btn">❯</button>

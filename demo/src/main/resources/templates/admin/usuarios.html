@@ -6,11 +6,11 @@
   <link rel="shortcut icon" href="cr7.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-A65VpEyXjcEyAlfQBM+GZfFJpy9xK7avDUrOX02wE0nQmr5YHL0opBQMEaKf6sdfutGfAWtJmn2F++3ey0nVw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="Style.css">
+  <link rel="stylesheet" href="css/Style.css">
   <style>
     /* Asegurar que el fondo de imagen sea visible */
     body {
-      background-image: url('IMG/fondoverde.jpg'); /* Ajusta 'background.jpg' al nombre de tu imagen de fondo */
+      background-image: url('img/fondoverde.jpg'); /* Ajusta 'background.jpg' al nombre de tu imagen de fondo */
       background-size: cover;
       background-attachment: fixed;
       background-position: center;
@@ -265,7 +265,7 @@
 <body>
   <div class="container">
     <!-- Botón para regresar al inicio -->
-    <a href="index_crud.html" id="homeButton" aria-label="Volver al inicio">
+    <a th:href="@{/index_crud}" id="homeButton" aria-label="Volver al inicio">
       <i class="fas fa-home"></i> Volver al Inicio
     </a>
 
