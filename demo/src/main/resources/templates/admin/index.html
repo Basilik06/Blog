@@ -8,21 +8,21 @@ xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
   <title>CRUD MONITORES</title>
   <link href="https://cucuta.unisimon.edu.co/estudiante/views/layout/default/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/Style_crud.css">
+  <link rel="stylesheet" th:href="@{/css/Style_crud.css}">
 </head>
 <body>
   <h1><span class="crud">CRUD</span></h1>
   <div class="container">
     <a th:href="@{/lista-monitores}" class="box blue">
-      <img src="img/LDM.png" alt="Monitores">
+      <img th:src="@{/img/LDM.png}"  alt="Monitores">
       <span>LISTADO DE MONITORES</span>
     </a>
     <a th:href="@{/#}" class="box black">
-      <img src="img/LDT.png" alt="Analisis">
+      <img th:src="@{/img/LDT.png}" alt="Analisis">
       <span>  ANALISIS DE WEB  </span>
     </a>
     <a th:href="@{/usuarios-monitores}" class="box purple">
-      <img src="img/TDU.png" alt="Usuarios">
+      <img th:src="@{/img/TDU.png}" alt="Usuarios">
       <span>TARJETAS DE USUARIOS</span>
     </a>
   </div>

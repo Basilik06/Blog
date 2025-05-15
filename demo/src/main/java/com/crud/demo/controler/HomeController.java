@@ -9,7 +9,7 @@ public class HomeController {
     public String redirectToInicio() {
         return "landing-page/index";
     }
-     @GetMapping("/login")
+     @GetMapping("/entrar")
     public String redirectlogin() {
         return "landing-page/login"; // sin ".html"
     }

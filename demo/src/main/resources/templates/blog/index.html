@@ -118,7 +118,7 @@
             <div class="container-fluid">
                 <!-- Logo -->
                 <a class="navbar-brand" href="@{/#}">
-                    <img src="img/logo.png" alt="Logo">
+                    <img th:src="@{/img/logo.png}" alt="Logo">
                 </a>
                 <!-- Buscador -->
                 <form class="d-flex ms-3 search-form">
@@ -149,7 +149,7 @@
                     <span class="separator"> | </span>
                     <!-- Foto de perfil -->
                     <a href="@{/#}" class="nav-icon">
-                        <img src="img/perfil.jpg" alt="Perfil" class="nav-profile">
+                        <img th:src="@{/img/perfil.jpg}" alt="Perfil" class="nav-profile">
                     </a>
                 </div>
             </div>
