@@ -5,7 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - Blog Académico</title>
+    <title>UniLink</title>
+    <link rel="icon" href="img/icono.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/Style_login.css">
 </head>
 <style>
@@ -38,8 +39,6 @@
                 <a href="#">¿Olvidaste tu contraseña?</a>
             </div>
             <button type="submit">LOGIN</button>
-            <button><a th:href="@{/index_crud}" style="color: white;">Admin</a></button>
-            <button><a th:href="@{/index_blog}" style="color: white;">Usuario</a></button>
             <div class="toggle-form">
                 ¿No tienes una cuenta? <a href="#" onclick="renderRegisterForm()">Registrarse</a>
             </div>
@@ -62,8 +61,6 @@
                         <a href="#">¿Olvidaste tu contraseña?</a>
                     </div>
                     <button type="submit">LOGIN</button>
-                    <button><a th:href="@{/index_crud}" style="color: white;">Admin</a></button>
-                    <button><a th:href="@{/index_blog}" style="color: white;">Usuario</a></button>
                     <div class="toggle-form">
                         ¿No tienes una cuenta? <a href="#" onclick="renderRegisterForm()">Registrarse</a>
                     </div>
@@ -77,6 +74,8 @@
             container.innerHTML = `
                 <form id="register-form">
                     <h2>Registrarse</h2>
+                    <input type="text" name="nombre" placeholder="Nombre" required>
+                    <input type="text" name="apellido" placeholder="Apellido" required>
                     <input type="email" name="email" placeholder="Email ID" required>
                     <input type="password" name="password" placeholder="Password" required>
                     <input type="password" name="confirm-password" placeholder="Confirm Password" required>

@@ -28,8 +28,8 @@ nav {
 }
 
 .logo-container .logo_menu {
-    width: 60px;
-    height: 60px;
+    width: 140px;
+    height: 70px;
     margin: 0;
 }
 
@@ -37,7 +37,7 @@ nav {
     display: flex;
     align-items: center;
 }
-
+ 
 .nav-menu ul {
     list-style: none;
     display: flex;
@@ -56,13 +56,13 @@ nav {
 }
 
 .nav-menu ul li a:hover {
-    color: #f4c430;
+    color: #f06711;
 }
 
 .nav-menu .login-btn {
     margin-left: 20px;
     padding: 10px 20px;
-    background-color: #f4c430;
+    background-color: #d65d11;
     color: #1a1a1a;
     text-decoration: none;
     border-radius: 5px;
@@ -71,7 +71,7 @@ nav {
 }
 
 .nav-menu .login-btn:hover {
-    background-color: #e0b028;
+    background-color:#f06711;
 }
 
 /* Hero Section */
