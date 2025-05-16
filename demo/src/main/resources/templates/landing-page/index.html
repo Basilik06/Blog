@@ -6,7 +6,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/icono.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/Style_landingpage.css">
+    <link rel="stylesheet" th:href="@{/css/Style_landingpage.css}">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <title>UniLink</title>
 </head>
@@ -62,9 +62,9 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
         <p>Somos un equipo de creadores apasionados por compartir historias, ideas y experiencias. Nos dedicamos a construir una comunidad que valore el aprendizaje y la creatividad.</p>
         <div class="carousel">
             <div class="carousel-images">
-                <img src="img/LDM.png" alt="Equipo trabajando">
-                <img src="img/LDT.png" alt="Reunión creativa">
-                <img src="img/TDU.png" alt="Colaboración en equipo">
+                <img th:src="@{/img/LDM.png}" alt="Equipo trabajando">
+                <img th:src="@{/img/LDT.png}" alt="Reunión creativa">
+                <img thsrc="img/TDU.png" alt="Colaboración en equipo">
                 <img src="img/TDU.png" alt="Colaboración en equipo">
                 <img src="img/TDU.png" alt="Colaboración en equipo">
                 <img src="img/TDU.png" alt="Colaboración en equipo">

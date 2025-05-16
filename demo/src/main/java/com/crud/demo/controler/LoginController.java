@@ -11,35 +11,59 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.crud.demo.interfaces.UserRepository;
 import com.crud.demo.modelo.User;
+import com.crud.demo.utils.JwtUtil;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
 
-    @Autowired
-    private UserRepository usuarioRepository;  // Inyección fuera del método
+	 @Autowired
+	    private UserRepository usuarioRepository;
 
-    @PostMapping("/login")
-    public String login(@RequestParam String email,
-                        @RequestParam String password,
-                        HttpSession session,
-                        RedirectAttributes redirectAttributes) {
+	    @Autowired
+	    private JwtUtil jwtUtil;
 
-        Optional<User> userOpt = usuarioRepository.findByEmailAndContrasena(email, password);
+	    @PostMapping("/login")
+	    public String login(@RequestParam String email,
+	                        @RequestParam String password,
+	                        HttpServletResponse response,
+	                        RedirectAttributes redirectAttributes) {
 
-        if (userOpt.isPresent()) {
-            int user = userOpt.get().getRol();
-            if (user == 1) {
-                return "redirect:/admin/dashboard";
-            } else {
-                return "redirect:/cliente/inicio";
-            }
-        } else {
-            redirectAttributes.addFlashAttribute("error", "Credenciales inválidas");
-            return "redirect:/entrar";
-        }
-    }
+	        Optional<User> userOpt = usuarioRepository.findByEmailAndContrasena(email, password);
+
+	        if (userOpt.isPresent()) {
+	            String token = jwtUtil.generateToken(email);
+
+	            Cookie cookie = new Cookie("jwt", token);
+	            cookie.setHttpOnly(true);
+	            cookie.setPath("/");
+	            cookie.setMaxAge(3600); // 1 hora
+	            response.addCookie(cookie);
+	            System.out.print("Esta entrando en el controlador ");
+	            int rol = userOpt.get().getRol();
+	            if (rol == 1) {
+	                return "redirect:/admin/dashboard";
+	            } else {
+	                return "redirect:/cliente/inicio";
+	            }
+	        } else {
+	            redirectAttributes.addFlashAttribute("error", "Credenciales inválidas");
+	            return "redirect:/entrar";
+	        }
+	    }
+
+	    @GetMapping("/logout")
+	    public String logout(HttpServletResponse response) {
+	        Cookie cookie = new Cookie("jwt", null);
+	        cookie.setMaxAge(0);
+	        cookie.setPath("/");
+	        response.addCookie(cookie);
+	        return "redirect:/entrar";
+	    }
+	
 
     @GetMapping("/admin/dashboard")
     public String adminHome() {
