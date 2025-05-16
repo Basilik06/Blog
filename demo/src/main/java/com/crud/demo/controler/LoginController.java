@@ -15,7 +15,6 @@ import com.crud.demo.utils.JwtUtil;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
@@ -50,7 +49,7 @@ public class LoginController {
 	                return "redirect:/cliente/inicio";
 	            }
 	        } else {
-	            redirectAttributes.addFlashAttribute("error", "Credenciales inválidas");
+	            redirectAttributes.addFlashAttribute("error", "Acceso inválido. Por favor, inténtelo otra vez.");
 	            return "redirect:/entrar";
 	        }
 	    }

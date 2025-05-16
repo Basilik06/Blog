@@ -18,7 +18,7 @@
         background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/fondo.jpg') center/cover no-repeat fixed;
     }
     .error-message {
-        color: red;
+        color: white;
         margin-top: 10px;
         margin-bottom: 10px;
         text-align: center;
@@ -40,7 +40,7 @@
             </div>
             <button type="submit">LOGIN</button>
             <div class="toggle-form">
-                ¿No tienes una cuenta? <a href="#" onclick="renderRegisterForm()">Registrarse</a>
+                ¿No tienes una cuenta? <a th:href="@{/#}" onclick="renderRegisterForm()">Registrarse</a>
             </div>
         </form>
     </div>
@@ -62,7 +62,7 @@
                     </div>
                     <button type="submit">LOGIN</button>
                     <div class="toggle-form">
-                        ¿No tienes una cuenta? <a href="#" onclick="renderRegisterForm()">Registrarse</a>
+                        ¿No tienes una cuenta? <a th:href="@{/#}" onclick="renderRegisterForm()">Registrarse</a>
                     </div>
                 </form>
             `;
