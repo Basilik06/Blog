@@ -1,131 +1,193 @@
 <!DOCTYPE html>
-<html lang="es"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explora nuestro blog con artículos interesantes y únete a la comunidad.">
-    <meta name="keywords" content="blog, artículos, comunidad, noticias">
+    <meta name="description" content="UniLink: Explora nuestro blog con artículos interesantes y únete a la comunidad.">
+    <meta name="keywords" content="blog, artículos, comunidad, noticias, unelink">
+    <meta name="author" content="UniLink Team">
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:title" content="UniLink - Blog de Contenido Interesante">
+    <meta property="og:description" content="Explora artículos sobre diversos temas y únete a la comunidad de UniLink.">
+    <meta property="og:image" content="/img/logo.png">
+    <meta property="og:url" content="https://unilink.com">
+    <meta property="og:type" content="website">
     <title>UniLink</title>
-    <link rel="icon" href="img/icono.ico" type="image/x-icon">
+    <link rel="icon" href="/img/icono.ico" type="image/x-icon">
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Bootstrap Icons CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <style>
+        :root {
+            --primary-color: #fb9a24;
+            --text-color: #212529;
+            --bg-light: #f8f9fa;
+            --bg-dark: #121212;
+            --navbar-bg-light: #ffffff;
+            --navbar-bg-dark: #0e0e0e;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
         body {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            transition: background-color 0.3s, color 0.3s;
-        }
- 
-        /* Modo claro (por defecto) */
-        body.light-theme {
-            background-color: #ffffff;
-            color: #333;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Arial', sans-serif;
         }
 
-        /* Modo oscuro */
+        /* Modo claro y oscuro */
+        body.light-theme {
+            background-color: var(--bg-light);
+            color: var(--text-color);
+        }
+
         body.dark-theme {
-            background-color: #1a1a1a;
-            color: #f0f0f0;
+            background-color: var(--bg-dark);
+            color: #e0e0e0;
         }
 
         body.dark-theme .navbar {
-            background-color: #2c3e50;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            background-color: var(--navbar-bg-dark);
+            box-shadow: var(--shadow);
         }
 
-        body.dark-theme .nav-icon {
-            color: #f0f0f0;
+        body.dark-theme .nav-icon, body.dark-theme .search-form .input-group-text {
+            color: #e0e0e0;
         }
 
         body.dark-theme .nav-icon:hover {
-            color: #66b0ff;
+            color: #fb9a24;
         }
 
         body.dark-theme .search-form .input-group {
-            background-color: #333;
-            border-color: #555;
+            background-color: #2a2a2a;
+            border-color: #4a4a4a;
         }
 
-        body.dark-theme .search-form .form-control,
-        body.dark-theme .search-form .input-group-text {
-            color: #f0f0f0;
+        body.dark-theme .search-form .form-control {
+            color: #e0e0e0;
+            background-color: transparent;
         }
 
         body.dark-theme .search-form .form-control::placeholder {
-            color: #aaa;
+            color: #a0a0a0;
         }
 
         body.dark-theme .dropdown-menu {
-            background-color: #323539;
-            border-color: #555;
+            background-color: #2a2a2a;
+            border-color: #4a4a4a;
         }
 
         body.dark-theme .dropdown-item {
-            color: #f0f0f0;
+            color: #e0e0e0;
         }
 
         body.dark-theme .dropdown-item:hover {
-            background-color: #323539;
-            color: #66b0ff;
+            background-color: #3a3a3a;
+            color: #4dabf7;
         }
 
+        body.dark-theme .card {
+            background-color: #1e2a38;
+            border-color: #4a4a4a;
+        }
+
+        /* --- Estilos del Navbar --- */
         .navbar {
-            background-color: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: var(--navbar-bg-light);
+            box-shadow: var(--shadow);
+            padding: 0.75rem 1rem;
+            transition: background-color 0.3s ease;
+            position: relative;
         }
 
         .navbar-brand img {
-            height: 40px;
+            height: 36px;
+            width: auto;
+            transition: transform 0.3s ease;
         }
 
-        .nav-icon {
-            font-size: 1.5rem;
-            color: #333;
-            position: relative;
-            margin-left: 1rem;
-            transition: color 0.3s;
+        .navbar-brand img:hover {
+            transform: scale(1.1);
         }
 
-        .nav-icon:hover {
-            color: #007bff;
+        .hidden {
+            display: none;
         }
 
-        .nav-icon.notification::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            width: 8px;
-            height: 8px;
-            background-color: red;
-            border-radius: 50%;
+        body.light-theme .logo-dark,
+        body.dark-theme .logo-light {
+            display: none;
         }
 
-        .nav-profile {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
+        body.light-theme .logo-light,
+        body.dark-theme .logo-dark {
+            display: inline;
         }
 
-        .separator {
+        /* Contenedor del navbar */
+        #navbarContent {
             display: flex;
             align-items: center;
-            margin: 0 10px 0px 20px;
-            color: #333;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
         }
 
+        /* Contenedor del buscador (dentro del navbar para pantallas grandes) */
+        .search-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            padding: 0 0.5rem;
+            position: relative;
+        }
+
+        /* Contenedor del buscador para pantallas pequeñas (debajo del navbar) */
+        .search-container-mobile {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: var(--navbar-bg-light);
+            box-shadow: var(--shadow);
+            padding: 0.5rem 1rem;
+            display: none;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-theme .search-container-mobile {
+            background-color: var(--navbar-bg-dark);
+        }
+
+        /* Ícono de búsqueda para pantallas pequeñas */
+        .search-icon {
+            display: none; /* Oculto por defecto en pantallas grandes */
+            font-size: 1.2rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            margin: 0 0.4rem;
+        }
+
+        body.dark-theme .search-icon {
+            color: #e0e0e0;
+        }
+
+        .search-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* Formulario de búsqueda */
         .search-form {
             flex-grow: 1;
             max-width: 600px;
-            margin: 0 0 0 20px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
         }
 
         .search-form .input-group {
@@ -138,7 +200,7 @@
         }
 
         .search-form .input-group:hover {
-            border-color: #007bff;
+            border-color: #929292;
         }
 
         .search-form .input-group-text {
@@ -153,9 +215,8 @@
             border: none;
             color: #333;
             padding-left: 0.5rem;
-            padding-right: 0.5rem; /* Espacio para la "X" */
-            flex-grow: 1; /* Ocupa todo el espacio disponible */
-            max-width: none; /* Elimina el max-width */
+            padding-right: 0.5rem;
+            flex-grow: 1;
         }
 
         .search-form .form-control::placeholder {
@@ -169,7 +230,6 @@
             box-shadow: none;
         }
 
-        /* Estilizar la "X" (ícono de limpieza) */
         .search-form .form-control::-webkit-search-cancel-button {
             -webkit-appearance: none;
             appearance: none;
@@ -178,55 +238,239 @@
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>') no-repeat center;
             background-size: contain;
             cursor: pointer;
-            margin-right: 0.5rem; /* Asegura que esté al final */
+            margin-right: 0.5rem;
+        }
+
+        body.dark-theme .search-form .input-group-text {
+            color: #f0f0f0;
+        }
+
+        body.dark-theme .search-form .form-control {
+            color: #e0e0e0;
+            background-color: transparent;
+        }
+
+        body.dark-theme .search-form .form-control::placeholder {
+            color: #a0a0a0;
         }
 
         body.dark-theme .search-form .form-control::-webkit-search-cancel-button {
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>') no-repeat center;
-            background-size: contain;
         }
 
-        /* Estilos para el dropdown */
+        /* Botón de cerrar búsqueda */
+        .close-search {
+            display: none;
+            font-size: 1rem;
+            color: #333;
+            cursor: pointer;
+            margin-left: 0.5rem;
+        }
+
+        body.dark-theme .close-search {
+            color: #e0e0e0;
+        }
+
+        .close-search:hover {
+            color: var(--primary-color);
+        }
+
+        /* Iconos de navegación */
+        .nav-icon {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin: 0 0.4rem;
+            position: relative;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .nav-icon.notification::after {
+            content: attr(data-count);
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #dc3545;
+            color: #ffffff;
+            font-size: 0.7rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .nav-profile {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-profile:hover {
+            transform: scale(1.1);
+        }
+
+        .separator {
+            color: #6c757d;
+            margin: 0 0.4rem;
+            font-size: 1rem;
+        }
+
+        /* Separador específico para el ícono de búsqueda */
+        .search-separator {
+            display: none; /* Oculto por defecto en pantallas grandes */
+            color: #6c757d;
+            margin: 0 0.4rem;
+            font-size: 1rem;
+        }
+
+        /* Dropdown */
         .dropdown-menu {
-            min-width: 150px;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow);
+            background-color: #ffffff;
+            min-width: 160px;
         }
 
         .dropdown-item {
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1rem;
             font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .dropdown-item i {
+            font-size: 1rem;
         }
 
         .dropdown-item:hover {
-            background-color: #f8f9fa;
+            background-color: #e9ecef;
         }
 
-        /* Sección de posts */
+
+        /* Estilos de posts */
         .post-card {
-            transition: transform 0.3s;
+            border: none;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .post-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .post-card .card-img-top {
+            border-radius: 10px 10px 0 0;
+            object-fit: cover;
+            height: 200px;
+        }
+
+        .post-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .post-card .btn {
+            border-radius: 20px;
+            padding: 0.5rem 1.5rem;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .search-form {
-                margin: 0.5rem 0;
-                max-width: 100%;
+        @media (max-width: 992px) {
+            .search-container {
+                flex-grow: 0;
+                width: 100%;
+                margin-top: 0.5rem;
             }
-
             .nav-icons {
-                flex-wrap: wrap;
-                justify-content: center;
+                flex-wrap: nowrap;
+                gap: 0.3rem;
             }
-
             .separator {
-                margin: 0 5px;
+                display: none;
             }
+            .navbar {
+                padding: 0.5rem;
+            }
+            .dropdown-menu {
+                min-width: 140px;
+            }
+        }
 
+        @media (max-width: 987px) {
+            .navbar-brand img {
+                height: 30px;
+            }
+            .nav-icon {
+                font-size: 1rem;
+                margin: 0 0.3rem;
+            }
+            .nav-profile {
+                width: 28px;
+                height: 28px;
+            }
+            .post-card .card-img-top {
+                height: 150px;
+            }
+            .search-container {
+                display: none;
+            }
+            .search-icon {
+                display: block;
+            }
+            .close-search {
+                display: block;
+            }
+            /* Mostrar separadores en pantallas pequeñas */
+            .separator {
+                display: block;
+            }
+            /* Mostrar el separador específico del ícono de búsqueda */
+            .search-separator {
+                display: block;
+            }
+        }
+
+        @media (min-width: 987px) {
+            .search-icon {
+                display: none !important;
+            }
+            .search-container-mobile {
+                display: none !important;
+            }
+            /* Ocultar el separador específico del ícono de búsqueda */
+            .search-separator {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .nav-icon {
+                font-size: 0.9rem;
+                margin: 0 0.2rem;
+            }
+            .nav-profile {
+                width: 24px;
+                height: 24px;
+            }
+            .navbar-brand img {
+                height: 28px;
+            }
+            .search-icon {
+                font-size: 1rem;
+            }
             .dropdown-menu {
                 min-width: 120px;
             }
@@ -235,117 +479,242 @@
 </head>
 <body class="light-theme">
     <header>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand" role="navigation" aria-label="Navegación principal">
             <div class="container-fluid">
                 <!-- Logo -->
-                <a class="navbar-brand" th:href="@{/}">
-                    <img th:src="@{/img/log.png}" alt="Logo de Mi Blog">
-                </a>
-                <!-- Buscador -->
-                <form class="d-flex ms-3 search-form" th:action="@{/search}" method="get">
-                    <div class="input-group">
-                        <span class="input-group-text">
-                            <i class="bi bi-search" aria-hidden="true"></i>
-                        </span>
-                        <input class="form-control" type="search" name="q" placeholder="Buscar en el blog" aria-label="Buscar">
+                <a class="navbar-brand" th:href="@{/}" aria-label="Volver a la página de inicio de UniLink">
+                    <div class="logo-container">
+                        <img th:src="@{/img/logo_sf.png}" class="logo-light hidden" alt="Logo de UniLink (modo claro)" width="36" height="36" loading="lazy">
+                        <img th:src="@{/img/logo_oscuro_sf.png}" class="logo-dark hidden" alt="Logo de UniLink (modo oscuro)" width="36" height="36" loading="lazy">
                     </div>
-                </form>
-                <!-- Iconos de navegación -->
-                <div class="nav-icons d-flex align-items-center">
-                    <a th:href="@{/}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Inicio" aria-label="Ir a Inicio">
-                        <i class="bi bi-house-door-fill" aria-hidden="true"></i>
-                    </a>
-                    <span class="separator"> | </span>
-                    <a th:href="@{/posts/create}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Crear Post" aria-label="Crear un nuevo post">
-                        <i class="bi bi-plus-circle-fill" aria-hidden="true"></i>
-                    </a>
-                    <span class="separator"> | </span>
-                    <a th:href="@{/profile}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Monitor" aria-label="Ver perfil de usuario">
-                        <i class="bi bi-person-fill" aria-hidden="true"></i>
-                    </a>
-                    <span class="separator"> | </span>
-                    <a th:href="@{/notifications}" class="nav-icon notification" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notificaciones" aria-label="Ver notificaciones">
-                        <i class="bi bi-bell-fill" aria-hidden="true"></i>
-                    </a>
-                    <span class="separator"> | </span>
-                    <!-- Menú desplegable de perfil -->
-                    <div class="dropdown">
-                        <a href="#" class="nav-icon" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones de perfil">
-                            <img th:src="@{/img/perfil.jpg}" alt="Foto" class="nav-profile">
+                </a>
+                <!-- Contenido del navbar -->
+                <div id="navbarContent">
+                    <!-- Buscador para pantallas grandes -->
+                    <div class="search-container">
+                        <form class="d-flex search-form my-2 my-lg-0" th:action="@{/search}" method="get" role="search" aria-label="Buscar en el blog">
+                            <div class="input-group">
+                                <span class="input-group-text" aria-hidden="true">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input class="form-control" type="search" name="q" id="searchInputLarge" placeholder="Buscar en UniLink" aria-label="Buscar artículos en UniLink" required>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Iconos de navegación -->
+                    <div class="nav-icons d-flex align-items-center ms-auto">
+                        <span class="search-icon" id="searchIcon" aria-label="Abrir buscador">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <span class="search-separator">|</span>
+                        <a th:href="@{/}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Inicio" aria-label="Ir a la página de inicio">
+                            <i class="bi bi-house-door-fill"></i>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                            <li><a class="dropdown-item" th:href="@{/profile}">Perfil</a></li>
-                            <li><a class="dropdown-item" href="#" id="themeToggle">Modo Noche</a></li>
-                            <li><a class="dropdown-item" th:href="@{/logout}">Cerrar Sesión</a></li>
-                        </ul>
+                        <span class="separator">|</span>
+                        <a th:href="@{/}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Crear Post" aria-label="Crear un nuevo post">
+                            <i class="bi bi-plus-circle-fill"></i>
+                        </a>
+                        <span class="separator">|</span>
+                        <a th:href="@{/}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Monitor" aria-label="Ver Monitores">
+                            <i class="bi bi-person-fill"></i>
+                        </a>
+                        <span class="separator">|</span>
+                        <a th:href="@{/}" class="nav-icon notification" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notificaciones" aria-label="Ver notificaciones" data-count="3">
+                            <i class="bi bi-bell-fill"></i>
+                        </a>
+                        <span class="separator">|</span>
+                        <!-- Menú desplegable de perfil -->
+                        <div class="dropdown">
+                            <a href="#" class="nav-icon" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones de perfil de usuario">
+                                <img th:src="@{/img/perfil.jpg}" alt="Foto de perfil del usuario" class="nav-profile" loading="lazy">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                <li><a class="dropdown-item" th:href="@{/}"><i class="bi bi-person"></i> Perfil</a></li>
+                                <li><a class="dropdown-item" href="#" id="themeToggle"><i class="bi bi-moon"></i> Modo Noche</a></li>
+                                <li><a class="dropdown-item" th:href="@{/}"><i class="bi bi-gear"></i> Configuración</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" th:href="@{/logout}"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </nav>
+        <!-- Buscador para pantallas pequeñas (debajo del navbar) -->
+        <div class="search-container-mobile">
+            <form class="d-flex search-form my-2 my-lg-0" th:action="@{/search}" method="get" role="search" aria-label="Buscar en el blog">
+                <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input class="form-control" type="search" name="q" id="searchInputMobile" placeholder="Buscar en UniLink" aria-label="Buscar artículos en UniLink" required>
+                    <span class="close-search" id="closeSearch" aria-label="Cerrar buscador">
+                        <i class="bi bi-x"></i>
+                    </span>
+                </div>
+            </form>
+        </div>
     </header>
 
-    <main class="container my-5">
-        <section>
-            <h2 class="mb-4">Bienvenidos a Mi Blog</h2>
-            <p>Explora nuestros artículos más recientes y únete a la comunidad. Aquí encontrarás contenido interesante sobre diversos temas.</p>
+    <main class="container my-5" id="main-content">
+        <section aria-labelledby="welcome-heading">
+            <h2 class="mb-4" id="welcome-heading">Bienvenidos a UniLink</h2>
+            <p>Explora nuestros artículos más recientes y únete a la comunidad. Aquí encontrarás contenido interesante sobre diversos temas, desde tecnología hasta estilo de vida.</p>
         </section>
-        <section class="mt-5">
-            <h3 class="mb-4">Últimos Posts</h3>
+        <section class="mt-5" aria-labelledby="posts-heading">
+            <h3 class="mb-4" id="posts-heading">Últimos Posts</h3>
             <div class="row">
-                <div class="col-md-4 mb-4">
+                <article class="col-md-4 mb-4">
                     <div class="card post-card">
+                        <img th:src="@{/img/post1.jpg}" class="card-img-top" alt="Imagen del post Título del Post" loading="lazy">
                         <div class="card-body">
                             <h5 class="card-title">Título del Post</h5>
                             <p class="card-text">Resumen breve del contenido del post para atraer a los lectores.</p>
-                            <a th:href="@{/posts/1}" class="btn btn-primary">Leer más</a>
+                            <p class="card-text"><small class="text-muted">Publicado el 15 de mayo de 2025</small></p>
+                            <a th:href="@{/posts/1}" class="btn btn-primary" aria-label="Leer más sobre Título del Post">Leer más</a>
                         </div>
                     </div>
-                </div>
-                <!-- Repite para más posts -->
-                <div class="col-md-4 mb-4">
+                </article>
+                <article class="col-md-4 mb-4">
                     <div class="card post-card">
+                        <img th:src="@{/img/post2.jpg}" class="card-img-top" alt="Imagen del post Otro Post" loading="lazy">
                         <div class="card-body">
                             <h5 class="card-title">Otro Post</h5>
                             <p class="card-text">Otro resumen breve para otro artículo interesante.</p>
-                            <a th:href="@{/posts/2}" class="btn btn-primary">Leer más</a>
+                            <p class="card-text"><small class="text-muted">Publicado el 14 de mayo de 2025</small></p>
+                            <a th:href="@{/posts/2}" class="btn btn-primary" aria-label="Leer más sobre Otro Post">Leer más</a>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
     </main>
 
     <!-- Bootstrap JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- Inicializar tooltips y modo noche/día -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', () => {
             // Inicializar tooltips
-            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+            document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
 
             // Modo noche/día
             const themeToggle = document.getElementById('themeToggle');
             const body = document.body;
+            const logoLight = document.querySelector('.logo-light');
+            const logoDark = document.querySelector('.logo-dark');
 
-            // Cargar tema guardado
+            // Cargar tema inicial desde localStorage
             const savedTheme = localStorage.getItem('theme') || 'light';
+            body.classList.remove('light-theme', 'dark-theme');
             body.classList.add(`${savedTheme}-theme`);
-            themeToggle.textContent = savedTheme === 'light' ? 'Modo Noche' : 'Modo Día';
 
-            // Alternar tema al hacer clic
-            themeToggle.addEventListener('click', function (e) {
+            // Mostrar el logo inicial basado en el tema guardado
+            if (savedTheme === 'light') {
+                logoLight.classList.remove('hidden');
+            } else {
+                logoDark.classList.remove('hidden');
+            }
+
+            // Actualizar texto e ícono del botón de tema
+            themeToggle.querySelector('i').classList.add(savedTheme === 'light' ? 'bi-moon' : 'bi-sun');
+            themeToggle.querySelector('i').classList.remove(savedTheme === 'light' ? 'bi-sun' : 'bi-moon');
+            themeToggle.lastChild.nodeValue = savedTheme === 'light' ? ' Modo Noche' : ' Modo Día';
+
+            themeToggle.addEventListener('click', (e) => {
                 e.preventDefault();
-                if (body.classList.contains('light-theme')) {
-                    body.classList.replace('light-theme', 'dark-theme');
-                    localStorage.setItem('theme', 'dark');
-                    themeToggle.textContent = 'Modo Día';
+                const isLight = body.classList.contains('light-theme');
+                body.classList.replace(isLight ? 'light-theme' : 'dark-theme', isLight ? 'dark-theme' : 'light-theme');
+                localStorage.setItem('theme', isLight ? 'dark' : 'light');
+                themeToggle.querySelector('i').classList.replace(isLight ? 'bi-moon' : 'bi-sun', isLight ? 'bi-sun' : 'bi-moon');
+                themeToggle.lastChild.nodeValue = isLight ? ' Modo Día' : ' Modo Noche';
+
+                // Actualizar visibilidad del logo
+                logoLight.classList.add('hidden');
+                logoDark.classList.add('hidden');
+                if (isLight) {
+                    logoDark.classList.remove('hidden');
                 } else {
-                    body.classList.replace('dark-theme', 'light-theme');
-                    localStorage.setItem('theme', 'light');
-                    themeToggle.textContent = 'Modo Noche';
+                    logoLight.classList.remove('hidden');
                 }
             });
+
+            // Limpiar campo de búsqueda (pantallas grandes)
+            const searchInputLarge = document.getElementById('searchInputLarge');
+            searchInputLarge.addEventListener('input', () => {
+                searchInputLarge.value = searchInputLarge.value.trimStart();
+            });
+
+            // Manejar el buscador en pantallas pequeñas
+            const searchIcon = document.getElementById('searchIcon');
+            const searchFormMobile = document.querySelector('.search-container-mobile .search-form');
+            const closeSearch = document.getElementById('closeSearch');
+            const searchContainerMobile = document.querySelector('.search-container-mobile');
+            const searchInputMobile = document.getElementById('searchInputMobile');
+            const searchContainer = document.querySelector('.search-container');
+
+            // Función para actualizar el estado del buscador según el tamaño de la ventana
+            const updateSearchState = () => {
+                const windowWidth = window.innerWidth;
+                const breakpoint = 986;
+
+                if (windowWidth > breakpoint) {
+                    searchContainer.style.display = 'flex';
+                    searchIcon.style.display = 'none';
+                    searchContainerMobile.style.display = 'none';
+                    searchFormMobile.classList.remove('active');
+                    searchInputMobile.value = '';
+                } else {
+                    searchContainer.style.display = 'none';
+                    searchIcon.style.display = searchContainerMobile.style.display === 'block' ? 'none' : 'block';
+                }
+            };
+
+            // Ejecutar al cargar la página
+            updateSearchState();
+
+            // Mostrar el buscador móvil al hacer clic en el ícono
+            searchIcon.addEventListener('click', (e) => {
+                e.stopPropagation();
+                searchContainerMobile.style.display = 'block';
+                searchFormMobile.classList.add('active');
+                searchIcon.style.display = 'none';
+                searchInputMobile.focus();
+            });
+
+            // Cerrar el buscador móvil al hacer clic en el botón de cerrar
+            closeSearch.addEventListener('click', (e) => {
+                e.stopPropagation();
+                searchFormMobile.classList.remove('active');
+                searchIcon.style.display = 'block';
+                searchInputMobile.value = '';
+                searchContainerMobile.style.display = 'none';
+            });
+
+            // Cerrar el buscador móvil al hacer clic fuera
+            document.addEventListener('click', (e) => {
+                if (!searchFormMobile.contains(e.target) && !searchIcon.contains(e.target)) {
+                    searchFormMobile.classList.remove('active');
+                    searchIcon.style.display = 'block';
+                    searchInputMobile.value = '';
+                    searchContainerMobile.style.display = 'none';
+                }
+            });
+
+            // Evitar que el clic dentro del formulario móvil cierre el buscador
+            searchFormMobile.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+
+            // Limpiar campo de búsqueda (pantallas pequeñas)
+            searchInputMobile.addEventListener('input', () => {
+                searchInputMobile.value = searchInputMobile.value.trimStart();
+            });
+
+            // Actualizar el estado del buscador al cambiar el tamaño de la ventana
+            window.addEventListener('resize', updateSearchState);
+
+            // Actualizar el año en el footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
         });
     </script>
 </body>
