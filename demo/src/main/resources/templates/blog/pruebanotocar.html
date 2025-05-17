@@ -27,7 +27,7 @@
             --navbar-bg-light: #ffffff;
             --navbar-bg-dark: #0e0e0e;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --item-height: 300px; /* Fixed height for each grid-item */
+            --item-height: 300px; /* Fixed height for side column items */
         }
 
         html, body {
@@ -403,30 +403,232 @@
             border: none;
             border-radius: 10px;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+            background-color: #ffffff;
+            margin-bottom: 1rem;
+            position: relative;
+            cursor: pointer; /* Indicate the post is clickable */
+        }
+
+        body.dark-theme .post-card {
+            background-color: #1e2a38;
         }
 
         .post-card:hover {
-            transform: translateY(-8px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background-color: #f5f5f5;
         }
 
-        .post-card .card-img-top {
-            border-radius: 10px 10px 0 0;
+        body.dark-theme .post-card:hover {
+            background-color: #2a3a48;
+        }
+
+        /* Style for the link inside post-card */
+        .post-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        body.dark-theme .post-header {
+            border-bottom: 1px solid #4a4a4a;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             object-fit: cover;
+            margin-right: 0.75rem;
+        }
+
+        .post-user-info {
+            flex-grow: 1;
+        }
+
+        .post-username {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        body.dark-theme .post-username {
+            color: #e0e0e0;
+        }
+
+        .post-timestamp {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        body.dark-theme .post-timestamp {
+            color: #aaa;
+        }
+
+        .post-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 0.5rem 1rem;
+            color: #333;
+        }
+
+        body.dark-theme .post-title {
+            color: #e0e0e0;
+        }
+
+        .post-image {
+            width: 100%;
             height: 200px;
+            object-fit: cover;
+            border-radius: 0;
+            aspect-ratio: 16 / 9; /* Enforce aspect ratio for consistency */
         }
 
-        .post-card .card-body {
-            padding: 1.5rem;
+        .post-body {
+            padding: 1rem;
         }
 
-        .post-card .btn {
-            border-radius: 20px;
-            padding: 0.5rem 1.5rem;
+        .post-text {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 0.75rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        /* Responsive */
+        body.dark-theme .post-text {
+            color: #ccc;
+        }
+
+        .post-read-more {
+            color: #1da1f2;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .post-read-more:hover {
+            text-decoration: underline;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: flex-start;
+            gap: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-top: 1px solid #ddd;
+        }
+
+        body.dark-theme .post-actions {
+            border-top: 1px solid #4a4a4a;
+        }
+
+        .post-action {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-theme .post-action {
+            color: #aaa;
+        }
+
+        .post-action:hover {
+            color: var(--primary-color);
+        }
+
+        .post-action i {
+            font-size: 1rem;
+        }
+
+        .post-action span {
+            font-size: 0.9rem;
+        }
+
+        /* Post Menu Styles */
+        .post-menu {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-theme .post-menu {
+            color: #aaa;
+        }
+
+        .post-menu:hover {
+            color: var(--primary-color);
+        }
+
+        .post-menu .dropdown-menu {
+            min-width: 150px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            top: 100%;
+            right: 0;
+            left: auto;
+        }
+
+        body.dark-theme .post-menu .dropdown-menu {
+            background-color: #2a2a2a;
+            border-color: #4a4a4a;
+        }
+
+        .post-menu .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        body.dark-theme .post-menu .dropdown-item {
+            color: #e0e0e0;
+        }
+
+        .post-menu .dropdown-item:hover {
+            background-color: #e9ecef;
+            color: var(--primary-color);
+        }
+
+        body.dark-theme .post-menu .dropdown-item:hover {
+            background-color: #3a3a3a;
+        }
+
+        /* Prevent hover background change on menu area */
+        .post-menu:hover {
+            background-color: transparent !important;
+        }
+
+        /* Banner Image Styles */
+        .banner-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            aspect-ratio: 16 / 9; /* Enforce aspect ratio for consistency */
+        }
+
+        /* Specific height for banner-ads */
+        .banner-ads .banner-image {
+            height: 250px; /* Increased height for banner-ads */
+        }
+
+        /* Responsive Adjustments */
         @media (max-width: 992px) {
             .search-container {
                 flex-grow: 0;
@@ -460,8 +662,14 @@
                 width: 28px;
                 height: 28px;
             }
-            .post-card .card-img-top {
+            .post-image {
                 height: 150px;
+            }
+            .banner-image {
+                height: 160px;
+            }
+            .banner-ads .banner-image {
+                height: 200px; /* Adjusted proportionally (80% of 250px) */
             }
             .search-container {
                 display: none;
@@ -472,11 +680,9 @@
             .close-search {
                 display: block;
             }
-            /* Mostrar separadores en pantallas pequeñas */
             .separator {
                 display: block;
             }
-            /* Mostrar el separador específico del ícono de búsqueda */
             .search-separator {
                 display: block;
             }
@@ -489,7 +695,6 @@
             .search-container-mobile {
                 display: none !important;
             }
-            /* Ocultar el separador específico del ícono de búsqueda */
             .search-separator {
                 display: none !important;
             }
@@ -518,19 +723,18 @@
         /* Estilos para la ventana de notificaciones */
         .notification-panel {
             position: absolute;
-            top: 100%; /* Posiciona justo debajo del navbar */
+            top: 100%;
             right: 10px;
             width: 350px;
-            max-height: 300px; /* Altura máxima para mostrar ~3 notificaciones */
+            max-height: 300px;
             border-radius: 8px;
             padding: 10px;
             z-index: 1000;
             display: none;
             box-shadow: var(--shadow);
-            overflow-y: auto; /* Habilita el desplazamiento vertical */
+            overflow-y: auto;
         }
 
-        /* Estilo para la barra de desplazamiento */
         .notification-panel::-webkit-scrollbar {
             width: 8px;
         }
@@ -552,14 +756,12 @@
             background: #555;
         }
 
-        /* Modo claro para la ventana de notificaciones */
         body.light-theme .notification-panel {
             background: #ffffff;
             border: 1px solid #ddd;
             color: #333;
         }
 
-        /* Modo oscuro para la ventana de notificaciones */
         body.dark-theme .notification-panel {
             background: #333;
             border: 1px solid #444;
@@ -613,12 +815,10 @@
             align-items: flex-start;
         }
 
-        /* Modo claro para el borde inferior */
         body.light-theme .notification-body {
             border-bottom: 1px solid #ddd;
         }
 
-        /* Modo oscuro para el borde inferior */
         body.dark-theme .notification-body {
             border-bottom: 1px solid #444;
         }
@@ -631,13 +831,11 @@
             flex: 1;
         }
 
-        /* Modo claro para el texto de tiempo */
         body.light-theme .notification-time {
             color: #666;
             font-size: 12px;
         }
 
-        /* Modo oscuro para el texto de tiempo */
         body.dark-theme .notification-time {
             color: #aaa;
             font-size: 12px;
@@ -670,35 +868,52 @@
             flex: 1;
             padding: 0;
             margin: 0;
-            overflow: hidden; /* Prevent scroll on main */
+            overflow: hidden;
         }
 
         .grid-container {
             display: grid;
-            grid-template-columns: 1fr 3fr 1fr; /* Maintain wider center column */
-            gap: 0.5rem; /* Reduced gap to maximize space */
-            height: calc(100vh - 70px); /* Adjust for navbar height */
+            grid-template-columns: 1fr 3fr 1fr;
+            gap: 0.5rem;
             width: 100vw;
             margin: 0;
-            padding: 0.5rem; /* Minimal padding */
+            padding: 0.5rem 0.5rem 0.5rem 0.5rem;
         }
 
         .grid-column {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem; /* Reduced gap */
-            height: 100%;
+            gap: 0.5rem;
             width: 100%;
+        }
+
+        .grid-column:nth-child(1),
+        .grid-column:nth-child(3) {
+            height: auto;
+        }
+
+        .grid-column:nth-child(2) {
+            padding-top: 0;
         }
 
         .grid-item {
             border: 1px solid #ddd;
             border-radius: 8px;
-            padding: 0.5rem; /* Reduced padding */
-            overflow-y: auto; /* Individual scroll for each div */
-            max-height: var(--item-height); /* Fixed height to ensure independence */
-            flex: 0 0 var(--item-height); /* Prevent stretching */
+            padding: 0.5rem;
+            overflow-y: auto;
             box-shadow: var(--shadow);
+        }
+
+        .grid-column:nth-child(1) .grid-item,
+        .grid-column:nth-child(3) .grid-item {
+            max-height: var(--item-height);
+            flex: 0 0 var(--item-height);
+        }
+
+        .grid-column:nth-child(2) .grid-item {
+            max-height: none;
+            flex: 1 1 auto;
+            padding-top: 0;
         }
 
         body.dark-theme .grid-item {
@@ -730,24 +945,46 @@
         .center-column-content {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem; /* Reduced gap */
-            overflow-y: auto; /* Scroll for center column content */
-            max-height: calc(var(--item-height) - 1rem); /* Subtract padding for inner scroll */
-            height: 100%;
+            gap: 0.5rem;
+            overflow-y: auto;
+            padding-top: 0;
         }
 
         .center-column-content .post-card,
         .center-column-content .banner-top,
         .center-column-content .banner-ads {
-            flex: 0 0 auto; /* Prevent internal divs from stretching the container */
+            flex: 0 0 auto;
+        }
+
+        .center-column-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .center-column-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        body.dark-theme .center-column-content::-webkit-scrollbar-track {
+            background: #2a2a2a;
+        }
+
+        .center-column-content::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        .center-column-content::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
 
         @media (max-width: 992px) {
             .grid-container {
                 grid-template-columns: 1fr;
                 grid-template-rows: auto;
-                height: auto; /* Allow stacking to fit content */
-                overflow-y: auto; /* Allow scroll on mobile */
+                height: auto;
+                overflow-y: auto;
+                padding: 0.5rem;
             }
 
             .grid-column {
@@ -756,13 +993,24 @@
                 height: auto;
             }
 
+            .grid-column:nth-child(2) {
+                height: auto;
+            }
+
             .grid-item {
-                max-height: 300px; /* Limit height on mobile */
-                flex: 0 0 300px; /* Fixed height for mobile */
+                max-height: 300px;
+                flex: 0 0 300px;
+            }
+
+            .grid-column:nth-child(2) .grid-item {
+                height: auto;
+                max-height: 300px;
+                flex: 0 0 300px;
             }
 
             .center-column-content {
-                max-height: calc(300px - 1rem); /* Adjust for mobile */
+                max-height: calc(300px - 1rem);
+                height: auto;
             }
         }
     </style>
@@ -801,7 +1049,7 @@
                             <i class="bi bi-house-door-fill"></i>
                         </a>
                         <span class="separator">|</span>
-                        <a th:href="@{/}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Crear Post" aria-label="Crear un nuevo post">
+                        <a th:href="@{/nuevo_post}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Crear Post" aria-label="Crear un nuevo post">
                             <i class="bi bi-plus-circle-fill"></i>
                         </a>
                         <span class="separator">|</span>
@@ -874,32 +1122,15 @@
 
             <!-- Columna central -->
             <div class="grid-column">
-                <div class="grid-item center-column-content">
+                <div class="grid-item center-column-content" id="centerColumnContent">
                     <div class="banner-top">
                         <h3>Banner</h3>
-                        <p>Banner superior aquí...</p>
+                        <img src="/img/ads.jpg" alt="banner publicitario" class="banner-image" loading="lazy">
                     </div>
-                    <div class="post-card">
-                        <div class="card-body">
-                            <h5 class="card-title">Post 1</h5>
-                            <p class="card-text">Contenido del post principal...</p>
-                        </div>
-                    </div>
-                    <div class="post-card">
-                        <div class="card-body">
-                            <h5 class="card-title">Post 2</h5>
-                            <p class="card-text">Contenido del post secundario...</p>
-                        </div>
-                    </div>
-                    <div class="post-card">
-                        <div class="card-body">
-                            <h5 class="card-title">Post 3</h5>
-                            <p class="card-text">Contenido del post adicional...</p>
-                        </div>
-                    </div>
+                    <!-- Posts will be dynamically added here -->
                     <div class="banner-ads">
                         <h3>Banner ADS</h3>
-                        <p>Anuncios aquí...</p>
+                        <img src="/img/ads.jpg" alt="banner publicitario" class="banner-image" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -927,7 +1158,7 @@
             panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
         }
 
-        // Datos simulados de notificaciones (puedes reemplazar esto con una llamada a una base de datos)
+        // Datos simulados de notificaciones
         const notifications = [
             {
                 text: "Usted ha realizado su entrega en la tarea Taller HTTP, FTP, unidades compartidas",
@@ -1123,15 +1354,11 @@
             }
 
             function renderNotifications() {
-                // Limpiar el panel existente (excepto el encabezado)
                 const existingHeader = notificationPanel.querySelector('.notification-header');
                 notificationPanel.innerHTML = '';
                 notificationPanel.appendChild(existingHeader);
 
-                // Tomar las últimas 10 notificaciones
                 const recentNotifications = notifications.slice(-maxNotifications);
-
-                // Renderizar cada notificación
                 recentNotifications.forEach(notif => {
                     const notifBody = document.createElement('div');
                     notifBody.className = 'notification-body';
@@ -1141,32 +1368,28 @@
                             <br>
                             <span class="notification-time">${notif.time}</span>
                             <br>
-                            <a href="#" class="notification-link">${notif.link}</a>
+                            <a href="/notificaciones" class="notification-link">${notif.link}</a>
                         </div>
                     `;
                     notificationPanel.appendChild(notifBody);
                 });
 
-                // Agregar el enlace "Ver todo"
                 const seeAll = document.createElement('div');
                 seeAll.className = 'see-all';
-                seeAll.innerHTML = '<a href="#">Ver todo</a>';
+                seeAll.innerHTML = '<a href="/notificaciones">Ver todo</a>';
                 notificationPanel.appendChild(seeAll);
 
-                // Actualizar el contador de notificaciones
                 updateNotificationCount();
             }
 
-            // Manejar el marcado de notificaciones como leídas
             markReadCheckbox.addEventListener('change', () => {
                 if (markReadCheckbox.checked) {
                     notifications.forEach(notif => notif.read = true);
                     renderNotifications();
-                    markReadCheckbox.checked = false; // Desmarcar el checkbox después de usarlo
+                    markReadCheckbox.checked = false;
                 }
             });
 
-            // Función para agregar una nueva notificación
             function addNotification(newNotif) {
                 notifications.push({
                     text: newNotif.text,
@@ -1174,14 +1397,12 @@
                     link: newNotif.link,
                     read: false
                 });
-                // Mantener solo las últimas 10 notificaciones
                 if (notifications.length > maxNotifications) {
                     notifications.shift();
                 }
                 renderNotifications();
             }
 
-            // Ejemplo de cómo agregar una nueva notificación
             function simulateNewNotification() {
                 const newNotif = {
                     text: "Nueva notificación: Actualización en el curso",
@@ -1192,21 +1413,124 @@
                 addNotification(newNotif);
             }
 
-            // Llamar a la función al cargar la página
             renderNotifications();
 
-            // Cerrar la ventana de notificaciones al hacer clic fuera
             document.addEventListener('click', (e) => {
                 if (!notificationPanel.contains(e.target) && !notificationIcon.contains(e.target)) {
                     notificationPanel.style.display = 'none';
                 }
             });
 
-            // Actualizar el año en el footer
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            document.getElementById('currentYear') && (document.getElementById('currentYear').textContent = new Date().getFullYear());
 
-            // Simulación de una nueva notificación después de 5 segundos (para pruebas)
             setTimeout(simulateNewNotification, 5000);
+
+            // Dynamically Set Center Column Height
+            const navbar = document.querySelector('.navbar');
+            const centerColumnContent = document.getElementById('centerColumnContent');
+            const gridContainer = document.querySelector('.grid-container');
+            const centerColumnGridItem = document.querySelector('.grid-column:nth-child(2) .grid-item');
+
+            function setCenterColumnHeight() {
+                const viewportHeight = window.innerHeight;
+                const navbarHeight = navbar.offsetHeight;
+                const gridContainerPaddingTop = parseFloat(getComputedStyle(gridContainer).paddingTop);
+                const gridContainerPaddingBottom = parseFloat(getComputedStyle(gridContainer).paddingBottom);
+                const availableHeight = viewportHeight - navbarHeight - gridContainerPaddingTop - gridContainerPaddingBottom;
+
+                gridContainer.style.height = `${availableHeight}px`;
+                centerColumnGridItem.style.height = `${availableHeight}px`;
+                centerColumnContent.style.height = `${availableHeight}px`;
+            }
+
+            setCenterColumnHeight();
+            window.addEventListener('resize', setCenterColumnHeight);
+
+            // Dynamic Post Generation
+            let postCounter = 0;
+            const loggedInUser = "Usuario 1"; // Simulating the logged-in user
+
+            function createPost(postNumber) {
+                const username = `Usuario ${postNumber}`;
+                const isPostCreator = loggedInUser === username; // Check if the logged-in user is the creator
+
+                const postDiv = document.createElement('div');
+                postDiv.className = 'post-card';
+                postDiv.innerHTML = `
+                    <div class="post-header">
+                        <a th:href="@{/post}" class="post-link">
+                            <div class="d-flex align-items-center">
+                                <img src="/img/perfil.jpg" alt="Avatar de usuario" class="post-avatar" loading="lazy">
+                                <div class="post-user-info">
+                                    <div class="post-username">${username}</div>
+                                    <div class="post-timestamp">hace ${Math.floor(Math.random() * 60)} minutos</div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown post-menu" onclick="event.stopPropagation()">
+                            <a href="#" class="nav-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones del post" onclick="event.stopPropagation()">
+                                <i class="bi bi-three-dots"></i>
+                            </a>
+                            <ul class="dropdown-menu" onclick="event.stopPropagation()">
+                                ${isPostCreator ? `
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-pencil"></i> Editar</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-eye-slash"></i> Ocultar</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Eliminar</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-share"></i> Compartir</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-flag"></i> Reportar</a></li>
+                                ` : `
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-eye-slash"></i> Ocultar</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-share"></i> Compartir</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-flag"></i> Reportar</a></li>
+                                `}
+                            </ul>
+                        </div>
+                    </div>
+                    <a th:href="@{/post}" class="post-link">
+                        <h5 class="post-title">Post ${postNumber}</h5>
+                        <img src="/img/post.png" alt="Imagen del post" class="post-image" loading="lazy">
+                        <div class="post-body">
+                            <p class="post-text">Este es el contenido del post ${postNumber}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <a href="#" class="post-read-more">Leer más</a>
+                        </div>
+                        <div class="post-actions">
+                            <div class="post-action">
+                                <i class="bi bi-heart"></i>
+                                <span>${Math.floor(Math.random() * 100)}</span>
+                            </div>
+                            <div class="post-action">
+                                <i class="bi bi-chat"></i>
+                                <span>${Math.floor(Math.random() * 50)}</span>
+                            </div>
+                            <div class="post-action">
+                                <i class="bi bi-share"></i>
+                                <span>${Math.floor(Math.random() * 20)}</span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+                return postDiv;
+            }
+
+            function loadMorePosts(count = 3) {
+                for (let i = 0; i < count; i++) {
+                    postCounter++;
+                    const newPost = createPost(postCounter);
+                    const bannerAds = centerColumnContent.querySelector('.banner-ads');
+                    centerColumnContent.insertBefore(newPost, bannerAds);
+                }
+            }
+
+            // Initial load of posts
+            loadMorePosts(5); // Load 5 posts initially
+
+            // Infinite scroll logic
+            centerColumnContent.addEventListener('scroll', () => {
+                const { scrollTop, scrollHeight, clientHeight } = centerColumnContent;
+                if (scrollHeight - scrollTop - clientHeight < 100) {
+                    loadMorePosts();
+                }
+            });
         });
     </script>
 </body>

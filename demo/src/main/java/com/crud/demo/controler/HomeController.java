@@ -30,9 +30,13 @@ public class HomeController {
     public String redirectblog() {
         return "blog/index"; // sin ".html"
     }
-    @GetMapping("/Post")
+    @GetMapping("/post")
     public String redirectblogPost() {
         return "blog/post"; // sin ".html"
+    }
+     @GetMapping("/nuevo_post")
+    public String redirectblogCrearPost() {
+        return "blog/crear_post"; // sin ".html"
     }
     @GetMapping("/monitor")
     public String redirectblogMonitor() {
