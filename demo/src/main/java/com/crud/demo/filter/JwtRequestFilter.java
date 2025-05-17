@@ -1,37 +1,48 @@
 package com.crud.demo.filter;
 
 import com.crud.demo.utils.JwtUtil;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class JwtRequestFilter implements Filter {
+public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+            throws ServletException, IOException {
 
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
+        String path = request.getRequestURI();
 
-        String path = req.getRequestURI();
-
-        // Excluir recursos estáticos para que carguen sin token
-        if (path.startsWith("/css/") || path.startsWith("/js/") || path.startsWith("/img/") || path.startsWith("/webjars/")  ||
-                path.equals("/") ) {
+        // Excluir recursos estáticos y rutas públicas
+        if (path.startsWith("/css/") || path.startsWith("/js/") || path.startsWith("/img/") || path.startsWith("/webjars/") ||
+                path.equals("/") || path.equals("/Registro") || path.equals("/Registrarse") || 
+                path.equals("/forgot-password") || path.equals("/reset-password") || path.equals("/entrar") || path.equals("/login") ||
+                path.equals("/authenticate")) {
             chain.doFilter(request, response);
             return;
         }
 
         String token = null;
-        Cookie[] cookies = req.getCookies();
+        Cookie[] cookies = request.getCookies();
 
         if (cookies != null) {
             for (Cookie c : cookies) {
@@ -42,12 +53,19 @@ public class JwtRequestFilter implements Filter {
             }
         }
 
-        boolean isLoginPage = path.equals("/entrar") || path.equals("/login");
-
+        String email = null;
         if (token != null && jwtUtil.validateToken(token)) {
-            req.setAttribute("email", jwtUtil.extractEmail(token));
-        } else if (!isLoginPage && !path.startsWith("/static")) {
-            res.sendRedirect("/entrar");
+            email = jwtUtil.extractEmail(token);
+            request.setAttribute("email", email);
+
+            // Configurar el contexto de seguridad
+            UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                    userDetails, null, userDetails.getAuthorities());
+            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+        } else if (!path.startsWith("/static")) {
+            response.sendRedirect("/entrar");
             return;
         }
 

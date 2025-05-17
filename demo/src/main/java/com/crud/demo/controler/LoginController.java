@@ -4,7 +4,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -73,4 +75,48 @@ public class LoginController {
     public String clienteHome() {
         return "blog/index";  // vista cliente/inicio.html
     }
+    @GetMapping("/Registro")
+    public String Registro(Model model) {
+    	model.addAttribute("Registro", new User()); 
+    	return "landing-page/registro";
+    }
+    @PostMapping("/Registrarse")
+    public String RegistrarUser(@ModelAttribute User usuario,
+    		@RequestParam("confirm-password") String confirmPassword,
+            RedirectAttributes redirectAttributes,Model model) {
+    		System.out.print("Contraseña:"+usuario.getContrasena());
+    		System.out.print("Confirmar"+confirmPassword);
+    	   
+
+    	    if (!usuario.getContrasena().equals(confirmPassword)) {
+    	        model.addAttribute("error", "Las contraseñas no coinciden.");
+    	        model.addAttribute("Registro", usuario); // Mantener los datos ya escritos
+    	        return "landing-page/registro"; // Volver a la misma página sin redireccionar
+    	    }
+
+        usuarioRepository.save(usuario);
+        return "redirect:/entrar";  
+    }
+    	
+    	
+    	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

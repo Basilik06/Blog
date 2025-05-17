@@ -1,4 +1,5 @@
 package com.crud.demo.modelo;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -27,10 +28,11 @@ public class User {
 
     private int rol;
 
-    private LocalDateTime fecha_registro;
+    private LocalDate fecha_registro;
 
 	public User() {
-		
+		this.rol=1;
+		this.fecha_registro=LocalDate.now();
 	}
 
 	public Integer getId_usuario() {
@@ -81,11 +83,11 @@ public class User {
 		this.rol = rol;
 	}
 
-	public LocalDateTime getFecha_registro() {
+	public LocalDate getFecha_registro() {
 		return fecha_registro;
 	}
 
-	public void setFecha_registro(LocalDateTime fecha_registro) {
+	public void setFecha_registro(LocalDate fecha_registro) {
 		this.fecha_registro = fecha_registro;
 	}
     

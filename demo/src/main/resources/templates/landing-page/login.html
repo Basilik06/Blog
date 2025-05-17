@@ -36,61 +36,14 @@
             <div th:if="${error}" class="error-message" th:text="${error}"></div>
             <div class="options">
                 <label><input type="checkbox" name="remember"> Recordarme</label>
-                <a href="#">¿Olvidaste tu contraseña?</a>
+                <a th:href="@{/forgot-password}">¿Olvidaste tu contraseña?</a>
             </div>
             <button type="submit">LOGIN</button>
             <div class="toggle-form">
-                ¿No tienes una cuenta? <a th:href="@{/#}" onclick="renderRegisterForm()">Registrarse</a>
+                ¿No tienes una cuenta? <a th:href="@{/Registro}">Registrarse</a>
             </div>
         </form>
     </div>
-
-    <script>
-        // Función para renderizar el formulario de inicio de sesión
-        function renderLoginForm() {
-            const container = document.getElementById('auth-container');
-            container.innerHTML = `
-                <form id="login-form" th:action="@{/login}" method="post">
-                    <h2>Iniciar Sesión</h2>
-                    <input type="email" name="email" placeholder="Email ID" required>
-                    <input type="password" name="password" placeholder="Password" required>
-                    <!-- Espacio para mensaje de error, antes del "Recordarme" -->
-                    <div id="error-message" class="error-message" style="display: none;"></div>
-                    <div class="options">
-                        <label><input type="checkbox" name="remember"> Recordarme</label>
-                        <a href="#">¿Olvidaste tu contraseña?</a>
-                    </div>
-                    <button type="submit">LOGIN</button>
-                    <div class="toggle-form">
-                        ¿No tienes una cuenta? <a th:href="@{/#}" onclick="renderRegisterForm()">Registrarse</a>
-                    </div>
-                </form>
-            `;
-        }
-
-        // Función para renderizar el formulario de registro
-        function renderRegisterForm() {
-            const container = document.getElementById('auth-container');
-            container.innerHTML = `
-                <form id="register-form">
-                    <h2>Registrarse</h2>
-                    <input type="text" name="nombre" placeholder="Nombre" required>
-                    <input type="text" name="apellido" placeholder="Apellido" required>
-                    <input type="email" name="email" placeholder="Email ID" required>
-                    <input type="password" name="password" placeholder="Password" required>
-                    <input type="password" name="confirm-password" placeholder="Confirm Password" required>
-                    <div class="options">
-                        <span></span>
-                        <a href="#">¿Olvidaste tu contraseña?</a>
-                    </div>
-                    <button type="submit">REGISTRARSE</button>
-                    <div class="toggle-form">
-                        ¿Ya tienes una cuenta? <a th:href="@{/#}" onclick="renderLoginForm()">Inicia Sesión</a>
-                    </div>
-                </form>
-            `;
-        }
-    </script>
 </body>
 
 </html>

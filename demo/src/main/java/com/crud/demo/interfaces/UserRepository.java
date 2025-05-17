@@ -6,4 +6,6 @@ import com.crud.demo.modelo.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByEmailAndContrasena(String email, String contrasena);
+    Optional<User> findByEmail(String email);
+
 }
