@@ -30,4 +30,24 @@ public class HomeController {
     public String redirectblog() {
         return "blog/index"; // sin ".html"
     }
+    @GetMapping("/Post")
+    public String redirectblogPost() {
+        return "blog/post"; // sin ".html"
+    }
+    @GetMapping("/monitor")
+    public String redirectblogMonitor() {
+        return "blog/monitor"; // sin ".html"
+    }
+    @GetMapping("/perfil")
+    public String redirectblogPerfil() {
+        return "blog/perfil"; // sin ".html"
+    }
+    @GetMapping("/notificaciones")
+    public String redirectblogNotificaciones() {
+        return "blog/notificaciones"; // sin ".html"
+    }
+    @GetMapping("/config")
+    public String redirectblogConfiguracion() {
+        return "blog/configuracion"; // sin ".html"
+    }
 }
