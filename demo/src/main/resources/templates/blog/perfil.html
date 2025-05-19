@@ -29,8 +29,12 @@
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             transition: background-color 0.3s ease, color 0.3s ease;
@@ -265,7 +269,7 @@
             border-radius: 50px;
             margin-right: 0.5rem;
         }
-        
+
         body.dark-theme .search-form .input-group-text {
             color: #f0f0f0;
         }
@@ -318,20 +322,13 @@
         }
 
         .nav-icon.notification::after {
-            content: attr(data-count);
             position: absolute;
             top: -8px;
             right: -8px;
             background-color: #dc3545;
-            color: #ffffff;
-            font-size: 0.7rem;
-            width: 16px;
-            height: 16px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
             visibility: visible;
         }
 
@@ -391,151 +388,21 @@
             background-color: #e9ecef;
         }
 
-        /* Estilos de posts */
-        .post-card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .post-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .post-card .card-img-top {
-            border-radius: 10px 10px 0 0;
-            object-fit: cover;
-            height: 200px;
-        }
-
-        .post-card .card-body {
-            padding: 1.5rem;
-        }
-
-        /* Estilos para el cuadro de "Próximamente" en el main */
-        .post-card .card-body h1 {
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            margin: 0;
-        }
-
-        /* Estilos específicos para el cuadro de "Próximamente" en modo oscuro */
-        body.dark-theme .post-card .card-body h1 {
-            color: #ffffff; /* Texto blanco en modo oscuro */
-        }
-
-        body.dark-theme .post-card {
-            background-color: #333; /* Fondo #333 en modo oscuro */
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .search-container {
-                flex-grow: 0;
-                width: 100%;
-                margin-top: 0.5rem;
-            }
-            .nav-icons {
-                flex-wrap: nowrap;
-                gap: 0.3rem;
-            }
-            .separator {
-                display: none;
-            }
-            .navbar {
-                padding: 0.5rem;
-            }
-            .dropdown-menu {
-                min-width: 140px;
-            }
-        }
-
-        @media (max-width: 987px) {
-            .navbar-brand img {
-                height: 30px;
-            }
-            .nav-icon {
-                font-size: 1rem;
-                margin: 0 0.3rem;
-            }
-            .nav-profile {
-                width: 28px;
-                height: 28px;
-            }
-            .post-card .card-img-top {
-                height: 150px;
-            }
-            .search-container {
-                display: none;
-            }
-            .search-icon {
-                display: block;
-            }
-            .close-search {
-                display: block;
-            }
-            /* Mostrar separadores en pantallas pequeñas */
-            .separator {
-                display: block;
-            }
-            /* Mostrar el separador específico del ícono de búsqueda */
-            .search-separator {
-                display: block;
-            }
-        }
-
-        @media (min-width: 987px) {
-            .search-icon {
-                display: none !important;
-            }
-            .search-container-mobile {
-                display: none !important;
-            }
-            /* Ocultar el separador específico del ícono de búsqueda */
-            .search-separator {
-                display: none !important;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .nav-icon {
-                font-size: 0.9rem;
-                margin: 0 0.2rem;
-            }
-            .nav-profile {
-                width: 24px;
-                height: 24px;
-            }
-            .navbar-brand img {
-                height: 28px;
-            }
-            .search-icon {
-                font-size: 1rem;
-            }
-            .dropdown-menu {
-                min-width: 120px;
-            }
-        }
-
         /* Estilos para la ventana de notificaciones */
         .notification-panel {
             position: absolute;
-            top: 100%; /* Posiciona justo debajo del navbar */
+            top: 100%;
             right: 10px;
             width: 350px;
-            max-height: 300px; /* Altura máxima para mostrar ~3 notificaciones */
+            max-height: 300px;
             border-radius: 8px;
             padding: 10px;
             z-index: 1000;
             display: none;
             box-shadow: var(--shadow);
-            overflow-y: auto; /* Habilita el desplazamiento vertical */
+            overflow-y: auto;
         }
 
-        /* Estilo para la barra de desplazamiento */
         .notification-panel::-webkit-scrollbar {
             width: 8px;
         }
@@ -557,14 +424,12 @@
             background: #555;
         }
 
-        /* Modo claro para la ventana de notificaciones */
         body.light-theme .notification-panel {
             background: #ffffff;
             border: 1px solid #ddd;
             color: #333;
         }
 
-        /* Modo oscuro para la ventana de notificaciones */
         body.dark-theme .notification-panel {
             background: #333;
             border: 1px solid #444;
@@ -618,12 +483,10 @@
             align-items: flex-start;
         }
 
-        /* Modo claro para el borde inferior */
         body.light-theme .notification-body {
             border-bottom: 1px solid #ddd;
         }
 
-        /* Modo oscuro para el borde inferior */
         body.dark-theme .notification-body {
             border-bottom: 1px solid #444;
         }
@@ -636,13 +499,11 @@
             flex: 1;
         }
 
-        /* Modo claro para el texto de tiempo */
         body.light-theme .notification-time {
             color: #666;
             font-size: 12px;
         }
 
-        /* Modo oscuro para el texto de tiempo */
         body.dark-theme .notification-time {
             color: #aaa;
             font-size: 12px;
@@ -668,6 +529,128 @@
             color: #1da1f2;
             text-decoration: none;
             font-size: 14px;
+        }
+        
+        /* Estilos de posts */
+        .post-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .post-card .card-img-top {
+            border-radius: 10px 10px 0 0;
+            object-fit: cover;
+            height: 200px;
+        }
+
+        .post-card .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Estilos para el cuadro de "Próximamente" en el main */
+        .post-card .card-body h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 0;
+        }
+
+        /* Estilos específicos para el cuadro de "Próximamente" en modo oscuro */
+        body.dark-theme .post-card .card-body h1 {
+            color: #ffffff; /* Texto blanco en modo oscuro */
+        }
+
+        body.dark-theme .post-card {
+            background-color: #333; /* Fondo #333 en modo oscuro */
+        }
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .search-container {
+                flex-grow: 0;
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+            .nav-icons {
+                flex-wrap: nowrap;
+                gap: 0.3rem;
+            }
+            .separator {
+                display: none;
+            }
+            .navbar {
+                padding: 0.5rem;
+            }
+            .dropdown-menu {
+                min-width: 140px;
+            }
+        }
+
+        @media (max-width: 987px) {
+            .navbar-brand img {
+                height: 30px;
+            }
+            .nav-icon {
+                font-size: 1rem;
+                margin: 0 0.3rem;
+            }
+            .nav-profile {
+                width: 28px;
+                height: 28px;
+            }
+            .search-container {
+                display: none;
+            }
+            .search-icon {
+                display: block;
+            }
+            .close-search {
+                display: block;
+            }
+            .separator {
+                display: block;
+            }
+            .search-separator {
+                display: block;
+            }
+        }
+
+        @media (min-width: 987px) {
+            .search-icon {
+                display: none !important;
+            }
+            .search-container-mobile {
+                display: none !important;
+            }
+            .search-separator {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .nav-icon {
+                font-size: 0.9rem;
+                margin: 0 0.2rem;
+            }
+            .nav-profile {
+                width: 24px;
+                height: 24px;
+            }
+            .navbar-brand img {
+                height: 28px;
+            }
+            .search-icon {
+                font-size: 1rem;
+            }
+            .dropdown-menu {
+                min-width: 120px;
+            }
         }
     </style>
 </head>
@@ -695,6 +678,7 @@
                             </div>
                         </form>
                     </div>
+                    <!-- Iconos de navegación -->
                     <div class="nav-icons d-flex align-items-center ms-auto">
                         <span class="search-icon" id="searchIcon" aria-label="Abrir buscador">
                             <i class="bi bi-search"></i>
@@ -726,13 +710,13 @@
                                 <li><a class="dropdown-item" href="#" id="themeToggle"><i class="bi bi-moon"></i> Modo Noche</a></li>
                                 <li><a class="dropdown-item" th:href="@{/config}"><i class="bi bi-gear"></i> Configuración</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" th:href="@{/logout}"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item" th:href="@{/custom-logout}"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="search-container-mobile">
                 <form class="d-flex search-form my-2 my-lg-0" th:action="@{/search}" method="get" role="search" aria-label="Buscar en el blog">
                     <div class="input-group">
@@ -756,99 +740,115 @@
                         <label class="notification-mark-read-label" for="markReadCheckbox">Marcar como leídas</label>
                     </div>
                 </div>
-                <!-- Las notificaciones se generarán aquí -->
+                <div th:each="notif : ${notificaciones}" class="notification-body">
+                    <div class="notification-text">
+                        <span th:text="${notif.mensaje}">Texto de la notificación</span><br>
+                        <span class="notification-time" th:text="${notif.fecha_notificacion}">hace 10 minutos</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="see-all">
+                    <a th:href="@{/notificaciones}">Ver todo</a>
+                </div>
             </div>
         </nav>
     </header>
-
-    <main class="container my-5" id="main-content">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card post-card text-center">
-                    <div class="card-body">
-                        <h1>Próximamente</h1>
-                    </div>
-                </div>
-            </div>
+     <main class="container my-5" id="main-content">
+      <div class="row perfil-container">
+      <section class="col-md-8 mb-3">
+        <div class="card mb-3 text-center p-3">
+          <div class="foto mx-auto mb-2"></div>
+          <h2 class="fw-bold mt-2">Nombre del Usuario</h2>
+          <p class="text-muted"><i class="bi bi-mortarboard-fill"></i> Ingeniería de Sistemas</p>
+          <p><strong>Presentación:</strong> Apasionado por compartir conocimiento y apoyar a otros estudiantes.</p>
         </div>
-    </main>
 
+        <div class="card mb-3 p-3">
+          <h3><i class="bi bi-tools"></i> Área de Apoyo</h3>
+          <p>Redes, Programación, Sistemas Operativos.</p>
+        </div>
+
+        <div class="card mb-3 p-3">
+          <h3><i class="bi bi-card-text"></i> Descripción</h3>
+          <p>Monitor con experiencia en asesorías académicas personalizadas, talleres grupales y desarrollo de proyectos estudiantiles.</p>
+        </div>
+
+        <div class="card mb-3 p-3">
+          <h3><i class="bi bi-envelope"></i> Contacto</h3>
+          <p><strong>Teléfono:</strong> 000000000</p>
+          <p><strong>Email:</strong> ejemplo@correo.com</p>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-warning btn-lg">📬 Solicitar Monitoría</button>
+        </div>
+      </section>
+
+      <aside class="col-md-4">
+        <div class="card mb-3 p-3">
+          <h3><i class="bi bi-stars"></i> Logros</h3>
+          <p class="mb-1">★★★★★</p>
+          <span class="badge bg-success highlight-badge">Monitor experto</span>
+          <span class="badge bg-primary highlight-badge">+50 asesorías</span>
+          <span class="badge bg-warning text-dark highlight-badge">Top 1 en votaciones</span>
+        </div>
+
+        <div class="card mb-3 p-3">
+          <h3><i class="bi bi-trophy"></i> Ranking de Monitores</h3>
+          <ol class="mb-0">
+            <li>Monitor 1</li>
+            <li>Monitor 2</li>
+          </ol>
+        </div>
+
+        <div class="card mb-3 p-3">
+          <h3><i class="bi bi-megaphone"></i> Noticias</h3>
+          <ul class="mb-0">
+            <li>Evento académico el lunes</li>
+            <li>Inscripciones abiertas a semilleros</li>
+          </ul>
+        </div>
+
+        <div class="card mb-3 p-3">
+          <h3><i class="bi bi-calendar-event"></i> Eventos</h3>
+          <ul class="mb-0">
+            <li>Charla técnica de redes</li>
+            <li>Simulacro de entrevista técnica</li>
+          </ul>
+        </div>
+
+        <div class="card mb-3 p-3">
+          <h3><i class="bi bi-chat-dots"></i> Opiniones de Estudiantes</h3>
+          <blockquote>
+            “Siempre me explica con ejemplos fáciles de entender.”
+            <footer class="blockquote-footer mt-1">Daniela, 5° semestre</footer>
+          </blockquote>
+          <blockquote>
+            “Gracias a sus tutorías mejoré mis notas en programación.”
+            <footer class="blockquote-footer mt-1">Carlos, primer semestre</footer>
+          </blockquote>
+        </div>
+      </aside>
+    </div>
+    </main>
     <!-- Bootstrap JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-        // Definir toggleNotifications globalmente
+        // Función para mostrar u ocultar el panel de notificaciones
         function toggleNotifications() {
             const panel = document.getElementById('notificationPanel');
             panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
         }
 
-        // Datos simulados de notificaciones (puedes reemplazar esto con una llamada a una base de datos)
-        const notifications = [
-            {
-                text: "Usted ha realizado su entrega en la tarea Taller HTTP, FTP, unidades compartidas",
-                time: "hace 11 horas 18 minutos",
-                link: "Ver notificación completa",
-                read: false
-            },
-            {
-                text: "Usted ha realizado su entrega en la tarea Taller HTTP, FTP, unidades compartidas",
-                time: "hace 11 horas 18 minutos",
-                link: "Ver notificación completa",
-                read: false
-            },
-            {
-                text: "Vence el viernes, 16 de mayo de 2025, 07:50: Taller HTTP, FTP, unidades compartidas",
-                time: "hace 22 horas 48 minutos",
-                link: "Ver notificación completa",
-                read: false
-            },
-            {
-                text: "CUC_SISTEMAS OPERATIVOS - 9883 - T01 cambio de contenido",
-                time: "hace 3 horas 7 minutos",
-                link: "Ver notificación completa",
-                read: false
-            },
-            {
-                text: "Nueva tarea asignada: Proyecto de Redes",
-                time: "hace 1 hora 5 minutos",
-                link: "Ver notificación completa",
-                read: false
-            },
-            {
-                text: "Recordatorio: Entrega de examen final",
-                time: "hace 30 minutos",
-                link: "Ver notificación completa",
-                read: false
-            },
-            {
-                text: "Actualización en el curso de Bases de Datos",
-                time: "hace 15 minutos",
-                link: "Ver notificación completa",
-                read: false
-            },
-            {
-                text: "Nueva notificación de curso: Introducción a la Programación",
-                time: "hace 10 minutos",
-                link: "Ver notificación completa",
-                read: false
-            },
-            {
-                text: "Cambio de horario en la clase de Algoritmos",
-                time: "hace 5 minutos",
-                link: "Ver notificación completa",
-                read: false
-            },
-            {
-                text: "Tarea calificada: Proyecto de Redes",
-                time: "hace 2 minutos",
-                link: "Ver notificación completa",
-                read: false
-            }
-        ];
-
         document.addEventListener('DOMContentLoaded', () => {
             // Inicializar tooltips
             document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
+
+            // Actualizar el indicador de notificaciones
+            const notificationIcon = document.querySelector('.nav-icon.notification');
+            const notificationBodies = document.querySelectorAll('.notification-body');
+            const notificationCount = notificationBodies.length;
+            notificationIcon.setAttribute('data-count', notificationCount > 0 ? '1' : '0');
 
             // Modo noche/día
             const themeToggle = document.getElementById('themeToggle');
@@ -965,103 +965,6 @@
 
             // Actualizar el estado del buscador al cambiar el tamaño de la ventana
             window.addEventListener('resize', updateSearchState);
-
-            // Renderizar notificaciones dinámicamente
-            const notificationPanel = document.getElementById('notificationPanel');
-            const notificationIcon = document.querySelector('.nav-icon.notification');
-            const markReadCheckbox = document.getElementById('markReadCheckbox');
-            const maxNotifications = 10;
-
-            function updateNotificationCount() {
-                const unreadCount = notifications.filter(notif => !notif.read).length;
-                notificationIcon.setAttribute('data-count', unreadCount);
-            }
-
-            function renderNotifications() {
-                // Limpiar el panel existente (excepto el encabezado)
-                const existingHeader = notificationPanel.querySelector('.notification-header');
-                notificationPanel.innerHTML = '';
-                notificationPanel.appendChild(existingHeader);
-
-                // Tomar las últimas 10 notificaciones
-                const recentNotifications = notifications.slice(-maxNotifications);
-
-                // Renderizar cada notificación
-                recentNotifications.forEach(notif => {
-                    const notifBody = document.createElement('div');
-                    notifBody.className = 'notification-body';
-                    notifBody.innerHTML = `
-                        <div class="notification-text">
-                            ${notif.text}
-                            <br>
-                            <span class="notification-time">${notif.time}</span>
-                            <br>
-                            <a href="#" class="notification-link">${notif.link}</a>
-                        </div>
-                    `;
-                    notificationPanel.appendChild(notifBody);
-                });
-
-                // Agregar el enlace "Ver todo"
-                const seeAll = document.createElement('div');
-                seeAll.className = 'see-all';
-                seeAll.innerHTML = '<a href="#">Ver todo</a>';
-                notificationPanel.appendChild(seeAll);
-
-                // Actualizar el contador de notificaciones
-                updateNotificationCount();
-            }
-
-            // Manejar el marcado de notificaciones como leídas
-            markReadCheckbox.addEventListener('change', () => {
-                if (markReadCheckbox.checked) {
-                    notifications.forEach(notif => notif.read = true);
-                    renderNotifications();
-                    markReadCheckbox.checked = false; // Desmarcar el checkbox después de usarlo
-                }
-            });
-
-            // Función para agregar una nueva notificación
-            function addNotification(newNotif) {
-                notifications.push({
-                    text: newNotif.text,
-                    time: newNotif.time,
-                    link: newNotif.link,
-                    read: false
-                });
-                // Mantener solo las últimas 10 notificaciones
-                if (notifications.length > maxNotifications) {
-                    notifications.shift();
-                }
-                renderNotifications();
-            }
-
-            // Ejemplo de cómo agregar una nueva notificación
-            function simulateNewNotification() {
-                const newNotif = {
-                    text: "Nueva notificación: Actualización en el curso",
-                    time: "hace 1 minuto",
-                    link: "Ver notificación completa",
-                    read: false
-                };
-                addNotification(newNotif);
-            }
-
-            // Llamar a la función al cargar la página
-            renderNotifications();
-
-            // Cerrar la ventana de notificaciones al hacer clic fuera
-            document.addEventListener('click', (e) => {
-                if (!notificationPanel.contains(e.target) && !notificationIcon.contains(e.target)) {
-                    notificationPanel.style.display = 'none';
-                }
-            });
-
-            // Actualizar el año en el footer
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-            // Simulación de una nueva notificación después de 5 segundos (para pruebas)
-            setTimeout(simulateNewNotification, 5000);
         });
     </script>
 </body>
