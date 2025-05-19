@@ -45,6 +45,6 @@ package com.crud.demo.controler;
           } catch (Exception e) {
               model.addAttribute("error", e.getMessage());
           }
-          return "landing-page/reset-password";
+          return "landing-page/login";
       }
   }

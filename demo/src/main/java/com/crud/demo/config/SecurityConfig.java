@@ -37,9 +37,14 @@ public class SecurityConfig {
             .and()
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/favicon.ico").permitAll()
-                .requestMatchers("/", "/home", "/login", "/entrar", "/Registro", "/Registrarse", "/forgot-password", "/reset-password", "/authenticate").permitAll()
+                .requestMatchers("/", "/home", "/login", "/entrar", "/Registro", "/Registrarse", "/forgot-password", "/reset-password", "/authenticate", "/logout").permitAll()
                 .requestMatchers("/api/**").authenticated()
-                .anyRequest().permitAll() // Cambia a authenticated() cuando implementes autenticación
+                .anyRequest().permitAll()
+            )
+            .logout(logout -> logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login") // puedes poner tu página aquí
+                .permitAll()
             );
 
         return http.build();

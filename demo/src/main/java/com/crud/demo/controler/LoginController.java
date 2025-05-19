@@ -1,122 +1,114 @@
 package com.crud.demo.controler;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.crud.demo.interfaces.PublicacionRepository;
 import com.crud.demo.interfaces.UserRepository;
+import com.crud.demo.modelo.FotoPublicacion;
+import com.crud.demo.modelo.Notificacion;
+import com.crud.demo.modelo.Publicacion;
+import com.crud.demo.modelo.PublicacionDTO;
 import com.crud.demo.modelo.User;
 import com.crud.demo.utils.JwtUtil;
-
+import com.crud.demo.interfaces.NotificacionRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class LoginController {
-
-	 @Autowired
-	    private UserRepository usuarioRepository;
-
-	    @Autowired
-	    private JwtUtil jwtUtil;
-
-	    @PostMapping("/login")
-	    public String login(@RequestParam String email,
-	                        @RequestParam String password,
-	                        HttpServletResponse response,
-	                        RedirectAttributes redirectAttributes) {
-
-	        Optional<User> userOpt = usuarioRepository.findByEmailAndContrasena(email, password);
-
-	        if (userOpt.isPresent()) {
-	            String token = jwtUtil.generateToken(email);
-
-	            Cookie cookie = new Cookie("jwt", token);
-	            cookie.setHttpOnly(true);
-	            cookie.setPath("/");
-	            cookie.setMaxAge(3600); // 1 hora
-	            response.addCookie(cookie);
-	            System.out.print("Esta entrando en el controlador ");
-	            int rol = userOpt.get().getRol();
-	            if (rol == 1) {
-	                return "redirect:/admin/dashboard";
-	            } else {
-	                return "redirect:/cliente/inicio";
-	            }
-	        } else {
-	            redirectAttributes.addFlashAttribute("error", "Acceso inválido. Por favor, inténtelo otra vez.");
-	            return "redirect:/entrar";
-	        }
-	    }
-
-	    @GetMapping("/logout")
-	    public String logout(HttpServletResponse response) {
-	        Cookie cookie = new Cookie("jwt", null);
-	        cookie.setMaxAge(0);
-	        cookie.setPath("/");
-	        response.addCookie(cookie);
-	        return "redirect:/entrar";
-	    }
+	@Autowired
+	private PublicacionRepository publicacionRepository;
+	@Autowired
+	private UserRepository usuarioRepository;
+	@Autowired
+	private NotificacionRepository  NotificacionRepository;
+	@Autowired
+	private JwtUtil jwtUtil;
+	String vemail="";
+	String vpassword="";
 	
+	@PostMapping("/login")
+	public String login(@RequestParam String email, @RequestParam String password, HttpServletResponse response,
+			RedirectAttributes redirectAttributes, Model model) {
+		vemail=email;
+		vpassword=password;
+		User user = usuarioRepository.findByEmailAndContrasena(email, password).orElse(null);
 
-    @GetMapping("/admin/dashboard")
-    public String adminHome() {
-        return "admin/index";  // vista admin/index.html
-    }
+		if (user != null) {
+			String token = jwtUtil.generateToken(email);
 
-    @GetMapping("/cliente/inicio")
-    public String clienteHome() {
-        return "blog/index";  // vista cliente/inicio.html
-    }
-    @GetMapping("/Registro")
-    public String Registro(Model model) {
-    	model.addAttribute("Registro", new User()); 
-    	return "landing-page/registro";
-    }
-    @PostMapping("/Registrarse")
-    public String RegistrarUser(@ModelAttribute User usuario,
-    		@RequestParam("confirm-password") String confirmPassword,
-            RedirectAttributes redirectAttributes,Model model) {
-    		System.out.print("Contraseña:"+usuario.getContrasena());
-    		System.out.print("Confirmar"+confirmPassword);
-    	   
+			Cookie cookie = new Cookie("jwt", token);
+			cookie.setHttpOnly(true);
+			cookie.setPath("/");
+			cookie.setMaxAge(3600); // 1 hora
+			response.addCookie(cookie);
+			System.out.println("Cookie JWT generada para el usuario: " + email);
+			int rol = user.getRol();
+			if (rol == 1) {
+				return "redirect:/admin/dashboard";
+			} else {
+                return "redirect:/cliente/inicio";
+			}
+		} else {
+			redirectAttributes.addFlashAttribute("error", "Acceso inválido. Por favor, inténtelo otra vez.");
+			return "redirect:/entrar";
+		}
+	}
 
-    	    if (!usuario.getContrasena().equals(confirmPassword)) {
-    	        model.addAttribute("error", "Las contraseñas no coinciden.");
-    	        model.addAttribute("Registro", usuario); // Mantener los datos ya escritos
-    	        return "landing-page/registro"; // Volver a la misma página sin redireccionar
-    	    }
+	@GetMapping("/admin/dashboard")
+	public String adminHome(Model model) {
+		String displayName = getLoggedUserDisplayName();
+		model.addAttribute("displayName", displayName != null ? displayName : "Usuario no identificado");
+		return "admin/index";
+	}
 
-        usuarioRepository.save(usuario);
-        return "redirect:/entrar";  
-    }
-    	
-    	
-    	
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+	@GetMapping("/cliente/inicio")
+	public String clienteHome(Model model) {
+		User user = usuarioRepository.findByEmailAndContrasena(vemail, vpassword).orElse(null);
+		 List<Publicacion> publicaciones = publicacionRepository.findAll();
+		 List<Notificacion> noti=NotificacionRepository.findNotificacionesNoLeidasPorUsuario(user.getId());
+		 model.addAttribute("notificaciones", noti);
+		 model.addAttribute("posts", publicaciones);
+		 
+
+
+	  
+		return "blog/index";
+	}
+
+	@GetMapping("/custom-logout")
+	public String logout(HttpServletResponse response) {
+		Cookie cookie = new Cookie("jwt", null);
+		cookie.setHttpOnly(true);
+		cookie.setPath("/");
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);
+		System.out.println("Cookie JWT eliminada al cerrar sesión");
+		return "redirect:/entrar";
+	}
+
+	private String getLoggedUserDisplayName() {
+		try {
+			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+					.getPrincipal();
+			if (userDetails != null) {
+				String username = userDetails.getUsername();
+				return username.split("@")[0];
+			}
+		} catch (Exception e) {
+			System.out.println("Error al obtener el usuario autenticado: " + e.getMessage());
+		}
+		return null;
+	}
 }

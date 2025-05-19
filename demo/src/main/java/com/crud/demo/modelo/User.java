@@ -1,95 +1,78 @@
 package com.crud.demo.modelo;
-import java.time.LocalDate;
+
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 @Entity
 @Table(name = "usuarios")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_usuario;
+    @Column(name = "id_usuario") // Map to the correct column name
+    private Integer id;
 
     private String nombre;
     private String apellido;
-
-    @Column(unique = true)
     private String email;
-
     private String contrasena;
-
+    private LocalDateTime fecha_registro;
     private int rol;
 
-    private LocalDate fecha_registro;
+    // Getters and Setters
+    public Integer getId() {
+        return id;
+    }
 
-	public User() {
-		this.rol=1;
-		this.fecha_registro=LocalDate.now();
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getId_usuario() {
-		return id_usuario;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void setId_usuario(Integer id_usuario) {
-		this.id_usuario = id_usuario;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public String getApellido() {
+        return apellido;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-	public String getApellido() {
-		return apellido;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getContrasena() {
+        return contrasena;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 
-	public String getContrasena() {
-		return contrasena;
-	}
+    public LocalDateTime getFecha_registro() {
+        return fecha_registro;
+    }
 
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
-	}
+    public void setFecha_registro(LocalDateTime fecha_registro) {
+        this.fecha_registro = fecha_registro;
+    }
 
-	public int getRol() {
-		return rol;
-	}
+    public int getRol() {
+        return rol;
+    }
 
-	public void setRol(int rol) {
-		this.rol = rol;
-	}
-
-	public LocalDate getFecha_registro() {
-		return fecha_registro;
-	}
-
-	public void setFecha_registro(LocalDate fecha_registro) {
-		this.fecha_registro = fecha_registro;
-	}
-    
-
+    public void setRol(int rol) {
+        this.rol = rol;
+    }
 }
