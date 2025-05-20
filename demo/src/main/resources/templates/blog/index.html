@@ -441,7 +441,7 @@
         }
 
         body.dark-theme .post-card {
-            background-color: #1e2a38;
+            background-color: #333;
         }
 
         .post-card:hover {
@@ -450,7 +450,7 @@
         }
 
         body.dark-theme .post-card:hover {
-            background-color: #2a3a48;
+            background-color: #3a3a3a;
         }
 
         /* Style for the link inside post-card */
@@ -1588,11 +1588,7 @@
             <!-- Columna central -->
             <div class="grid-column">
                 <div class="grid-item center-column-content" id="centerColumnContent">
-                    <div class="banner-top">
-                        <h3 style="font-size: 20px; margin-top: 10px;">Ads</h3>
-                        <img src="/img/ads.jpg" alt="banner publicitario" class="banner-image" loading="lazy">
-                    </div>
-
+                    
                     <!-- Aquí empiezan los posts renderizados con Thymeleaf -->
                     <div th:each="post : ${posts}" class="post-card">
                         <div class="post-header">
