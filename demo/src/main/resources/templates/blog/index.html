@@ -6,7 +6,6 @@
     <meta name="description" content="UniLink: Explora nuestro blog con artículos interesantes y únete a la comunidad.">
     <meta name="keywords" content="blog, artículos, comunidad, noticias, unelink">
     <meta name="author" content="UniLink Team">
-    <!-- Open Graph para redes sociales -->
     <meta property="og:title" content="UniLink - Blog de Contenido Interesante">
     <meta property="og:description" content="Explora artículos sobre diversos temas y únete a la comunidad de UniLink.">
     <meta property="og:image" content="/img/logo.png">
@@ -14,9 +13,7 @@
     <meta property="og:type" content="website">
     <title>UniLink</title>
     <link rel="icon" href="/img/icono.ico" type="image/x-icon">
-    <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Bootstrap Icons CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <style>
         :root {
@@ -27,15 +24,15 @@
             --navbar-bg-light: #ffffff;
             --navbar-bg-dark: #0e0e0e;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --item-height: 350px; /* Kept as is for intro-perfil and ranking-monitores */
-            --reduced-item-height: 175px; /* Half of --item-height for eventos-nacionales and noticias */
+            --item-height: 350px;
+            --reduced-item-height: 175px;
         }
 
         html, body {
             margin: 0;
             padding: 0;
             height: 100vh;
-            overflow: hidden; /* Prevent page-level scroll */
+            overflow: hidden;
         }
 
         body {
@@ -45,7 +42,6 @@
             font-family: 'Arial', sans-serif;
         }
 
-        /* Modo claro y oscuro */
         body.light-theme {
             background-color: var(--bg-light);
             color: var(--text-color);
@@ -102,7 +98,6 @@
             border-color: #4a4a4a;
         }
 
-        /* --- Estilos del Navbar --- */
         .navbar {
             background-color: var(--navbar-bg-light);
             box-shadow: var(--shadow);
@@ -135,7 +130,6 @@
             display: inline;
         }
 
-        /* Contenedor del navbar */
         #navbarContent {
             display: flex;
             align-items: center;
@@ -144,7 +138,6 @@
             flex-wrap: wrap;
         }
 
-        /* Contenedor del buscador (dentro del navbar para pantallas grandes) */
         .search-container {
             flex-grow: 1;
             display: flex;
@@ -153,7 +146,6 @@
             position: relative;
         }
 
-        /* Contenedor del buscador para pantallas pequeñas (debajo del navbar) */
         .search-container-mobile {
             position: absolute;
             top: 100%;
@@ -171,9 +163,8 @@
             background-color: var(--navbar-bg-dark);
         }
 
-        /* Ícono de búsqueda para pantallas pequeñas */
         .search-icon {
-            display: none; /* Oculta por defecto en pantallas grandes */
+            display: none;
             font-size: 1.2rem;
             color: var(--text-color);
             cursor: pointer;
@@ -190,7 +181,6 @@
             transform: scale(1.1);
         }
 
-        /* Formulario de búsqueda */
         .search-form {
             flex-grow: 1;
             max-width: 600px;
@@ -224,7 +214,7 @@
             border: none;
             color: #333;
             padding-left: 0.5rem;
-            padding-right: 3rem; /* Increased to accommodate new icons */
+            padding-right: 3rem;
             flex-grow: 1;
             border-radius: 50px;
             transition: background-color 0.3s ease, color 0.3s ease;
@@ -241,7 +231,6 @@
             box-shadow: none;
         }
 
-        /* Estilos ajustados para el autocompletado */
         body.light-theme .search-form .form-control:-webkit-autofill,
         body.light-theme .search-form .form-control:-webkit-autofill:hover,
         body.light-theme .search-form .form-control:-webkit-autofill:focus,
@@ -250,7 +239,7 @@
             -webkit-text-fill-color: #333 !important;
             background-color: transparent !important;
             transition: background-color 5000s ease-in-out 0s;
-            box-shadow: inset 0 0 0 1000px #ffffff, inset 2rem 0 0 0 #ffffff !important; /* Stops before icons */
+            box-shadow: inset 0 0 0 1000px #ffffff, inset 2rem 0 0 0 #ffffff !important;
         }
 
         body.dark-theme .search-form .form-control:-webkit-autofill,
@@ -261,7 +250,7 @@
             -webkit-text-fill-color: #e0e0e0 !important;
             background-color: transparent !important;
             transition: background-color 5000s ease-in-out 0s;
-            box-shadow: inset 0 0 0 1000px #2a2a2a, inset 2rem 0 0 0 #2a2a2a !important; /* Stops before icons */
+            box-shadow: inset 0 0 0 1000px #2a2a2a, inset 2rem 0 0 0 #2a2a2a !important;
         }
 
         .search-form .form-control::-webkit-search-cancel-button {
@@ -275,7 +264,7 @@
             border-radius: 50px;
             margin-right: 0.5rem;
             position: absolute;
-            right: 2.5rem; /* Positioned before filter and submit icons */
+            right: 2.5rem;
         }
 
         body.dark-theme .search-form .input-group-text {
@@ -300,7 +289,6 @@
             right: 2.5rem;
         }
 
-        /* Botón de cerrar búsqueda */
         .close-search {
             display: none;
             font-size: 1rem;
@@ -317,7 +305,6 @@
             color: var(--primary-color);
         }
 
-        /* Submit and Filter icons */
         .search-submit,
         .search-filter {
             position: absolute;
@@ -329,11 +316,11 @@
         }
 
         .search-filter {
-            right: 2rem; /* Positioned to the left of submit icon */
+            right: 2rem;
         }
 
         .search-submit {
-            right: 0.5rem; /* Rightmost icon */
+            right: 0.5rem;
         }
 
         body.dark-theme .search-submit,
@@ -347,7 +334,6 @@
             transform: scale(1.1);
         }
 
-        /* Iconos de navegación */
         .nav-icon {
             font-size: 1.2rem;
             color: var(--text-color);
@@ -395,15 +381,13 @@
             font-size: 1rem;
         }
 
-        /* Separador específico para el ícono de búsqueda */
         .search-separator {
-            display: none; /* Oculta por defecto en pantallas grandes */
+            display: none;
             color: #6c757d;
             margin: 0 0.4rem;
             font-size: 1rem;
         }
 
-        /* Dropdown */
         .dropdown-menu {
             border-radius: 8px;
             box-shadow: var(--shadow);
@@ -428,7 +412,6 @@
             background-color: #e9ecef;
         }
 
-        /* Estilos de posts */
         .post-card {
             border: none;
             border-radius: 10px;
@@ -437,11 +420,11 @@
             background-color: #ffffff;
             margin-bottom: 1rem;
             position: relative;
-            cursor: pointer; /* Indicate the post is clickable */
+            cursor: pointer;
         }
 
         body.dark-theme .post-card {
-            background-color: #333;
+            background-color: #131213; /* Updated for dark theme only */
         }
 
         .post-card:hover {
@@ -450,10 +433,9 @@
         }
 
         body.dark-theme .post-card:hover {
-            background-color: #3a3a3a;
+            background-color: #1a1a1c; /* Slightly lighter for hover in dark theme */
         }
 
-        /* Style for the link inside post-card */
         .post-link {
             display: block;
             text-decoration: none;
@@ -519,7 +501,7 @@
             height: 200px;
             object-fit: cover;
             border-radius: 0;
-            aspect-ratio: 16 / 9; /* Enforce aspect ratio for consistency */
+            aspect-ratio: 16 / 9;
         }
 
         .post-body {
@@ -588,7 +570,6 @@
             font-size: 0.9rem;
         }
 
-        /* Post Menu Styles */
         .post-menu {
             cursor: pointer;
             font-size: 1.2rem;
@@ -639,26 +620,22 @@
             background-color: #121212;
         }
 
-        /* Prevent hover background change on menu area */
         .post-menu:hover {
             background-color: transparent !important;
         }
 
-        /* Banner Image Styles */
         .banner-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
             border-radius: 8px;
-            aspect-ratio: 16 / 9; /* Enforce aspect ratio for consistency */
+            aspect-ratio: 16 / 9;
         }
 
-        /* Specific height for banner-ads */
         .banner-ads .banner-image {
-            height: 250px; /* Increased height for banner-ads */
+            height: 250px;
         }
 
-        /* Rewritten and Fixed Intro Perfil Styles */
         .intro-perfil {
             display: flex !important;
             flex-direction: column !important;
@@ -666,13 +643,13 @@
             padding: 0 !important;
             text-align: center !important;
             width: 100% !important;
-            position: relative !important; /* Ensure it doesn't get overridden */
-            overflow-x: hidden !important; /* Prevent horizontal scroll */
+            position: relative !important;
+            overflow-x: hidden !important;
         }
 
         .intro-perfil .profile-banner {
             width: 100% !important;
-            height: 200px !important; /* Increased height consistently for all sizes */
+            height: 200px !important;
             object-fit: cover !important;
             border-radius: 8px 8px 0 0 !important;
             display: block !important;
@@ -683,13 +660,13 @@
             height: 100px !important;
             border-radius: 50% !important;
             object-fit: cover !important;
-            margin-top: -50px !important; /* Adjusted overlap */
+            margin-top: -50px !important;
             border: 4px solid #ffffff !important;
             box-sizing: border-box !important;
         }
 
         body.dark-theme .intro-perfil .profile-avatar {
-            border-color: #121212 !important;
+            border-color: #333333 !important;
         }
 
         .intro-perfil .profile-name {
@@ -711,7 +688,7 @@
             color: #555 !important;
             margin: 0.2rem 0 !important;
             padding: 0 1rem !important;
-            display: block !important; /* Force new line */
+            display: block !important;
             line-height: 1.2 !important;
             width: 100% !important;
         }
@@ -773,7 +750,6 @@
             color: #aaa !important;
         }
 
-        /* Estilos para la ventana de filtros */
         .filter-panel {
             position: absolute;
             top: 100%;
@@ -887,7 +863,6 @@
             text-decoration: underline;
         }
 
-        /* Responsive Adjustments for Intro Perfil (excluding banner height) */
         @media (max-width: 992px) {
             .intro-perfil .profile-avatar {
                 width: 90px !important;
@@ -984,7 +959,6 @@
             }
         }
 
-        /* Responsive Adjustments for Other Elements */
         @media (max-width: 992px) {
             .search-container {
                 flex-grow: 0;
@@ -1025,7 +999,7 @@
                 height: 160px;
             }
             .banner-ads .banner-image {
-                height: 200px; /* Adjusted proportionally (80% of 250px) */
+                height: 200px;
             }
             .search-container {
                 display: none;
@@ -1076,7 +1050,6 @@
             }
         }
 
-        /* Estilos para la ventana de notificaciones */
         .notification-panel {
             position: absolute;
             top: 100%;
@@ -1219,7 +1192,6 @@
             font-size: 14px;
         }
 
-        /* Estilos para el main */
         main {
             flex: 1;
             padding: 0;
@@ -1263,10 +1235,9 @@
         .grid-column:nth-child(3) .grid-item {
             max-height: var(--item-height);
             flex: 0 0 var(--item-height);
-            background-color: var(--navbar-bg-light); /* Match navbar in light mode */
+            background-color: var(--navbar-bg-light);
         }
 
-        /* Override height for eventos-nacionales and noticias */
         .grid-column:nth-child(1) .eventos-nacionales,
         .grid-column:nth-child(3) .noticias {
             max-height: var(--reduced-item-height);
@@ -1275,20 +1246,20 @@
 
         body.dark-theme .grid-column:nth-child(1) .grid-item,
         body.dark-theme .grid-column:nth-child(3) .grid-item {
-            background-color: var(--navbar-bg-dark); /* Match navbar in dark mode */
+            background-color: #333333;
         }
 
         .grid-column:nth-child(2) .grid-item {
             max-height: none;
             flex: 1 1 auto;
             padding-top: 0;
-            background-color: var(--bg-light); /* Match body in light mode */
-            box-shadow: none; /* Remove shadow for central column */
+            background-color: var(--bg-light);
+            box-shadow: none;
         }
 
         body.dark-theme .grid-column:nth-child(2) .grid-item {
-            background-color: var(--bg-dark); /* Match body in dark mode */
-            box-shadow: none; /* Ensure no shadow in dark mode */
+            background-color: var(--bg-dark);
+            box-shadow: none;
         }
 
         body.dark-theme .grid-item {
@@ -1322,6 +1293,8 @@
             gap: 0.5rem;
             overflow-y: auto;
             padding-top: 0;
+            padding-bottom: 0.5rem;
+            height: 100%;
         }
 
         .center-column-content .post-card,
@@ -1372,11 +1345,10 @@
             }
 
             .grid-item {
-                max-height: 350px; /* Match the increased --item-height */
+                max-height: 350px;
                 flex: 0 0 350px;
             }
 
-            /* Override height for eventos-nacionales and noticias in mobile view */
             .eventos-nacionales,
             .noticias {
                 max-height: var(--reduced-item-height);
@@ -1385,14 +1357,15 @@
 
             .grid-column:nth-child(2) .grid-item {
                 height: auto;
-                max-height: 350px;
-                flex: 0 0 350px;
-                box-shadow: none; /* Ensure no shadow in central column for mobile */
+                max-height: none;
+                flex: 1 1 auto;
+                box-shadow: none;
             }
 
             .center-column-content {
-                max-height: calc(350px - 1rem);
+                max-height: none;
                 height: auto;
+                overflow-y: auto;
             }
         }
     </style>
@@ -1401,16 +1374,13 @@
     <header>
         <nav class="navbar navbar-expand" role="navigation" aria-label="Navegación principal">
             <div class="container-fluid">
-                <!-- Logo -->
                 <a class="navbar-brand" th:href="@{/}" aria-label="Volver a la página de inicio de UniLink">
                     <div class="logo-container">
                         <img th:src="@{/img/logo_sf.png}" class="logo-light hidden" alt="Logo de UniLink (modo claro)" width="36" height="36" loading="lazy">
                         <img th:src="@{/img/logo_oscuro_sf.png}" class="logo-dark hidden" alt="Logo de UniLink (modo oscuro)" width="36" height="36" loading="lazy">
                     </div>
                 </a>
-                <!-- Contenido del navbar -->
                 <div id="navbarContent">
-                    <!-- Buscador para pantallas grandes -->
                     <div class="search-container">
                         <form class="d-flex search-form my-2 my-lg-0" th:action="@{/search}" method="get" role="search" aria-label="Buscar en el blog">
                             <div class="input-group">
@@ -1426,7 +1396,6 @@
                                 </span>
                             </div>
                         </form>
-                        <!-- Contenedor de filtros -->
                         <div id="filterPanelLarge" class="filter-panel">
                             <div class="filter-header">
                                 <span class="filter-title">Filtros</span>
@@ -1451,7 +1420,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Iconos de navegación -->
                     <div class="nav-icons d-flex align-items-center ms-auto">
                         <span class="search-icon" id="searchIcon" aria-label="Abrir buscador">
                             <i class="bi bi-search"></i>
@@ -1473,7 +1441,6 @@
                             <i class="bi bi-bell-fill"></i>
                         </a>
                         <span class="separator">|</span>
-                        <!-- Menú desplegable de perfil -->
                         <div class="dropdown">
                             <a href="#" class="nav-icon" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones de perfil de usuario">
                                 <img th:src="@{/img/perfil.jpg}" alt="Foto de perfil del usuario" class="nav-profile" loading="lazy">
@@ -1489,7 +1456,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="search-container-mobile">
                 <form class="d-flex search-form my-2 my-lg-0" th:action="@{/search}" method="get" role="search" aria-label="Buscar en el blog">
                     <div class="input-group">
@@ -1508,7 +1474,6 @@
                         </span>
                     </div>
                 </form>
-                <!-- Contenedor de filtros para móvil -->
                 <div id="filterPanelMobile" class="filter-panel">
                     <div class="filter-header">
                         <span class="filter-title">Filtros</span>
@@ -1533,8 +1498,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Contenedor de notificaciones -->
             <div id="notificationPanel" class="notification-panel">
                 <div class="notification-header">
                     <span class="notification-title">Notificaciones</span>
@@ -1556,10 +1519,8 @@
             </div>
         </nav>
     </header>
-
     <main id="main-content">
         <div class="grid-container">
-            <!-- Columna izquierda -->
             <div class="grid-column">
                 <div class="grid-item intro-perfil">
                     <img src="/img/ads.jpg" alt="Perfil Banner" class="profile-banner" loading="lazy">
@@ -1584,12 +1545,8 @@
                     <p>Lista de eventos nacionales...</p>
                 </div>
             </div>
-
-            <!-- Columna central -->
             <div class="grid-column">
                 <div class="grid-item center-column-content" id="centerColumnContent">
-                    
-                    <!-- Aquí empiezan los posts renderizados con Thymeleaf -->
                     <div th:each="post : ${posts}" class="post-card">
                         <div class="post-header">
                             <a th:href="@{/post/{id}(id=${post.id})}" class="post-link">
@@ -1637,8 +1594,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Columna derecha -->
             <div class="grid-column">
                 <div class="grid-item ranking-monitores">
                     <h3>Ranking Monitores</h3>
@@ -1651,51 +1606,41 @@
             </div>
         </div>
     </main>
-
-    <!-- Bootstrap JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-        // Función para mostrar u ocultar el panel de notificaciones
         function toggleNotifications() {
             const panel = document.getElementById('notificationPanel');
             panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
         }
 
-        // Función para mostrar u ocultar el panel de filtros
         function toggleFilterPanel(panelId, filterIcon) {
             const panel = document.getElementById(panelId);
             panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Inicializar tooltips
             document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
 
-            // Actualizar el indicador de notificaciones
             const notificationIcon = document.querySelector('.nav-icon.notification');
             const notificationBodies = document.querySelectorAll('.notification-body');
             const notificationCount = notificationBodies.length;
             notificationIcon.setAttribute('data-count', notificationCount > 0 ? '1' : '0');
 
-            // Modo noche/día
             const themeToggle = document.getElementById('themeToggle');
             const body = document.body;
             const logoLight = document.querySelector('.logo-light');
             const logoDark = document.querySelector('.logo-dark');
 
-            // Cargar tema inicial desde localStorage
             const savedTheme = localStorage.getItem('theme') || 'light';
             body.classList.remove('light-theme', 'dark-theme');
             body.classList.add(`${savedTheme}-theme`);
 
-            // Mostrar el logo inicial basado en el tema guardado
             if (savedTheme === 'light') {
                 logoLight.classList.remove('hidden');
             } else {
                 logoDark.classList.remove('hidden');
             }
 
-            // Actualizar texto e ícono del botón de tema
             themeToggle.querySelector('i').classList.add(savedTheme === 'light' ? 'bi-moon' : 'bi-sun');
             themeToggle.querySelector('i').classList.remove(savedTheme === 'light' ? 'bi-sun' : 'bi-moon');
             themeToggle.lastChild.nodeValue = savedTheme === 'light' ? ' Modo Noche' : ' Modo Día';
@@ -1707,8 +1652,6 @@
                 localStorage.setItem('theme', isLight ? 'dark' : 'light');
                 themeToggle.querySelector('i').classList.replace(isLight ? 'bi-moon' : 'bi-sun', isLight ? 'bi-sun' : 'bi-moon');
                 themeToggle.lastChild.nodeValue = isLight ? ' Modo Día' : ' Modo Noche';
-
-                // Actualizar visibilidad del logo
                 logoLight.classList.add('hidden');
                 logoDark.classList.add('hidden');
                 if (isLight) {
@@ -1718,39 +1661,33 @@
                 }
             });
 
-            // Manejar el buscador en pantallas grandes
             const searchInputLarge = document.getElementById('searchInputLarge');
             const searchSubmitLarge = document.getElementById('searchSubmitLarge');
             const searchFilterLarge = document.getElementById('searchFilterLarge');
             const searchFormLarge = searchInputLarge.closest('form');
             const filterPanelLarge = document.getElementById('filterPanelLarge');
 
-            // Mostrar/Ocultar el ícono de limpiar en pantallas grandes
             searchInputLarge.addEventListener('input', () => {
                 searchInputLarge.value = searchInputLarge.value.trimStart();
             });
 
-            // Enviar el formulario al hacer clic en el ícono de envío
             searchSubmitLarge.addEventListener('click', () => {
                 if (searchInputLarge.value.trim()) {
                     searchFormLarge.submit();
                 }
             });
 
-            // Mostrar/Ocultar el panel de filtros en pantallas grandes
             searchFilterLarge.addEventListener('click', (e) => {
                 e.stopPropagation();
                 toggleFilterPanel('filterPanelLarge', searchFilterLarge);
             });
 
-            // Cerrar el panel de filtros al hacer clic fuera en pantallas grandes
             document.addEventListener('click', (e) => {
                 if (!filterPanelLarge.contains(e.target) && !searchFilterLarge.contains(e.target)) {
                     filterPanelLarge.style.display = 'none';
                 }
             });
 
-            // Manejar el buscador en pantallas pequeñas
             const searchIcon = document.getElementById('searchIcon');
             const searchFormMobile = document.querySelector('.search-container-mobile .search-form');
             const closeSearch = document.getElementById('closeSearch');
@@ -1760,32 +1697,28 @@
             const searchSubmitMobile = document.getElementById('searchSubmitMobile');
             const filterPanelMobile = document.getElementById('filterPanelMobile');
 
-            // Mostrar/Ocultar el ícono de limpiar en pantallas pequeñas
             searchInputMobile.addEventListener('input', () => {
                 searchInputMobile.value = searchInputMobile.value.trimStart();
             });
 
-            // Enviar el formulario al hacer clic en el ícono de envío en pantallas pequeñas
             searchSubmitMobile.addEventListener('click', () => {
                 if (searchInputMobile.value.trim()) {
                     searchFormMobile.submit();
                 }
             });
 
-            // Mostrar/Ocultar el panel de filtros en pantallas pequeñas
             searchFilterMobile.addEventListener('click', (e) => {
                 e.stopPropagation();
                 toggleFilterPanel('filterPanelMobile', searchFilterMobile);
             });
 
-            // Cerrar el panel de filtros al hacer clic fuera en pantallas pequeñas
             document.addEventListener('click', (e) => {
                 if (!filterPanelMobile.contains(e.target) && !searchFilterMobile.contains(e.target)) {
                     filterPanelMobile.style.display = 'none';
                 }
             });
 
-            // Función para actualizar el estado del buscador según el tamaño de la ventana
+            const searchContainer = document.querySelector('.search-container');
             const updateSearchState = () => {
                 const windowWidth = window.innerWidth;
                 const breakpoint = 986;
@@ -1802,10 +1735,8 @@
                 }
             };
 
-            // Ejecutar al cargar la página
             updateSearchState();
 
-            // Mostrar el buscador móvil al hacer clic en el ícono
             searchIcon.addEventListener('click', (e) => {
                 e.stopPropagation();
                 searchContainerMobile.style.display = 'block';
@@ -1814,7 +1745,6 @@
                 searchInputMobile.focus();
             });
 
-            // Cerrar el buscador móvil al hacer clic en el botón de cerrar
             closeSearch.addEventListener('click', (e) => {
                 e.stopPropagation();
                 searchFormMobile.classList.remove('active');
@@ -1823,7 +1753,6 @@
                 searchContainerMobile.style.display = 'none';
             });
 
-            // Cerrar el buscador móvil al hacer clic fuera
             document.addEventListener('click', (e) => {
                 if (!searchFormMobile.contains(e.target) && !searchIcon.contains(e.target)) {
                     searchFormMobile.classList.remove('active');
@@ -1833,15 +1762,12 @@
                 }
             });
 
-            // Evitar que el clic dentro del formulario móvil cierre el buscador
             searchFormMobile.addEventListener('click', (e) => {
                 e.stopPropagation();
             });
 
-            // Actualizar el estado del buscador al cambiar el tamaño de la ventana
             window.addEventListener('resize', updateSearchState);
 
-            // Dynamically Set Center Column Height
             const navbar = document.querySelector('.navbar');
             const centerColumnContent = document.getElementById('centerColumnContent');
             const gridContainer = document.querySelector('.grid-container');
