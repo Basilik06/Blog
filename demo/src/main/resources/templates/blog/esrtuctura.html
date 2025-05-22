@@ -853,3 +853,24 @@
     </script>
 </body>
 </html>
+<!--lo de arriba se sustituye por esto de abajo-->
+                <!--
+                <div class="grid-item intro-perfil">
+                    <img th:src="${perfilUsuario?.bannerUrl} ?: '/img/ads.jpg'" alt="Perfil Banner" class="profile-banner" loading="lazy">
+                    <img th:src="${perfilUsuario?.avatarUrl} ?: '/img/perfil.jpg'" alt="Foto de perfil" class="profile-avatar" loading="lazy">
+                    <h3 class="profile-name" th:text="${perfilUsuario?.nombre} ?: 'Nombre de usuario'">Nombre de usuario</h3>
+                    <span class="profile-type" th:text="${perfilUsuario?.tipo} ?: 'Tipo de usuario'">Tipo de usuario</span>
+                    <div class="profile-divider"></div>
+                    <div class="profile-type-date">
+                        <span th:text="${#messages.msg('perfil.desde')} + ' ' + (${perfilUsuario?.fechaInicio} ?: 'Fecha desconocida')">En UniLink desde Fecha desconocida</span>
+                    </div>
+                    <div class="profile-divider"></div>
+                    <div class="profile-links">
+                        <a th:href="@{/grupo}" th:text="${#messages.msg('perfil.grupo')}">Grupo</a>
+                        <span class="link-separator">|</span>
+                        <a th:href="@{/estado}" th:text="${#messages.msg('perfil.estado')}">Estado</a>
+                        <span class="link-separator">|</span>
+                        <a th:href="@{/monitor}" th:text="${#messages.msg('perfil.monitor')}">Monitor</a>
+                    </div>
+                </div>
+                -->

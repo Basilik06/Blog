@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,7 @@
     <meta property="og:image" content="/img/logo.png">
     <meta property="og:url" content="https://unilink.com">
     <meta property="og:type" content="website">
+    <meta name="date" content="2025-05-21T16:14:00-05:00"> <!-- Updated to current date and time -->
     <title>UniLink</title>
     <link rel="icon" href="/img/icono.ico" type="image/x-icon">
     <!-- Bootstrap CSS CDN -->
@@ -530,46 +531,7 @@
             text-decoration: none;
             font-size: 14px;
         }
-        
-        /* Estilos de posts */
-        .post-card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
 
-        .post-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .post-card .card-img-top {
-            border-radius: 10px 10px 0 0;
-            object-fit: cover;
-            height: 200px;
-        }
-
-        .post-card .card-body {
-            padding: 1.5rem;
-        }
-
-        /* Estilos para el cuadro de "Próximamente" en el main */
-        .post-card .card-body h1 {
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            margin: 0;
-        }
-
-        /* Estilos específicos para el cuadro de "Próximamente" en modo oscuro */
-        body.dark-theme .post-card .card-body h1 {
-            color: #ffffff; /* Texto blanco en modo oscuro */
-        }
-
-        body.dark-theme .post-card {
-            background-color: #333; /* Fondo #333 en modo oscuro */
-        }
         /* Responsive Adjustments */
         @media (max-width: 992px) {
             .search-container {
@@ -753,12 +715,21 @@
             </div>
         </nav>
     </header>
-     <main class="container my-5" id="main-content">
+    <main class="container my-5" id="main-content">
         <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card post-card text-center">
+            <div class="col-md-8">
+                <div class="card">
                     <div class="card-body">
-                        <h1>Próximamente</h1>
+                        <h2 class="card-title mb-4">Historial de Notificaciones</h2>
+                        <div th:each="notif : ${notificaciones}" class="notification-body">
+                            <div class="notification-text">
+                                <span th:text="${notif.mensaje}">Texto de la notificación</span><br>
+                                <span class="notification-time" th:text="${notif.fecha_notificacion}">hace 10 minutos</span>
+                            </div>
+                        </div>
+                        <div th:if="${#lists.isEmpty(notificaciones)}" class="text-center text-muted">
+                            <p>No hay notificaciones para mostrar.</p>
+                        </div>
                     </div>
                 </div>
             </div>

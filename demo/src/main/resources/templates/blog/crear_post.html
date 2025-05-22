@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -554,22 +554,104 @@
             padding: 1.5rem;
         }
 
-        /* Estilos para el cuadro de "Próximamente" en el main */
-        .post-card .card-body h1 {
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            margin: 0;
+        /* Estilos para el formulario */
+        .post-form-container {
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
         }
 
-        /* Estilos específicos para el cuadro de "Próximamente" en modo oscuro */
-        body.dark-theme .post-card .card-body h1 {
-            color: #ffffff; /* Texto blanco en modo oscuro */
+        body.dark-theme .post-form-container {
+            background-color: #1e2a38;
         }
 
-        body.dark-theme .post-card {
-            background-color: #333; /* Fondo #333 en modo oscuro */
+        .post-form-container .form-control {
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            background-color: #ffffff;
+            color: #333;
         }
+
+        body.dark-theme .post-form-container .form-control {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            border-color: #4a4a4a;
+        }
+
+        .post-form-container .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+
+        .post-form-container textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .post-form-container .form-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark-theme .post-form-container .form-label {
+            color: #e0e0e0;
+        }
+
+        .post-form-container .category-select {
+            border-radius: 8px;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        body.dark-theme .post-form-container .category-select {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            border-color: #4a4a4a;
+        }
+
+        .post-form-container .btn-post {
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1.5rem;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .post-form-container .btn-post:hover {
+            background-color: #e0891f;
+        }
+
+        .post-form-container .btn-post:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .image-preview {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .image-preview img {
+            max-width: 150px;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .error-message {
+            display: none;
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .invalid-field {
+            border-color: #dc3545;
+        }
+
         /* Responsive Adjustments */
         @media (max-width: 992px) {
             .search-container {
@@ -753,12 +835,46 @@
             </div>
         </nav>
     </header>
-     <main class="container my-5" id="main-content">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card post-card text-center">
-                    <div class="card-body">
-                        <h1>Próximamente</h1>
+    <main class="container my-5" id="main-content">
+        <div class="row">
+            <!-- Formulario de creación de post -->
+            <div class="col-md-8">
+                <div class="post-form-container bg-light">
+                    <form id="postForm" th:action="@{/nuevo_post}" method="post" enctype="multipart/form-data" onsubmit="return validateForm(event)">
+                        <div class="mb-3 position-relative">
+                            <label for="title" class="form-label">Título *</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Escribe el título de tu post" required>
+                            <div id="titleError" class="error-message">Completa este campo</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="body" class="form-label">Cuerpo del texto (opcional)</label>
+                            <textarea class="form-control" id="body" name="body" placeholder="Escribe el contenido de tu post"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="images" class="form-label">Subir imágenes (opcional)</label>
+                            <input type="file" class="form-control" id="images" name="images" accept="image/*" multiple onchange="previewImages(event)">
+                            <div id="imagePreview" class="image-preview"></div>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+            <!-- Selección de categoría y boton-->
+            <div class="col-md-4">
+                <div class="post-form-container bg-light">
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Seleccionar categoría</label>
+                        <select class="form-select category-select" id="category" name="category">
+                            <option value="" disabled selected>Elige una categoría</option>
+                            <option value="ciencia">Ciencia</option>
+                            <option value="tecnologia">Tecnología</option>
+                            <option value="noticias">Noticias</option>
+                            <option value="humor">Humor</option>
+                            <option value="preguntas">Preguntas</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" form="postForm" class="btn btn-post" id="postButton" disabled >Post</button>
                     </div>
                 </div>
             </div>
@@ -772,6 +888,64 @@
             const panel = document.getElementById('notificationPanel');
             panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
         }
+
+        // Función para previsualizar imágenes
+        function previewImages(event) {
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = ''; // Limpiar previsualización anterior
+            const files = event.target.files;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    preview.appendChild(img);
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Función de validación
+        function validateForm(event) {
+            event.preventDefault();
+            const title = document.getElementById('title');
+            const titleError = document.getElementById('titleError');
+            const postButton = document.getElementById('postButton');
+
+            if (title.value.trim() === '') {
+                title.classList.add('invalid-field');
+                titleError.style.display = 'block';
+                postButton.disabled = true;
+                return false;
+            } else {
+                title.classList.remove('invalid-field');
+                titleError.style.display = 'none';
+                postButton.disabled = false;
+                document.getElementById('postForm').submit();
+                return true;
+            }
+        }
+
+        // Validación en tiempo real
+        document.getElementById('title').addEventListener('input', function() {
+            const title = this;
+            const titleError = document.getElementById('titleError');
+            const postButton = document.getElementById('postButton');
+
+            if (title.value.trim() === '') {
+                title.classList.add('invalid-field');
+                titleError.style.display = 'block';
+                postButton.disabled = true;
+            } else {
+                title.classList.remove('invalid-field');
+                titleError.style.display = 'none';
+                postButton.disabled = false;
+            }
+        });
 
         document.addEventListener('DOMContentLoaded', () => {
             // Inicializar tooltips

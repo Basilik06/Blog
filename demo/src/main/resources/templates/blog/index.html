@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,8 +24,10 @@
             --navbar-bg-light: #ffffff;
             --navbar-bg-dark: #0e0e0e;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --item-height: 350px;
+            --item-height: 380px;
             --reduced-item-height: 175px;
+            --events-news-height: 280px;
+            --events-ranking-height: 380px;
         }
 
         html, body {
@@ -424,7 +426,7 @@
         }
 
         body.dark-theme .post-card {
-            background-color: #131213; /* Updated for dark theme only */
+            background-color: #131213;
         }
 
         .post-card:hover {
@@ -433,7 +435,7 @@
         }
 
         body.dark-theme .post-card:hover {
-            background-color: #1a1a1c; /* Slightly lighter for hover in dark theme */
+            background-color: #1a1a1c;
         }
 
         .post-link {
@@ -863,6 +865,320 @@
             text-decoration: underline;
         }
 
+        /* Styles for the noticias section */
+        .noticias {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .noticias h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        body.dark-theme .noticias h3 {
+            color: #e0e0e0;
+        }
+
+        .noticias-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .noticia-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .noticia-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1da1f2;
+            text-decoration: none;
+            margin-bottom: 0.2rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .noticia-title:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .noticia-timestamp {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        body.dark-theme .noticia-timestamp {
+            color: #aaa;
+        }
+
+        .noticia-divider {
+            border: none;
+            height: 1px;
+            background-color: #ddd;
+            margin: 0.3rem 0;
+        }
+
+        body.dark-theme .noticia-divider {
+            background-color: #4a4a4a;
+        }
+
+        /* Styles for the eventos-nacionales section */
+        .eventos-nacionales {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .eventos-nacionales h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        body.dark-theme .eventos-nacionales h3 {
+            color: #e0e0e0;
+        }
+
+        .eventos-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .evento-item {
+            display: flex;
+            flex-direction: column;
+            min-height: 80px; /* Ensure enough space for content */
+            position: relative;
+        }
+
+        .evento-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .evento-nombre {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.2rem;
+        }
+
+        body.dark-theme .evento-nombre {
+            color: #e0e0e0;
+        }
+
+        .evento-descripcion {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 0.2rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        body.dark-theme .evento-descripcion {
+            color: #ccc;
+        }
+
+        .evento-fecha {
+            font-size: 0.75rem;
+            color: #666;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            text-align: right;
+            margin-bottom: 0.5rem; /* Added to create separation from the divider */
+        }
+
+        body.dark-theme .evento-fecha {
+            color: #aaa;
+        }
+
+        .evento-divider {
+            border: none;
+            height: 1px;
+            background-color: #ddd;
+            margin: 0.3rem 0;
+        }
+
+        body.dark-theme .evento-divider {
+            background-color: #4a4a4a;
+        }
+
+        /* Updated styles for the ranking-monitores section */
+        .ranking-monitores {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            max-height: var(--events-ranking-height);
+            flex: 0 0 var(--events-ranking-height);
+            overflow-y: auto;
+        }
+
+        .ranking-monitores h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        body.dark-theme .ranking-monitores h3 {
+            color: #e0e0e0;
+        }
+
+        .ranking-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .ranking-item {
+            width: 100%;
+        }
+
+        .ranking-card {
+            display: flex;
+            align-items: center;
+            padding: 0.3rem 0.8rem 0.3rem 0.3rem;
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s cassette, background-color 0.3s ease;
+            position: relative;
+        }
+
+        body.dark-theme .ranking-card {
+            background-color: #444;
+        }
+
+        .ranking-card:hover {
+            transform: translateY(-2px);
+            background-color: #d0d0d0;
+        }
+
+        body.dark-theme .ranking-card:hover {
+            background-color: #555;
+        }
+
+        .ranking-position {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-right: 0.75rem;
+            margin-left: 0.5rem; /* Adjusted for new layout */
+        }
+
+        body.dark-theme .ranking-position {
+            color: #e0e0e0;
+        }
+
+        .ranking-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin-right: 0.5rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            position: relative; /* Changed from absolute to relative for inline flow */
+        }
+
+        body.dark-theme .ranking-image {
+            background-color: #333;
+            color: #aaa;
+        }
+
+        .ranking-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ranking-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #333;
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-right: 0.5rem;
+        }
+
+        body.dark-theme .ranking-name {
+            color: #e0e0e0;
+        }
+
+        .ranking-score {
+            font-size: 0.9rem;
+            color: #333;
+            padding-left: 0.75rem;
+            border-left: 1px solid #ccc;
+        }
+
+        body.dark-theme .ranking-score {
+            color: #e0e0e0;
+            border-left: 1px solid #666;
+        }
+
+        @media (max-width: 992px) {
+            .ranking-card {
+                padding: 0.2rem 0.6rem 0.2rem 0.2rem;
+            }
+
+            .ranking-image {
+                width: 45px;
+                height: 45px;
+            }
+
+            .ranking-position {
+                font-size: 1.1rem;
+                margin-right: 0.5rem;
+                margin-left: 0.4rem;
+            }
+
+            .ranking-name, .ranking-score {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .ranking-card {
+                padding: 0.15rem 0.5rem 0.15rem 0.15rem;
+            }
+
+            .ranking-image {
+                width: 40px;
+                height: 40px;
+            }
+
+            .ranking-position {
+                font-size: 1rem;
+                margin-right: 0.3rem;
+                margin-left: 0.3rem;
+            }
+
+            .ranking-name, .ranking-score {
+                font-size: 0.8rem;
+            }
+        }
+
         @media (max-width: 992px) {
             .intro-perfil .profile-avatar {
                 width: 90px !important;
@@ -1239,9 +1555,9 @@
         }
 
         .grid-column:nth-child(1) .eventos-nacionales,
-        .grid-column:nth-child(3) .noticias {
-            max-height: var(--reduced-item-height);
-            flex: 0 0 var(--reduced-item-height);
+        .grid-column:nth-child(3) .noticias{
+            max-height: var(--events-news-height);
+            flex: 0 0 var(--events-news-height);
         }
 
         body.dark-theme .grid-column:nth-child(1) .grid-item,
@@ -1350,9 +1666,10 @@
             }
 
             .eventos-nacionales,
-            .noticias {
-                max-height: var(--reduced-item-height);
-                flex: 0 0 var(--reduced-item-height);
+            .noticias,
+            .ranking-monitores {
+                max-height: var(--events-ranking-height);
+                flex: 0 0 var(--events-ranking-height);
             }
 
             .grid-column:nth-child(2) .grid-item {
@@ -1521,6 +1838,7 @@
     </header>
     <main id="main-content">
         <div class="grid-container">
+            <!--contenedor izquierda-->
             <div class="grid-column">
                 <div class="grid-item intro-perfil">
                     <img src="/img/ads.jpg" alt="Perfil Banner" class="profile-banner" loading="lazy">
@@ -1542,9 +1860,20 @@
                 </div>
                 <div class="grid-item eventos-nacionales">
                     <h3>Eventos Nacionales</h3>
-                    <p>Lista de eventos nacionales...</p>
+                    <hr class="evento-divider">
+                    <div class="eventos-list">
+                        <div th:each="evento, iterStat : ${eventos}" class="evento-item">
+                            <div class="evento-content">
+                                <h4 class="evento-nombre" th:text="${evento.nombre}">Nombre del evento</h4>
+                                <p class="evento-descripcion" th:text="${evento.descripcion}">Breve descripción del evento</p>
+                            </div>
+                            <span class="evento-fecha" th:text="${evento.fecha}">21/05/2025</span>
+                            <hr class="evento-divider" th:if="${!iterStat.last}"/>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <!--contenedor central-->
             <div class="grid-column">
                 <div class="grid-item center-column-content" id="centerColumnContent">
                     <div th:each="post : ${posts}" class="post-card">
@@ -1594,14 +1923,63 @@
                     </div>
                 </div>
             </div>
+            <!--contenedor derecha-->
             <div class="grid-column">
                 <div class="grid-item ranking-monitores">
                     <h3>Ranking Monitores</h3>
-                    <p>Ranking de monitores...</p>
+                    <div class="ranking-list">
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">1</span>
+                                <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
+                                <span class="ranking-name">Maricela</span>
+                                <span class="ranking-score">Puntaje</span>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">2</span>
+                                <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
+                                <span class="ranking-name">Nombre</span>
+                                <span class="ranking-score">Puntaje</span>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">3</span>
+                                <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
+                                <span class="ranking-name">Nombre</span>
+                                <span class="ranking-score">Puntaje</span>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">4</span>
+                                <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
+                                <span class="ranking-name">Nombre</span>
+                                <span class="ranking-score">Puntaje</span>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">5</span>
+                                <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
+                                <span class="ranking-name">Nombre</span>
+                                <span class="ranking-score">Puntaje</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="grid-item noticias">
                     <h3>Noticias</h3>
-                    <p>Últimas noticias aquí...</p>
+                    <hr class="noticia-divider">
+                    <div class="noticias-list">
+                        <div th:each="noticia, iterStat : ${noticias}" class="noticia-item">
+                            <a th:href="@{/noticia/{id}(id=${noticia.id})}" class="noticia-title" th:text="${noticia.titulo}">Título de la noticia</a>
+                            <span class="noticia-timestamp" th:text="${noticia.fechaPublicacion}">hace 5 minutos</span>
+                            <hr class="noticia-divider" th:if="${!iterStat.last}"/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
