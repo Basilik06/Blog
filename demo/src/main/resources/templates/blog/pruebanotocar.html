@@ -24,9 +24,10 @@
             --navbar-bg-light: #ffffff;
             --navbar-bg-dark: #0e0e0e;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --item-height: 350px;
+            --item-height: 380px;
             --reduced-item-height: 175px;
             --events-news-height: 280px;
+            --events-ranking-height: 380px;
         }
 
         html, body {
@@ -197,6 +198,7 @@
             display: flex;
             align-items: center;
             position: relative;
+            padding: 0 0.25rem;
         }
 
         .search-form .input-group:hover {
@@ -215,8 +217,8 @@
             border: none;
             color: #333;
             padding-left: 0.5rem;
-            padding-right: 3rem;
-            flex-grow: 1;
+            width: 500px;
+            flex-grow: 0;
             border-radius: 50px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
@@ -240,7 +242,7 @@
             -webkit-text-fill-color: #333 !important;
             background-color: transparent !important;
             transition: background-color 5000s ease-in-out 0s;
-            box-shadow: inset 0 0 0 1000px #ffffff, inset 2rem 0 0 0 #ffffff !important;
+            box-shadow: inset 0 0 0 1000px #ffffff00, inset 2rem 0 0 0 #ffffff00 !important;
         }
 
         body.dark-theme .search-form .form-control:-webkit-autofill,
@@ -251,59 +253,36 @@
             -webkit-text-fill-color: #e0e0e0 !important;
             background-color: transparent !important;
             transition: background-color 5000s ease-in-out 0s;
-            box-shadow: inset 0 0 0 1000px #2a2a2a, inset 2rem 0 0 0 #2a2a2a !important;
+            box-shadow: inset 0 0 0 1000px #2a2a2a00, inset 2rem 0 0 0 #2a2a2a00 !important;
         }
 
-        .search-form .form-control::-webkit-search-cancel-button {
-            -webkit-appearance: none;
-            appearance: none;
-            height: 16px;
-            width: 16px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>') no-repeat center;
-            background-size: contain;
-            cursor: pointer;
-            border-radius: 50px;
-            margin-right: 0.5rem;
-            position: absolute;
-            right: 2.5rem;
-        }
-
-        body.dark-theme .search-form .input-group-text {
-            color: #f0f0f0;
-        }
-
-        body.dark-theme .search-form .form-control {
-            color: #e0e0e0;
-            background-color: transparent;
-        }
-
-        body.dark-theme .search-form .form-control::placeholder {
-            color: #a0a0a0;
-        }
-
-        body.dark-theme .search-form .form-control::-webkit-search-cancel-button {
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>') no-repeat center;
-            background-size: contain;
-            cursor: pointer;
-            margin-right: 0.5rem;
-            position: absolute;
-            right: 2.5rem;
-        }
-
-        .close-search {
+        .search-clear {
             display: none;
             font-size: 1rem;
             color: #333;
             cursor: pointer;
-            margin-left: 0.5rem;
+            padding: 0.375rem 0.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+            z-index: 1;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>') no-repeat center;
+            background-size: 16px 16px;
+            width: 16px;
+            height: 16px;
         }
 
-        body.dark-theme .close-search {
+        body.dark-theme .search-clear {
             color: #e0e0e0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>') no-repeat center;
+            background-size: 16px 16px;
         }
 
-        .close-search:hover {
+        .search-clear:hover {
             color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .search-clear.active {
+            display: block;
         }
 
         .search-submit,
@@ -314,6 +293,7 @@
             cursor: pointer;
             padding: 0.375rem 0.5rem;
             transition: color 0.3s ease, transform 0.3s ease;
+            z-index: 1;
         }
 
         .search-filter {
@@ -322,6 +302,14 @@
 
         .search-submit {
             right: 0.5rem;
+        }
+
+        .search-form .input-group:has(.search-clear.active) .search-filter {
+            right: 3.5rem;
+        }
+
+        .search-form .input-group:has(.search-clear.active) .search-submit {
+            right: 2rem;
         }
 
         body.dark-theme .search-submit,
@@ -754,8 +742,7 @@
         .filter-panel {
             position: absolute;
             top: 100%;
-            right: 0;
-            width: 250px;
+            width: 300px;
             max-height: 300px;
             border-radius: 8px;
             padding: 10px;
@@ -763,6 +750,7 @@
             display: none;
             box-shadow: var(--shadow);
             overflow-y: auto;
+            transition: all 0.3s ease;
         }
 
         .filter-panel::-webkit-scrollbar {
@@ -821,14 +809,10 @@
 
         .filter-option {
             display: flex;
-            align-items: center;
+            flex-direction: column;
             gap: 8px;
             margin-bottom: 8px;
             font-size: 14px;
-        }
-
-        .filter-option input[type="checkbox"] {
-            cursor: pointer;
         }
 
         .filter-option label {
@@ -840,6 +824,26 @@
         }
 
         body.dark-theme .filter-option label {
+            color: #e0e0e0;
+        }
+
+        .filter-option select.form-select {
+            width: 100%;
+            margin-top: 5px;
+            font-size: 14px;
+            padding: 6px;
+            border-radius: 4px;
+        }
+
+        body.light-theme .filter-option select.form-select {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+
+        body.dark-theme .filter-option select.form-select {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
             color: #e0e0e0;
         }
 
@@ -864,7 +868,6 @@
             text-decoration: underline;
         }
 
-        /* Styles for the noticias section */
         .noticias {
             display: flex;
             flex-direction: column;
@@ -930,7 +933,6 @@
             background-color: #4a4a4a;
         }
 
-        /* Styles for the eventos-nacionales section */
         .eventos-nacionales {
             display: flex;
             flex-direction: column;
@@ -956,7 +958,7 @@
         .evento-item {
             display: flex;
             flex-direction: column;
-            min-height: 80px; /* Ensure enough space for content */
+            min-height: 80px;
             position: relative;
         }
 
@@ -999,7 +1001,7 @@
             bottom: 0;
             right: 0;
             text-align: right;
-            margin-bottom: 0.5rem; /* Added to create separation from the divider */
+            margin-bottom: 0.5rem;
         }
 
         body.dark-theme .evento-fecha {
@@ -1017,12 +1019,14 @@
             background-color: #4a4a4a;
         }
 
-        /* Styles for the ranking-monitores section */
         .ranking-monitores {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
             padding: 0.5rem;
+            max-height: var(--events-ranking-height);
+            flex: 0 0 var(--events-ranking-height);
+            overflow-y: auto;
         }
 
         .ranking-monitores h3 {
@@ -1048,13 +1052,12 @@
         .ranking-card {
             display: flex;
             align-items: center;
-            padding: 0.3rem 0.8rem 0.3rem 2.5rem; /* Adjusted padding-left to account for image overlap */
+            padding: 0.3rem 0.8rem 0.3rem 0.3rem;
             background-color: #e0e0e0;
             border-radius: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s ease, background-color 0.3s ease;
             position: relative;
-            height: 40px; /* Reduced height since image is superposed */
         }
 
         body.dark-theme .ranking-card {
@@ -1075,6 +1078,7 @@
             font-weight: bold;
             color: #333;
             margin-right: 0.75rem;
+            margin-left: 0.5rem;
         }
 
         body.dark-theme .ranking-position {
@@ -1086,15 +1090,13 @@
             height: 50px;
             border-radius: 50%;
             background-color: #fff;
+            margin-right: 0.5rem;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #666;
-            position: absolute;
-            left: -10px; /* Overlap the left edge */
-            top: 50%;
-            transform: translateY(-50%);
+            position: relative;
         }
 
         body.dark-theme .ranking-image {
@@ -1133,237 +1135,6 @@
         body.dark-theme .ranking-score {
             color: #e0e0e0;
             border-left: 1px solid #666;
-        }
-
-        @media (max-width: 992px) {
-            .ranking-card {
-                padding: 0.2rem 0.6rem 0.2rem 2.2rem;
-                height: 38px;
-            }
-
-            .ranking-image {
-                width: 45px;
-                height: 45px;
-                left: -8px;
-            }
-
-            .ranking-position {
-                font-size: 1.1rem;
-                margin-right: 0.5rem;
-            }
-
-            .ranking-name, .ranking-score {
-                font-size: 0.85rem;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .ranking-card {
-                padding: 0.15rem 0.5rem 0.15rem 2rem;
-                height: 36px;
-            }
-
-            .ranking-image {
-                width: 40px;
-                height: 40px;
-                left: -6px;
-            }
-
-            .ranking-position {
-                font-size: 1rem;
-                margin-right: 0.3rem;
-            }
-
-            .ranking-name, .ranking-score {
-                font-size: 0.8rem;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .intro-perfil .profile-avatar {
-                width: 90px !important;
-                height: 90px !important;
-                margin-top: -45px !important;
-                border-width: 3px !important;
-            }
-            .intro-perfil .profile-name {
-                font-size: 1.15rem !important;
-                margin: 0.4rem 0 0.15rem !important;
-                padding: 0 0.8rem !important;
-            }
-            .intro-perfil .profile-type {
-                font-size: 0.85rem !important;
-                margin: 0.15rem 0 !important;
-                padding: 0 0.8rem !important;
-            }
-            .intro-perfil .profile-type-date {
-                font-size: 0.85rem !important;
-                margin: 0.15rem 0 !important;
-                padding: 0 0.8rem !important;
-            }
-            .intro-perfil .profile-divider {
-                margin: 0.4rem auto !important;
-            }
-            .intro-perfil .profile-links {
-                font-size: 0.85rem !important;
-                gap: 0.75rem !important;
-                padding: 0.4rem 0.8rem !important;
-            }
-        }
-
-        @media (max-width: 987px) {
-            .intro-perfil .profile-avatar {
-                width: 85px !important;
-                height: 85px !important;
-                margin-top: -42px !important;
-                border-width: 3px !important;
-            }
-            .intro-perfil .profile-name {
-                font-size: 1.1rem !important;
-                margin: 0.35rem 0 0.1rem !important;
-                padding: 0 0.6rem !important;
-            }
-            .intro-perfil .profile-type {
-                font-size: 0.8rem !important;
-                margin: 0.1rem 0 !important;
-                padding: 0 0.6rem !important;
-            }
-            .intro-perfil .profile-type-date {
-                font-size: 0.8rem !important;
-                margin: 0.1rem 0 !important;
-                padding: 0 0.6rem !important;
-            }
-            .intro-perfil .profile-divider {
-                margin: 0.35rem auto !important;
-            }
-            .intro-perfil .profile-links {
-                font-size: 0.8rem !important;
-                gap: 0.6rem !important;
-                padding: 0.35rem 0.6rem !important;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .intro-perfil .profile-avatar {
-                width: 80px !important;
-                height: 80px !important;
-                margin-top: -40px !important;
-                border-width: 2px !important;
-            }
-            .intro-perfil .profile-name {
-                font-size: 1.05rem !important;
-                margin: 0.3rem 0 0.1rem !important;
-                padding: 0 0.5rem !important;
-            }
-            .intro-perfil .profile-type {
-                font-size: 0.75rem !important;
-                margin: 0.1rem 0 !important;
-                padding: 0 0.5rem !important;
-            }
-            .intro-perfil .profile-type-date {
-                font-size: 0.75rem !important;
-                margin: 0.1rem 0 !important;
-                padding: 0 0.5rem !important;
-            }
-            .intro-perfil .profile-divider {
-                margin: 0.3rem auto !important;
-            }
-            .intro-perfil .profile-links {
-                font-size: 0.75rem !important;
-                gap: 0.5rem !important;
-                padding: 0.3rem 0.5rem !important;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .search-container {
-                flex-grow: 0;
-                width: 100%;
-                margin-top: 0.5rem;
-            }
-            .nav-icons {
-                flex-wrap: nowrap;
-                gap: 0.3rem;
-            }
-            .separator {
-                display: none;
-            }
-            .navbar {
-                padding: 0.5rem;
-            }
-            .dropdown-menu {
-                min-width: 140px;
-            }
-        }
-
-        @media (max-width: 987px) {
-            .navbar-brand img {
-                height: 30px;
-            }
-            .nav-icon {
-                font-size: 1rem;
-                margin: 0 0.3rem;
-            }
-            .nav-profile {
-                width: 28px;
-                height: 28px;
-            }
-            .post-image {
-                height: 150px;
-            }
-            .banner-image {
-                height: 160px;
-            }
-            .banner-ads .banner-image {
-                height: 200px;
-            }
-            .search-container {
-                display: none;
-            }
-            .search-icon {
-                display: block;
-            }
-            .close-search {
-                display: block;
-            }
-            .separator {
-                display: block;
-            }
-            .search-separator {
-                display: block;
-            }
-        }
-
-        @media (min-width: 987px) {
-            .search-icon {
-                display: none !important;
-            }
-            .search-container-mobile {
-                display: none !important;
-            }
-            .search-separator {
-                display: none !important;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .nav-icon {
-                font-size: 0.9rem;
-                margin: 0 0.2rem;
-            }
-            .nav-profile {
-                width: 24px;
-                height: 24px;
-            }
-            .navbar-brand img {
-                height: 28px;
-            }
-            .search-icon {
-                font-size: 1rem;
-            }
-            .dropdown-menu {
-                min-width: 120px;
-            }
         }
 
         .notification-panel {
@@ -1566,11 +1337,12 @@
         }
 
         .grid-column:nth-child(2) .grid-item {
-            max-height: none;
+            max-height: calc(100vh - 60px);
             flex: 1 1 auto;
             padding-top: 0;
             background-color: var(--bg-light);
             box-shadow: none;
+            overflow-y: auto;
         }
 
         body.dark-theme .grid-column:nth-child(2) .grid-item {
@@ -1611,6 +1383,7 @@
             padding-top: 0;
             padding-bottom: 0.5rem;
             height: 100%;
+            max-height: calc(100vh - 60px);
         }
 
         .center-column-content .post-card,
@@ -1666,9 +1439,10 @@
             }
 
             .eventos-nacionales,
-            .noticias {
-                max-height: var(--events-news-height);
-                flex: 0 0 var(--events-news-height);
+            .noticias,
+            .ranking-monitores {
+                max-height: var(--events-ranking-height);
+                flex: 0 0 var(--events-ranking-height);
             }
 
             .grid-column:nth-child(2) .grid-item {
@@ -1676,12 +1450,298 @@
                 max-height: none;
                 flex: 1 1 auto;
                 box-shadow: none;
+                overflow-y: auto;
             }
 
             .center-column-content {
                 max-height: none;
                 height: auto;
                 overflow-y: auto;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .search-container {
+                flex-grow: 0;
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+            .nav-icons {
+                flex-wrap: nowrap;
+                gap: 0.3rem;
+            }
+            .separator {
+                display: none;
+            }
+            .navbar {
+                padding: 0.5rem;
+            }
+            .dropdown-menu {
+                min-width: 140px;
+            }
+        }
+
+        @media (max-width: 987px) {
+            .navbar-brand img {
+                height: 30px;
+            }
+            .nav-icon {
+                font-size: 1rem;
+                margin: 0 0.3rem;
+            }
+            .nav-profile {
+                width: 28px;
+                height: 28px;
+            }
+            .post-image {
+                height: 150px;
+            }
+            .banner-image {
+                height: 160px;
+            }
+            .banner-ads .banner-image {
+                height: 200px;
+            }
+            .search-container {
+                display: none;
+            }
+            .search-icon {
+                display: block;
+            }
+            .close-search {
+                display: block;
+            }
+            .separator {
+                display: block;
+            }
+            .search-separator {
+                display: block;
+            }
+        }
+
+        @media (min-width: 987px) {
+            .search-icon {
+                display: none !important;
+            }
+            .search-container-mobile {
+                display: none !important;
+            }
+            .search-separator {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .nav-icon {
+                font-size: 0.9rem;
+                margin: 0 0.2rem;
+            }
+            .nav-profile {
+                width: 24px;
+                height: 24px;
+            }
+            .navbar-brand img {
+                height: 28px;
+            }
+            .search-icon {
+                font-size: 1rem;
+            }
+            .dropdown-menu {
+                min-width: 120px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .ranking-card {
+                padding: 0.2rem 0.6rem 0.2rem 0.2rem;
+            }
+
+            .ranking-image {
+                width: 45px;
+                height: 45px;
+            }
+
+            .ranking-position {
+                font-size: 1.1rem;
+                margin-right: 0.5rem;
+                margin-left: 0.4rem;
+            }
+
+            .ranking-name, .ranking-score {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .ranking-card {
+                padding: 0.15rem 0.5rem 0.15rem 0.15rem;
+            }
+
+            .ranking-image {
+                width: 40px;
+                height: 40px;
+            }
+
+            .ranking-position {
+                font-size: 1rem;
+                margin-right: 0.3rem;
+                margin-left: 0.3rem;
+            }
+
+            .ranking-name, .ranking-score {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .intro-perfil .profile-avatar {
+                width: 90px !important;
+                height: 90px !important;
+                margin-top: -45px !important;
+                border-width: 3px !important;
+            }
+            .intro-perfil .profile-name {
+                font-size: 1.15rem !important;
+                margin: 0.4rem 0 0.15rem !important;
+                padding: 0 0.8rem !important;
+            }
+            .intro-perfil .profile-type {
+                font-size: 0.85rem !important;
+                margin: 0.15rem 0 !important;
+                padding: 0 0.8rem !important;
+            }
+            .intro-perfil .profile-type-date {
+                font-size: 0.85rem !important;
+                margin: 0.15rem 0 !important;
+                padding: 0 0.8rem !important;
+            }
+            .intro-perfil .profile-divider {
+                margin: 0.4rem auto !important;
+            }
+            .intro-perfil .profile-links {
+                font-size: 0.85rem !important;
+                gap: 0.75rem !important;
+                padding: 0.4rem 0.8rem !important;
+            }
+        }
+
+        @media (max-width: 987px) {
+            .intro-perfil .profile-avatar {
+                width: 85px !important;
+                height: 85px !important;
+                margin-top: -42px !important;
+                border-width: 3px !important;
+            }
+            .intro-perfil .profile-name {
+                font-size: 1.1rem !important;
+                margin: 0.35rem 0 0.1rem !important;
+                padding: 0 0.6rem !important;
+            }
+            .intro-perfil .profile-type {
+                font-size: 0.8rem !important;
+                margin: 0.1rem 0 !important;
+                padding: 0 0.6rem !important;
+            }
+            .intro-perfil .profile-type-date {
+                font-size: 0.8rem !important;
+                margin: 0.1rem 0 !important;
+                padding: 0 0.6rem !important;
+            }
+            .intro-perfil .profile-divider {
+                margin: 0.35rem auto !important;
+            }
+            .intro-perfil .profile-links {
+                font-size: 0.8rem !important;
+                gap: 0.6rem !important;
+                padding: 0.35rem 0.6rem !important;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .intro-perfil .profile-avatar {
+                width: 80px !important;
+                height: 80px !important;
+                margin-top: -40px !important;
+                border-width: 2px !important;
+            }
+            .intro-perfil .profile-name {
+                font-size: 1.05rem !important;
+                margin: 0.3rem 0 0.1rem !important;
+                padding: 0 0.5rem !important;
+            }
+            .intro-perfil .profile-type {
+                font-size: 0.75rem !important;
+                margin: 0.1rem 0 !important;
+                padding: 0 0.5rem !important;
+            }
+            .intro-perfil .profile-type-date {
+                font-size: 0.75rem !important;
+                margin: 0.1rem 0 !important;
+                padding: 0 0.5rem !important;
+            }
+            .intro-perfil .profile-divider {
+                margin: 0.3rem auto !important;
+            }
+            .intro-perfil .profile-links {
+                font-size: 0.75rem !important;
+                gap: 0.5rem !important;
+                padding: 0.3rem 0.5rem !important;
+            }
+        }
+
+        @media (max-width: 987px) {
+            .filter-panel {
+                width: 90vw;
+                max-width: 350px;
+                left: 50% !important;
+                transform: translateX(-50%);
+            }
+
+            .filter-title {
+                font-size: 14px;
+            }
+
+            .filter-option select.form-select {
+                font-size: 13px;
+                padding: 5px;
+            }
+
+            .filter-actions a {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .filter-panel {
+                width: 95vw;
+                max-width: 300px;
+                padding: 8px;
+            }
+
+            .filter-title {
+                font-size: 13px;
+            }
+
+            .filter-option {
+                gap: 6px;
+                margin-bottom: 6px;
+            }
+
+            .filter-option label {
+                font-size: 13px;
+            }
+
+            .filter-option select.form-select {
+                font-size: 12px;
+                padding: 4px;
+            }
+
+            .filter-actions {
+                padding-top: 8px;
+            }
+
+            .filter-actions a {
+                font-size: 12px;
             }
         }
     </style>
@@ -1704,6 +1764,7 @@
                                     <i class="bi bi-search"></i>
                                 </span>
                                 <input class="form-control" type="search" name="q" id="searchInputLarge" placeholder="Buscar en UniLink" aria-label="Buscar artículos en UniLink" required>
+                                <span class="search-clear" id="searchClearLarge" aria-label="Limpiar búsqueda"></span>
                                 <span class="search-filter" id="searchFilterLarge" aria-label="Abrir filtros">
                                     <i class="bi bi-list"></i>
                                 </span>
@@ -1711,30 +1772,29 @@
                                     <i class="bi bi-arrow-right"></i>
                                 </span>
                             </div>
+                            <div id="filterPanelLarge" class="filter-panel">
+                                <div class="filter-header">
+                                    <span class="filter-title">Filtros</span>
+                                </div>
+                                <div class="filter-body">
+                                    <div class="filter-option">
+                                        <label for="categoryFilterLarge">Categoría</label>
+                                        <select id="categoryFilterLarge" name="category" class="form-select">
+                                            <option value="">Todas</option>
+                                            <option value="ciencia">Ciencia</option>
+                                            <option value="tecnologia">Tecnología</option>
+                                            <option value="noticias">Noticias</option>
+                                            <option value="humor">Humor</option>
+                                            <option value="preguntas">Preguntas</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="filter-actions">
+                                    <button id="clearFiltersLarge" class="btn btn-orange rounded" type="button">Limpiar</button>
+                                    <button id="applyFiltersLarge" class="btn btn-orange rounded" type="button">Aplicar</button>
+                                </div>
+                            </div>
                         </form>
-                        <div id="filterPanelLarge" class="filter-panel">
-                            <div class="filter-header">
-                                <span class="filter-title">Filtros</span>
-                            </div>
-                            <div class="filter-body">
-                                <div class="filter-option">
-                                    <input type="checkbox" id="filterPostsLarge" name="filter" value="posts">
-                                    <label for="filterPostsLarge">Posts</label>
-                                </div>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="filterMonitoresLarge" name="filter" value="monitores">
-                                    <label for="filterMonitoresLarge">Monitores</label>
-                                </div>
-                                <div class="filter-option">
-                                    <input type="checkbox" id="filterEventosLarge" name="filter" value="eventos">
-                                    <label for="filterEventosLarge">Eventos</label>
-                                </div>
-                            </div>
-                            <div class="filter-actions">
-                                <a href="#" id="clearFiltersLarge">Limpiar</a>
-                                <a href="#" id="applyFiltersLarge">Aplicar</a>
-                            </div>
-                        </div>
                     </div>
                     <div class="nav-icons d-flex align-items-center ms-auto">
                         <span class="search-icon" id="searchIcon" aria-label="Abrir buscador">
@@ -1779,6 +1839,7 @@
                             <i class="bi bi-search"></i>
                         </span>
                         <input class="form-control" type="search" name="q" id="searchInputMobile" placeholder="Buscar en UniLink" aria-label="Buscar artículos en UniLink" required>
+                        <span class="search-clear" id="searchClearMobile" aria-label="Limpiar búsqueda"></span>
                         <span class="search-filter" id="searchFilterMobile" aria-label="Abrir filtros">
                             <i class="bi bi-list"></i>
                         </span>
@@ -1789,30 +1850,27 @@
                             <i class="bi bi-x"></i>
                         </span>
                     </div>
+                    <div id="filterPanelMobile" class="filter-panel">
+                        <div class="filter-header">
+                            <span class="filter-title">Filtros</span>
+                        </div>
+                        <div class="filter-body">
+                            <div class="filter-option">
+                                <label for="categoryFilterMobile">Categoría</label>
+                                <select id="categoryFilterMobile" name="category" class="form-select">
+                                    <option value="">Todas</option>
+                                    <option value="posts">Posts</option>
+                                    <option value="monitores">Moni</option>
+                                    <option value="eventos">Eventos</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="filter-actions">
+                            <button id="clearFiltersMobile" class="btn btn-orange rounded" type="button">Limpiar</button>
+                            <button id="applyFiltersMobile" class="btn btn-orange rounded" type="button">Aplicar</button>
+                        </div>
+                    </div>
                 </form>
-                <div id="filterPanelMobile" class="filter-panel">
-                    <div class="filter-header">
-                        <span class="filter-title">Filtros</span>
-                    </div>
-                    <div class="filter-body">
-                        <div class="filter-option">
-                            <input type="checkbox" id="filterPostsMobile" name="filter" value="posts">
-                            <label for="filterPostsMobile">Posts</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="checkbox" id="filterMonitoresMobile" name="filter" value="monitores">
-                            <label for="filterMonitoresMobile">Monitores</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="checkbox" id="filterEventosMobile" name="filter" value="eventos">
-                            <label for="filterEventosMobile">Eventos</label>
-                        </div>
-                    </div>
-                    <div class="filter-actions">
-                        <a href="#" id="clearFiltersMobile">Limpiar</a>
-                        <a href="#" id="applyFiltersMobile">Aplicar</a>
-                    </div>
-                </div>
             </div>
             <div id="notificationPanel" class="notification-panel">
                 <div class="notification-header">
@@ -1837,7 +1895,6 @@
     </header>
     <main id="main-content">
         <div class="grid-container">
-            <!--contenedor izquierda-->
             <div class="grid-column">
                 <div class="grid-item intro-perfil">
                     <img src="/img/ads.jpg" alt="Perfil Banner" class="profile-banner" loading="lazy">
@@ -1872,9 +1929,55 @@
                     </div>
                 </div>
             </div>
-            <!--contenedor central-->
             <div class="grid-column">
                 <div class="grid-item center-column-content" id="centerColumnContent">
+                    <div class="static-post-container">
+                        <div class="post-card">
+                            <div class="post-header">
+                                <a href="/post/1" class="post-link">
+                                    <div class="d-flex align-items-center">
+                                        <img src="/img/perfil.jpg" alt="Avatar de usuario" class="post-avatar" loading="lazy">
+                                        <div class="post-user-info">
+                                            <div class="post-username">Nombre de usuario</div>
+                                            <div class="post-timestamp">2025-05-22</div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="dropdown post-menu" onclick="event.stopPropagation()">
+                                    <a href="#" class="nav-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones del post" onclick="event.stopPropagation()">
+                                        <i class="bi bi-three-dots"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" onclick="event.stopPropagation()">
+                                        <li><a class="dropdown-item" href="#"><i class="bi bi-eye-slash"></i> Ocultar</a></li>
+                                        <li><a class="dropdown-item" href="#"><i class="bi bi-share"></i> Compartir</a></li>
+                                        <li><a class="dropdown-item" href="#"><i class="bi bi-flag"></i> Reportar</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="/post/1" class="post-link">
+                                <h5 class="post-title">Título de la publicación</h5>
+                                <img src="/img/post.png" alt="Imagen del post" class="post-image" loading="lazy">
+                                <div class="post-body">
+                                    <p class="post-text">Resumen de la publicación...</p>
+                                    <a href="/post/1" class="post-read-more">Leer más</a>
+                                </div>
+                                <div class="post-actions">
+                                    <div class="post-action">
+                                        <i class="bi bi-heart"></i>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="post-action">
+                                        <i class="bi bi-chat"></i>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="post-action">
+                                        <i class="bi bi-share"></i>
+                                        <span>Compartir</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                     <div th:each="post : ${posts}" class="post-card">
                         <div class="post-header">
                             <a th:href="@{/post/{id}(id=${post.id})}" class="post-link">
@@ -1922,7 +2025,6 @@
                     </div>
                 </div>
             </div>
-            <!--contenedor derecha-->
             <div class="grid-column">
                 <div class="grid-item ranking-monitores">
                     <h3>Ranking Monitores</h3>
@@ -1984,187 +2086,181 @@
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>
-        function toggleNotifications() {
-            const panel = document.getElementById('notificationPanel');
-            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-        }
+    <script src="/js/script.js"></script>
+<script>function toggleNotifications() {
+    const panel = document.getElementById('notificationPanel');
+    panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+}
 
-        function toggleFilterPanel(panelId, filterIcon) {
-            const panel = document.getElementById(panelId);
-            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-        }
+function toggleFilterPanel(panelId, filterIcon) {
+    const panel = document.getElementById(panelId);
+    const isVisible = panel.style.display === 'block';
+    document.querySelectorAll('.filter-panel').forEach(p => p.style.display = 'none');
+    if (!isVisible) {
+        panel.style.display = 'block';
+        const iconRect = filterIcon.getBoundingClientRect();
+        const navbar = document.querySelector('.navbar');
+        const navbarRect = navbar.getBoundingClientRect();
+        const panelWidth = panel.offsetWidth;
+        const iconCenterX = iconRect.left + (iconRect.width / 2);
+        const panelLeft = iconCenterX - (panelWidth / 2);
+        panel.style.top = `${iconRect.bottom - navbarRect.top + 5}px`;
+        panel.style.left = `${Math.max(10, panelLeft)}px`;
+    }
+}
 
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize tooltips
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
 
-            const notificationIcon = document.querySelector('.nav-icon.notification');
-            const notificationBodies = document.querySelectorAll('.notification-body');
-            const notificationCount = notificationBodies.length;
-            notificationIcon.setAttribute('data-count', notificationCount > 0 ? '1' : '0');
+    // Notification count
+    const notificationIcon = document.querySelector('.nav-icon.notification');
+    const notificationBodies = document.querySelectorAll('.notification-body');
+    const notificationCount = notificationBodies.length;
+    notificationIcon.setAttribute('data-count', notificationCount > 0 ? '1' : '0');
 
-            const themeToggle = document.getElementById('themeToggle');
-            const body = document.body;
-            const logoLight = document.querySelector('.logo-light');
-            const logoDark = document.querySelector('.logo-dark');
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const logoLight = document.querySelector('.logo-light');
+    const logoDark = document.querySelector('.logo-dark');
 
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            body.classList.remove('light-theme', 'dark-theme');
-            body.classList.add(`${savedTheme}-theme`);
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    body.classList.remove('light-theme', 'dark-theme');
+    body.classList.add(`${savedTheme}-theme`);
 
-            if (savedTheme === 'light') {
-                logoLight.classList.remove('hidden');
-            } else {
-                logoDark.classList.remove('hidden');
-            }
+    if (savedTheme === 'light') {
+        logoLight.classList.remove('hidden');
+    } else {
+        logoDark.classList.remove('hidden');
+    }
 
-            themeToggle.querySelector('i').classList.add(savedTheme === 'light' ? 'bi-moon' : 'bi-sun');
-            themeToggle.querySelector('i').classList.remove(savedTheme === 'light' ? 'bi-sun' : 'bi-moon');
-            themeToggle.lastChild.nodeValue = savedTheme === 'light' ? ' Modo Noche' : ' Modo Día';
+    themeToggle.querySelector('i').classList.add(savedTheme === 'light' ? 'bi-moon' : 'bi-sun');
+    themeToggle.querySelector('i').classList.remove(savedTheme === 'light' ? 'bi-sun' : 'bi-moon');
+    themeToggle.lastChild.nodeValue = savedTheme === 'light' ? ' Modo Noche' : ' Modo Día';
 
-            themeToggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                const isLight = body.classList.contains('light-theme');
-                body.classList.replace(isLight ? 'light-theme' : 'dark-theme', isLight ? 'dark-theme' : 'light-theme');
-                localStorage.setItem('theme', isLight ? 'dark' : 'light');
-                themeToggle.querySelector('i').classList.replace(isLight ? 'bi-moon' : 'bi-sun', isLight ? 'bi-sun' : 'bi-moon');
-                themeToggle.lastChild.nodeValue = isLight ? ' Modo Día' : ' Modo Noche';
-                logoLight.classList.add('hidden');
-                logoDark.classList.add('hidden');
-                if (isLight) {
-                    logoDark.classList.remove('hidden');
-                } else {
-                    logoLight.classList.remove('hidden');
-                }
-            });
+    themeToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isLight = body.classList.contains('light-theme');
+        body.classList.replace(isLight ? 'light-theme' : 'dark-theme', isLight ? 'dark-theme' : 'light-theme');
+        localStorage.setItem('theme', isLight ? 'dark' : 'light');
+        themeToggle.querySelector('i').classList.replace(isLight ? 'bi-moon' : 'bi-sun', isLight ? 'bi-sun' : 'bi-moon');
+        themeToggle.lastChild.nodeValue = isLight ? ' Modo Día' : ' Modo Noche';
+        logoLight.classList.toggle('hidden', !isLight);
+        logoDark.classList.toggle('hidden', isLight);
+    });
 
-            const searchInputLarge = document.getElementById('searchInputLarge');
-            const searchSubmitLarge = document.getElementById('searchSubmitLarge');
-            const searchFilterLarge = document.getElementById('searchFilterLarge');
-            const searchFormLarge = searchInputLarge.closest('form');
-            const filterPanelLarge = document.getElementById('filterPanelLarge');
+    // Search icon for mobile
+    const searchIcon = document.getElementById('searchIcon');
+    const searchContainerMobile = document.querySelector('.search-container-mobile');
+    const closeSearch = document.getElementById('closeSearch');
 
-            searchInputLarge.addEventListener('input', () => {
-                searchInputLarge.value = searchInputLarge.value.trimStart();
-            });
+    searchIcon.addEventListener('click', () => {
+        searchContainerMobile.style.display = 'block';
+    });
 
-            searchSubmitLarge.addEventListener('click', () => {
-                if (searchInputLarge.value.trim()) {
-                    searchFormLarge.submit();
-                }
-            });
+    closeSearch.addEventListener('click', () => {
+        searchContainerMobile.style.display = 'none';
+    });
 
-            searchFilterLarge.addEventListener('click', (e) => {
-                e.stopPropagation();
-                toggleFilterPanel('filterPanelLarge', searchFilterLarge);
-            });
+    // Filter panel toggles
+    const searchFilterLarge = document.getElementById('searchFilterLarge');
+    const searchFilterMobile = document.getElementById('searchFilterMobile');
 
-            document.addEventListener('click', (e) => {
-                if (!filterPanelLarge.contains(e.target) && !searchFilterLarge.contains(e.target)) {
-                    filterPanelLarge.style.display = 'none';
-                }
-            });
+    searchFilterLarge.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleFilterPanel('filterPanelLarge', searchFilterLarge);
+    });
 
-            const searchIcon = document.getElementById('searchIcon');
-            const searchFormMobile = document.querySelector('.search-container-mobile .search-form');
-            const closeSearch = document.getElementById('closeSearch');
-            const searchContainerMobile = document.querySelector('.search-container-mobile');
-            const searchInputMobile = document.getElementById('searchInputMobile');
-            const searchFilterMobile = document.getElementById('searchFilterMobile');
-            const searchSubmitMobile = document.getElementById('searchSubmitMobile');
-            const filterPanelMobile = document.getElementById('filterPanelMobile');
+    searchFilterMobile.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleFilterPanel('filterPanelMobile', searchFilterMobile);
+    });
 
-            searchInputMobile.addEventListener('input', () => {
-                searchInputMobile.value = searchInputMobile.value.trimStart();
-            });
+    // Clear search input
+    const searchInputs = [
+        { input: document.getElementById('searchInputLarge'), clear: document.getElementById('searchClearLarge') },
+        { input: document.getElementById('searchInputMobile'), clear: document.getElementById('searchClearMobile') }
+    ];
 
-            searchSubmitMobile.addEventListener('click', () => {
-                if (searchInputMobile.value.trim()) {
-                    searchFormMobile.submit();
-                }
-            });
-
-            searchFilterMobile.addEventListener('click', (e) => {
-                e.stopPropagation();
-                toggleFilterPanel('filterPanelMobile', searchFilterMobile);
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!filterPanelMobile.contains(e.target) && !searchFilterMobile.contains(e.target)) {
-                    filterPanelMobile.style.display = 'none';
-                }
-            });
-
-            const searchContainer = document.querySelector('.search-container');
-            const updateSearchState = () => {
-                const windowWidth = window.innerWidth;
-                const breakpoint = 986;
-
-                if (windowWidth > breakpoint) {
-                    searchContainer.style.display = 'flex';
-                    searchIcon.style.display = 'none';
-                    searchContainerMobile.style.display = 'none';
-                    searchFormMobile.classList.remove('active');
-                    searchInputMobile.value = '';
-                } else {
-                    searchContainer.style.display = 'none';
-                    searchIcon.style.display = searchContainerMobile.style.display === 'block' ? 'none' : 'block';
-                }
-            };
-
-            updateSearchState();
-
-            searchIcon.addEventListener('click', (e) => {
-                e.stopPropagation();
-                searchContainerMobile.style.display = 'block';
-                searchFormMobile.classList.add('active');
-                searchIcon.style.display = 'none';
-                searchInputMobile.focus();
-            });
-
-            closeSearch.addEventListener('click', (e) => {
-                e.stopPropagation();
-                searchFormMobile.classList.remove('active');
-                searchIcon.style.display = 'block';
-                searchInputMobile.value = '';
-                searchContainerMobile.style.display = 'none';
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!searchFormMobile.contains(e.target) && !searchIcon.contains(e.target)) {
-                    searchFormMobile.classList.remove('active');
-                    searchIcon.style.display = 'block';
-                    searchInputMobile.value = '';
-                    searchContainerMobile.style.display = 'none';
-                }
-            });
-
-            searchFormMobile.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
-
-            window.addEventListener('resize', updateSearchState);
-
-            const navbar = document.querySelector('.navbar');
-            const centerColumnContent = document.getElementById('centerColumnContent');
-            const gridContainer = document.querySelector('.grid-container');
-            const centerColumnGridItem = document.querySelector('.grid-column:nth-child(2) .grid-item');
-
-            function setCenterColumnHeight() {
-                const viewportHeight = window.innerHeight;
-                const navbarHeight = navbar.offsetHeight;
-                const gridContainerPaddingTop = parseFloat(getComputedStyle(gridContainer).paddingTop);
-                const gridContainerPaddingBottom = parseFloat(getComputedStyle(gridContainer).paddingBottom);
-                const availableHeight = viewportHeight - navbarHeight - gridContainerPaddingTop - gridContainerPaddingBottom;
-
-                gridContainer.style.height = `${availableHeight}px`;
-                centerColumnGridItem.style.height = `${availableHeight}px`;
-                centerColumnContent.style.height = `${availableHeight}px`;
-            }
-
-            setCenterColumnHeight();
-            window.addEventListener('resize', setCenterColumnHeight);
+    searchInputs.forEach(({ input, clear }) => {
+        input.addEventListener('input', () => {
+            clear.classList.toggle('active', input.value.length > 0);
         });
-    </script>
+
+        clear.addEventListener('click', () => {
+            input.value = '';
+            clear.classList.remove('active');
+            input.focus();
+        });
+    });
+
+    // Apply and clear filters
+    const filterForms = [
+        {
+            form: document.querySelector('.search-form:has(#searchInputLarge)'),
+            apply: document.getElementById('applyFiltersLarge'),
+            clear: document.getElementById('clearFiltersLarge'),
+            input: document.getElementById('searchInputLarge'),
+            category: document.getElementById('categoryFilterLarge'),
+            panel: document.getElementById('filterPanelLarge')
+        },
+        {
+            form: document.querySelector('.search-form:has(#searchInputMobile)'),
+            apply: document.getElementById('applyFiltersMobile'),
+            clear: document.getElementById('clearFiltersMobile'),
+            input: document.getElementById('searchInputMobile'),
+            category: document.getElementById('categoryFilterMobile'),
+            panel: document.getElementById('filterPanelMobile')
+        }
+    ];
+
+    filterForms.forEach(({ form, apply, clear, input, category, panel }) => {
+        apply.addEventListener('click', () => {
+            if (input.value.trim()) {
+                form.submit();
+            }
+            panel.style.display = 'none';
+        });
+
+        clear.addEventListener('click', () => {
+            input.value = '';
+            category.value = '';
+            document.getElementById(`searchClear${panel.id.includes('Large') ? 'Large' : 'Mobile'}`).classList.remove('active');
+            panel.style.display = 'none';
+        });
+    });
+
+    // Submit search on icon click
+    const searchSubmits = [
+        document.getElementById('searchSubmitLarge'),
+        document.getElementById('searchSubmitMobile')
+    ];
+
+    searchSubmits.forEach(submit => {
+        submit.addEventListener('click', (e) => {
+            e.preventDefault();
+            const form = submit.closest('form');
+            if (form.querySelector('input[type="search"]').value.trim()) {
+                form.submit();
+            }
+        });
+    });
+
+    // Close panels when clicking outside
+    document.addEventListener('click', (e) => {
+        const panels = document.querySelectorAll('.filter-panel, #notificationPanel');
+        const filterIcons = [searchFilterLarge, searchFilterMobile];
+        const notificationIcon = document.querySelector('.nav-icon.notification');
+        const searchIcons = [searchIcon, closeSearch];
+
+        if (![...filterIcons, notificationIcon, ...searchIcons].includes(e.target) &&
+            !e.target.closest('.filter-panel') &&
+            !e.target.closest('#notificationPanel') &&
+            !e.target.closest('.search-container-mobile')) {
+            panels.forEach(panel => panel.style.display = 'none');
+        }
+    });
+});</script>
 </body>
 </html>
