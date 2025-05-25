@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,7 @@
     <meta name="keywords" content="blog, artículos, comunidad, noticias, unelink">
     <meta name="author" content="UniLink Team">
     <meta property="og:title" content="UniLink - Blog de Contenido Interesante">
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <meta property="og:description" content="Explora artículos sobre diversos temas y únete a la comunidad de UniLink.">
     <meta property="og:image" content="/img/logo.png">
     <meta property="og:url" content="https://unilink.com">
@@ -33,8 +34,6 @@
     html, body {
         margin: 0;
         padding: 0;
-        height: 100vh;
-        overflow: hidden;
     }
 
     body {
@@ -841,6 +840,616 @@
     #applyFiltersLarge:hover, #clearFiltersLarge:hover, #applyFiltersMobile:hover, #clearFiltersMobile:hover {
         background-color: #e68a1f;
     }
+
+    /* New styles for comments section */
+    .comments-section {
+        margin-top: 2rem;
+    }
+
+    .join-conversation-btn {
+        background-color: #fb9a24;
+        color: #ffffff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom: 1rem;
+    }
+
+    .join-conversation-btn:hover {
+        background-color: #e68a1f;
+    }
+
+    .comment-input {
+        display: none;
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+    .comment-textarea {
+        width: 100%;
+        min-height: 100px;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        resize: none;
+        background-color: #ffffff;
+        color: #333;
+    }
+
+    body.dark-theme .comment-textarea {
+        background-color: #2a2a2a;
+        border: 1px solid #444;
+        color: #e0e0e0;
+    }
+
+    .comment-textarea::placeholder {
+        color: #666;
+    }
+
+    body.dark-theme .comment-textarea::placeholder {
+        color: #aaa;
+    }
+
+    .comment-textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+
+    .send-comment {
+        position: absolute;
+        bottom: 0.5rem;
+        right: 0.5rem;
+        background: none;
+        border: none;
+        color: #666;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-theme .send-comment {
+        color: #aaa;
+    }
+
+    .send-comment:hover {
+        color: var(--primary-color);
+    }
+
+    .cancel-comment {
+        position: absolute;
+        bottom: 0.5rem;
+        right: 2rem;
+        background: none;
+        border: none;
+        color: #666;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-theme .cancel-comment {
+        color: #aaa;
+    }
+
+    .cancel-comment:hover {
+        color: var(--primary-color);
+    }
+
+    .reply-input {
+        display: none;
+        position: relative;
+        margin-top: 0.5rem;
+        margin-left: 2rem;
+    }
+
+    .reply-textarea {
+        width: 100%;
+        min-height: 80px;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        resize: none;
+        background-color: #ffffff;
+        color: #333;
+    }
+
+    body.dark-theme .reply-textarea {
+        background-color: #2a2a2a;
+        border: 1px solid #444;
+        color: #e0e0e0;
+    }
+
+    .reply-textarea::placeholder {
+        color: #666;
+    }
+
+    body.dark-theme .reply-textarea::placeholder {
+        color: #aaa;
+    }
+
+    .reply-textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+
+    .send-reply {
+        position: absolute;
+        bottom: 0.5rem;
+        right: 0.5rem;
+        background: none;
+        border: none;
+        color: #666;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-theme .send-reply {
+        color: #aaa;
+    }
+
+    .send-reply:hover {
+        color: var(--primary-color);
+    }
+
+    .cancel-reply {
+        position: absolute;
+        bottom: 0.5rem;
+        right: 2rem;
+        background: none;
+        border: none;
+        color: #666;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-theme .cancel-reply {
+        color: #aaa;
+    }
+
+    .cancel-reply:hover {
+        color: var(--primary-color);
+    }
+
+    .comments-header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .comments-sort {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.2rem;
+    }
+
+    .comments-sort label {
+        font-size: 11px;
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    .comments-sort select {
+        font-size: 11px;
+        padding: 1px 4px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        background-color: #ffffff;
+        color: #333;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='currentColor' class='bi bi-caret-down-fill' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 4px center;
+        height: 22px;
+        width: auto;
+    }
+
+    body.dark-theme .comments-sort select {
+        background-color: #2a2a2a;
+        border: 1px solid #444;
+        color: #e0e0e0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%23e0e0e0' class='bi bi-caret-down-fill' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    }
+
+    /* Post-specific styles */
+    .post-card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        background-color: #ffffff;
+        margin-bottom: 1rem;
+        position: relative;
+        cursor: pointer;
+    }
+
+    body.dark-theme .post-card {
+        background-color: #333233;
+    }
+
+    .post-card:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        background-color: #f5f5f5;
+    }
+
+    body.dark-theme .post-card:hover {
+        background-color: #3b3b3b;
+    }
+
+    .post-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .post-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        border-bottom: 1px solid #ddd;
+    }
+
+    body.dark-theme .post-header {
+        border-bottom: 1px solid #4a4a4a;
+    }
+
+    .post-back {
+        font-size: 1.2rem;
+        color:#0F0F0F;
+        cursor: pointer;
+        transition: color 0.3s ease, background-color 0.3s ease;
+        background-color: #e4e4e4;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    body.dark-theme .post-back {
+        color: #f2f2f2;
+        background-color: #262525;
+    }
+
+    .post-back:hover {
+        color: #fff;
+        background-color: #e68a1f;
+    }
+
+    .post-user-container {
+        display: flex;
+        align-items: left;
+        margin-left: 10px;
+        flex-grow: 1;
+        justify-content: left;
+    }
+
+    .post-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 0.75rem;
+    }
+
+    .post-user-info {
+        flex-grow: 0;
+    }
+
+    .post-username {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    body.dark-theme .post-username {
+        color: #e0e0e0;
+    }
+
+    .post-timestamp {
+        font-size: 0.85rem;
+        color: #666;
+    }
+
+    body.dark-theme .post-timestamp {
+        color: #aaa;
+    }
+
+    .post-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin: 0.5rem 1rem;
+        color: #333;
+    }
+
+    body.dark-theme .post-title {
+        color: #e0e0e0;
+    }
+
+    .post-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 0;
+        aspect-ratio: 16 / 9;
+    }
+
+    .post-body {
+        padding: 1rem;
+    }
+
+    .post-text {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 0.75rem;
+    }
+
+    body.dark-theme .post-text {
+        color: #ccc;
+    }
+
+    .post-actions {
+        display: flex;
+        justify-content: flex-start;
+        gap: 1.5rem;
+        padding: 0.5rem 1rem;
+        border-top: 1px solid #ddd;
+    }
+
+    body.dark-theme .post-actions {
+        border-top: 1px solid #4a4a4a;
+    }
+
+    .post-action {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #666;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-theme .post-action {
+        color: #aaa;
+    }
+
+    .post-action:hover {
+        color: var(--primary-color);
+    }
+
+    .post-action i {
+        font-size: 1rem;
+    }
+
+    .post-action span {
+        font-size: 0.9rem;
+    }
+
+    .post-menu {
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: #666;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-theme .post-menu {
+        color: #aaa;
+    }
+
+    .post-menu:hover {
+        color: var(--primary-color);
+    }
+
+    .post-menu .dropdown-menu {
+        min-width: 150px;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        top: 100%;
+        right: 0;
+        left: auto;
+    }
+
+    body.dark-theme .post-menu .dropdown-menu {
+        background-color: #2a2a2a;
+        border-color: #4a4a4a;
+    }
+
+    .post-menu .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #333;
+        font-size: 0.9rem;
+    }
+
+    body.dark-theme .post-menu .dropdown-item {
+        color: #e0e0e0;
+    }
+
+    .post-menu .dropdown-item:hover {
+        background-color: #e9ecef;
+        color: var(--primary-color);
+    }
+
+    body.dark-theme .post-menu .dropdown-item:hover {
+        background-color: #121212;
+    }
+
+    .post-menu:hover {
+        background-color: transparent !important;
+    }
+
+    /* Comment-specific styles */
+    .comment {
+        margin-bottom: 1rem;
+    }
+
+    .comment-reply {
+        margin-left: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .comment-header {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 0;
+    }
+
+    .comment-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 0.75rem;
+    }
+
+    .comment-user-info {
+        flex-grow: 1;
+    }
+
+    .comment-username {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    body.dark-theme .comment-username {
+        color: #e0e0e0;
+    }
+
+    .comment-timestamp {
+        font-size: 0.85rem;
+        color: #666;
+    }
+
+    body.dark-theme .comment-timestamp {
+        color: #aaa;
+    }
+
+    .comment-body {
+        padding: 0.5rem 0;
+    }
+
+    .comment-text {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 0.75rem;
+    }
+
+    body.dark-theme .comment-text {
+        color: #ccc;
+    }
+
+    .comment-actions {
+        display: flex;
+        justify-content: flex-start;
+        gap: 1.5rem;
+        padding: 0.5rem 0;
+    }
+
+    .comment-action {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #666;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-theme .comment-action {
+        color: #aaa;
+    }
+
+    .comment-action:hover {
+        color: var(--primary-color);
+    }
+
+    .comment-action i {
+        font-size: 1rem;
+    }
+
+    .comment-action span {
+        font-size: 0.9rem;
+    }
+
+    .center-column-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-top: 0;
+        padding-bottom: 0.5rem;
+    }
+
+    .center-column-content .post-card {
+        flex: 0 0 auto;
+    }
+
+    @media (max-width: 987px) {
+        .post-image {
+            height: 150px;
+        }
+    }
+    
+.footer_page {
+    background-color: #0F0F0F;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 30px 0;
+    min-height: 100px;
+    text-align: center;
+}
+
+.footer_page .footer-text {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.footer_page .footer-links {
+    margin-bottom: 15px;
+}
+
+.footer_page .footer-link {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer_page .footer-link:hover {
+    color: #ffffff;
+}
+
+.footer_page .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer_page .social-icon {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.footer_page .social-icon:hover {
+    color: #ffffff;
+}
+
+.footer_page {
+    height: auto;
+    padding: 20px 0;
+}
 </style>
 </head>
 <body class="light-theme">
@@ -991,208 +1600,458 @@
     </header>
     <main class="container my-5" id="main-content">
         <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card post-card text-center">
-                    <div class="card-body">
-                        <h1>Próximamente</h1>
+            <div class="col-md-8">
+                <!-- Static Featured Post -->
+                <div class="post-card">
+                    <div class="post-header">
+                        <a th:href="@{/cliente/inicio}" class="post-back" aria-label="Volver a la página principal">
+                            <i class="bi bi-arrow-left"></i>
+                        </a>
+                        <div class="post-user-container">
+                            <img src="/img/perfil.jpg" alt="Avatar de usuario" class="post-avatar" loading="lazy">
+                            <div class="post-user-info">
+                                <div class="post-username">Nombre de usuario</div>
+                                <div class="post-timestamp">2025-05-22</div>
+                            </div>
+                        </div>
+                        <div class="dropdown post-menu" onclick="event.stopPropagation()">
+                            <a href="#" class="nav-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones del post" onclick="event.stopPropagation()">
+                                <i class="bi bi-three-dots"></i>
+                            </a>
+                            <ul class="dropdown-menu" onclick="event.stopPropagation()">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-eye-slash"></i> Ocultar</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-share"></i> Compartir</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-flag"></i> Reportar</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h5 class="post-title">Publicación Destacada</h5>
+                    <img src="/img/post.png" alt="Imagen del post" class="post-image" loading="lazy">
+                    <div class="post-body">
+                        <p class="post-text">PublicaLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">
+                            <i class="bi bi-heart"></i>
+                            <span>0</span>
+                        </div>
+                        <div class="post-action">
+                            <i class="bi bi-chat"></i>
+                            <span>0</span>
+                        </div>
+                        <div class="post-action">
+                            <i class="bi bi-share"></i>
+                            <span>Compartir</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <button type="button" class="join-conversation-btn" id="joinConversationBtn">Comentar código</button>
+                    <div class="comment-input" id="commentInput">
+                        <textarea class="comment-textarea" placeholder="Escribe tu comentario..." aria-label="Escribe tu comentario"></textarea>
+                        <button class="cancel-comment" aria-label="Cancelar comentario">
+                            <i class="bi bi-x"></i>
+                        </button>
+                        <button class="send-comment" aria-label="Enviar comentario">
+                            <i class="bi bi-send"></i>
+                        </button>
+                    </div>
+                    <div class="comments-header">
+                        <div class="comments-sort">
+                            <label for="sortComments">Ordenar por:</label>
+                            <select id="sortComments" class="form-select">
+                                <option value="mejor">Mejor</option>
+                                <option value="superior">Superior</option>
+                                <option value="nuevo">Nuevo</option>
+                                <option value="controversial">Controversial</option>
+                                <option value="viejo">Viejo</option>
+                                <option value="qa">Q&A</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="comments-list">
+                        <div class="comment" data-comment-id="1">
+                            <div class="comment-header">
+                                <div class="d-flex align-items-center">
+                                    <img src="/img/perfil.jpg" alt="Avatar de usuario" class="comment-avatar" loading="lazy">
+                                    <div class="comment-user-info">
+                                        <div class="comment-username">User123</div>
+                                        <div class="comment-timestamp">1d ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-body">
+                                <p class="comment-text">This is a sample comment. It can contain thoughts, opinions, or reactions to the post.</p>
+                            </div>
+                            <div class="comment-actions">
+                                <div class="comment-action">
+                                    <i class="bi bi-heart"></i>
+                                    <span>58</span>
+                                </div>
+                                <div class="comment-action reply-action" data-comment-id="1">
+                                    <i class="bi bi-chat"></i>
+                                    <span>Reply</span>
+                                </div>
+                                <div class="comment-action">
+                                    <i class="bi bi-share"></i>
+                                    <span>Share</span>
+                                </div>
+                            </div>
+                            <div class="reply-input" id="replyInput-1" data-comment-id="1">
+                                <textarea class="reply-textarea" placeholder="Escribe tu respuesta..." aria-label="Escribe tu respuesta"></textarea>
+                                <button class="cancel-reply" aria-label="Cancelar respuesta">
+                                    <i class="bi bi-x"></i>
+                                </button>
+                                <button class="send-reply" aria-label="Enviar respuesta">
+                                    <i class="bi bi-send"></i>
+                                </button>
+                            </div>
+                            <!-- Reply to the first comment -->
+                            <div class="comment comment-reply" data-comment-id="2">
+                                <div class="comment-header">
+                                    <div class="d-flex align-items-center">
+                                        <img src="/img/perfil.jpg" alt="Avatar de usuario" class="comment-avatar" loading="lazy">
+                                        <div class="comment-user-info">
+                                            <div class="comment-username">User456</div>
+                                            <div class="comment-timestamp">1d ago</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comment-body">
+                                    <p class="comment-text">This is a reply to the comment above.</p>
+                                </div>
+                                <div class="comment-actions">
+                                    <div class="comment-action">
+                                        <i class="bi bi-heart"></i>
+                                        <span>10</span>
+                                    </div>
+                                    <div class="comment-action reply-action" data-comment-id="2">
+                                        <i class="bi bi-chat"></i>
+                                        <span>Reply</span>
+                                    </div>
+                                    <div class="comment-action">
+                                        <i class="bi bi-share"></i>
+                                        <span>Share</span>
+                                    </div>
+                                </div>
+                                <div class="reply-input" id="replyInput-2" data-comment-id="2">
+                                    <textarea class="reply-textarea" placeholder="Escribe tu respuesta..." aria-label="Escribe tu respuesta"></textarea>
+                                    <button class="cancel-reply" aria-label="Cancelar respuesta">
+                                        <i class="bi bi-x"></i>
+                                    </button>
+                                    <button class="send-reply" aria-label="Enviar respuesta">
+                                        <i class="bi bi-send"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment" data-comment-id="3">
+                            <div class="comment-header">
+                                <div class="d-flex align-items-center">
+                                    <img src="/img/perfil.jpg" alt="Avatar de usuario" class="comment-avatar" loading="lazy">
+                                    <div class="comment-user-info">
+                                        <div class="comment-username">User789</div>
+                                        <div class="comment-timestamp">1d ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-body">
+                                <p class="comment-text">Another comment on the post.</p>
+                            </div>
+                            <div class="comment-actions">
+                                <div class="comment-action">
+                                    <i class="bi bi-heart"></i>
+                                    <span>20</span>
+                                </div>
+                                <div class="comment-action reply-action" data-comment-id="3">
+                                    <i class="bi bi-chat"></i>
+                                    <span>Reply</span>
+                                </div>
+                                <div class="comment-action">
+                                    <i class="bi bi-share"></i>
+                                    <span>Share</span>
+                                </div>
+                            </div>
+                            <div class="reply-input" id="replyInput-3" data-comment-id="3">
+                                <textarea class="reply-textarea" placeholder="Escribe tu respuesta..." aria-label="Escribe tu respuesta"></textarea>
+                                <button class="cancel-reply" aria-label="Cancelar respuesta">
+                                    <i class="bi bi-x"></i>
+                                </button>
+                                <button class="send-reply" aria-label="Enviar respuesta">
+                                    <i class="bi bi-send"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+     <!-- Footer -->
+    <footer class="footer_page">
+        <div class="container text-center">
+            <p class="footer-text">Copyright © UniLink 2025</p>
+            <div class="footer-links">
+                <a href="#vision-mision" class="footer-link">Mision y Vision</a> |
+                <a href="#nosotros" class="footer-link">Nosotros</a> |
+                <a href="#comentarios" class="footer-link">Comentarios</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         function toggleNotifications() {
-    const panel = document.getElementById('notificationPanel');
-    panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-}
-
-function toggleFilterPanel(panelId, filterIcon) {
-    const panel = document.getElementById(panelId);
-    const isVisible = panel.style.display === 'block';
-    
-    document.querySelectorAll('.filter-panel').forEach(p => p.style.display = 'none');
-    
-    if (!isVisible) {
-        panel.style.display = 'block';
-        const iconRect = filterIcon.getBoundingClientRect();
-        const navbar = document.querySelector('.navbar');
-        const navbarRect = navbar.getBoundingClientRect();
-        
-        const panelWidth = panel.offsetWidth;
-        const iconCenterX = iconRect.left + (iconRect.width / 2);
-        const panelLeft = iconCenterX - (panelWidth / 2);
-        
-        panel.style.top = `${iconRect.bottom - navbarRect.top + 5}px`;
-        panel.style.left = `${Math.max(10, panelLeft)}px`;
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
-
-    const notificationIcon = document.querySelector('.nav-icon.notification');
-    const notificationBodies = document.querySelectorAll('.notification-body');
-    const notificationCount = notificationBodies.length;
-    notificationIcon.setAttribute('data-count', notificationCount > 0 ? '1' : '0');
-
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-    const logoLight = document.querySelector('.logo-light');
-    const logoDark = document.querySelector('.logo-dark');
-
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    body.classList.remove('light-theme', 'dark-theme');
-    body.classList.add(`${savedTheme}-theme`);
-
-    if (savedTheme === 'light') {
-        logoLight.classList.remove('hidden');
-    } else {
-        logoDark.classList.remove('hidden');
-    }
-
-    themeToggle.querySelector('i').classList.add(savedTheme === 'light' ? 'bi-moon' : 'bi-sun');
-    themeToggle.querySelector('i').classList.remove(savedTheme === 'light' ? 'bi-sun' : 'bi-moon');
-    themeToggle.lastChild.nodeValue = savedTheme === 'light' ? ' Modo Noche' : ' Modo Día';
-
-    themeToggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        const isLight = body.classList.contains('light-theme');
-        body.classList.replace(isLight ? 'light-theme' : 'dark-theme', isLight ? 'dark-theme' : 'light-theme');
-        localStorage.setItem('theme', isLight ? 'dark' : 'light');
-        themeToggle.querySelector('i').classList.replace(isLight ? 'bi-moon' : 'bi-sun', isLight ? 'bi-sun' : 'bi-moon');
-        themeToggle.lastChild.nodeValue = isLight ? ' Modo Día' : ' Modo Noche';
-        logoLight.classList.add('hidden');
-        logoDark.classList.add('hidden');
-        if (isLight) {
-            logoDark.classList.remove('hidden');
-        } else {
-            logoLight.classList.remove('hidden');
+            const panel = document.getElementById('notificationPanel');
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
         }
-    });
 
-    const searchInputLarge = document.getElementById('searchInputLarge');
-    const searchSubmitLarge = document.getElementById('searchSubmitLarge');
-    const searchFilterLarge = document.getElementById('searchFilterLarge');
-    const searchFormLarge = searchInputLarge.closest('form');
-    const filterPanelLarge = document.getElementById('filterPanelLarge');
-    const clearFiltersLarge = document.getElementById('clearFiltersLarge');
-    const applyFiltersLarge = document.getElementById('applyFiltersLarge');
-    const categoryFilterLarge = document.getElementById('categoryFilterLarge');
-
-    searchInputLarge.addEventListener('input', () => {
-        searchInputLarge.value = searchInputLarge.value.trimStart();
-    });
-
-    searchSubmitLarge.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (searchInputLarge.value.trim()) {
-            searchFormLarge.submit();
+        function toggleFilterPanel(panelId, filterIcon) {
+            const panel = document.getElementById(panelId);
+            const isVisible = panel.style.display === 'block';
+            
+            document.querySelectorAll('.filter-panel').forEach(p => p.style.display = 'none');
+            
+            if (!isVisible) {
+                panel.style.display = 'block';
+                const iconRect = filterIcon.getBoundingClientRect();
+                const navbar = document.querySelector('.navbar');
+                const navbarRect = navbar.getBoundingClientRect();
+                
+                const panelWidth = panel.offsetWidth;
+                const iconCenterX = iconRect.left + (iconRect.width / 2);
+                const panelLeft = iconCenterX - (panelWidth / 2);
+                
+                panel.style.top = `${iconRect.bottom - navbarRect.top + 5}px`;
+                panel.style.left = `${Math.max(10, panelLeft)}px`;
+            }
         }
-    });
 
-    searchFilterLarge.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleFilterPanel('filterPanelLarge', searchFilterLarge);
-    });
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
 
-    clearFiltersLarge.addEventListener('click', (e) => {
-        e.preventDefault();
-        categoryFilterLarge.value = '';
-    });
+            const notificationIcon = document.querySelector('.nav-icon.notification');
+            const notificationBodies = document.querySelectorAll('.notification-body');
+            const notificationCount = notificationBodies.length;
+            notificationIcon.setAttribute('data-count', notificationCount > 0 ? '1' : '0');
 
-    applyFiltersLarge.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (searchInputLarge.value.trim()) {
-            searchFormLarge.submit();
-        }
-        filterPanelLarge.style.display = 'none';
-    });
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            const logoLight = document.querySelector('.logo-light');
+            const logoDark = document.querySelector('.logo-dark');
 
-    const searchIcon = document.getElementById('searchIcon');
-    const searchFormMobile = document.querySelector('.search-container-mobile .search-form');
-    const closeSearch = document.getElementById('closeSearch');
-    const searchContainerMobile = document.querySelector('.search-container-mobile');
-    const searchInputMobile = document.getElementById('searchInputMobile');
-    const searchFilterMobile = document.getElementById('searchFilterMobile');
-    const searchSubmitMobile = document.getElementById('searchSubmitMobile');
-    const filterPanelMobile = document.getElementById('filterPanelMobile');
-    const clearFiltersMobile = document.getElementById('clearFiltersMobile');
-    const applyFiltersMobile = document.getElementById('applyFiltersMobile');
-    const categoryFilterMobile = document.getElementById('categoryFilterMobile');
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            body.classList.remove('light-theme', 'dark-theme');
+            body.classList.add(`${savedTheme}-theme`);
 
-    searchInputMobile.addEventListener('input', () => {
-        searchInputMobile.value = searchInputMobile.value.trimStart();
-    });
+            if (savedTheme === 'light') {
+                logoLight.classList.remove('hidden');
+            } else {
+                logoDark.classList.remove('hidden');
+            }
 
-    searchSubmitMobile.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (searchInputMobile.value.trim()) {
-            searchFormMobile.submit();
-        }
-    });
+            themeToggle.querySelector('i').classList.add(savedTheme === 'light' ? 'bi-moon' : 'bi-sun');
+            themeToggle.querySelector('i').classList.remove(savedTheme === 'light' ? 'bi-sun' : 'bi-moon');
+            themeToggle.lastChild.nodeValue = savedTheme === 'light' ? ' Modo Noche' : ' Modo Día';
 
-    searchFilterMobile.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleFilterPanel('filterPanelMobile', searchFilterMobile);
-    });
+            themeToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isLight = body.classList.contains('light-theme');
+                body.classList.replace(isLight ? 'light-theme' : 'dark-theme', isLight ? 'dark-theme' : 'light-theme');
+                localStorage.setItem('theme', isLight ? 'dark' : 'light');
+                themeToggle.querySelector('i').classList.replace(isLight ? 'bi-moon' : 'bi-sun', isLight ? 'bi-sun' : 'bi-moon');
+                themeToggle.lastChild.nodeValue = isLight ? ' Modo Día' : ' Modo Noche';
+                logoLight.classList.add('hidden');
+                logoDark.classList.add('hidden');
+                if (isLight) {
+                    logoDark.classList.remove('hidden');
+                } else {
+                    logoLight.classList.remove('hidden');
+                }
+            });
 
-    clearFiltersMobile.addEventListener('click', (e) => {
-        e.preventDefault();
-        categoryFilterMobile.value = '';
-    });
+            const searchInputLarge = document.getElementById('searchInputLarge');
+            const searchSubmitLarge = document.getElementById('searchSubmitLarge');
+            const searchFilterLarge = document.getElementById('searchFilterLarge');
+            const searchFormLarge = searchInputLarge.closest('form');
+            const filterPanelLarge = document.getElementById('filterPanelLarge');
+            const clearFiltersLarge = document.getElementById('clearFiltersLarge');
+            const applyFiltersLarge = document.getElementById('applyFiltersLarge');
+            const categoryFilterLarge = document.getElementById('categoryFilterLarge');
 
-    applyFiltersMobile.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (searchInputMobile.value.trim()) {
-            searchFormMobile.submit();
-        }
-        filterPanelMobile.style.display = 'none';
-    });
+            searchInputLarge.addEventListener('input', () => {
+                searchInputLarge.value = searchInputLarge.value.trimStart();
+            });
 
-    document.addEventListener('click', (e) => {
-        if (!filterPanelLarge.contains(e.target) && !searchFilterLarge.contains(e.target)) {
-            filterPanelLarge.style.display = 'none';
-        }
-        if (!filterPanelMobile.contains(e.target) && !searchFilterMobile.contains(e.target)) {
-            filterPanelMobile.style.display = 'none';
-        }
-        const notificationPanel = document.getElementById('notificationPanel');
-        if (!notificationPanel.contains(e.target) && !notificationIcon.contains(e.target)) {
-            notificationPanel.style.display = 'none';
-        }
-    });
+            searchSubmitLarge.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (searchInputLarge.value.trim()) {
+                    searchFormLarge.submit();
+                }
+            });
 
-    const searchContainer = document.querySelector('.search-container');
-    const updateSearchState = () => {
-        const windowWidth = window.innerWidth;
-        const breakpoint = 987;
-        if (windowWidth < breakpoint) {
-            searchContainer.style.display = 'none';
-            searchIcon.style.display = 'block';
-            searchContainerMobile.style.display = searchContainerMobile.style.display === 'block' ? 'block' : 'none';
-        } else {
-            searchContainer.style.display = 'flex';
-            searchIcon.style.display = 'none';
-            searchContainerMobile.style.display = 'none';
-        }
-    };
+            searchFilterLarge.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleFilterPanel('filterPanelLarge', searchFilterLarge);
+            });
 
-    searchIcon.addEventListener('click', () => {
-        searchContainerMobile.style.display = 'block';
-        searchInputMobile.focus();
-    });
+            clearFiltersLarge.addEventListener('click', (e) => {
+                e.preventDefault();
+                categoryFilterLarge.value = '';
+            });
 
-    closeSearch.addEventListener('click', () => {
-        searchContainerMobile.style.display = 'none';
-        searchInputMobile.value = '';
-    });
+            applyFiltersLarge.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (searchInputLarge.value.trim()) {
+                    searchFormLarge.submit();
+                }
+                filterPanelLarge.style.display = 'none';
+            });
 
-    window.addEventListener('resize', updateSearchState);
-    updateSearchState();
-});
+            const searchIcon = document.getElementById('searchIcon');
+            const searchFormMobile = document.querySelector('.search-container-mobile .search-form');
+            const closeSearch = document.getElementById('closeSearch');
+            const searchContainerMobile = document.querySelector('.search-container-mobile');
+            const searchInputMobile = document.getElementById('searchInputMobile');
+            const searchFilterMobile = document.getElementById('searchFilterMobile');
+            const searchSubmitMobile = document.getElementById('searchSubmitMobile');
+            const filterPanelMobile = document.getElementById('filterPanelMobile');
+            const clearFiltersMobile = document.getElementById('clearFiltersMobile');
+            const applyFiltersMobile = document.getElementById('applyFiltersMobile');
+            const categoryFilterMobile = document.getElementById('categoryFilterMobile');
+
+            searchInputMobile.addEventListener('input', () => {
+                searchInputMobile.value = searchInputMobile.value.trimStart();
+            });
+
+            searchSubmitMobile.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (searchInputMobile.value.trim()) {
+                    searchFormMobile.submit();
+                }
+            });
+
+            searchFilterMobile.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleFilterPanel('filterPanelMobile', searchFilterMobile);
+            });
+
+            clearFiltersMobile.addEventListener('click', (e) => {
+                e.preventDefault();
+                categoryFilterMobile.value = '';
+            });
+
+            applyFiltersMobile.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (searchInputMobile.value.trim()) {
+                    searchFormMobile.submit();
+                }
+                filterPanelMobile.style.display = 'none';
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!filterPanelLarge.contains(e.target) && !searchFilterLarge.contains(e.target)) {
+                    filterPanelLarge.style.display = 'none';
+                }
+                if (!filterPanelMobile.contains(e.target) && !searchFilterMobile.contains(e.target)) {
+                    filterPanelMobile.style.display = 'none';
+                }
+                const notificationPanel = document.getElementById('notificationPanel');
+                if (!notificationPanel.contains(e.target) && !notificationIcon.contains(e.target)) {
+                    notificationPanel.style.display = 'none';
+                }
+            });
+
+            const searchContainer = document.querySelector('.search-container');
+            const updateSearchState = () => {
+                const windowWidth = window.innerWidth;
+                const breakpoint = 987;
+                if (windowWidth < breakpoint) {
+                    searchContainer.style.display = 'none';
+                    searchIcon.style.display = 'block';
+                    searchContainerMobile.style.display = searchContainerMobile.style.display === 'block' ? 'block' : 'none';
+                } else {
+                    searchContainer.style.display = 'flex';
+                    searchIcon.style.display = 'none';
+                    searchContainerMobile.style.display = 'none';
+                }
+            };
+
+            searchIcon.addEventListener('click', () => {
+                searchContainerMobile.style.display = 'block';
+                searchInputMobile.focus();
+            });
+
+            closeSearch.addEventListener('click', () => {
+                searchContainerMobile.style.display = 'none';
+                searchInputMobile.value = '';
+            });
+
+            window.addEventListener('resize', updateSearchState);
+            updateSearchState();
+
+            // Single active comment input management
+            let activeCommentInput = null;
+
+            document.querySelectorAll('.join-conversation-btn').forEach(button => {
+                const commentInput = button.nextElementSibling;
+                const cancelCommentBtn = commentInput.querySelector('.cancel-comment');
+                const commentTextarea = commentInput.querySelector('.comment-textarea');
+
+                button.addEventListener('click', () => {
+                    if (activeCommentInput && activeCommentInput !== commentInput) {
+                        activeCommentInput.style.display = 'none';
+                        activeCommentInput.previousElementSibling.style.display = 'block';
+                        activeCommentInput.querySelector('.comment-textarea').value = '';
+                        activeCommentInput = null;
+                    }
+                    if (activeCommentInput !== commentInput) {
+                        button.style.display = 'none';
+                        commentInput.style.display = 'block';
+                        commentTextarea.focus();
+                        activeCommentInput = commentInput;
+                    }
+                });
+
+                cancelCommentBtn.addEventListener('click', () => {
+                    commentInput.style.display = 'none';
+                    button.style.display = 'block';
+                    commentTextarea.value = ''; // Clear the textarea on cancel
+                    if (activeCommentInput === commentInput) {
+                        activeCommentInput = null;
+                    }
+                });
+            });
+
+            // Reply input toggle
+            document.querySelectorAll('.reply-action').forEach(replyAction => {
+                const commentId = replyAction.getAttribute('data-comment-id');
+                const replyInput = document.getElementById(`replyInput-${commentId}`);
+                const cancelReplyBtn = replyInput.querySelector('.cancel-reply');
+                const replyTextarea = replyInput.querySelector('.reply-textarea');
+                const replySpan = replyAction.querySelector('span');
+
+                replyAction.addEventListener('click', () => {
+                    replySpan.style.display = 'none';
+                    replyInput.style.display = 'block';
+                    replyTextarea.focus();
+                });
+
+                cancelReplyBtn.addEventListener('click', () => {
+                    replyInput.style.display = 'none';
+                    replySpan.style.display = 'inline';
+                    replyTextarea.value = ''; // Clear the textarea on cancel
+                });
+            });
+        });
     </script>
 </body>
 </html>
