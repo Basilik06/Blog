@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="UniLink: Explora nuestro blog con artículos interesantes y únete a la comunidad.">
     <meta name="keywords" content="blog, artículos, comunidad, noticias, unelink">
-     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <meta name="author" content="UniLink Team">
     <meta property="og:title" content="UniLink - Blog de Contenido Interesante">
     <meta property="og:description" content="Explora artículos sobre diversos temas y únete a la comunidad de UniLink.">
     <meta property="og:image" content="/img/logo.png">
     <meta property="og:url" content="https://unilink.com">
     <meta property="og:type" content="website">
+
     <title>UniLink</title>
     <link rel="icon" href="/img/icono.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -25,22 +25,11 @@
         --navbar-bg-light: #ffffff;
         --navbar-bg-dark: #0e0e0e;
         --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        --item-height: 380px;
-        --reduced-item-height: 175px;
-        --events-news-height: 280px;
-        --events-ranking-height: 380px;
-    }
-
-    html, body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        overflow: hidden;
     }
 
     body {
-        display: flex;
-        flex-direction: column;
+        margin: 0;
+        padding: 0;
         transition: background-color 0.3s ease, color 0.3s ease;
         font-family: 'Arial', sans-serif;
     }
@@ -94,11 +83,6 @@
     body.dark-theme .dropdown-item:hover {
         background-color: #3a3a3a;
         color: #fb9a24;
-    }
-
-    body.dark-theme .card {
-        background-color: #1e2a38;
-        border-color: #4a4a4a;
     }
 
     .navbar {
@@ -537,12 +521,6 @@
         border-top: 1px solid #444;
     }
 
-    .filter-actions a {
-        color: #1da1f2;
-        text-decoration: none;
-        font-size: 14px;
-    }
-
     .filter-actions a:hover {
         text-decoration: underline;
     }
@@ -826,56 +804,335 @@
             font-size: 12px;
         }
     }
+body.dark-theme .card {
+        background-color: #1e2a38;
+        border-color: #4a4a4a;
+    }
 
-.footer_page {
-    background-color: #0F0F0F;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 30px 0;
-    min-height: 100px;
-    text-align: center;
-}
+    .footer_page {
+        background-color: #0F0F0F;
+        color: rgba(255, 255, 255, 0.7);
+        padding: 30px 0;
+        min-height: 100px;
+        text-align: center;
+    }
 
-.footer_page .footer-text {
-    font-size: 1rem;
-    margin-bottom: 10px;
-}
+    .footer_page .footer-text {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
 
-.footer_page .footer-links {
-    margin-bottom: 15px;
-}
+    .footer_page .footer-links {
+        margin-bottom: 15px;
+    }
 
-.footer_page .footer-link {
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0 10px;
-    text-decoration: none;
-    transition: color 0.3s;
-}
+    .footer_page .footer-link {
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0 10px;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
 
-.footer_page .footer-link:hover {
-    color: #ffffff;
-}
+    .footer_page .footer-link:hover {
+        color: #333;
+    }
 
-.footer_page .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
+    .footer_page .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
 
-.footer_page .social-icon {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.5rem;
-    transition: color 0.3s;
-}
+    .footer_page .social-icon {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.5rem;
+        transition: color 0.3s;
+    }
 
-.footer_page .social-icon:hover {
-    color: #ffffff;
-}
+    .footer_page .social-icon:hover {
+        color: #333;
+    }
 
-.footer_page {
-    height: auto;
-    padding: 20px 0;
-}
-    /* Estilos modificados para los botones Aplicar y Limpiar del filtro */
+    .footer_page {
+        height: auto;
+        padding: 20px 0;
+    }
+
+    .left-column {
+        min-height: 500px;
+    }
+
+    .right-column {
+        min-height: 500px;
+        padding: 15px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow-x: hidden;
+    }
+
+    body.light-theme .right-column {
+        background-color: #ffffff;
+        color: var(--text-color);
+        border: 1px solid #ddd;
+    }
+
+    body.dark-theme .right-column {
+        background-color: #333233;
+        color: #e0e0e0;
+        border: 1px solid #4a4a4a;
+    }
+
+    .grid-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-align: left;
+        transition: color 0.3s ease;
+    }
+
+    body.light-theme .grid-title {
+        color: var(--text-color);
+    }
+
+    body.dark-theme .grid-title {
+        color: #e0e0e0;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 200px);
+        gap: 8px;
+        height: 650px;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body.light-theme .grid-container {
+        background-color: #ffffff;
+    }
+
+    body.dark-theme .grid-container {
+        background-color: #333233;
+    }
+
+    .grid-item {
+        background-color: #E6E6E6;
+        border-radius: 8px;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        overflow: hidden;
+    }
+
+    body.dark-theme .grid-item {
+        background-color: #2C2C2C;
+    }
+
+    .grid-item.active {
+        display: flex;
+    }
+
+    .grid-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .grid-item .profile-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border: 2px solid #ffffff;
+        box-shadow: var(--shadow);
+    }
+
+    .grid-item .name {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 2px;
+        text-align: center;
+        transition: color 0.3s ease;
+    }
+
+    body.light-theme .grid-item .name {
+        color: #333;
+    }
+
+    body.dark-theme .grid-item .name {
+        color: #e0e0e0;
+    }
+
+    .grid-item .career {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        text-align: center;
+        transition: color 0.3s ease;
+    }
+
+    body.light-theme .grid-item .career {
+        color: #555;
+    }
+
+    body.dark-theme .grid-item .career {
+        color: #aaa;
+    }
+
+    .grid-item .code-button {
+        background-color: var(--primary-color);
+        color: #ffffff;
+        border: none;
+        padding: 6px 15px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        align-self: center;
+    }
+
+    .grid-item .code-button:hover {
+        background-color: #e68a1f;
+    }
+
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body.light-theme .pagination-container {
+        background-color: #E6E6E6;
+        border: 1px solid #d0d0d0;
+    }
+
+    body.dark-theme .pagination-container {
+        background-color: #2C2C2C;
+        border: 1px solid #4a4a4a;
+    }
+
+    .pagination {
+        display: flex;
+        gap: 5px;
+        padding: 0;
+        list-style: none;
+    }
+
+    .page-item {
+        display: flex;
+        align-items: center;
+    }
+
+    .page-link {
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        cursor: pointer;
+    }
+
+    body.light-theme .page-link {
+        background-color: #ffffff;
+        color: var(--text-color);
+        border: 1px solid #ddd;
+    }
+
+    body.dark-theme .page-link {
+        background-color: #333;
+        color: #e0e0e0;
+        border: 1px solid #4a4a4a;
+    }
+
+    .page-link:hover {
+        background-color: var(--primary-color);
+        color: #ffffff;
+        border-color: var(--primary-color);
+    }
+
+    .page-item.active .page-link {
+        background-color: var(--primary-color);
+        color: #ffffff;
+        border-color: var(--primary-color);
+    }
+
+    .page-item.disabled .page-link {
+        color: #6c757d;
+        pointer-events: none;
+        background-color: transparent;
+        border-color: #ddd;
+    }
+
+    body.dark-theme .page-item.disabled .page-link {
+        color: #4a4a4a;
+        border-color: #4a4a4a;
+    }
+
+    .menu, .ranking {
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 2px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.light-theme .menu, body.light-theme .ranking {
+        background-color: #ffffff;
+        color: var(--text-color);
+        border: 1px solid #ddd;
+    }
+
+    body.dark-theme .menu, body.dark-theme .ranking {
+        background-color: #333233;
+        color: #e0e0e0;
+        border: 1px solid #4a4a4a;
+    }
+
+    .menu .menu-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .menu a {
+        display: block;
+        margin-bottom: 10px;
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .menu a:hover {
+        color: var(--primary-color);
+    }
+
+    .menu button {
+        background-color: var(--primary-color);
+        color: #333;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .menu button:hover {
+        background-color: #e68a1f;
+    }
     #applyFiltersLarge, #clearFiltersLarge, #applyFiltersMobile, #clearFiltersMobile {
         background-color: #fb9a24;
         color: #ffffff;
@@ -890,6 +1147,8 @@
     #applyFiltersLarge:hover, #clearFiltersLarge:hover, #applyFiltersMobile:hover, #clearFiltersMobile:hover {
         background-color: #e68a1f;
     }
+
+
 
     
 </style>
@@ -912,7 +1171,6 @@
                                     <i class="bi bi-search"></i>
                                 </span>
                                 <input class="form-control" type="search" name="q" id="searchInputLarge" placeholder="Buscar en UniLink" aria-label="Buscar artículos en UniLink" required>
-                                
                                 <span class="search-filter" id="searchFilterLarge" aria-label="Abrir filtros">
                                     <i class="bi bi-list"></i>
                                 </span>
@@ -1040,50 +1298,264 @@
             </div>
         </nav>
     </header>
-    <main class="container my-5" id="main-content">
-    <div class="row">
-        <!-- Formulario de creación de post -->
-        <div class="col-md-8">
-            <div class="post-form-container bg-light">
-                <form id="postForm" th:action="@{/nuevo_post}" method="post" enctype="multipart/form-data" onsubmit="return validateForm(event)">
-                    <div class="mb-3 position-relative">
-                        <label for="title" class="form-label">Título *</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Escribe el título de tu post" required>
-                        <div id="titleError" class="error-message">Completa este campo</div>
+     <main class="container my-5" id="main-content">
+        <div class="row">
+            <!-- Left Column -->
+            <div class="col-md-3 left-column">
+                <div class="menu">
+                    <div class="menu-title">
+                        <i class="bi bi-list"></i>
+                        Menú
                     </div>
-                    <div class="mb-3">
-                        <label for="body" class="form-label">Cuerpo del texto (opcional)</label>
-                        <textarea class="form-control" id="body" name="body" placeholder="Escribe el contenido de tu post"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="images" class="form-label">Subir imágenes (opcional)</label>
-                        <input type="file" class="form-control" id="images" name="images" accept="image/*" multiple onchange="previewImages(event)">
-                        <div id="imagePreview" class="image-preview"></div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- Selección de categoría y boton -->
-        <div class="col-md-4">
-            <div class="post-form-container bg-light">
-                <div class="mb-3">
-                    <label for="category" class="form-label">Seleccionar categoría</label>
-                    <select class="form-select category-select" id="category" name="category">
-                        <option value="" disabled selected>Elige una categoría</option>
-                        <option value="ciencia">Ciencia</option>
-                        <option value="tecnologia">Tecnología</option>
-                        <option value="noticias">Noticias</option>
-                        <option value="humor">Humor</option>
-                        <option value="preguntas">Preguntas</option>
-                    </select>
+                    <a href="/estado-solicitud">Estado de solicitud</a>
+                    <a href="/calidad">Calendario</a>
+                    <button onclick="alert('Solicitud enviada para ser monitor')">Solicitar ser monitor</button>
                 </div>
-                <div class="d-flex justify-content-end">
-                    <button type="submit" form="postForm" class="btn btn-post" id="postButton" disabled>Post</button>
+                <div class="ranking">
+                    <!-- Ranking content will go here -->
                 </div>
             </div>
+            <!-- Right Column -->
+            <div class="col-md-9 right-column">
+                <h2 class="grid-title">Monitores</h2>
+                <div class="grid-container">
+                    <div class="grid-item active">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Juan Pérez</div>
+                        <div class="career">Ingeniería Informática</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item active">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Ana Gómez</div>
+                        <div class="career">Ciencias de Datos</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item active">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Luis Martínez</div>
+                        <div class="career">Ingeniería Civil</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item active">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">María López</div>
+                        <div class="career">Arquitectura</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item active">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Carlos Sánchez</div>
+                        <div class="career">Medicina</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item active">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Sofía Ramírez</div>
+                        <div class="career">Psicología</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item active">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Diego Torres</div>
+                        <div class="career">Ingeniería Mecánica</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item active">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Laura Fernández</div>
+                        <div class="career">Derecho</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item active">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Pedro García</div>
+                        <div class="career">Economía</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item active">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Clara Morales</div>
+                        <div class="career">Biología</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item active">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Andrés Vargas</div>
+                        <div class="career">Química</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item active">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Elena Díaz</div>
+                        <div class="career">Física</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Miguel Castro</div>
+                        <div class="career">Matemáticas</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Carmen Ruiz</div>
+                        <div class="career">Historia</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Javier Ortiz</div>
+                        <div class="career">Filosofía</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Isabel Mendoza</div>
+                        <div class="career">Literatura</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Raúl Jiménez</div>
+                        <div class="career">Sociología</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Patricia Navarro</div>
+                        <div class="career">Antropología</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Héctor Romero</div>
+                        <div class="career">Geografía</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Mónica Salazar</div>
+                        <div class="career">Artes Visuales</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Gabriel Paredes</div>
+                        <div class="career">Música</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Valeria Rojas</div>
+                        <div class="career">Teatro</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Ricardo Luna</div>
+                        <div class="career">Danza</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Natalia Campos</div>
+                        <div class="career">Fotografía</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Álvaro Gómez</div>
+                        <div class="career">Ingeniería Eléctrica</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Lucía Herrera</div>
+                        <div class="career">Comunicación</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Fernando Silva</div>
+                        <div class="career">Administración</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Camila Vega</div>
+                        <div class="career">Diseño Gráfico</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Santiago Cruz</div>
+                        <div class="career">Ingeniería Química</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Paula Medina</div>
+                        <div class="career">Periodismo</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Mateo Flores</div>
+                        <div class="career">Ciencias Políticas</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Daniela Rivas</div>
+                        <div class="career">Nutrición</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Nicolás Peralta</div>
+                        <div class="career">Ingeniería Ambiental</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Verónica Castro</div>
+                        <div class="career">Educación</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Esteban Morales</div>
+                        <div class="career">Ingeniería Industrial</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                    <div class="grid-item">
+                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
+                        <div class="name">Juliana Acosta</div>
+                        <div class="career">Marketing</div>
+                        <button class="code-button">Ver</button>
+                    </div>
+                </div>
+                <div class="pagination-container">
+                    <ul class="pagination">
+                        <li class="page-item disabled" id="prevPage">
+                            <a class="page-link" href="#" aria-label="Anterior">
+                                <i class="bi bi-chevron-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#" data-page="1">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#" data-page="2">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#" data-page="3">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Siguiente" id="nextPage">
+                                <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
     <!-- Footer -->
     <footer class="footer_page">
         <div class="container text-center">
@@ -1103,196 +1575,273 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         function toggleNotifications() {
-    const panel = document.getElementById('notificationPanel');
-    panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-}
-
-function toggleFilterPanel(panelId, filterIcon) {
-    const panel = document.getElementById(panelId);
-    const isVisible = panel.style.display === 'block';
-    
-    document.querySelectorAll('.filter-panel').forEach(p => p.style.display = 'none');
-    
-    if (!isVisible) {
-        panel.style.display = 'block';
-        const iconRect = filterIcon.getBoundingClientRect();
-        const navbar = document.querySelector('.navbar');
-        const navbarRect = navbar.getBoundingClientRect();
-        
-        const panelWidth = panel.offsetWidth;
-        const iconCenterX = iconRect.left + (iconRect.width / 2);
-        const panelLeft = iconCenterX - (panelWidth / 2);
-        
-        panel.style.top = `${iconRect.bottom - navbarRect.top + 5}px`;
-        panel.style.left = `${Math.max(10, panelLeft)}px`;
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
-
-    const notificationIcon = document.querySelector('.nav-icon.notification');
-    const notificationBodies = document.querySelectorAll('.notification-body');
-    const notificationCount = notificationBodies.length;
-    notificationIcon.setAttribute('data-count', notificationCount > 0 ? '1' : '0');
-
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-    const logoLight = document.querySelector('.logo-light');
-    const logoDark = document.querySelector('.logo-dark');
-
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    body.classList.remove('light-theme', 'dark-theme');
-    body.classList.add(`${savedTheme}-theme`);
-
-    if (savedTheme === 'light') {
-        logoLight.classList.remove('hidden');
-    } else {
-        logoDark.classList.remove('hidden');
-    }
-
-    themeToggle.querySelector('i').classList.add(savedTheme === 'light' ? 'bi-moon' : 'bi-sun');
-    themeToggle.querySelector('i').classList.remove(savedTheme === 'light' ? 'bi-sun' : 'bi-moon');
-    themeToggle.lastChild.nodeValue = savedTheme === 'light' ? ' Modo Noche' : ' Modo Día';
-
-    themeToggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        const isLight = body.classList.contains('light-theme');
-        body.classList.replace(isLight ? 'light-theme' : 'dark-theme', isLight ? 'dark-theme' : 'light-theme');
-        localStorage.setItem('theme', isLight ? 'dark' : 'light');
-        themeToggle.querySelector('i').classList.replace(isLight ? 'bi-moon' : 'bi-sun', isLight ? 'bi-sun' : 'bi-moon');
-        themeToggle.lastChild.nodeValue = isLight ? ' Modo Día' : ' Modo Noche';
-        logoLight.classList.add('hidden');
-        logoDark.classList.add('hidden');
-        if (isLight) {
-            logoDark.classList.remove('hidden');
-        } else {
-            logoLight.classList.remove('hidden');
+            const panel = document.getElementById('notificationPanel');
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
         }
-    });
 
-    const searchInputLarge = document.getElementById('searchInputLarge');
-    const searchSubmitLarge = document.getElementById('searchSubmitLarge');
-    const searchFilterLarge = document.getElementById('searchFilterLarge');
-    const searchFormLarge = searchInputLarge.closest('form');
-    const filterPanelLarge = document.getElementById('filterPanelLarge');
-    const clearFiltersLarge = document.getElementById('clearFiltersLarge');
-    const applyFiltersLarge = document.getElementById('applyFiltersLarge');
-    const categoryFilterLarge = document.getElementById('categoryFilterLarge');
-
-    searchInputLarge.addEventListener('input', () => {
-        searchInputLarge.value = searchInputLarge.value.trimStart();
-    });
-
-    searchSubmitLarge.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (searchInputLarge.value.trim()) {
-            searchFormLarge.submit();
+        function toggleFilterPanel(panelId, filterIcon) {
+            const panel = document.getElementById(panelId);
+            const isVisible = panel.style.display === 'block';
+            document.querySelectorAll('.filter-panel').forEach(p => p.style.display = 'none');
+            if (!isVisible) {
+                panel.style.display = 'block';
+                const iconRect = filterIcon.getBoundingClientRect();
+                const navbar = document.querySelector('.navbar');
+                const navbarRect = navbar.getBoundingClientRect();
+                const panelWidth = panel.offsetWidth;
+                const iconCenterX = iconRect.left + (iconRect.width / 2);
+                const panelLeft = iconCenterX - (panelWidth / 2);
+                panel.style.top = `${iconRect.bottom - navbarRect.top + 5}px`;
+                panel.style.left = `${Math.max(10, panelLeft)}px`;
+            }
         }
-    });
 
-    searchFilterLarge.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleFilterPanel('filterPanelLarge', searchFilterLarge);
-    });
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
 
-    clearFiltersLarge.addEventListener('click', (e) => {
-        e.preventDefault();
-        categoryFilterLarge.value = '';
-    });
+            const notificationIcon = document.querySelector('.nav-icon.notification');
+            const notificationBodies = document.querySelectorAll('.notification-body');
+            const notificationCount = notificationBodies.length;
+            notificationIcon.setAttribute('data-count', notificationCount > 0 ? '1' : '0');
 
-    applyFiltersLarge.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (searchInputLarge.value.trim()) {
-            searchFormLarge.submit();
-        }
-        filterPanelLarge.style.display = 'none';
-    });
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            const logoLight = document.querySelector('.logo-light');
+            const logoDark = document.querySelector('.logo-dark');
 
-    const searchIcon = document.getElementById('searchIcon');
-    const searchFormMobile = document.querySelector('.search-container-mobile .search-form');
-    const closeSearch = document.getElementById('closeSearch');
-    const searchContainerMobile = document.querySelector('.search-container-mobile');
-    const searchInputMobile = document.getElementById('searchInputMobile');
-    const searchFilterMobile = document.getElementById('searchFilterMobile');
-    const searchSubmitMobile = document.getElementById('searchSubmitMobile');
-    const filterPanelMobile = document.getElementById('filterPanelMobile');
-    const clearFiltersMobile = document.getElementById('clearFiltersMobile');
-    const applyFiltersMobile = document.getElementById('applyFiltersMobile');
-    const categoryFilterMobile = document.getElementById('categoryFilterMobile');
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            body.classList.remove('light-theme', 'dark-theme');
+            body.classList.add(`${savedTheme}-theme`);
 
-    searchInputMobile.addEventListener('input', () => {
-        searchInputMobile.value = searchInputMobile.value.trimStart();
-    });
+            if (savedTheme === 'light') {
+                logoLight.classList.remove('hidden');
+            } else {
+                logoDark.classList.remove('hidden');
+            }
 
-    searchSubmitMobile.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (searchInputMobile.value.trim()) {
-            searchFormMobile.submit();
-        }
-    });
+            themeToggle.querySelector('i').classList.add(savedTheme === 'light' ? 'bi-moon' : 'bi-sun');
+            themeToggle.querySelector('i').classList.remove(savedTheme === 'light' ? 'bi-sun' : 'bi-moon');
+            themeToggle.lastChild.nodeValue = savedTheme === 'light' ? ' Modo Noche' : ' Modo Día';
 
-    searchFilterMobile.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleFilterPanel('filterPanelMobile', searchFilterMobile);
-    });
+            themeToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isLight = body.classList.contains('light-theme');
+                body.classList.replace(isLight ? 'light-theme' : 'dark-theme', isLight ? 'dark-theme' : 'light-theme');
+                localStorage.setItem('theme', isLight ? 'dark' : 'light');
+                themeToggle.querySelector('i').classList.replace(isLight ? 'bi-moon' : 'bi-sun', isLight ? 'bi-sun' : 'bi-moon');
+                themeToggle.lastChild.nodeValue = isLight ? ' Modo Día' : ' Modo Noche';
+                logoLight.classList.add('hidden');
+                logoDark.classList.add('hidden');
+                if (isLight) {
+                    logoDark.classList.remove('hidden');
+                } else {
+                    logoLight.classList.remove('hidden');
+                }
+            });
 
-    clearFiltersMobile.addEventListener('click', (e) => {
-        e.preventDefault();
-        categoryFilterMobile.value = '';
-    });
+            const searchInputLarge = document.getElementById('searchInputLarge');
+            const searchSubmitLarge = document.getElementById('searchSubmitLarge');
+            const searchFilterLarge = document.getElementById('searchFilterLarge');
+            const searchFormLarge = searchInputLarge.closest('form');
+            const filterPanelLarge = document.getElementById('filterPanelLarge');
+            const clearFiltersLarge = document.getElementById('clearFiltersLarge');
+            const applyFiltersLarge = document.getElementById('applyFiltersLarge');
+            const categoryFilterLarge = document.getElementById('categoryFilterLarge');
 
-    applyFiltersMobile.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (searchInputMobile.value.trim()) {
-            searchFormMobile.submit();
-        }
-        filterPanelMobile.style.display = 'none';
-    });
+            searchInputLarge.addEventListener('input', () => {
+                searchInputLarge.value = searchInputLarge.value.trimStart();
+            });
 
-    document.addEventListener('click', (e) => {
-        if (!filterPanelLarge.contains(e.target) && !searchFilterLarge.contains(e.target)) {
-            filterPanelLarge.style.display = 'none';
-        }
-        if (!filterPanelMobile.contains(e.target) && !searchFilterMobile.contains(e.target)) {
-            filterPanelMobile.style.display = 'none';
-        }
-        const notificationPanel = document.getElementById('notificationPanel');
-        if (!notificationPanel.contains(e.target) && !notificationIcon.contains(e.target)) {
-            notificationPanel.style.display = 'none';
-        }
-    });
+            searchSubmitLarge.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (searchInputLarge.value.trim()) {
+                    searchFormLarge.submit();
+                }
+            });
 
-    const searchContainer = document.querySelector('.search-container');
-    const updateSearchState = () => {
-        const windowWidth = window.innerWidth;
-        const breakpoint = 987;
-        if (windowWidth < breakpoint) {
-            searchContainer.style.display = 'none';
-            searchIcon.style.display = 'block';
-            searchContainerMobile.style.display = searchContainerMobile.style.display === 'block' ? 'block' : 'none';
-        } else {
-            searchContainer.style.display = 'flex';
-            searchIcon.style.display = 'none';
-            searchContainerMobile.style.display = 'none';
-        }
-    };
+            searchFilterLarge.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleFilterPanel('filterPanelLarge', searchFilterLarge);
+            });
 
-    searchIcon.addEventListener('click', () => {
-        searchContainerMobile.style.display = 'block';
-        searchInputMobile.focus();
-    });
+            clearFiltersLarge.addEventListener('click', (e) => {
+                e.preventDefault();
+                categoryFilterLarge.value = '';
+            });
 
-    closeSearch.addEventListener('click', () => {
-        searchContainerMobile.style.display = 'none';
-        searchInputMobile.value = '';
-    });
+            applyFiltersLarge.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (searchInputLarge.value.trim()) {
+                    searchFormLarge.submit();
+                }
+                filterPanelLarge.style.display = 'none';
+            });
 
-    window.addEventListener('resize', updateSearchState);
-    updateSearchState();
-});
+            const searchIcon = document.getElementById('searchIcon');
+            const searchFormMobile = document.querySelector('.search-container-mobile .search-form');
+            const closeSearch = document.getElementById('closeSearch');
+            const searchContainerMobile = document.querySelector('.search-container-mobile');
+            const searchInputMobile = document.getElementById('searchInputMobile');
+            const searchFilterMobile = document.getElementById('searchFilterMobile');
+            const searchSubmitMobile = document.getElementById('searchSubmitMobile');
+            const filterPanelMobile = document.getElementById('filterPanelMobile');
+            const clearFiltersMobile = document.getElementById('clearFiltersMobile');
+            const applyFiltersMobile = document.getElementById('applyFiltersMobile');
+            const categoryFilterMobile = document.getElementById('categoryFilterMobile');
+
+            searchInputMobile.addEventListener('input', () => {
+                searchInputMobile.value = searchInputMobile.value.trimStart();
+            });
+
+            searchSubmitMobile.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (searchInputMobile.value.trim()) {
+                    searchFormMobile.submit();
+                }
+            });
+
+            searchFilterMobile.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleFilterPanel('filterPanelMobile', searchFilterMobile);
+            });
+
+            clearFiltersMobile.addEventListener('click', (e) => {
+                e.preventDefault();
+                categoryFilterMobile.value = '';
+            });
+
+            applyFiltersMobile.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (searchInputMobile.value.trim()) {
+                    searchFormMobile.submit();
+                }
+                filterPanelMobile.style.display = 'none';
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!filterPanelLarge.contains(e.target) && !searchFilterLarge.contains(e.target)) {
+                    filterPanelLarge.style.display = 'none';
+                }
+                if (!filterPanelMobile.contains(e.target) && !searchFilterMobile.contains(e.target)) {
+                    filterPanelMobile.style.display = 'none';
+                }
+                const notificationPanel = document.getElementById('notificationPanel');
+                if (!notificationPanel.contains(e.target) && !notificationIcon.contains(e.target)) {
+                    notificationPanel.style.display = 'none';
+                }
+            });
+
+            const searchContainer = document.querySelector('.search-container');
+            const updateSearchState = () => {
+                const windowWidth = window.innerWidth;
+                const breakpoint = 987;
+                if (windowWidth < breakpoint) {
+                    searchContainer.style.display = 'none';
+                    searchIcon.style.display = 'block';
+                    searchContainerMobile.style.display = searchContainerMobile.style.display === 'block' ? 'block' : 'none';
+                } else {
+                    searchContainer.style.display = 'flex';
+                    searchIcon.style.display = 'none';
+                    searchContainerMobile.style.display = 'none';
+                }
+            };
+
+            searchIcon.addEventListener('click', () => {
+                searchContainerMobile.style.display = 'block';
+                searchInputMobile.focus();
+            });
+
+            closeSearch.addEventListener('click', () => {
+                searchContainerMobile.style.display = 'none';
+                searchInputMobile.value = '';
+            });
+
+            window.addEventListener('resize', updateSearchState);
+            updateSearchState();
+        });
+         document.addEventListener('DOMContentLoaded', () => {
+            // Pagination logic
+            const itemsPerPage = 12;
+            const gridItems = document.querySelectorAll('.grid-item');
+            const prevPage = document.getElementById('prevPage');
+            const nextPage = document.getElementById('nextPage');
+            let currentPage = 1;
+
+            // Dynamically generate page links
+            const totalPages = Math.ceil(gridItems.length / itemsPerPage);
+            const pagination = document.querySelector('.pagination');
+            pagination.innerHTML = `
+                <li class="page-item disabled" id="prevPage">
+                    <a class="page-link" href="#" aria-label="Anterior">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+            `;
+            for (let i = 1; i <= totalPages; i++) {
+                pagination.innerHTML += `
+                    <li class="page-item ${i === 1 ? 'active' : ''}">
+                        <a class="page-link" href="#" data-page="${i}">${i}</a>
+                    </li>
+                `;
+            }
+            pagination.innerHTML += `
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Siguiente" id="nextPage">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+            `;
+
+            function updatePagination() {
+                // Hide all items
+                gridItems.forEach(item => item.classList.remove('active'));
+
+                // Show items for current page
+                const start = (currentPage - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                for (let i = start; i < end && i < gridItems.length; i++) {
+                    gridItems[i].classList.add('active');
+                }
+
+                // Update active page link
+                const pageLinks = document.querySelectorAll('.page-link[data-page]');
+                pageLinks.forEach(link => {
+                    const page = parseInt(link.getAttribute('data-page'));
+                    const parent = link.parentElement;
+                    if (page === currentPage) {
+                        parent.classList.add('active');
+                    } else {
+                        parent.classList.remove('active');
+                    }
+                });
+
+                // Update prev/next buttons
+                prevPage.classList.toggle('disabled', currentPage === 1);
+                nextPage.classList.toggle('disabled', currentPage === totalPages);
+            }
+
+            // Add event listeners to page links
+            pagination.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = e.target.closest('.page-link');
+                if (!target) return;
+
+                const pageNum = target.getAttribute('data-page');
+                if (pageNum) {
+                    currentPage = parseInt(pageNum);
+                } else if (target.parentElement.id === 'prevPage' && currentPage > 1) {
+                    currentPage--;
+                } else if (target.parentElement.id === 'nextPage' && currentPage < totalPages) {
+                    currentPage++;
+                }
+                updatePagination();
+            });
+
+            // Initialize pagination
+            updatePagination();
+        });
     </script>
 </body>
 </html>

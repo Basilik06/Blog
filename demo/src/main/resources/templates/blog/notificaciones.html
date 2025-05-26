@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,13 +34,12 @@
     html, body {
         margin: 0;
         padding: 0;
-        height: 100vh;
-        overflow: hidden;
+        min-height: 100vh; /* Changed from height to min-height */
+        display: flex;
+        flex-direction: column;
     }
 
     body {
-        display: flex;
-        flex-direction: column;
         transition: background-color 0.3s ease, color 0.3s ease;
         font-family: 'Arial', sans-serif;
     }
@@ -688,86 +687,91 @@
         text-decoration: none;
         font-size: 14px;
     }
+
     /* Ensure card in main section is consistent in dark mode */
-body.dark-theme .card {
-    background-color: #333;
-    border-color: #4a4a4a;
-    color: #e0e0e0; /* Ensure text inside card is readable */
-}
+    body.dark-theme .card {
+        background-color: #333;
+        border-color: #4a4a4a;
+        color: #e0e0e0; /* Ensure text inside card is readable */
+    }
 
-/* Style notification-body in main for dark mode */
-body.dark-theme .notification-body {
-    border-bottom: 1px solid #444; /* Match notification panel border */
-}
+    /* Style notification-body in main for dark mode */
+    body.dark-theme .notification-body {
+        border-bottom: 1px solid #444; /* Match notification panel border */
+    }
 
-/* Style notification-text in main for dark mode */
-body.dark-theme .notification-text {
-    color: #e0e0e0; /* Ensure readable text */
-}
+    /* Style notification-text in main for dark mode */
+    body.dark-theme .notification-text {
+        color: #e0e0e0; /* Ensure readable text */
+    }
 
-/* Style notification-time in main for dark mode */
-body.dark-theme .notification-time {
-    color: #aaa; /* Match notification panel's time color */
-}
+    /* Style notification-time in main for dark mode */
+    body.dark-theme .notification-time {
+        color: #aaa; /* Match notification panel's time color */
+    }
 
-/* Style the 'no notifications' message in dark mode */
-body.dark-theme .text-muted {
-    color: #a0a0a0 !important; /* Override Bootstrap's text-muted for dark mode */
-}
+    /* Style the 'no notifications' message in dark mode */
+    body.dark-theme .text-muted {
+        color: #a0a0a0 !important; /* Override Bootstrap's text-muted for dark mode */
+    }
 
-/* Ensure card title in main is readable in dark mode */
-body.dark-theme .card-title {
-    color: #ffffff; /* Bright color for headings */
-}
-  
-.footer_page {
-    background-color: #0F0F0F;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 30px 0;
-    min-height: 100px;
-    text-align: center;
-}
+    /* Ensure card title in main is readable in dark mode */
+    body.dark-theme .card-title {
+        color: #ffffff; /* Bright color for headings */
+    }
 
-.footer_page .footer-text {
-    font-size: 1rem;
-    margin-bottom: 10px;
-}
+    /* Main content styles */
+    main {
+        flex: 1; /* Allow main to take up remaining space */
+        overflow-y: auto; /* Enable scrolling for main content */
+    }
 
-.footer_page .footer-links {
-    margin-bottom: 15px;
-}
+    .footer_page {
+        background-color: #0F0F0F;
+        color: rgba(255, 255, 255, 0.7);
+        padding: 30px 0;
+        min-height: 100px;
+        text-align: center;
+        width: 100%; /* Ensure footer spans full width */
+        position: relative; /* Keep footer at the bottom */
+    }
 
-.footer_page .footer-link {
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0 10px;
-    text-decoration: none;
-    transition: color 0.3s;
-}
+    .footer_page .footer-text {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
 
-.footer_page .footer-link:hover {
-    color: #ffffff;
-}
+    .footer_page .footer-links {
+        margin-bottom: 15px;
+    }
 
-.footer_page .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
+    .footer_page .footer-link {
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0 10px;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
 
-.footer_page .social-icon {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.5rem;
-    transition: color 0.3s;
-}
+    .footer_page .footer-link:hover {
+        color: #ffffff;
+    }
 
-.footer_page .social-icon:hover {
-    color: #ffffff;
-}
+    .footer_page .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
 
-.footer_page {
-    height: auto;
-    padding: 20px 0;
-}
+    .footer_page .social-icon {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.5rem;
+        transition: color 0.3s;
+    }
+
+    .footer_page .social-icon:hover {
+        color: #ffffff;
+    }
+
     @media (max-width: 992px) {
         .search-container {
             flex-grow: 0;
@@ -941,7 +945,6 @@ body.dark-theme .card-title {
                                     <i class="bi bi-search"></i>
                                 </span>
                                 <input class="form-control" type="search" name="q" id="searchInputLarge" placeholder="Buscar en UniLink" aria-label="Buscar artículos en UniLink" required>
-                                
                                 <span class="search-filter" id="searchFilterLarge" aria-label="Abrir filtros">
                                     <i class="bi bi-list"></i>
                                 </span>
@@ -1032,7 +1035,7 @@ body.dark-theme .card-title {
                         </div>
                         <div class="filter-body">
                             <div class="filter-option">
-                                <label for="categoryFilterMobile">Categoría</label>
+                                <label for "categoryFilterMobile">Categoría</label>
                                 <select id="categoryFilterMobile" name="category" class="form-select">
                                     <option value="">Todas</option>
                                     <option value="posts">Posts</option>
@@ -1069,7 +1072,7 @@ body.dark-theme .card-title {
             </div>
         </nav>
     </header>
-     <main class="container my-5" id="main-content">
+    <main class="container my-5" id="main-content">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
