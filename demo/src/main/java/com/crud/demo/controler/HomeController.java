@@ -54,4 +54,26 @@ public class HomeController {
     public String redirectblogConfiguracion() {
         return "blog/configuracion"; // sin ".html"
     }
+
+
+    @GetMapping("/monitor-usuario")
+    public String redirectblogMonitorU() {
+        return "blog/usuario/monitor-usuario"; // sin ".html"
+    }
+    @GetMapping("/perfil-usuario")
+    public String redirectblogPerfilU() {
+        return "blog/usuario/perfil-usuario"; // sin ".html"
+    }
+     @GetMapping("/post-usuario")
+    public String redirectblogPostU() {
+        return "blog/usuario/post-usuario"; // sin ".html"
+    }
+     @GetMapping("/notificaciones-usuario")
+    public String redirectblogNotificacionesU() {
+        return "blog/usuario/notificaciones"; // sin ".html"
+    }
+    @GetMapping("/config-usuario")
+    public String redirectblogConfiguracionU() {
+        return "blog/usuario/configuracion"; // sin ".html"
+    }
 }

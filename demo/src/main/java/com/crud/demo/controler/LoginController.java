@@ -1,7 +1,6 @@
 package com.crud.demo.controler;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,15 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.crud.demo.interfaces.NotificacionRepository;
 import com.crud.demo.interfaces.PublicacionRepository;
 import com.crud.demo.interfaces.UserRepository;
-import com.crud.demo.modelo.FotoPublicacion;
 import com.crud.demo.modelo.Notificacion;
 import com.crud.demo.modelo.Publicacion;
-import com.crud.demo.modelo.PublicacionDTO;
 import com.crud.demo.modelo.User;
 import com.crud.demo.utils.JwtUtil;
-import com.crud.demo.interfaces.NotificacionRepository;
+
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -57,8 +55,10 @@ public class LoginController {
 			int rol = user.getRol();
 			if (rol == 1) {
 				return "redirect:/admin/dashboard";
-			} else {
+			} else if( rol==2) {
                 return "redirect:/cliente/inicio";
+			}else {
+				return "redirect:/cliente/inicio-usuario";
 			}
 		} else {
 			redirectAttributes.addFlashAttribute("error", "Acceso inválido. Por favor, inténtelo otra vez.");
@@ -80,13 +80,19 @@ public class LoginController {
 		 List<Notificacion> noti=NotificacionRepository.findNotificacionesNoLeidasPorUsuario(user.getId());
 		 model.addAttribute("notificaciones", noti);
 		 model.addAttribute("posts", publicaciones);
-		 
 
-
-	  
 		return "blog/index";
 	}
+@GetMapping("/cliente/inicio-usuario")
+	public String clienteHome2(Model model) {
+		User user = usuarioRepository.findByEmailAndContrasena(vemail, vpassword).orElse(null);
+		 List<Publicacion> publicaciones = publicacionRepository.findAll();
+		 List<Notificacion> noti=NotificacionRepository.findNotificacionesNoLeidasPorUsuario(user.getId());
+		 model.addAttribute("notificaciones", noti);
+		 model.addAttribute("posts", publicaciones);
 
+		return "blog/usuario/index-usuario";
+	}
 	@GetMapping("/custom-logout")
 	public String logout(HttpServletResponse response) {
 		Cookie cookie = new Cookie("jwt", null);
