@@ -198,7 +198,7 @@
         display: flex;
         align-items: center;
         position: relative;
-        padding: 0 0.25rem; /* Espaciado interno para evitar superposición */
+        padding: 0 0.25rem;
     }
 
     .search-form .input-group:hover {
@@ -218,9 +218,8 @@
         color: #333;
         padding-left: 0.5rem;
         padding-right: 3rem;
-        width: 550px; /* Modifica este valor en píxeles según tus necesidades */
-        /* Comentario: Ajusta el ancho del campo de búsqueda cambiando el valor de 'width' aquí (en píxeles, ej. 300px, 500px) */
-        flex-grow: 0; /* Quitar expansión automática */
+        width: 550px;
+        flex-grow: 0;
         border-radius: 50px;
         transition: background-color 0.3s ease, color 0.3s ease;
     }
@@ -318,7 +317,7 @@
         cursor: pointer;
         padding: 0.375rem 0.5rem;
         transition: color 0.3s ease, transform 0.3s ease;
-        z-index: 1; /* Asegurar que esté por encima del input */
+        z-index: 1;
     }
 
     .search-filter {
@@ -1345,7 +1344,7 @@
     }
 
     .grid-column:nth-child(2) .grid-item {
-        max-height: calc(100vh - 60px); /* Adjust based on navbar height */
+        max-height: calc(100vh - 60px);
         flex: 1 1 auto;
         padding-top: 0;
         background-color: var(--bg-light);
@@ -1391,7 +1390,7 @@
         padding-top: 0;
         padding-bottom: 0.5rem;
         height: 100%;
-        max-height: calc(100vh - 60px); /* Adjust based on navbar height */
+        max-height: calc(100vh - 60px);
     }
 
     .center-column-content .post-card,
@@ -1697,17 +1696,16 @@
         }
     }
 
-    /* Estilos responsivos para el panel de filtros */
     @media (max-width: 987px) {
         .filter-panel {
-            width: 90vw; /* Ocupa el 90% del ancho de la pantalla en móviles */
+            width: 90vw;
             max-width: 350px;
-            left: 50% !important; /* Centrado horizontalmente */
-            transform: translateX(-50%); /* Ajuste para centrar */
+            left: 50% !important;
+            transform: translateX(-50%);
         }
 
         .filter-title {
-            font-size: 14px; /* Tamaño de fuente más pequeño */
+            font-size: 14px;
         }
 
         .filter-option select.form-select {
@@ -1722,7 +1720,7 @@
 
     @media (max-width: 400px) {
         .filter-panel {
-            width: 95vw; /* Más ancho relativo en pantallas muy pequeñas */
+            width: 95vw;
             max-width: 300px;
             padding: 8px;
         }
@@ -1754,7 +1752,6 @@
         }
     }
 
-    /* Estilos modificados para los botones Aplicar y Limpiar del filtro */
     #applyFiltersLarge, #clearFiltersLarge, #applyFiltersMobile, #clearFiltersMobile {
         background-color: #fb9a24;
         color: #ffffff;
@@ -1775,21 +1772,20 @@
     <header>
         <nav class="navbar navbar-expand" role="navigation" aria-label="Navegación principal">
             <div class="container-fluid">
-                <a class="navbar-brand" th:href="@{/}" aria-label="Volver a la página de inicio de UniLink">
+                <a class="navbar-brand" href="/" aria-label="Volver a la página de inicio de UniLink">
                     <div class="logo-container">
-                        <img th:src="@{/img/logo_sf.png}" class="logo-light hidden" alt="Logo de UniLink (modo claro)" width="36" height="36" loading="lazy">
-                        <img th:src="@{/img/logo_oscuro_sf.png}" class="logo-dark hidden" alt="Logo de UniLink (modo oscuro)" width="36" height="36" loading="lazy">
+                        <img src="/img/logo_sf.png" class="logo-light hidden" alt="Logo de UniLink (modo claro)" width="36" height="36" loading="lazy">
+                        <img src="/img/logo_oscuro_sf.png" class="logo-dark hidden" alt="Logo de UniLink (modo oscuro)" width="36" height="36" loading="lazy">
                     </div>
                 </a>
                 <div id="navbarContent">
                     <div class="search-container">
-                        <form class="d-flex search-form my-2 my-lg-0" th:action="@{/search}" method="get" role="search" aria-label="Buscar en el blog">
+                        <form class="d-flex search-form my-2 my-lg-0" action="/search" method="get" role="search" aria-label="Buscar en el blog">
                             <div class="input-group">
                                 <span class="input-group-text" aria-hidden="true">
                                     <i class="bi bi-search"></i>
                                 </span>
                                 <input class="form-control" type="search" name="q" id="searchInputLarge" placeholder="Buscar en UniLink" aria-label="Buscar artículos en UniLink" required>
-                                
                                 <span class="search-filter" id="searchFilterLarge" aria-label="Abrir filtros">
                                     <i class="bi bi-list"></i>
                                 </span>
@@ -1826,39 +1822,39 @@
                             <i class="bi bi-search"></i>
                         </span>
                         <span class="search-separator">|</span>
-                        <a th:href="@{/cliente/inicio}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Inicio" aria-label="Ir a la página de inicio">
+                        <a href="/cliente/inicio" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Inicio" aria-label="Ir a la página de inicio">
                             <i class="bi bi-house-door-fill"></i>
                         </a>
                         <span class="separator">|</span>
-                        <a th:href="@{/nuevo_post}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Crear Post" aria-label="Crear un nuevo post">
+                        <a href="/nuevo_post" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Crear Post" aria-label="Crear un nuevo post">
                             <i class="bi bi-plus-circle-fill"></i>
                         </a>
                         <span class="separator">|</span>
-                        <a th:href="@{/monitor}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Monitor" aria-label="Ver Monitores">
+                        <a href="/monitor" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Monitor" aria-label="Ver Monitores">
                             <i class="bi bi-person-fill"></i>
                         </a>
                         <span class="separator">|</span>
-                        <a href="#" class="nav-icon notification" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notificaciones" aria-label="Ver notificaciones" data-count="0" onclick="toggleNotifications()">
+                        <a href="#" class="nav-icon notification" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notificaciones" aria-label="Ver notificaciones" data-count="1" onclick="toggleNotifications()">
                             <i class="bi bi-bell-fill"></i>
                         </a>
                         <span class="separator">|</span>
                         <div class="dropdown">
                             <a href="#" class="nav-icon" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones de perfil de usuario">
-                                <img th:src="@{/img/perfil.jpg}" alt="Foto de perfil del usuario" class="nav-profile" loading="lazy">
+                                <img src="/img/foto1.jpg" alt="Foto de perfil del usuario" class="nav-profile" loading="lazy">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                                <li><a class="dropdown-item" th:href="@{/perfil}"><i class="bi bi-person"></i> Perfil</a></li>
+                                <li><a class="dropdown-item" href="/perfil"><i class="bi bi-person"></i> Perfil</a></li>
                                 <li><a class="dropdown-item" href="#" id="themeToggle"><i class="bi bi-moon"></i> Modo Noche</a></li>
-                                <li><a class="dropdown-item" th:href="@{/config}"><i class="bi bi-gear"></i> Configuración</a></li>
+                                <li><a class="dropdown-item" href="/config"><i class="bi bi-gear"></i> Configuración</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" th:href="@{/custom-logout}"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item" href="/custom-logout"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="search-container-mobile">
-                <form class="d-flex search-form my-2 my-lg-0" th:action="@{/search}" method="get" role="search" aria-label="Buscar en el blog">
+                <form class="d-flex search-form my-2 my-lg-0" action="/search" method="get" role="search" aria-label="Buscar en el blog">
                     <div class="input-group">
                         <span class="input-group-text" aria-hidden="true">
                             <i class="bi bi-search"></i>
@@ -1904,10 +1900,24 @@
                         <label class="notification-mark-read-label" for="markReadCheckbox">Marcar como leídas</label>
                     </div>
                 </div>
-                <div th:each="notif : ${notificaciones}" class="notification-body">
+                <div class="notification-body">
                     <div class="notification-text">
-                        <span th:text="${notif.mensaje}">Texto de la notificación</span><br>
-                        <span class="notification-time" th:text="${notif.fecha_notificacion}">hace 10 minutos</span><br>
+                        <span>Nueva solicitud de monitoría recibida.</span><br>
+                        <span class="notification-time">hace 5 minutos</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="notification-body">
+                    <div class="notification-text">
+                        <span>Tu post ha recibido 100 me gusta.</span><br>
+                        <span class="notification-time">hace 1 hora</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="notification-body">
+                    <div class="notification-text">
+                        <span>Evento nacional programado para mañana.</span><br>
+                        <span class="notification-time">hace 2 horas</span><br>
                         <a href="#" class="notification-link">Ver más</a>
                     </div>
                 </div>
@@ -1923,7 +1933,7 @@
             <div class="grid-column">
                 <div class="grid-item intro-perfil">
                     <img src="/img/ads.jpg" alt="Perfil Banner" class="profile-banner" loading="lazy">
-                    <img src="/img/perfil.jpg" alt="Foto de perfil" class="profile-avatar" loading="lazy">
+                    <img src="/img/foto1.jpg" alt="Foto de perfil" class="profile-avatar" loading="lazy">
                     <h3 class="profile-name">Juan Pérez</h3>
                     <span class="profile-type">Monitor</span>
                     <div class="profile-divider"></div>
@@ -1932,41 +1942,48 @@
                     </div>
                     <div class="profile-divider"></div>
                     <div class="profile-links">
-                        <a th:href="@{/grupo}">Grupo</a>
+                        <a href="/grupos">Grupo</a>
                         <span class="link-separator">|</span>
-                        <a th:href="@{/estado}">Estado</a>
+                        <a href="/estado">Estado</a>
                         <span class="link-separator">|</span>
-                        <a th:href="@{/monitor}">Monitor</a>
+                        <a href="/monitor">Monitor</a>
                     </div>
                 </div>
                 <div class="grid-item eventos-nacionales">
                     <h3 class="bi bi-calendar-event"> Eventos Nacionales</h3>
                     <hr class="evento-divider">
                     <div class="eventos-list">
-                        <div th:each="evento, iterStat : ${eventos}" class="evento-item">
+                        <div class="evento-item">
                             <div class="evento-content">
-                                <h4 class="evento-nombre" th:text="${evento.nombre}">Nombre del evento</h4>
-                                <p class="evento-descripcion" th:text="${evento.descripcion}">Breve descripción del evento</p>
+                                <h4 class="evento-nombre">Feria de Ciencia 2025</h4>
+                                <p class="evento-descripcion">Una exposición de proyectos científicos nacionales.</p>
                             </div>
-                            <span class="evento-fecha" th:text="${evento.fecha}">21/05/2025</span>
-                            <hr class="evento-divider" th:if="${!iterStat.last}"/>
+                            <span class="evento-fecha">21/06/2025</span>
+                            <hr class="evento-divider">
+                        </div>
+                        <div class="evento-item">
+                            <div class="evento-content">
+                                <h4 class="evento-nombre">Congreso de Tecnología</h4>
+                                <p class="evento-descripcion">Conferencias sobre innovaciones tecnológicas.</p>
+                            </div>
+                            <span class="evento-fecha">15/07/2025</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--contenedor central-->
+
             <div class="grid-column">
                 <div class="grid-item center-column-content" id="centerColumnContent">
-                    <!-- Nuevo contenedor para la tarjeta de publicación Destacada faltaria añadir el thynleaf -->
+                    <!-- Static featured post -->
                     <div class="static-post-container">
                         <div class="post-card">
                             <div class="post-header">
                                 <a th:href="@{/post}" class="post-link">
                                     <div class="d-flex align-items-center">
-                                        <img src="/img/perfil.jpg" alt="Avatar de usuario" class="post-avatar" loading="lazy">
+                                        <img src="/img/foto3.jpg" alt="Avatar de usuario" class="post-avatar" loading="lazy">
                                         <div class="post-user-info">
-                                            <div class="post-username">Jose Maria</div>
-                                            <div class="post-timestamp">2025-05-22</div>
+                                            <div class="post-username">José María</div>
+                                            <div class="post-timestamp">2025-06-01</div>
                                         </div>
                                     </div>
                                 </a>
@@ -1983,19 +2000,19 @@
                             </div>
                             <a th:href="@{/post}" class="post-link">
                                 <h5 class="post-title">Formas de Estudiar para un Parcial</h5>
-                                <img src="/img/post.png" alt="Imagen del post" class="post-image" loading="lazy">
+                                <img src="/img/post3.png" alt="Imagen del post" class="post-image" loading="lazy">
                                 <div class="post-body">
-                                    <p class="post-text">Utilizando Metodos de estudio avanzado puedes ser capas de aprender 3 veces mas...</p>
-                                    <a th:href="@{/post}" class="post-read-more">Leer más</a>
+                                    <p class="post-text">Utilizando métodos de estudio avanzados, puedes aprender 3 veces más rápido...</p>
+                                    <span class="post-read-more">Leer más</span>
                                 </div>
                                 <div class="post-actions">
                                     <div class="post-action">
                                         <i class="bi bi-heart"></i>
-                                        <span>0</span>
+                                        <span>50</span>
                                     </div>
                                     <div class="post-action">
                                         <i class="bi bi-chat"></i>
-                                        <span>0</span>
+                                        <span>10</span>
                                     </div>
                                     <div class="post-action">
                                         <i class="bi bi-share"></i>
@@ -2005,15 +2022,15 @@
                             </a>
                         </div>
                     </div>
-                    <!-- Posts dinámicos con Thymeleaf, sin modificar -->
-                    <div th:each="post : ${posts}" class="post-card">
+                    <!-- Static additional posts -->
+                    <div class="post-card">
                         <div class="post-header">
-                            <a th:href="@{/post/{id}(id=${post.id})}" class="post-link">
+                            <a href="/post/2" class="post-link">
                                 <div class="d-flex align-items-center">
-                                    <img src="/img/perfil.jpg" alt="Avatar de usuario" class="post-avatar" loading="lazy">
+                                    <img src="/img/foto2.jpg" alt="Avatar de usuario" class="post-avatar" loading="lazy">
                                     <div class="post-user-info">
-                                        <div class="post-username" th:text="${post.autor.nombre}">Usuario</div>
-                                        <div class="post-timestamp" th:text="${post.fechaPublicacion}">hace 10 minutos</div>
+                                        <div class="post-username">Ana López</div>
+                                        <div class="post-timestamp">2025-06-02</div>
                                     </div>
                                 </div>
                             </a>
@@ -2028,21 +2045,156 @@
                                 </ul>
                             </div>
                         </div>
-                        <a th:href="@{/post/{id}(id=${post.id})}" class="post-link">
-                            <h5 class="post-title" th:text="${post.titulo}">Título del post</h5>
-                            <img src="/img/post.png" alt="Imagen del post" class="post-image" loading="lazy">
+                        <a href="/post/2" class="post-link">
+                            <h5 class="post-title">Consejos para la Vida Universitaria</h5>
+                            <img src="/img/post2.png" alt="Imagen del post" class="post-image" loading="lazy">
                             <div class="post-body">
-                                <p class="post-text" th:text="${post.contenido}">Contenido breve del post...</p>
-                                <a th:href="@{/post/{id}(id=${post.id})}" class="post-read-more">Leer más</a>
+                                <p class="post-text">Cómo organizarte y aprovechar al máximo tu experiencia en la universidad...</p>
+                                <span class="post-read-more">Leer más</span>
                             </div>
                             <div class="post-actions">
                                 <div class="post-action">
                                     <i class="bi bi-heart"></i>
-                                    <span>0</span>
+                                    <span>30</span>
                                 </div>
                                 <div class="post-action">
                                     <i class="bi bi-chat"></i>
-                                    <span>0</span>
+                                    <span>20</span>
+                                </div>
+                                <div class="post-action">
+                                    <i class="bi bi-share"></i>
+                                    <span>Compartir</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="post-card">
+                        <div class="post-header">
+                            <a href="/post/3" class="post-link">
+                                <div class="d-flex align-items-center">
+                                    <img src="/img/foto5.jpg" alt="Avatar de usuario" class="post-avatar" loading="lazy">
+                                    <div class="post-user-info">
+                                        <div class="post-username">Carlos Gómez</div>
+                                        <div class="post-timestamp">2025-06-03</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="dropdown post-menu" onclick="event.stopPropagation()">
+                                <a href="#" class="nav-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones del post" onclick="event.stopPropagation()">
+                                    <i class="bi bi-three-dots"></i>
+                                </a>
+                                <ul class="dropdown-menu" onclick="event.stopPropagation()">
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-eye-slash"></i> Ocultar</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-share"></i> Compartir</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-flag"></i> Reportar</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="/post/3" class="post-link">
+                            <h5 class="post-title">Estrategia para Matematicas</h5>
+                            <img src="/img/post.png" alt="Imagen del post" class="post-image" loading="lazy">
+                            <div class="post-body">
+                                <p class="post-text">Aprende a priorizar tareas y maximizar tu productividad diaria...</p>
+                                <span class="post-read-more">Leer más</span>
+                            </div>
+                            <div class="post-actions">
+                                <div class="post-action">
+                                    <i class="bi bi-heart"></i>
+                                    <span>25</span>
+                                </div>
+                                <div class="post-action">
+                                    <i class="bi bi-chat"></i>
+                                    <span>10</span>
+                                </div>
+                                <div class="post-action">
+                                    <i class="bi bi-share"></i>
+                                    <span>Compartir</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="post-card">
+                        <div class="post-header">
+                            <a href="/post/4" class="post-link">
+                                <div class="d-flex align-items-center">
+                                    <img src="/img/foto4.jpg" alt="Avatar de usuario" class="post-avatar" loading="lazy">
+                                    <div class="post-user-info">
+                                        <div class="post-username">María Fernández</div>
+                                        <div class="post-timestamp">2025-06-04</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="dropdown post-menu" onclick="event.stopPropagation()">
+                                <a href="#" class="nav-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones del post" onclick="event.stopPropagation()">
+                                    <i class="bi bi-three-dots"></i>
+                                </a>
+                                <ul class="dropdown-menu" onclick="event.stopPropagation()">
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-eye-slash"></i> Ocultar</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-share"></i> Compartir</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-flag"></i> Reportar</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="/post/4" class="post-link">
+                            <h5 class="post-title">Cómo Prepararte para una Entrevista</h5>
+                            <img src="/img/post1.png" alt="Imagen del post" class="post-image" loading="lazy">
+                            <div class="post-body">
+                                <p class="post-text">Consejos prácticos para destacar en entrevistas laborales...</p>
+                                <span class="post-read-more">Leer más</span>
+                            </div>
+                            <div class="post-actions">
+                                <div class="post-action">
+                                    <i class="bi bi-heart"></i>
+                                    <span>5</span>
+                                </div>
+                                <div class="post-action">
+                                    <i class="bi bi-chat"></i>
+                                    <span>7</span>
+                                </div>
+                                <div class="post-action">
+                                    <i class="bi bi-share"></i>
+                                    <span>Compartir</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="post-card">
+                        <div class="post-header">
+                            <a href="/post/5" class="post-link">
+                                <div class="d-flex align-items-center">
+                                    <img src="/img/foto1.jpg" alt="Avatar de usuario" class="post-avatar" loading="lazy">
+                                    <div class="post-user-info">
+                                        <div class="post-username">Pedro Sánchez</div>
+                                        <div class="post-timestamp">2025-06-05</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="dropdown post-menu" onclick="event.stopPropagation()">
+                                <a href="#" class="nav-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones del post" onclick="event.stopPropagation()">
+                                    <i class="bi bi-three-dots"></i>
+                                </a>
+                                <ul class="dropdown-menu" onclick="event.stopPropagation()">
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-eye-slash"></i> Ocultar</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-share"></i> Compartir</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-flag"></i> Reportar</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="/post/5" class="post-link">
+                            <h5 class="post-title">Beneficios del Trabajo en Equipo</h5>
+                            <img src="/img/post2.png" alt="Imagen del post" class="post-image" loading="lazy">
+                            <div class="post-body">
+                                <p class="post-text">Descubre cómo colaborar efectivamente con tus compañeros...</p>
+                                <span class="post-read-more">Leer más</span>
+                            </div>
+                            <div class="post-actions">
+                                <div class="post-action">
+                                    <i class="bi bi-heart"></i>
+                                    <span>20</span>
+                                </div>
+                                <div class="post-action">
+                                    <i class="bi bi-chat"></i>
+                                    <span>10</span>
                                 </div>
                                 <div class="post-action">
                                     <i class="bi bi-share"></i>
@@ -2056,58 +2208,62 @@
             <!--contenedor derecha-->
             <div class="grid-column">
                 <div class="grid-item ranking-monitores">
-                    <h3 class="bi bi-trophy"> Ranking Monitores</h3>
+                    <h3><i class="bi bi-trophy"></i> Ranking Monitores</h3>
                     <div class="ranking-list">
                         <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">1</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Maricela</span>
-                            <span class="ranking-score">500pts</span>
+                            <div class="ranking-card">
+                                <span class="ranking-position">1</span>
+                                <div class="ranking-image"><img src="/img/foto2.jpg" alt="Foto de Maricela"></div>
+                                <span class="ranking-name">Maricela</span>
+                                <span class="ranking-score">500pts</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">2</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Juan</span>
-                            <span class="ranking-score">450pts</span>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">2</span>
+                                <div class="ranking-image"><img src="/img/foto1.jpg" alt="Foto de Juan"></div>
+                                <span class="ranking-name">Juan</span>
+                                <span class="ranking-score">450pts</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">3</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Pedro</span>
-                            <span class="ranking-score">400pts</span>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">3</span>
+                                <div class="ranking-image"><img src="/img/foto4.jpg" alt="Foto de Pedro"></div>
+                                <span class="ranking-name">Pedro</span>
+                                <span class="ranking-score">400pts</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">4</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Maria</span>
-                            <span class="ranking-score">380pts</span>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">4</span>
+                                <div class="ranking-image"><img src="/img/foto3.jpg" alt="Foto de Maria"></div>
+                                <span class="ranking-name">Maria</span>
+                                <span class="ranking-score">380pts</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">5</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Pablo</span>
-                            <span class="ranking-score">350pts</span>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">5</span>
+                                <div class="ranking-image"><img src="/img/foto5.jpg" alt="Foto de Pablo"></div>
+                                <span class="ranking-name">Pablo</span>
+                                <span class="ranking-score">350pts</span>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
                 <div class="grid-item noticias">
-                    <h3 class=" bi-megaphone"> Noticias</h3>
+                    <h3 class="bi bi-megaphone"> Noticias</h3>
                     <hr class="noticia-divider">
                     <div class="noticias-list">
-                        <div th:each="noticia, iterStat : ${noticias}" class="noticia-item">
-                            <a th:href="@{/noticia/{id}(id=${noticia.id})}" class="noticia-title" th:text="${noticia.titulo}">Título de la noticia</a>
-                            <span class="noticia-timestamp" th:text="${noticia.fechaPublicacion}">hace 5 minutos</span>
-                            <hr class="noticia-divider" th:if="${!iterStat.last}"/>
+                        <div class="noticia-item">
+                            <a href="/noticia/1" class="noticia-title">Nuevos Cursos en UniLink</a>
+                            <span class="noticia-timestamp">2025-06-03</span>
+                            <hr class="noticia-divider">
+                        </div>
+                        <div class="noticia-item">
+                            <a href="/noticia/2" class="noticia-title">Evento de Innovación 2025</a>
+                            <span class="noticia-timestamp">2025-06-04</span>
                         </div>
                     </div>
                 </div>

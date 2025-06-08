@@ -1088,7 +1088,7 @@
                         <span class="separator">|</span>
                         <div class="dropdown">
                             <a href="#" class="nav-icon" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones de perfil de usuario">
-                                <img th:src="@{/img/perfil.jpg}" alt="Foto de perfil del usuario" class="nav-profile" loading="lazy">
+                                <img th:src="@{/img/foto1.jpg}" alt="Foto de perfil del usuario" class="nav-profile" loading="lazy">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                                 <li><a class="dropdown-item" th:href="@{/perfil}"><i class="bi bi-person"></i> Perfil</a></li>
@@ -1148,10 +1148,24 @@
                         <label class="notification-mark-read-label" for="markReadCheckbox">Marcar como leídas</label>
                     </div>
                 </div>
-                <div th:each="notif : ${notificaciones}" class="notification-body">
+                <div class="notification-body">
                     <div class="notification-text">
-                        <span th:text="${notif.mensaje}">Texto de la notificación</span><br>
-                        <span class="notification-time" th:text="${notif.fecha_notificacion}">hace 10 minutos</span><br>
+                        <span>Nueva solicitud de monitoría recibida.</span><br>
+                        <span class="notification-time">hace 5 minutos</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="notification-body">
+                    <div class="notification-text">
+                        <span>Tu post ha recibido 100 me gusta.</span><br>
+                        <span class="notification-time">hace 1 hora</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="notification-body">
+                    <div class="notification-text">
+                        <span>Evento nacional programado para mañana.</span><br>
+                        <span class="notification-time">hace 2 horas</span><br>
                         <a href="#" class="notification-link">Ver más</a>
                     </div>
                 </div>

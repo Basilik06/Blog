@@ -11,1327 +11,1323 @@
     <meta property="og:image" content="/img/logo.png">
     <meta property="og:url" content="https://unilink.com">
     <meta property="og:type" content="website">
-<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <title>UniLink</title>
     <link rel="icon" href="/img/icono.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-<style>
-    :root {
-        --primary-color: #fb9a24;
-        --text-color: #212529;
-        --bg-light: #F6F9F7;
-        --bg-dark: #121212;
-        --navbar-bg-light: #ffffff;
-        --navbar-bg-dark: #0e0e0e;
-        --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        font-family: 'Arial', sans-serif;
-    }
-
-    body.light-theme {
-        background-color: var(--bg-light);
-        color: var(--text-color);
-    }
-
-    body.dark-theme {
-        background-color: var(--bg-dark);
-        color: #e0e0e0;
-    }
-
-    body.dark-theme .navbar {
-        background-color: var(--navbar-bg-dark);
-        box-shadow: var(--shadow);
-    }
-
-    body.dark-theme .nav-icon, body.dark-theme .search-form .input-group-text {
-        color: #e0e0e0;
-    }
-
-    body.dark-theme .nav-icon:hover {
-        color: #fb9a24;
-    }
-
-    body.dark-theme .search-form .input-group {
-        background-color: #2a2a2a;
-        border-color: #4a4a4a;
-    }
-
-    body.dark-theme .search-form .form-control {
-        color: #e0e0e0;
-        background-color: transparent;
-    }
-
-    body.dark-theme .search-form .form-control::placeholder {
-        color: #a0a0a0;
-    }
-
-    body.dark-theme .dropdown-menu {
-        background-color: #2a2a2a;
-        border-color: #4a4a4a;
-    }
-
-    body.dark-theme .dropdown-item {
-        color: #e0e0e0;
-    }
-
-    body.dark-theme .dropdown-item:hover {
-        background-color: #3a3a3a;
-        color: #fb9a24;
-    }
-
-    .navbar {
-        background-color: var(--navbar-bg-light);
-        box-shadow: var(--shadow);
-        padding: 0.75rem 1rem;
-        transition: background-color 0.3s ease;
-        position: relative;
-    }
-
-    .navbar-brand img {
-        height: 36px;
-        width: auto;
-        transition: transform 0.3s ease;
-    }
-
-    .navbar-brand img:hover {
-        transform: scale(1.1);
-    }
-
-    .hidden {
-        display: none;
-    }
-
-    body.light-theme .logo-dark,
-    body.dark-theme .logo-light {
-        display: none;
-    }
-
-    body.light-theme .logo-light,
-    body.dark-theme .logo-dark {
-        display: inline;
-    }
-
-    #navbarContent {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        flex-wrap: wrap;
-    }
-
-    .search-container {
-        flex-grow: 1;
-        display: flex;
-        justify-content: center;
-        padding: 0 0.5rem;
-        position: relative;
-    }
-
-    .search-container-mobile {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        background-color: var(--navbar-bg-light);
-        box-shadow: var(--shadow);
-        padding: 0.5rem 1rem;
-        display: none;
-        transition: all 0.3s ease;
-    }
-
-    body.dark-theme .search-container-mobile {
-        background-color: var(--navbar-bg-dark);
-    }
-
-    .search-icon {
-        display: none;
-        font-size: 1.2rem;
-        color: var(--text-color);
-        cursor: pointer;
-        transition: color 0.3s ease;
-        margin: 0 0.4rem;
-    }
-
-    body.dark-theme .search-icon {
-        color: #e0e0e0;
-    }
-
-    .search-icon:hover {
-        color: var(--primary-color);
-        transform: scale(1.1);
-    }
-
-    .search-form {
-        flex-grow: 1;
-        max-width: 595px;
-        margin: 0 auto;
-        transition: all 0.3s ease;
-    }
-
-    .search-form .input-group {
-        background-color: #ffffff;
-        border-radius: 20px;
-        border: 1px solid #282d31;
-        transition: border-color 0.3s;
-        display: flex;
-        align-items: center;
-        position: relative;
-        padding: 0 0.25rem;
-    }
-
-    .search-form .input-group:hover {
-        border-color: #929292;
-    }
-
-    .search-form .input-group-text {
-        background-color: transparent;
-        border: none;
-        padding: 0.375rem 0.5rem;
-        color: #333;
-    }
-
-    .search-form .form-control {
-        background-color: transparent;
-        border: none;
-        color: #333;
-        padding-left: 0.5rem;
-        padding-right: 3rem;
-        width: 550px;
-        flex-grow: 0;
-        border-radius: 50px;
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .search-form .form-control::placeholder {
-        color: #333;
-        opacity: 0.7;
-    }
-
-    .search-form .form-control:focus {
-        background-color: transparent;
-        color: #333;
-        box-shadow: none;
-    }
-
-    body.light-theme .search-form .form-control:-webkit-autofill,
-    body.light-theme .search-form .form-control:-webkit-autofill:hover,
-    body.light-theme .search-form .form-control:-webkit-autofill:focus,
-    body.light-theme .search-form .form-control:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
-        -webkit-text-fill-color: #333 !important;
-        background-color: transparent !important;
-        transition: background-color 5000s ease-in-out 0s;
-        box-shadow: inset 0 0 0 1000px #ffffff00, inset 2rem 0 0 0 #ffffff00 !important;
-    }
-
-    body.dark-theme .search-form .form-control:-webkit-autofill,
-    body.dark-theme .search-form .form-control:-webkit-autofill:hover,
-    body.dark-theme .search-form .form-control:-webkit-autofill:focus,
-    body.dark-theme .search-form .form-control:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px #2a2a2a inset !important;
-        -webkit-text-fill-color: #e0e0e0 !important;
-        background-color: transparent !important;
-        transition: background-color 5000s ease-in-out 0s;
-        box-shadow: inset 0 0 0 1000px #2a2a2a00, inset 2rem 0 0 0 #2a2a2a00 !important;
-    }
-
-    .search-form .form-control::-webkit-search-cancel-button {
-        -webkit-appearance: none;
-        appearance: none;
-        height: 16px;
-        width: 16px;
-        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>') no-repeat center;
-        background-size: contain;
-        cursor: pointer;
-        border-radius: 50px;
-        margin-right: 0.5rem;
-        position: absolute;
-        right: 3.5rem;
-    }
-
-    body.dark-theme .search-form .input-group-text {
-        color: #f0f0f0;
-    }
-
-    body.dark-theme .search-form .form-control {
-        color: #e0e0e0;
-        background-color: transparent;
-    }
-
-    body.dark-theme .search-form .form-control::placeholder {
-        color: #a0a0a0;
-    }
-
-    body.dark-theme .search-form .form-control::-webkit-search-cancel-button {
-        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>') no-repeat center;
-        background-size: contain;
-        cursor: pointer;
-        margin-right: 0.5rem;
-        position: absolute;
-        right: 3.5rem;
-    }
-
-    .close-search {
-        display: none;
-        font-size: 1rem;
-        color: #333;
-        cursor: pointer;
-        margin-left: 0.5rem;
-    }
-
-    body.dark-theme .close-search {
-        color: #e0e0e0;
-    }
-
-    .close-search:hover {
-        color: var(--primary-color);
-    }
-
-    .search-submit,
-    .search-filter {
-        position: absolute;
-        font-size: 1rem;
-        color: #333;
-        cursor: pointer;
-        padding: 0.375rem 0.5rem;
-        transition: color 0.3s ease, transform 0.3s ease;
-        z-index: 1;
-    }
-
-    .search-filter {
-        right: 2rem;
-    }
-
-    .search-submit {
-        right: 0.5rem;
-    }
-
-    body.dark-theme .search-submit,
-    body.dark-theme .search-filter {
-        color: #e0e0e0;
-    }
-
-    .search-submit:hover,
-    .search-filter:hover {
-        color: var(--primary-color);
-        transform: scale(1.1);
-    }
-
-    .nav-icon {
-        font-size: 1.2rem;
-        color: var(--text-color);
-        margin: 0 0.4rem;
-        position: relative;
-        transition: color 0.3s ease, transform 0.3s ease;
-    }
-
-    .nav-icon:hover {
-        color: var(--primary-color);
-        transform: scale(1.1);
-    }
-
-    .nav-icon.notification::after {
-        position: absolute;
-        top: -8px;
-        right: -8px;
-        background-color: #dc3545;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        visibility: visible;
-    }
-
-    .nav-icon.notification[data-count="0"]::after {
-        visibility: hidden;
-    }
-
-    .nav-profile {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: none;
-        transition: transform 0.3s ease;
-    }
-
-    .nav-profile:hover {
-        transform: scale(1.1);
-    }
-
-    .separator {
-        color: #6c757d;
-        margin: 0 0.4rem;
-        font-size: 1rem;
-    }
-
-    .search-separator {
-        display: none;
-        color: #6c757d;
-        margin: 0 0.4rem;
-        font-size: 1rem;
-    }
-
-    .dropdown-menu {
-        border-radius: 8px;
-        box-shadow: var(--shadow);
-        background-color: #ffffff;
-        min-width: 160px;
-    }
-
-    .dropdown-item {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: background-color 0.2s ease;
-    }
-
-    .dropdown-item i {
-        font-size: 1rem;
-    }
-
-    .dropdown-item:hover {
-        background-color: #e9ecef;
-    }
-
-    .filter-panel {
-        position: absolute;
-        top: 100%;
-        width: 300px;
-        max-height: 300px;
-        border-radius: 8px;
-        padding: 10px;
-        z-index: 1000;
-        display: none;
-        box-shadow: var(--shadow);
-        overflow-y: auto;
-        transition: all 0.3s ease;
-    }
-
-    .filter-panel::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    .filter-panel::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-
-    body.dark-theme .filter-panel::-webkit-scrollbar-track {
-        background: #2a2a2a;
-    }
-
-    .filter-panel::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 4px;
-    }
-
-    .filter-panel::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
-
-    body.light-theme .filter-panel {
-        background: #ffffff;
-        border: 1px solid #ddd;
-        color: #333;
-    }
-
-    body.dark-theme .filter-panel {
-        background: #333;
-        border: 1px solid #444;
-        color: #fff;
-    }
-
-    .filter-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 0;
-        border-bottom: 1px solid #ddd;
-    }
-
-    body.dark-theme .filter-header {
-        border-bottom: 1px solid #444;
-    }
-
-    .filter-title {
-        font-size: 16px;
-        font-weight: bold;
-    }
-
-    .filter-body {
-        padding: 8px 0;
-    }
-
-    .filter-option {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        margin-bottom: 8px;
-        font-size: 14px;
-    }
-
-    .filter-option label {
-        cursor: pointer;
-    }
-
-    body.light-theme .filter-option label {
-        color: #333;
-    }
-
-    body.dark-theme .filter-option label {
-        color: #e0e0e0;
-    }
-
-    .filter-option select.form-select {
-        width: 100%;
-        margin-top: 5px;
-        font-size: 14px;
-        padding: 6px;
-        border-radius: 4px;
-    }
-
-    body.light-theme .filter-option select.form-select {
-        background-color: #ffffff;
-        border: 1px solid #ddd;
-        color: #333;
-    }
-
-    body.dark-theme .filter-option select.form-select {
-        background-color: #2a2a2a;
-        border: 1px solid #444;
-        color: #e0e0e0;
-    }
-
-    .filter-actions {
-        display: flex;
-        justify-content: space-between;
-        padding-top: 10px;
-        border-top: 1px solid #ddd;
-    }
-
-    body.dark-theme .filter-actions {
-        border-top: 1px solid #444;
-    }
-
-    .filter-actions a:hover {
-        text-decoration: underline;
-    }
-
-    .notification-panel {
-        position: absolute;
-        top: 100%;
-        right: 10px;
-        width: 350px;
-        max-height: 300px;
-        border-radius: 8px;
-        padding: 10px;
-        z-index: 1000;
-        display: none;
-        box-shadow: var(--shadow);
-        overflow-y: auto;
-    }
-
-    .notification-panel::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    .notification-panel::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-
-    body.dark-theme .notification-panel::-webkit-scrollbar-track {
-        background: #2a2a2a;
-    }
-
-    .notification-panel::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 4px;
-    }
-
-    .notification-panel::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
-
-    body.light-theme .notification-panel {
-        background: #ffffff;
-        border: 1px solid #ddd;
-        color: #333;
-    }
-
-    body.dark-theme .notification-panel {
-        background: #333;
-        border: 1px solid #444;
-        color: #fff;
-    }
-
-    .notification-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 0;
-        border-bottom: 1px solid #ddd;
-    }
-
-    body.dark-theme .notification-header {
-        border-bottom: 1px solid #444;
-    }
-
-    .notification-title {
-        font-size: 16px;
-        font-weight: bold;
-    }
-
-    .notification-mark-read {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .notification-mark-read input[type="checkbox"] {
-        cursor: pointer;
-    }
-
-    .notification-mark-read-label {
-        font-size: 12px;
-        cursor: pointer;
-    }
-
-    body.light-theme .notification-mark-read-label {
-        color: #333;
-    }
-
-    body.dark-theme .notification-mark-read-label {
-        color: #e0e0e0;
-    }
-
-    .notification-body {
-        font-size: 14px;
-        padding: 8px 0;
-        display: flex;
-        align-items: flex-start;
-    }
-
-    body.light-theme .notification-body {
-        border-bottom: 1px solid #ddd;
-    }
-
-    body.dark-theme .notification-body {
-        border-bottom: 1px solid #444;
-    }
-
-    .notification-body:last-child {
-        border-bottom: none;
-    }
-
-    .notification-text {
-        flex: 1;
-    }
-
-    body.light-theme .notification-time {
-        color: #666;
-        font-size: 12px;
-    }
-
-    body.dark-theme .notification-time {
-        color: #aaa;
-        font-size: 12px;
-    }
-
-    .notification-link {
-        color: #1da1f2;
-        text-decoration: none;
-        font-size: 12px;
-    }
-
-    .notification-body::before {
-        content: "📌";
-        margin-right: 5px;
-    }
-
-    .see-all {
-        text-align: center;
-        padding-top: 10px;
-    }
-
-    .see-all a {
-        color: #1da1f2;
-        text-decoration: none;
-        font-size: 14px;
-    }
-
-    @media (max-width: 992px) {
-        .search-container {
-            flex-grow: 0;
-            width: 100%;
-            margin-top: 0.5rem;
+    <style>
+        :root {
+            --primary-color: #fb9a24;
+            --text-color: #212529;
+            --bg-light: #F6F9F7;
+            --bg-dark: #121212;
+            --navbar-bg-light: #ffffff;
+            --navbar-bg-dark: #0e0e0e;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        .nav-icons {
-            flex-wrap: nowrap;
-            gap: 0.3rem;
+
+        body {
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Arial', sans-serif;
         }
-        .separator {
-            display: none;
+
+        body.light-theme {
+            background-color: var(--bg-light);
+            color: var(--text-color);
         }
+
+        body.dark-theme {
+            background-color: var(--bg-dark);
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .navbar {
+            background-color: var(--navbar-bg-dark);
+            box-shadow: var(--shadow);
+        }
+
+        body.dark-theme .nav-icon, body.dark-theme .search-form .input-group-text {
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .nav-icon:hover {
+            color: #fb9a24;
+        }
+
+        body.dark-theme .search-form .input-group {
+            background-color: #2a2a2a;
+            border-color: #4a4a4a;
+        }
+
+        body.dark-theme .search-form .form-control {
+            color: #e0e0e0;
+            background-color: transparent;
+        }
+
+        body.dark-theme .search-form .form-control::placeholder {
+            color: #a0a0a0;
+        }
+
+        body.dark-theme .dropdown-menu {
+            background-color: #2a2a2a;
+            border-color: #4a4a4a;
+        }
+
+        body.dark-theme .dropdown-item {
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .dropdown-item:hover {
+            background-color: #3a3a3a;
+            color: #fb9a24;
+        }
+
         .navbar {
-            padding: 0.5rem;
+            background-color: var(--navbar-bg-light);
+            box-shadow: var(--shadow);
+            padding: 0.75rem 1rem;
+            transition: background-color 0.3s ease;
+            position: relative;
         }
-        .dropdown-menu {
-            min-width: 140px;
-        }
-    }
 
-    @media (max-width: 987px) {
         .navbar-brand img {
-            height: 30px;
+            height: 36px;
+            width: auto;
+            transition: transform 0.3s ease;
         }
-        .nav-icon {
-            font-size: 1rem;
-            margin: 0 0.3rem;
+
+        .navbar-brand img:hover {
+            transform: scale(1.1);
         }
-        .nav-profile {
-            width: 28px;
-            height: 28px;
-        }
-        .search-container {
+
+        .hidden {
             display: none;
         }
-        .search-icon {
-            display: block;
-        }
-        .close-search {
-            display: block;
-        }
-        .separator {
-            display: block;
-        }
-        .search-separator {
-            display: block;
-        }
-    }
 
-    @media (min-width: 987px) {
-        .search-icon {
-            display: none !important;
+        body.light-theme .logo-dark,
+        body.dark-theme .logo-light {
+            display: none;
         }
+
+        body.light-theme .logo-light,
+        body.dark-theme .logo-dark {
+            display: inline;
+        }
+
+        #navbarContent {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            padding: 0 0.5rem;
+            position: relative;
+        }
+
         .search-container-mobile {
-            display: none !important;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: var(--navbar-bg-light);
+            box-shadow: var(--shadow);
+            padding: 0.5rem 1rem;
+            display: none;
+            transition: all 0.3s ease;
         }
-        .search-separator {
-            display: none !important;
-        }
-    }
 
-    @media (max-width: 400px) {
-        .nav-icon {
-            font-size: 0.9rem;
-            margin: 0 0.2rem;
+        body.dark-theme .search-container-mobile {
+            background-color: var(--navbar-bg-dark);
         }
-        .nav-profile {
-            width: 24px;
-            height: 24px;
-        }
-        .navbar-brand img {
-            height: 28px;
-        }
+
         .search-icon {
+            display: none;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            margin: 0 0.4rem;
+        }
+
+        body.dark-theme .search-icon {
+            color: #e0e0e0;
+        }
+
+        .search-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .search-form {
+            flex-grow: 1;
+            max-width: 595px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        .search-form .input-group {
+            background-color: #ffffff;
+            border-radius: 20px;
+            border: 1px solid #282d31;
+            transition: border-color 0.3s;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 0 0.25rem;
+        }
+
+        .search-form .input-group:hover {
+            border-color: #929292;
+        }
+
+        .search-form .input-group-text {
+            background-color: transparent;
+            border: none;
+            padding: 0.375rem 0.5rem;
+            color: #333;
+        }
+
+        .search-form .form-control {
+            background-color: transparent;
+            border: none;
+            color: #333;
+            padding-left: 0.5rem;
+            padding-right: 3rem;
+            width: 550px;
+            flex-grow: 0;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .search-form .form-control::placeholder {
+            color: #333;
+            opacity: 0.7;
+        }
+
+        .search-form .form-control:focus {
+            background-color: transparent;
+            color: #333;
+            box-shadow: none;
+        }
+
+        body.light-theme .search-form .form-control:-webkit-autofill,
+        body.light-theme .search-form .form-control:-webkit-autofill:hover,
+        body.light-theme .search-form .form-control:-webkit-autofill:focus,
+        body.light-theme .search-form .form-control:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+            -webkit-text-fill-color: #333 !important;
+            background-color: transparent !important;
+            transition: background-color 5000s ease-in-out 0s;
+            box-shadow: inset 0 0 0 1000px #ffffff00, inset 2rem 0 0 0 #ffffff00 !important;
+        }
+
+        body.dark-theme .search-form .form-control:-webkit-autofill,
+        body.dark-theme .search-form .form-control:-webkit-autofill:hover,
+        body.dark-theme .search-form .form-control:-webkit-autofill:focus,
+        body.dark-theme .search-form .form-control:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #2a2a2a inset !important;
+            -webkit-text-fill-color: #e0e0e0 !important;
+            background-color: transparent !important;
+            transition: background-color 5000s ease-in-out 0s;
+            box-shadow: inset 0 0 0 1000px #2a2a2a00, inset 2rem 0 0 0 #2a2a2a00 !important;
+        }
+
+        .search-form .form-control::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 16px;
+            width: 16px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>') no-repeat center;
+            background-size: contain;
+            cursor: pointer;
+            border-radius: 50px;
+            margin-right: 0.5rem;
+            position: absolute;
+            right: 3.5rem;
+        }
+
+        body.dark-theme .search-form .input-group-text {
+            color: #f0f0f0;
+        }
+
+        body.dark-theme .search-form .form-control {
+            color: #e0e0e0;
+            background-color: transparent;
+        }
+
+        body.dark-theme .search-form .form-control::placeholder {
+            color: #a0a0a0;
+        }
+
+        body.dark-theme .search-form .form-control::-webkit-search-cancel-button {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>') no-repeat center;
+            background-size: contain;
+            cursor: pointer;
+            margin-right: 0.5rem;
+            position: absolute;
+            right: 3.5rem;
+        }
+
+        .close-search {
+            display: none;
+            font-size: 1rem;
+            color: #333;
+            cursor: pointer;
+            margin-left: 0.5rem;
+        }
+
+        body.dark-theme .close-search {
+            color: #e0e0e0;
+        }
+
+        .close-search:hover {
+            color: var(--primary-color);
+        }
+
+        .search-submit,
+        .search-filter {
+            position: absolute;
+            font-size: 1rem;
+            color: #333;
+            cursor: pointer;
+            padding: 0.375rem 0.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+            z-index: 1;
+        }
+
+        .search-filter {
+            right: 2rem;
+        }
+
+        .search-submit {
+            right: 0.5rem;
+        }
+
+        body.dark-theme .search-submit,
+        body.dark-theme .search-filter {
+            color: #2a2a2a;
+        }
+
+        .search-submit:hover,
+        .search-filter:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .nav-icon {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin: 0 0.4rem;
+            position: relative;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .nav-icon.notification::after {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #dc3545;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            visibility: visible;
+        }
+
+        .nav-icon.notification[data-count="0"]::after {
+            visibility: hidden;
+        }
+
+        .nav-profile {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-profile:hover {
+            transform: scale(1.1);
+        }
+
+        .separator {
+            color: #6c757d;
+            margin: 0 0.4rem;
             font-size: 1rem;
         }
+
+        .search-separator {
+            display: none;
+            color: #6c757d;
+            margin: 0 0.4rem;
+            font-size: 1rem;
+        }
+
         .dropdown-menu {
-            min-width: 120px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            background-color: #ffffff;
+            min-width: 160px;
         }
-    }
 
-    @media (max-width: 987px) {
+        .dropdown-item {
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .dropdown-item i {
+            font-size: 1rem;
+        }
+
+        .dropdown-item:hover {
+            background-color: #e9ecef;
+        }
+
         .filter-panel {
-            width: 90vw;
-            max-width: 350px;
-            left: 50% !important;
-            transform: translateX(-50%);
+            position: absolute;
+            top: 100%;
+            width: 300px;
+            max-height: 300px;
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 1000;
+            display: none;
+            box-shadow: var(--shadow);
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+
+        .filter-panel::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .filter-panel::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        body.dark-theme .filter-panel::-webkit-scrollbar-track {
+            background: #2a2a2a;
+        }
+
+        .filter-panel::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .filter-panel::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        body.light-theme .filter-panel {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+
+        body.dark-theme .filter-panel {
+            background: #333;
+            border: 1px solid #444;
+            color: #fff;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        body.dark-theme .filter-header {
+            border-bottom: 1px solid #444;
         }
 
         .filter-title {
-            font-size: 14px;
+            font-size: 16px;
+            font-weight: bold;
         }
 
-        .filter-option select.form-select {
-            font-size: 13px;
-            padding: 5px;
-        }
-
-        .filter-actions a {
-            font-size: 13px;
-        }
-    }
-
-    @media (max-width: 400px) {
-        .filter-panel {
-            width: 95vw;
-            max-width: 300px;
-            padding: 8px;
-        }
-
-        .filter-title {
-            font-size: 13px;
+        .filter-body {
+            padding: 8px 0;
         }
 
         .filter-option {
-            gap: 6px;
-            margin-bottom: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
 
         .filter-option label {
-            font-size: 13px;
+            cursor: pointer;
+        }
+
+        body.light-theme .filter-option label {
+            color: #333;
+        }
+
+        body.dark-theme .filter-option label {
+            color: #e0e0e0;
         }
 
         .filter-option select.form-select {
-            font-size: 12px;
-            padding: 4px;
+            width: 100%;
+            margin-top: 5px;
+            font-size: 14px;
+            padding: 6px;
+            border-radius: 4px;
+        }
+
+        body.light-theme .filter-option select.form-select {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+
+        body.dark-theme .filter-option select.form-select {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            color: #e0e0e0;
         }
 
         .filter-actions {
-            padding-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
         }
 
-        .filter-actions a {
+        body.dark-theme .filter-actions {
+            border-top: 1px solid #444;
+        }
+
+        .filter-actions a:hover {
+            text-decoration: underline;
+        }
+
+        .notification-panel {
+            position: absolute;
+            top: 100%;
+            right: 10px;
+            width: 350px;
+            max-height: 300px;
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 1000;
+            display: none;
+            box-shadow: var(--shadow);
+            overflow-y: auto;
+        }
+
+        .notification-panel::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .notification-panel::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        body.dark-theme .notification-panel::-webkit-scrollbar-track {
+            background: #2a2a2a;
+        }
+
+        .notification-panel::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .notification-panel::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        body.light-theme .notification-panel {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+
+        body.dark-theme .notification-panel {
+            background: #333;
+            border: 1px solid #444;
+            color: #fff;
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        body.dark-theme .notification-header {
+            border-bottom: 1px solid #444;
+        }
+
+        .notification-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .notification-mark-read {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .notification-mark-read input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .notification-mark-read-label {
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        body.light-theme .notification-mark-read-label {
+            color: #333;
+        }
+
+        body.dark-theme .notification-mark-read-label {
+            color: #e0e0e0;
+        }
+
+        .notification-body {
+            font-size: 14px;
+            padding: 8px 0;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        body.light-theme .notification-body {
+            border-bottom: 1px solid #ddd;
+        }
+
+        body.dark-theme .notification-body {
+            border-bottom: 1px solid #444;
+        }
+
+        .notification-body:last-child {
+            border-bottom: none;
+        }
+
+        .notification-text {
+            flex: 1;
+        }
+
+        body.light-theme .notification-time {
+            color: #666;
             font-size: 12px;
         }
-    }
-body.dark-theme .card {
-        background-color: #1e2a38;
-        border-color: #4a4a4a;
-    }
-
-    .footer_page {
-        background-color: #0F0F0F;
-        color: rgba(255, 255, 255, 0.7);
-        padding: 30px 0;
-        min-height: 100px;
-        text-align: center;
-    }
-
-    .footer_page .footer-text {
-        font-size: 1rem;
-        margin-bottom: 10px;
-    }
-
-    .footer_page .footer-links {
-        margin-bottom: 15px;
-    }
-
-    .footer_page .footer-link {
-        color: rgba(255, 255, 255, 0.7);
-        margin: 0 10px;
-        text-decoration: none;
-        transition: color 0.3s;
-    }
-
-    .footer_page .footer-link:hover {
-        color: #333;
-    }
-
-    .footer_page .social-icons {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    .footer_page .social-icon {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 1.5rem;
-        transition: color 0.3s;
-    }
-
-    .footer_page .social-icon:hover {
-        color: #333;
-    }
-
-    .footer_page {
-        height: auto;
-        padding: 20px 0;
-    }
-
-    .left-column {
-        min-height: 500px;
-    }
-
-    .right-column {
-        min-height: 500px;
-        padding: 15px;
-        border-radius: 8px;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        overflow-x: hidden;
-    }
-
-    body.light-theme .right-column {
-        background-color: #ffffff;
-        color: var(--text-color);
-        border: 1px solid #ddd;
-    }
-
-    body.dark-theme .right-column {
-        background-color: #333233;
-        color: #e0e0e0;
-        border: 1px solid #4a4a4a;
-    }
-
-    .grid-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 15px;
-        text-align: left;
-        transition: color 0.3s ease;
-    }
-
-    body.light-theme .grid-title {
-        color: var(--text-color);
-    }
-
-    body.dark-theme .grid-title {
-        color: #e0e0e0;
-    }
-
-    .grid-container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(3, 200px);
-        gap: 8px;
-        height: 650px;
-        max-width: 100%;
-        box-sizing: border-box;
-        padding: 10px;
-        border-radius: 8px;
-        transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-
-    body.light-theme .grid-container {
-        background-color: #ffffff;
-    }
-
-    body.dark-theme .grid-container {
-        background-color: #333233;
-    }
-
-    .grid-item {
-        background-color: #E6E6E6;
-        border-radius: 8px;
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        padding: 8px;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        overflow: hidden;
-    }
-
-    body.dark-theme .grid-item {
-        background-color: #2C2C2C;
-    }
-
-    .grid-item.active {
-        display: flex;
-    }
-
-    .grid-item:hover {
-        transform: translateY(-5px);
-    }
-
-    .grid-item .profile-img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 10px;
-        border: 2px solid #ffffff;
-        box-shadow: var(--shadow);
-    }
-
-    .grid-item .name {
-        font-size: 1rem;
-        font-weight: bold;
-        margin-bottom: 2px;
-        text-align: center;
-        transition: color 0.3s ease;
-    }
-
-    body.light-theme .grid-item .name {
-        color: #333;
-    }
-
-    body.dark-theme .grid-item .name {
-        color: #e0e0e0;
-    }
-
-    .grid-item .career {
-        font-size: 0.9rem;
-        margin-bottom: 8px;
-        text-align: center;
-        transition: color 0.3s ease;
-    }
-
-    body.light-theme .grid-item .career {
-        color: #555;
-    }
-
-    body.dark-theme .grid-item .career {
-        color: #aaa;
-    }
-
-    .grid-item .code-button {
-        background-color: var(--primary-color);
-        color: #ffffff;
-        border: none;
-        padding: 6px 15px;
-        border-radius: 4px;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        align-self: center;
-    }
-
-    .grid-item .code-button:hover {
-        background-color: #e68a1f;
-    }
-
-    .pagination-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 15px;
-        padding: 10px;
-        border-radius: 8px;
-        transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-
-    body.light-theme .pagination-container {
-        background-color: #ffffff;
-        
-    }
-
-    body.dark-theme .pagination-container {
-        background-color: #323233;
-        
-    }
-
-    .pagination {
-        display: flex;
-        gap: 5px;
-        padding: 0;
-        list-style: none;
-    }
-
-    .page-item {
-        display: flex;
-        align-items: center;
-    }
-
-    .page-link {
-        padding: 6px 12px;
-        border-radius: 4px;
-        text-decoration: none;
-        font-size: 0.9rem;
-        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        cursor: pointer;
-    }
-
-    body.light-theme .page-link {
-        background-color: #ffffff;
-        color: var(--text-color);
-        border: 1px solid #ddd;
-    }
-
-    body.dark-theme .page-link {
-        background-color: #333;
-        color: #e0e0e0;
-        border: 1px solid #4a4a4a;
-    }
-
-    .page-link:hover {
-        background-color: var(--primary-color);
-        color: #ffffff;
-        border-color: var(--primary-color);
-    }
-
-    .page-item.active .page-link {
-        background-color: var(--primary-color);
-        color: #ffffff;
-        border-color: var(--primary-color);
-    }
-
-    .page-item.disabled .page-link {
-        color: #6c757d;
-        pointer-events: none;
-        background-color: transparent;
-        border-color: #ddd;
-    }
-
-    body.dark-theme .page-item.disabled .page-link {
-        color: #4a4a4a;
-        border-color: #4a4a4a;
-    }
-
-    .menu{
-        padding: 15px;
-        margin-bottom: 15px;
-        border-radius: 2px;
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    body.light-theme .menu, body.light-theme .ranking {
-        background-color: #ffffff;
-        color: var(--text-color);
-        border: 1px solid #ddd;
-    }
-
-    body.dark-theme .menu, body.dark-theme .ranking {
-        background-color: #333233;
-        color: #e0e0e0;
-        border: 1px solid #4a4a4a;
-    }
-
-    .menu .menu-title {
-        font-size: 1.1rem;
-        font-weight: bold;
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .menu a {
-        display: block;
-        margin-bottom: 10px;
-        color: inherit;
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-
-    .menu a:hover {
-        color: var(--primary-color);
-    }
-
-    .menu button {
-        background-color: var(--primary-color);
-        color: #333;
-        border: none;
-        padding: 8px 15px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .menu button:hover {
-        background-color: #e68a1f;
-    }
-    #applyFiltersLarge, #clearFiltersLarge, #applyFiltersMobile, #clearFiltersMobile {
-        background-color: #fb9a24;
-        color: #ffffff;
-        border: none;
-        padding: 6px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    #applyFiltersLarge:hover, #clearFiltersLarge:hover, #applyFiltersMobile:hover, #clearFiltersMobile:hover {
-        background-color: #e68a1f;
-    }
-
-
-        /* Ranking Monitores Styles */
-.grid-item.ranking-monitores {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    max-height: var(--events-ranking-height);
-    flex: 0 0 var(--events-ranking-height);
-    overflow-y: auto;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-    background-color: var(--navbar-bg-light);
-    margin-bottom: 1rem;
-}
-
-body.dark-theme .grid-item.ranking-monitores {
-    background-color: #333333;
-    border-color: #4a4a4a;
-}
-
-.ranking-monitores h3 {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #333;
-}
-
-body.dark-theme .ranking-monitores h3 {
-    color: #e0e0e0;
-}
-
-.ranking-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.ranking-item {
-    width: 100%;
-}
-
-.ranking-card {
-    display: flex;
-    align-items: center;
-    padding: 0.3rem 0.8rem 0.3rem 0.3rem;
-    background-color: #e0e0e0;
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, background-color 0.3s ease;
-    position: relative;
-}
-
-body.dark-theme .ranking-card {
-    background-color: #444;
-}
-
-.ranking-card:hover {
-    transform: translateY(-2px);
-    background-color: #d0d0d0;
-}
-
-body.dark-theme .ranking-card:hover {
-    background-color: #555;
-}
-
-.ranking-position {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-    margin-right: 0.75rem;
-    margin-left: 0.5rem;
-}
-
-body.dark-theme .ranking-position {
-    color: #e0e0e0;
-}
-
-.ranking-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #fff;
-    margin-right: 0.5rem;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    position: relative;
-}
-
-body.dark-theme .ranking-image {
-    background-color: #333;
-    color: #aaa;
-}
-
-.ranking-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.ranking-name {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #333;
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-right: 0.5rem;
-}
-
-body.dark-theme .ranking-name {
-    color: #e0e0e0;
-}
-
-.ranking-score {
-    font-size: 0.9rem;
-    color: #333;
-    padding-left: 0.75rem;
-    border-left: 1px solid #ccc;
-}
-
-body.dark-theme .ranking-score {
-    color: #e0e0e0;
-    border-left: 1px solid #666;
-}
-
-@media (max-width: 992px) {
-    .grid-item.ranking-monitores {
-        max-height: var(--events-ranking-height);
-        flex: 0 0 var(--events-ranking-height);
-    }
-    .ranking-card {
-        padding: 0.2rem 0.6rem 0.2rem 0.2rem;
-    }
-    .ranking-image {
-        width: 45px;
-        height: 45px;
-    }
-    .ranking-position {
-        font-size: 1.1rem;
-        margin-right: 0.5rem;
-        margin-left: 0.4rem;
-    }
-    .ranking-name, .ranking-score {
-        font-size: 0.85rem;
-    }
-}
-
-@media (max-width: 400px) {
-    .ranking-card {
-        padding: 0.15rem 0.5rem 0.15rem 0.15rem;
-    }
-    .ranking-image {
-        width: 40px;
-        height: 40px;
-    }
-    .ranking-position {
-        font-size: 1rem;
-        margin-right: 0.3rem;
-        margin-left: 0.3rem;
-    }
-    .ranking-name, .ranking-score {
-        font-size: 0.8rem;
-    }
-}
-
-    
-</style>
+
+        body.dark-theme .notification-time {
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        .notification-link {
+            color: #1da1f2;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .notification-body::before {
+            content: "📌";
+            margin-right: 5px;
+        }
+
+        .see-all {
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        .see-all a {
+            color: #1da1f2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        @media (max-width: 992px) {
+            .search-container {
+                flex-grow: 0;
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+            .nav-icons {
+                flex-wrap: nowrap;
+                gap: 0.3rem;
+            }
+            .separator {
+                display: none;
+            }
+            .navbar {
+                padding: 0.5rem;
+            }
+            .dropdown-menu {
+                min-width: 140px;
+            }
+        }
+
+        @media (max-width: 987px) {
+            .navbar-brand img {
+                height: 30px;
+            }
+            .nav-icon {
+                font-size: 1rem;
+                margin: 0 0.3rem;
+            }
+            .nav-profile {
+                width: 28px;
+                height: 28px;
+            }
+            .search-container {
+                display: none;
+            }
+            .search-icon {
+                display: block;
+            }
+            .close-search {
+                display: block;
+            }
+            .separator {
+                display: block;
+            }
+            .search-separator {
+                display: block;
+            }
+        }
+
+        @media (min-width: 987px) {
+            .search-icon {
+                display: none !important;
+            }
+            .search-container-mobile {
+                display: none !important;
+            }
+            .search-separator {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .nav-icon {
+                font-size: 0.9rem;
+                margin: 0 0.2rem;
+            }
+            .nav-profile {
+                width: 24px;
+                height: 24px;
+            }
+            .navbar-brand img {
+                height: 28px;
+            }
+            .search-icon {
+                font-size: 1rem;
+            }
+            .dropdown-menu {
+                min-width: 120px;
+            }
+        }
+
+        @media (max-width: 987px) {
+            .filter-panel {
+                width: 90vw;
+                max-width: 350px;
+                left: 50% !important;
+                transform: translateX(-50%);
+            }
+
+            .filter-title {
+                font-size: 14px;
+            }
+
+            .filter-option select.form-select {
+                font-size: 13px;
+                padding: 5px;
+            }
+
+            .filter-actions a {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .filter-panel {
+                width: 95vw;
+                max-width: 300px;
+                padding: 8px;
+            }
+
+            .filter-title {
+                font-size: 13px;
+            }
+
+            .filter-option {
+                gap: 6px;
+                margin-bottom: 6px;
+            }
+
+            .filter-option label {
+                font-size: 13px;
+            }
+
+            .filter-option select.form-select {
+                font-size: 12px;
+                padding: 4px;
+            }
+
+            .filter-actions {
+                padding-top: 8px;
+            }
+
+            .filter-actions a {
+                font-size: 12px;
+            }
+        }
+
+        body.dark-theme .card {
+            background-color: #1e2a38;
+            border-color: #4a4a4a;
+        }
+
+        .footer_page {
+            background-color: #0F0F0F;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 30px 0;
+            min-height: 100px;
+            text-align: center;
+        }
+
+        .footer_page .footer-text {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .footer_page .footer-links {
+            margin-bottom: 15px;
+        }
+
+        .footer_page .footer-link {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer_page .footer-link:hover {
+            color: #333;
+        }
+
+        .footer_page .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer_page .social-icon {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer_page .social-icon:hover {
+            color: #333;
+        }
+
+        .footer_page {
+            height: auto;
+            padding: 20px 0;
+        }
+
+        .left-column {
+            min-height: 500px;
+        }
+
+        .right-column {
+            min-height: 500px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+        }
+
+        body.light-theme .right-column {
+            background-color: #ffffff;
+            color: var(--text-color);
+            border: 1px solid #ddd;
+        }
+
+        body.dark-theme .right-column {
+            background-color: #333233;
+            color: #e0e0e0;
+            border: 1px solid #4a4a4a;
+        }
+
+        .grid-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: left;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .grid-title {
+            color: var(--text-color);
+        }
+
+        body.dark-theme .grid-title {
+            color: #e0e0e0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 200px);
+            gap: 8px;
+            height: 650px;
+            max-width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body.light-theme .grid-container {
+            background-color: #ffffff;
+        }
+
+        body.dark-theme .grid-container {
+            background-color: #333233;
+        }
+
+        .grid-item {
+            background-color: #E6E6E6;
+            border-radius: 8px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        body.dark-theme .grid-item {
+            background-color: #2C2C2C;
+        }
+
+        .grid-item.active {
+            display: flex;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .grid-item .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 2px solid #ffffff;
+            box-shadow: var(--shadow);
+        }
+
+        .grid-item .name {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 2px;
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .grid-item .name {
+            color: #333;
+        }
+
+        body.dark-theme .grid-item .name {
+            color: #e0e0e0;
+        }
+
+        .grid-item .career {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .grid-item .career {
+            color: #555;
+        }
+
+        body.dark-theme .grid-item .career {
+            color: #aaa;
+        }
+
+        .grid-item .code-button {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 6px 15px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            align-self: center;
+        }
+
+        .grid-item .code-button:hover {
+            background-color: #e68a1f;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body.light-theme .pagination-container {
+            background-color: #ffffff;
+        }
+
+        body.dark-theme .pagination-container {
+            background-color: #323233;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 5px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .page-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .page-link {
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        body.light-theme .page-link {
+            background-color: #ffffff;
+            color: var(--text-color);
+            border: 1px solid #ddd;
+        }
+
+        body.dark-theme .page-link {
+            background-color: #333;
+            color: #e0e0e0;
+            border: 1px solid #4a4a4a;
+        }
+
+        .page-link:hover {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border-color: var(--primary-color);
+        }
+
+        .page-item.active .page-link {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border-color: var(--primary-color);
+        }
+
+        .page-item.disabled .page-link {
+            color: #6c757d;
+            pointer-events: none;
+            background-color: transparent;
+            border-color: #ddd;
+        }
+
+        body.dark-theme .page-item.disabled .page-link {
+            color: #4a4a4a;
+            border-color: #4a4a4a;
+        }
+
+        .menu {
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 2px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.light-theme .menu, body.light-theme .ranking {
+            background-color: #ffffff;
+            color: var(--text-color);
+            border: 1px solid #ddd;
+        }
+
+        body.dark-theme .menu, body.dark-theme .ranking {
+            background-color: #333233;
+            color: #e0e0e0;
+            border: 1px solid #4a4a4a;
+        }
+
+        .menu .menu-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu a {
+            display: block;
+            margin-bottom: 10px;
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu button {
+            background-color: var(--primary-color);
+            color: #333;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu button:hover {
+            background-color: #e68a1f;
+        }
+
+        #applyFiltersLarge, #clearFiltersLarge, #applyFiltersMobile, #clearFiltersMobile {
+            background-color: #fb9a24;
+            color: #ffffff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #applyFiltersLarge:hover, #clearFiltersLarge:hover, #applyFiltersMobile:hover, #clearFiltersMobile:hover {
+            background-color: #e68a1f;
+        }
+
+        .grid-item.ranking-monitores {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-height: var(--events-ranking-height);
+            flex: 0 0 var(--events-ranking-height);
+            overflow-y: auto;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            background-color: var(--navbar-bg-light);
+            margin-bottom: 1rem;
+        }
+
+        body.dark-theme .grid-item.ranking-monitores {
+            background-color: #333333;
+            border-color: #4a4a4a;
+        }
+
+        .ranking-monitores h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        body.dark-theme .ranking-monitores h3 {
+            color: #e0e0e0;
+        }
+
+        .ranking-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .ranking-item {
+            width: 100%;
+        }
+
+        .ranking-card {
+            display: flex;
+            align-items: center;
+            padding: 0.3rem 0.8rem 0.3rem 0.3rem;
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, background-color 0.3s ease;
+            position: relative;
+        }
+
+        body.dark-theme .ranking-card {
+            background-color: #444;
+        }
+
+        .ranking-card:hover {
+            transform: translateY(-2px);
+            background-color: #d0d0d0;
+        }
+
+        body.dark-theme .ranking-card:hover {
+            background-color: #555;
+        }
+
+        .ranking-position {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-right: 0.75rem;
+            margin-left: 0.5rem;
+        }
+
+        body.dark-theme .ranking-position {
+            color: #e0e0e0;
+        }
+
+        .ranking-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin-right: 0.5rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            position: relative;
+        }
+
+        body.dark-theme .ranking-image {
+            background-color: #333;
+            color: #aaa;
+        }
+
+        .ranking-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ranking-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #333;
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-right: 0.5rem;
+        }
+
+        body.dark-theme .ranking-name {
+            color: #e0e0e0;
+        }
+
+        .ranking-score {
+            font-size: 0.9rem;
+            color: #333;
+            padding-left: 0.75rem;
+            border-left: 1px solid #ccc;
+        }
+
+        body.dark-theme .ranking-score {
+            color: #e0e0e0;
+            border-left: 1px solid #666;
+        }
+
+        @media (max-width: 992px) {
+            .grid-item.ranking-monitores {
+                max-height: var(--events-ranking-height);
+                flex: 0 0 var(--events-ranking-height);
+            }
+            .ranking-card {
+                padding: 0.2rem 0.6rem 0.2rem 0.2rem;
+            }
+            .ranking-image {
+                width: 45px;
+                height: 45px;
+            }
+            .ranking-position {
+                font-size: 1.1rem;
+                margin-right: 0.5rem;
+                margin-left: 0.4rem;
+            }
+            .ranking-name, .ranking-score {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .ranking-card {
+                padding: 0.15rem 0.5rem 0.15rem 0.15rem;
+            }
+            .ranking-image {
+                width: 40px;
+                height: 40px;
+            }
+            .ranking-position {
+                font-size: 1rem;
+                margin-right: 0.3rem;
+                margin-left: 0.3rem;
+            }
+            .ranking-name, .ranking-score {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
 </head>
 <body class="light-theme">
     <header>
         <nav class="navbar navbar-expand" role="navigation" aria-label="Navegación principal">
             <div class="container-fluid">
-                <a class="navbar-brand" th:href="@{/}" aria-label="Volver a la página de inicio de UniLink">
+                <a class="navbar-brand" href="/" aria-label="Volver a la página de inicio de UniLink">
                     <div class="logo-container">
-                        <img th:src="@{/img/logo_sf.png}" class="logo-light hidden" alt="Logo de UniLink (modo claro)" width="36" height="36" loading="lazy">
-                        <img th:src="@{/img/logo_oscuro_sf.png}" class="logo-dark hidden" alt="Logo de UniLink (modo oscuro)" width="36" height="36" loading="lazy">
+                        <img src="/img/logo_sf.png" class="logo-light hidden" alt="Logo de UniLink (modo claro)" width="36" height="36" loading="lazy">
+                        <img src="/img/logo_oscuro_sf.png" class="logo-dark hidden" alt="Logo de UniLink (modo oscuro)" width="36" height="36" loading="lazy">
                     </div>
                 </a>
                 <div id="navbarContent">
                     <div class="search-container">
-                        <form class="d-flex search-form my-2 my-lg-0" th:action="@{/search}" method="get" role="search" aria-label="Buscar en el blog">
+                        <form class="d-flex search-form my-2 my-lg-0" action="/search" method="get" role="search" aria-label="Buscar en el blog">
                             <div class="input-group">
                                 <span class="input-group-text" aria-hidden="true">
                                     <i class="bi bi-search"></i>
@@ -1373,15 +1369,15 @@ body.dark-theme .ranking-score {
                             <i class="bi bi-search"></i>
                         </span>
                         <span class="search-separator">|</span>
-                        <a th:href="@{/cliente/inicio}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Inicio" aria-label="Ir a la página de inicio">
+                        <a href="/cliente/inicio" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Inicio" aria-label="Ir a la página de inicio">
                             <i class="bi bi-house-door-fill"></i>
                         </a>
                         <span class="separator">|</span>
-                        <a th:href="@{/nuevo_post}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Crear Post" aria-label="Crear un nuevo post">
+                        <a href="/nuevo_post" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Crear Post" aria-label="Crear un nuevo post">
                             <i class="bi bi-plus-circle-fill"></i>
                         </a>
                         <span class="separator">|</span>
-                        <a th:href="@{/monitor}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Monitor" aria-label="Ver Monitores">
+                        <a href="/monitor" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Monitor" aria-label="Ver Monitores">
                             <i class="bi bi-person-fill"></i>
                         </a>
                         <span class="separator">|</span>
@@ -1391,21 +1387,21 @@ body.dark-theme .ranking-score {
                         <span class="separator">|</span>
                         <div class="dropdown">
                             <a href="#" class="nav-icon" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones de perfil de usuario">
-                                <img th:src="@{/img/perfil.jpg}" alt="Foto de perfil del usuario" class="nav-profile" loading="lazy">
+                                <img src="/img/foto1.jpg" alt="Foto de perfil del usuario" class="nav-profile" loading="lazy">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                                <li><a class="dropdown-item" th:href="@{/perfil}"><i class="bi bi-person"></i> Perfil</a></li>
+                                <li><a class="dropdown-item" href="/perfil"><i class="bi bi-person"></i> Perfil</a></li>
                                 <li><a class="dropdown-item" href="#" id="themeToggle"><i class="bi bi-moon"></i> Modo Noche</a></li>
-                                <li><a class="dropdown-item" th:href="@{/config}"><i class="bi bi-gear"></i> Configuración</a></li>
+                                <li><a class="dropdown-item" href="/config"><i class="bi bi-gear"></i> Configuración</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" th:href="@{/custom-logout}"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item" href="/custom-logout"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="search-container-mobile">
-                <form class="d-flex search-form my-2 my-lg-0" th:action="@{/search}" method="get" role="search" aria-label="Buscar en el blog">
+                <form class="d-flex search-form my-2 my-lg-0" action="/search" method="get" role="search" aria-label="Buscar en el blog">
                     <div class="input-group">
                         <span class="input-group-text" aria-hidden="true">
                             <i class="bi bi-search"></i>
@@ -1417,7 +1413,7 @@ body.dark-theme .ranking-score {
                         <span class="search-submit" id="searchSubmitMobile" aria-label="Enviar búsqueda">
                             <i class="bi bi-arrow-right"></i>
                         </span>
-                        <span class="close-search" id="closeSearch" aria-label="Cerrar buscador">
+                        <span class="close-search" id="closeSearch" aria-label="Cerrar">
                             <i class="bi bi-x"></i>
                         </span>
                     </div>
@@ -1431,7 +1427,7 @@ body.dark-theme .ranking-score {
                                 <select id="categoryFilterMobile" name="category" class="form-select">
                                     <option value="">Todas</option>
                                     <option value="posts">Posts</option>
-                                    <option value="monitores">Moni</option>
+                                    <option value="monitores">Monitores</option>
                                     <option value="eventos">Eventos</option>
                                 </select>
                             </div>
@@ -1451,10 +1447,24 @@ body.dark-theme .ranking-score {
                         <label class="notification-mark-read-label" for="markReadCheckbox">Marcar como leídas</label>
                     </div>
                 </div>
-                <div th:each="notif : ${notificaciones}" class="notification-body">
+                <div class="notification-body">
                     <div class="notification-text">
-                        <span th:text="${notif.mensaje}">Texto de la notificación</span><br>
-                        <span class="notification-time" th:text="${notif.fecha_notificacion}">hace 10 minutos</span><br>
+                        <span>Nueva solicitud de monitoría recibida.</span><br>
+                        <span class="notification-time">hace 5 minutos</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="notification-body">
+                    <div class="notification-text">
+                        <span>Tu post ha recibido 100 me gusta.</span><br>
+                        <span class="notification-time">hace 1 hora</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="notification-body">
+                    <div class="notification-text">
+                        <span>Evento nacional programado para mañana.</span><br>
+                        <span class="notification-time">hace 2 horas</span><br>
                         <a href="#" class="notification-link">Ver más</a>
                     </div>
                 </div>
@@ -1464,10 +1474,10 @@ body.dark-theme .ranking-score {
             </div>
         </nav>
     </header>
-     <main class="container my-5" id="main-content">
+
+    <main class="container" id="main-content">
         <div class="row">
-            <!-- Left Column -->
-            <div class="col-md-3 left-column">
+            <div class="col-md-3">
                 <div class="menu">
                     <div class="menu-title">
                         <i class="bi bi-list"></i>
@@ -1475,311 +1485,305 @@ body.dark-theme .ranking-score {
                     </div>
                     <a href="/estado-solicitud">Estado de solicitud</a>
                     <a href="/calidad">Calendario</a>
-                    
                     <hr class="separator" style="margin-top: 10px;">
-                    <a th:href="@{/cliente/inicio}" style="text-align: center; margin-top: 5px;">Atras</a>
+                    <a href="/cliente/inicio" style="text-align: center; margin-top: 5px;">Atras</a>
                 </div>
                 <div class="grid-item ranking-monitores">
-                <h3 class="bi bi-trophy"> Ranking Monitores</h3>
-                <div class="ranking-list">
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">1</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Maricela</span>
-                            <span class="ranking-score">500pts</span>
+                    <h3><i class="bi bi-trophy"></i> Ranking Monitores</h3>
+                    <div class="ranking-list">
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">1</span>
+                                <div class="ranking-image"><img src="/img/foto1.jpg" alt="Foto de Maricela"></div>
+                                <span class="ranking-name">Maricela</span>
+                                <span class="ranking-score">500pts</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">2</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Juan</span>
-                            <span class="ranking-score">450pts</span>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">2</span>
+                                <div class="ranking-image"><img src="/img/foto2.jpg" alt="Foto de Juan"></div>
+                                <span class="ranking-name">Juan</span>
+                                <span class="ranking-score">450pts</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">3</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Pedro</span>
-                            <span class="ranking-score">400pts</span>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">3</span>
+                                <div class="ranking-image"><img src="/img/foto3.jpg" alt="Foto de Pedro"></div>
+                                <span class="ranking-name">Pedro</span>
+                                <span class="ranking-score">400pts</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">4</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Maria</span>
-                            <span class="ranking-score">380pts</span>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">4</span>
+                                <div class="ranking-image"><img src="/img/foto4.jpg" alt="Foto de Maria"></div>
+                                <span class="ranking-name">Maria</span>
+                                <span class="ranking-score">380pts</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">5</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Pablo</span>
-                            <span class="ranking-score">350pts</span>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">5</span>
+                                <div class="ranking-image"><img src="/img/foto1.jpg" alt="Foto de Pablo"></div>
+                                <span class="ranking-name">Pablo</span>
+                                <span class="ranking-score">350pts</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
-            <!-- Right Column -->
-            <div class="col-md-9 right-column">
-                <h2 class="grid-title">Monitores</h2>
-                <div class="grid-container">
-                    <div class="grid-item active">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Juan Pérez</div>
-                        <div class="career">Ingeniería Informática</div>
-                        <button class="code-button">Ver</button>
+            <div class="col-md-9">
+                <div class="right-column">
+                    <h2 class="grid-title">Monitores</h2>
+                    <div class="grid-container">
+                        <div class="grid-item active">
+                            <img src="/img/foto1.jpg" class="profile-img" alt="Foto de Juan Pérez">
+                            <div class="name">Juan Pérez</div>
+                            <div class="career">Ingeniería Informática</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item active">
+                            <img src="/img/foto2.jpg" class="profile-img" alt="Foto de Ana García">
+                            <div class="name">Ana García</div>
+                            <div class="career">Ciencias de Datos</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item active">
+                            <img src="/img/foto3.jpg" class="profile-img" alt="Foto de Luis Martínez">
+                            <div class="name">Luis Martínez</div>
+                            <div class="career">Ingeniería Civil</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item active">
+                            <img src="/img/foto4.jpg" class="profile-img" alt="Foto de María López">
+                            <div class="name">María López</div>
+                            <div class="career">Arquitectura</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item active">
+                            <img src="/img/foto1.jpg" class="profile-img" alt="Foto de Carlos Sánchez">
+                            <div class="name">Carlos Sánchez</div>
+                            <div class="career">Medicina</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item active">
+                            <img src="/img/foto2.jpg" class="profile-img" alt="Foto de Sofía Ramírez">
+                            <div class="name">Sofía Ramírez</div>
+                            <div class="career">Psicología</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item active">
+                            <img src="/img/foto3.jpg" class="profile-img" alt="Foto de Diego Torres">
+                            <div class="name">Diego Torres</div>
+                            <div class="career">Ingeniería Mecánica</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item active">
+                            <img src="/img/foto4.jpg" class="profile-img" alt="Foto de Laura Fernández">
+                            <div class="name">Laura Fernández</div>
+                            <div class="career">Derecho</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item active">
+                            <img src="/img/foto1.jpg" class="profile-img" alt="Foto de Pedro García">
+                            <div class="name">Pedro García</div>
+                            <div class="career">Economía</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item active">
+                            <img src="/img/foto2.jpg" class="profile-img" alt="Foto de Clara Morales">
+                            <div class="name">Clara Morales</div>
+                            <div class="career">Biología</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item active">
+                            <img src="/img/foto3.jpg" class="profile-img" alt="Foto de Andrés Vargas">
+                            <div class="name">Andrés Vargas</div>
+                            <div class="career">Química</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item active">
+                            <img src="/img/foto4.jpg" class="profile-img" alt="Foto de Elena Díaz">
+                            <div class="name">Elena Díaz</div>
+                            <div class="career">Física</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto1.jpg" class="profile-img" alt="Foto de Miguel Castro">
+                            <div class="name">Miguel Castro</div>
+                            <div class="career">Matemáticas</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto2.jpg" class="profile-img" alt="Foto de Carmen Ruiz">
+                            <div class="name">Carmen Ruiz</div>
+                            <div class="career">Historia</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto3.jpg" class="profile-img" alt="Foto de Javier Ortiz">
+                            <div class="name">Javier Ortiz</div>
+                            <div class="career">Filosofía</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto4.jpg" class="profile-img" alt="Foto de Isabel Mendoza">
+                            <div class="name">Isabel Mendoza</div>
+                            <div class="career">Literatura</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto1.jpg" class="profile-img" alt="Foto de Raúl Jiménez">
+                            <div class="name">Raúl Jiménez</div>
+                            <div class="career">Sociología</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto2.jpg" class="profile-img" alt="Foto de Patricia Navarro">
+                            <div class="name">Patricia Navarro</div>
+                            <div class="career">Antropología</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto3.jpg" class="profile-img" alt="Foto de Héctor Romero">
+                            <div class="name">Héctor Romero</div>
+                            <div class="career">Geografía</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto4.jpg" class="profile-img" alt="Foto de Mónica Salazar">
+                            <div class="name">Mónica Salazar</div>
+                            <div class="career">Artes Visuales</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto1.jpg" class="profile-img" alt="Foto de Gabriel Paredes">
+                            <div class="name">Gabriel Paredes</div>
+                            <div class="career">Música</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto2.jpg" class="profile-img" alt="Foto de Valeria Rojas">
+                            <div class="name">Valeria Rojas</div>
+                            <div class="career">Teatro</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto3.jpg" class="profile-img" alt="Foto de Ricardo Luna">
+                            <div class="name">Ricardo Luna</div>
+                            <div class="career">Danza</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto4.jpg" class="profile-img" alt="Foto de Natalia Campos">
+                            <div class="name">Natalia Campos</div>
+                            <div class="career">Fotografía</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto1.jpg" class="profile-img" alt="Foto de Álvaro Gómez">
+                            <div class="name">Álvaro Gómez</div>
+                            <div class="career">Ingeniería Eléctrica</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto2.jpg" class="profile-img" alt="Foto de Lucía Herrera">
+                            <div class="name">Lucía Herrera</div>
+                            <div class="career">Comunicación</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto3.jpg" class="profile-img" alt="Foto de Fernando Silva">
+                            <div class="name">Fernando Silva</div>
+                            <div class="career">Administración</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto4.jpg" class="profile-img" alt="Foto de Camila Vega">
+                            <div class="name">Camila Vega</div>
+                            <div class="career">Diseño Gráfico</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto1.jpg" class="profile-img" alt="Foto de Santiago Cruz">
+                            <div class="name">Santiago Cruz</div>
+                            <div class="career">Ingeniería Química</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto2.jpg" class="profile-img" alt="Foto de Paula Medina">
+                            <div class="name">Paula Medina</div>
+                            <div class="career">Periodismo</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto3.jpg" class="profile-img" alt="Foto de Mateo Flores">
+                            <div class="name">Mateo Flores</div>
+                            <div class="career">Ciencias Políticas</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto4.jpg" class="profile-img" alt="Foto de Daniela Rivas">
+                            <div class="name">Daniela Rivas</div>
+                            <div class="career">Nutrición</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto1.jpg" class="profile-img" alt="Foto de Nicolás Peralta">
+                            <div class="name">Nicolás Peralta</div>
+                            <div class="career">Ingeniería Ambiental</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto2.jpg" class="profile-img" alt="Foto de Verónica Castro">
+                            <div class="name">Verónica Castro</div>
+                            <div class="career">Educación</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto3.jpg" class="profile-img" alt="Foto de Esteban Morales">
+                            <div class="name">Esteban Morales</div>
+                            <div class="career">Ingeniería Industrial</div>
+                            <button class="code-button">Ver</button>
+                        </div>
+                        <div class="grid-item">
+                            <img src="/img/foto4.jpg" class="profile-img" alt="Foto de Juliana Acosta">
+                            <div class="name">Juliana Acosta</div>
+                            <div class="career">Marketing</div>
+                            <button class="code-button">Ver</button>
+                        </div>
                     </div>
-                    <div class="grid-item active">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Ana Gómez</div>
-                        <div class="career">Ciencias de Datos</div>
-                        <button class="code-button">Ver</button>
+                    <div class="pagination-container">
+                        <ul class="pagination">
+                            <li class="page-item disabled" id="prevPage">
+                                <a href="#" class="page-link" aria-label="Anterior">
+                                    <i class="bi bi-chevron-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item active"><a href="#" class="page-link" data-page="1">1</a></li>
+                            <li class="page-item"><a href="#" class="page-link" data-page="2">2</a></li>
+                            <li class="page-item"><a href="#" class="page-link" data-page="3">3</a></li>
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Siguiente" id="nextPage">
+                                    <i class="bi bi-chevron-right"></i>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="grid-item active">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Pablo Gómez</div>
-                        <div class="career">Ciencias de Datos</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item active">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Luis Martínez</div>
-                        <div class="career">Ingeniería Civil</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item active">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">María López</div>
-                        <div class="career">Arquitectura</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item active">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Carlos Sánchez</div>
-                        <div class="career">Medicina</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item active">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Sofía Ramírez</div>
-                        <div class="career">Psicología</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item active">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Diego Torres</div>
-                        <div class="career">Ingeniería Mecánica</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item active">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Laura Fernández</div>
-                        <div class="career">Derecho</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item active">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Pedro García</div>
-                        <div class="career">Economía</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item active">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Clara Morales</div>
-                        <div class="career">Biología</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item active">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Andrés Vargas</div>
-                        <div class="career">Química</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item active">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Elena Díaz</div>
-                        <div class="career">Física</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Miguel Castro</div>
-                        <div class="career">Matemáticas</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Carmen Ruiz</div>
-                        <div class="career">Historia</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Javier Ortiz</div>
-                        <div class="career">Filosofía</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Isabel Mendoza</div>
-                        <div class="career">Literatura</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Raúl Jiménez</div>
-                        <div class="career">Sociología</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Patricia Navarro</div>
-                        <div class="career">Antropología</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Héctor Romero</div>
-                        <div class="career">Geografía</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Mónica Salazar</div>
-                        <div class="career">Artes Visuales</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Gabriel Paredes</div>
-                        <div class="career">Música</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Valeria Rojas</div>
-                        <div class="career">Teatro</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Ricardo Luna</div>
-                        <div class="career">Danza</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Natalia Campos</div>
-                        <div class="career">Fotografía</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Álvaro Gómez</div>
-                        <div class="career">Ingeniería Eléctrica</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Lucía Herrera</div>
-                        <div class="career">Comunicación</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Fernando Silva</div>
-                        <div class="career">Administración</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Camila Vega</div>
-                        <div class="career">Diseño Gráfico</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Santiago Cruz</div>
-                        <div class="career">Ingeniería Química</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Paula Medina</div>
-                        <div class="career">Periodismo</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Mateo Flores</div>
-                        <div class="career">Ciencias Políticas</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Daniela Rivas</div>
-                        <div class="career">Nutrición</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Nicolás Peralta</div>
-                        <div class="career">Ingeniería Ambiental</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Verónica Castro</div>
-                        <div class="career">Educación</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Esteban Morales</div>
-                        <div class="career">Ingeniería Industrial</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                    <div class="grid-item">
-                        <img th:src="@{/img/perfil.jpg}" class="profile-img" alt="Foto de perfil">
-                        <div class="name">Juliana Acosta</div>
-                        <div class="career">Marketing</div>
-                        <button class="code-button">Ver</button>
-                    </div>
-                </div>
-                <div class="pagination-container">
-                    <ul class="pagination">
-                        <li class="page-item disabled" id="prevPage">
-                            <a class="page-link" href="#" aria-label="Anterior">
-                                <i class="bi bi-chevron-left"></i>
-                            </a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#" data-page="1">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#" data-page="2">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#" data-page="3">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Siguiente" id="nextPage">
-                                <i class="bi bi-chevron-right"></i>
-                            </a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
     </main>
-    <!-- Footer -->
+
     <footer class="footer_page">
-        <div class="container text-center">
-            <p class="footer-text">Copyright © UniLink 2025</p>
+        <div class="container">
+            <p class="footer-text">© UniLink</p>
             <div class="footer-links">
-                <a href="#vision-mision" class="footer-link">Mision y Vision</a> |
-                <a href="#nosotros" class="footer-link">Nosotros</a> |
-                <a href="#comentarios" class="footer-link">Comentarios</a>
+                <a href="#vision-mision" class="footer-link">Misión y Visión</a> |
+                <a href="#about-us" class="footer-link">Nosotros</a> |
+                <a href="#comments" class="footer-link">Comentarios</a>
             </div>
             <div class="social-icons">
                 <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>

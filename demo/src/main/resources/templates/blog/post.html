@@ -16,7 +16,7 @@
     <link rel="icon" href="/img/icono.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <style>
+    <style>
         :root {
             --primary-color: #fb9a24;
             --text-color: #212529;
@@ -58,12 +58,13 @@
             box-shadow: var(--shadow);
         }
 
-        body.dark-theme .nav-icon, body.dark-theme .search-form .input-group-text {
+        body.dark-theme .nav-icon,
+        body.dark-theme .search-form .input-group-text {
             color: #e0e0e0;
         }
 
         body.dark-theme .nav-icon:hover {
-            color: #fb9a24;
+            color: var(--primary-color);
         }
 
         body.dark-theme .search-form .input-group {
@@ -91,7 +92,7 @@
 
         body.dark-theme .dropdown-item:hover {
             background-color: #3a3a3a;
-            color: #fb9a24;
+            color: var(--primary-color);
         }
 
         body.dark-theme .card {
@@ -193,7 +194,7 @@
             background-color: #ffffff;
             border-radius: 20px;
             border: 1px solid #282d31;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s ease;
             display: flex;
             align-items: center;
             position: relative;
@@ -270,26 +271,9 @@
             right: 3.5rem;
         }
 
-        body.dark-theme .search-form .input-group-text {
-            color: #f0f0f0;
-        }
-
-        body.dark-theme .search-form .form-control {
-            color: #e0e0e0;
-            background-color: transparent;
-        }
-
-        body.dark-theme .search-form .form-control::placeholder {
-            color: #a0a0a0;
-        }
-
         body.dark-theme .search-form .form-control::-webkit-search-cancel-button {
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>') no-repeat center;
             background-size: contain;
-            cursor: pointer;
-            margin-right: 0.5rem;
-            position: absolute;
-            right: 3.5rem;
         }
 
         .close-search {
@@ -352,6 +336,7 @@
         }
 
         .nav-icon.notification::after {
+            content: '';
             position: absolute;
             top: -8px;
             right: -8px;
@@ -776,17 +761,9 @@
                 left: 50%;
                 transform: translateX(-50%);
             }
-
-            
-
             .filter-option select.form-select {
                 font-size: 13px;
             }
-
-            .padding {
-                font-size: 5px;
-            }
-
             .filter-actions {
                 font-size: 12px;
             }
@@ -798,46 +775,39 @@
                 max-height: 300px;
                 padding: 8px;
             }
-
             .filter-title {
                 font-size: 13px;
             }
-
             .filter-option {
                 padding: 6px;
                 margin-bottom: 6px;
-
             }
-
             .filter-option label {
                 font-size: 13px;
             }
-
             .filter-option select.form-select {
                 font-size: 12px;
                 padding: 4px;
             }
-
             .filter-actions {
                 padding-top: 8px;
             }
-
             .filter-actions a {
                 font-size: 12px;
             }
         }
 
-        /* Estilos modificados para los botones Aplicar y Limpiar del filtro */
+        /* Estilos para botones de filtro */
         #applyFiltersLarge, #clearFiltersLarge,
         #applyFiltersMobile, #clearFiltersMobile {
-            background-color: #fb9a24;
+            background-color: var(--primary-color);
             color: #ffffff;
             border: none;
             padding: 6px 12px;
             border-radius: 4px;
             font-size: 14px;
             cursor: pointer;
-            transition: background-color 0.3 ease;
+            transition: background-color 0.3s ease;
         }
 
         #applyFiltersLarge:hover, #clearFiltersLarge:hover,
@@ -845,13 +815,13 @@
             background-color: #e68a1f;
         }
 
-        /* New styles for comments section */
+        /* Comments section styles */
         .comments-section {
             margin-top: 2rem;
         }
 
         .join-conversation-btn {
-            background-color: #fb9a24;
+            background-color: var(--primary-color);
             color: #ffffff;
             border: none;
             padding: 8px 16px;
@@ -887,14 +857,14 @@
         body.dark-theme .comment-textarea {
             background-color: #2a2a2a;
             border-color: #444;
-            color: #e0e0e0e0;
+            color: #e0e0e0;
         }
 
         .comment-textarea::placeholder {
             color: #666;
         }
 
-        .dark-theme body.dark .comment-textarea::placeholder {
+        body.dark-theme .comment-textarea::placeholder {
             color: #aaa;
         }
 
@@ -915,7 +885,7 @@
             transition: color 0.3s ease;
         }
 
-        .dark-theme body.dark-theme .send-comment {
+        body.dark-theme .send-comment {
             color: #aaa;
         }
 
@@ -937,9 +907,9 @@
 
         body.dark-theme .cancel-comment {
             color: #aaa;
-            }
+        }
 
-        body.dark-theme .cancel-comment:hover {
+        .cancel-comment:hover {
             color: var(--primary-color);
         }
 
@@ -974,7 +944,7 @@
 
         body.dark-theme .reply-textarea::placeholder {
             color: #aaa;
-            }
+        }
 
         .reply-textarea:focus {
             outline: none;
@@ -1015,11 +985,11 @@
 
         body.dark-theme .cancel-reply {
             color: #aaa;
-            }
+        }
 
-        body.dark-theme .cancel-reply:hover {
+        .cancel-reply:hover {
             color: var(--primary-color);
-            }
+        }
 
         .comments-header {
             display: flex;
@@ -1047,16 +1017,19 @@
             padding: 1px 4px;
             border-radius: 4px;
             border: 1px solid #ddd;
-            background-color: white;
+            background-color: #ffffff;
             width: auto;
             height: 20px;
         }
 
         body.dark-theme .comments-sort select {
             background-color: #2a2a2a;
-            border: 1px solid #444;
+            border-color: #444;
             color: #e0e0e0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='%40' height='%40' fill='%23e0e0e0' class='bi bi-caret-down-fill' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23e0e0e0' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 10px;
         }
 
         /* Post-specific styles */
@@ -1128,10 +1101,9 @@
 
         .post-user-container {
             display: flex;
-            align-items: left;
+            align-items: center;
             margin-left: 10px;
             flex-grow: 1;
-            justify-content: left;
         }
 
         .post-avatar {
@@ -1202,7 +1174,7 @@
             display: flex;
             justify-content: flex-start;
             gap: 1.5rem;
-            padding: 0.5rem 1rem;
+            padding: 0.25rem 1rem;
             border-top: 1px solid #ddd;
         }
 
@@ -1261,7 +1233,7 @@
 
         body.dark-theme .post-menu .dropdown-menu {
             background-color: #2a2a2a;
-            border-color: #4a4a4a;
+            border-color: #333;
         }
 
         .post-menu .dropdown-item {
@@ -1282,12 +1254,7 @@
         }
 
         body.dark-theme .post-menu .dropdown-item:hover {
-            background-color: #222;
-            color: #121212;
-        }
-
-        .post-menu:hover {
-            background-color: none !important;
+            background-color: #3a3a3a;
         }
 
         /* Comment-specific styles */
@@ -1391,7 +1358,7 @@
             padding-bottom: 0.5rem;
         }
 
-        .center-column .content-post-card-column {
+        .center-column .content-post-card-column-column {
             flex: 0 0 auto;
         }
 
@@ -1415,14 +1382,14 @@
         }
 
         .footer_page .footer-links {
-            margin-bottom: 15px;
+            margin: 0 15px;
         }
 
         .footer_page .footer-link {
             color: rgba(255, 255, 255, 0.7);
             margin: 0 10px;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
         .footer_page .footer-link:hover {
@@ -1438,7 +1405,7 @@
         .footer_page .social-icon {
             color: rgba(255, 255, 255, 0.7);
             font-size: 1.5rem;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
         .footer_page .social-icon:hover {
@@ -1447,17 +1414,17 @@
 
         .footer_page {
             height: auto;
-            padding: 20px 0;
+            padding: 20px;
         }
 
-        /* Styles for Grid and Noticias */
+        /* Grid and Noticias styles */
         .grid-item {
-            border-radius: 10px;
-            padding: 1rem;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 2rem;
             overflow-y: auto;
             box-shadow: var(--shadow);
-            background-color: var(--navbar-bg-light);
-            margin-bottom: 1rem;
+            background-color: #ffffff;
         }
 
         body.dark-theme .grid-item {
@@ -1469,31 +1436,31 @@
         }
 
         .grid-item::-webkit-scrollbar-track {
-            background: var(--bg-light);
+            background-color: var(--bg-light);
         }
 
         body.dark-theme .grid-item::-webkit-scrollbar-track {
-            background: var(--bg-dark);
+            background-color: #333;
         }
 
         .grid-item::-webkit-scrollbar-thumb {
-            background: #222;
+            background-color: #222;
             border-radius: 4px;
         }
 
         .grid-item::-webkit-scrollbar-thumb:hover {
-            background: #555;
+            background-color: #555;
         }
 
-        .noticias {
+        .noticias-grid {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 2px;
         }
 
         .noticias h3 {
             margin: 0;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #333;
         }
 
@@ -1504,24 +1471,35 @@
         .noticias-list {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 2px;
         }
 
         .noticia-item {
             display: flex;
             flex-direction: column;
+            gap: 0.2rem;
         }
 
         .noticia-title {
             font-size: 0.9rem;
             font-weight: 500;
-            color: #1da1f2;
+            color: #333;
             text-decoration: none;
             margin-bottom: 0.2rem;
             display: -webkit-box;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            text-overflow: ellipsis;
+        }
+
+        body.dark-theme .noticia-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #ffffff;
+            text-decoration: none;
+            margin-bottom: 0.2rem;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .noticia-title:hover {
@@ -1539,183 +1517,180 @@
         }
 
         .noticia-divider {
-            border: none;
+            margin: 2.5px 0;
             height: 1px;
             background-color: #ddd;
-            margin: 0.3rem 0;
         }
 
         body.dark-theme .noticia-divider {
-            background-color: #4a4a4a;
+            background-color: #444;
         }
 
-        /* Ranking Monitores Styles */
-.grid-item.ranking-monitores {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    max-height: var(--events-ranking-height);
-    flex: 0 0 var(--events-ranking-height);
-    overflow-y: auto;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-    background-color: var(--navbar-bg-light);
-    margin-bottom: 1rem;
-}
+        /* Ranking Monitores styles */
+        .grid-item.ranking-monitores {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            max-height: var(--events-ranking-height);
+            height: var(--events-ranking-height);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            background-color: #ffffff;
+            margin-bottom: 1rem;
+        }
 
-body.dark-theme .grid-item.ranking-monitores {
-    background-color: #333333;
-    border-color: #4a4a4a;
-}
+        body.dark-theme .grid-item.ranking-monitores {
+            background-color: #333;
+            border-color: #4a4a4a;
+        }
 
-.ranking-monitores h3 {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #333;
-}
+        .ranking-monitores h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
 
-body.dark-theme .ranking-monitores h3 {
-    color: #e0e0e0;
-}
+        body.dark-theme .ranking-monitores h3 {
+            color: #e0e0e0;
+        }
 
-.ranking-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
+        .ranking-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
 
-.ranking-item {
-    width: 100%;
-}
+        .ranking-item {
+            width: auto;
+        }
 
-.ranking-card {
-    display: flex;
-    align-items: center;
-    padding: 0.3rem 0.8rem 0.3rem 0.3rem;
-    background-color: #e0e0e0;
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, background-color 0.3s ease;
-    position: relative;
-}
+        .ranking-card {
+            display: flex;
+            align-items: center;
+            padding: 0.3rem 0.8rem 0.3rem 0.3rem;
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, background-color 0.3s ease;
+            position: relative;
+        }
 
-body.dark-theme .ranking-card {
-    background-color: #444;
-}
+        body.dark-theme .ranking-card {
+            background-color: #444;
+        }
 
-.ranking-card:hover {
-    transform: translateY(-2px);
-    background-color: #d0d0d0;
-}
+        .ranking-card:hover {
+            transform: translateY(-2px);
+            background-color: #d0d0d0;
+        }
 
-body.dark-theme .ranking-card:hover {
-    background-color: #555;
-}
+        body.dark-theme .ranking-card:hover {
+            background-color: #555;
+        }
 
-.ranking-position {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-    margin-right: 0.75rem;
-    margin-left: 0.5rem;
-}
+        .ranking-position {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-right: 0.75rem;
+            margin-left: 0.5rem;
+        }
 
-body.dark-theme .ranking-position {
-    color: #e0e0e0;
-}
+        body.dark-theme .ranking-position {
+            color: #e0e0e0;
+        }
 
-.ranking-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #fff;
-    margin-right: 0.5rem;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    position: relative;
-}
+        .ranking-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin-right: 0.5rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            position: relative;
+        }
 
-body.dark-theme .ranking-image {
-    background-color: #333;
-    color: #aaa;
-}
+        body.dark-theme .ranking-image {
+            background-color: #333;
+            color: #aaa;
+        }
 
-.ranking-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+        .ranking-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.ranking-name {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #333;
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-right: 0.5rem;
-}
+        .ranking-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #333;
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-right: 0.5rem;
+        }
 
-body.dark-theme .ranking-name {
-    color: #e0e0e0;
-}
+        body.dark-theme .ranking-name {
+            color: #e0e0e0;
+        }
 
-.ranking-score {
-    font-size: 0.9rem;
-    color: #333;
-    padding-left: 0.75rem;
-    border-left: 1px solid #ccc;
-}
+        .ranking-score {
+            font-size: 0.9rem;
+            color: #333;
+            padding-left: 0.75rem;
+            border-left: 1px solid #ccc;
+        }
 
-body.dark-theme .ranking-score {
-    color: #e0e0e0;
-    border-left: 1px solid #666;
-}
+        body.dark-theme .ranking-score {
+            color: #e0e0e0;
+            border-left: 1px solid #666;
+        }
 
-@media (max-width: 992px) {
-    .grid-item.ranking-monitores {
-        max-height: var(--events-ranking-height);
-        flex: 0 0 var(--events-ranking-height);
-    }
-    .ranking-card {
-        padding: 0.2rem 0.6rem 0.2rem 0.2rem;
-    }
-    .ranking-image {
-        width: 45px;
-        height: 45px;
-    }
-    .ranking-position {
-        font-size: 1.1rem;
-        margin-right: 0.5rem;
-        margin-left: 0.4rem;
-    }
-    .ranking-name, .ranking-score {
-        font-size: 0.85rem;
-    }
-}
+        @media (max-width: 992px) {
+            .grid-item.ranking-monitores {
+                max-height: var(--events-ranking-height);
+            }
+            .ranking-card {
+                padding: 0.2rem 0.6rem 0.2rem 0.2rem;
+            }
+            .ranking-image {
+                width: 45px;
+                height: 45px;
+            }
+            .ranking-position {
+                font-size: 1.1rem;
+                margin-right: 0.5rem;
+                margin-left: 0.4rem;
+            }
+            .ranking-name, .ranking-score {
+                font-size: 0.85rem;
+            }
+        }
 
-@media (max-width: 400px) {
-    .ranking-card {
-        padding: 0.15rem 0.5rem 0.15rem 0.15rem;
-    }
-    .ranking-image {
-        width: 40px;
-        height: 40px;
-    }
-    .ranking-position {
-        font-size: 1rem;
-        margin-right: 0.3rem;
-        margin-left: 0.3rem;
-    }
-    .ranking-name, .ranking-score {
-        font-size: 0.8rem;
-    }
-}
+        @media (max-width: 400px) {
+            .ranking-card {
+                padding: 0.15rem 0.5rem 0.15rem 0.15rem;
+            }
+            .ranking-image {
+                width: 40px;
+                height: 40px;
+            }
+            .ranking-position {
+                font-size: 1rem;
+                margin-right: 0.3rem;
+                margin-left: 0.3rem;
+            }
+            .ranking-name, .ranking-score {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body class="light-theme">
@@ -1790,7 +1765,7 @@ body.dark-theme .ranking-score {
                         <span class="separator">|</span>
                         <div class="dropdown">
                             <a href="#" class="nav-icon" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones de perfil de usuario">
-                                <img th:src="@{/img/perfil.jpg}" alt="Foto de perfil del usuario" class="nav-profile" loading="lazy">
+                                <img th:src="@{/img/foto1.jpg}" alt="Foto de perfil del usuario" class="nav-profile" loading="lazy">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                                 <li><a class="dropdown-item" th:href="@{/perfil}"><i class="bi bi-person"></i> Perfil</a></li>
@@ -1820,179 +1795,156 @@ body.dark-theme .ranking-score {
                             <i class="bi bi-x"></i>
                         </span>
                     </div>
-            <div id="filterPanelMobile" class="filter-panel">
-                <div class="filter-header">
-                    <span class="filter-title">Filtros</span>
-                </div>
-                <div class="filter-body">
-                    <div class="filter-option">
-                        <label for="categoryFilterMobile">Categoría</label>
-                        <select id="categoryFilterMobile" name="category" class="filter-select">
-                            <option value="">Todas</option>
-                            <option value="posts">Posts</option>
-                            <option value="monitores">Monitores</option>
-                            <option value="eventos">Eventos</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="filter-actions">
-                    <button id="clearFiltersMobile" type="button">Limpiar</button>
-                    <button id="applyFiltersMobile" type="button">Aplicar</button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div id="notificationPanel" class="notification-panel">
-        <div class="notification-header">
-            <span class="notification-title">Notificaciones</span>
-            <div class="notification-mark-read">
-                <input type="checkbox" id="markReadCheckbox" aria-label="Marcar todas las notificaciones como leídas">
-                <label class="notification-mark-read-label" for="markReadCheckbox">Marcar como leídas</label>
-            </div>
-        </div>
-        <div th:each="notif : ${notificaciones}" class="notification-body">
-            <div class="notification-text">
-                <span th:text="${notif.mensaje}">Texto de la notificación</span><br>
-                <span class="notification-time" th:text="${notif.fecha_notificacion}">hace ahora</span><br>
-                <a href="#" class="notification-link">Ver más</a>
-            </div>
-        </div>
-        <div class="see-all">
-            <a th:href="@{/notificaciones}">Ver todo</a>
-        </div>
-    </div>
-</nav>
-</header>
-<main class="container my-5" id="main-content">
-    <div class="row">
-        <!-- Left Column: Post and Comments -->
-        <div class="col-lg-8">
-            <!-- Static Featured Post -->
-            <div class="post-card">
-                <div class="post-header">
-                    <a th:href="@{/cliente/inicio}" class="post-back" aria-label="Volver a la página principal">
-                        <i class="bi bi-arrow-left"></i>
-                    </a>
-                    <div class="post-user-container">
-                        <img src="/img/perfil.jpg" alt="Avatar de usuario" class="post-avatar" loading="lazy">
-                        <div class="post-user-info">
-                            <div class="post-username">Nombre de usuario</div>
-                            <div class="post-timestamp">2025-05-22</div>
+                    <div id="filterPanelMobile" class="filter-panel">
+                        <div class="filter-header">
+                            <span class="filter-title">Filtros</span>
+                        </div>
+                        <div class="filter-body">
+                            <div class="filter-option">
+                                <label for="categoryFilterMobile">Categoría</label>
+                                <select id="categoryFilterMobile" name="category" class="form-select">
+                                    <option value="">Todas</option>
+                                    <option value="posts">Posts</option>
+                                    <option value="monitores">Monitores</option>
+                                    <option value="eventos">Eventos</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="filter-actions">
+                            <button id="clearFiltersMobile" type="button">Limpiar</button>
+                            <button id="applyFiltersMobile" type="button">Aplicar</button>
                         </div>
                     </div>
-                    <div class="dropdown post-menu" onclick="event.stopPropagation()">
-                        <a href="#" class="nav-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones del post" onclick="event.stopPropagation()">
-                            <i class="bi bi-three-dots"></i>
+                </form>
+            </div>
+            <div id="notificationPanel" class="notification-panel">
+                <div class="notification-header">
+                    <span class="notification-title">Notificaciones</span>
+                    <div class="notification-mark-read">
+                        <input type="checkbox" id="markReadCheckbox" aria-label="Marcar todas las notificaciones como leídas">
+                        <label class="notification-mark-read-label" for="markReadCheckbox">Marcar como leídas</label>
+                    </div>
+                </div>
+                <div class="notification-body">
+                    <div class="notification-text">
+                        <span>Nueva solicitud de monitoría recibida.</span><br>
+                        <span class="notification-time">hace 5 minutos</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="notification-body">
+                    <div class="notification-text">
+                        <span>Tu post ha recibido 100 me gusta.</span><br>
+                        <span class="notification-time">hace 1 hora</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="notification-body">
+                    <div class="notification-text">
+                        <span>Evento nacional programado para mañana.</span><br>
+                        <span class="notification-time">hace 2 horas</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="see-all">
+                    <a th:href="@{/notificaciones}">Ver todo</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container my-5" id="main-content">
+        <div class="row">
+            <!-- Left Column: Post and Comments -->
+            <div class="col-lg-8">
+                <!-- Static Featured Post -->
+                <div class="post-card">
+                    <div class="post-header">
+                        <a th:href="@{/cliente/inicio}" class="post-back" aria-label="Volver a la página principal">
+                            <i class="bi bi-arrow-left"></i>
                         </a>
-                        <ul class="dropdown-menu" onclick="event.stopPropagation()">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-eye-slash"></i> Ocultar</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-share"></i> Compartir</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-flag"></i> Reportar</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <h5 class="post-title">Publicación Destacada</h5>
-                <img src="/img/post.png" alt="Imagen del post" class="post-image" loading="lazy">
-                <div class="post-body">
-                    <p class="post-text">Lorem ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que también ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenían pasajes de Lorem ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem ipsum.</p>
-                </div>
-                <div class="post-actions">
-                    <div class="post-action">
-                        <i class="bi bi-heart"></i>
-                        <span>0</span>
-                    </div>
-                    <div class="post-action">
-                        <i class="bi bi-chat"></i>
-                        <span>0</span>
-                    </div>
-                    <div class="post-action">
-                        <i class="bi bi-share"></i>
-                        <span>Compartir</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Comments Section -->
-            <div class="comments-section">
-                <button type="button" class="join-conversation-btn" id="joinConversationBtn">Comentar código</button>
-                <div class="comment-input" id="commentInput">
-                    <textarea class="comment-textarea" placeholder="Escribe tu comentario..." aria-label="Escribe tu comentario"></textarea>
-                    <button class="cancel-comment" aria-label="Cancelar comentario">
-                        <i class="bi bi-x"></i>
-                    </button>
-                    <button class="send-comment" aria-label="Enviar comentario">
-                        <i class="bi bi-send"></i>
-                    </button>
-                </div>
-                <div class="comments-header">
-                    <div class="comments-sort">
-                        <label for="sortComments">Ordenar por:</label>
-                        <select id="sortComments" class="form-select">
-                            <option value="mejor">Mejor</option>
-                            <option value="superior">Superior</option>
-                            <option value="nuevo">Nuevo</option>
-                            <option value="controversial">Controversial</option>
-                            <option value="viejo">Viejo</option>
-                            <option value="qa">Q&A</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="comments-list">
-                    <div class="comment" data-comment-id="1">
-                        <div class="comment-header">
-                            <div class="d-flex align-items-center">
-                                <img src="/img/perfil.jpg" alt="Avatar de usuario" class="comment-avatar" loading="lazy">
-                                <div class="comment-user-info">
-                                    <div class="comment-username">User123</div>
-                                    <div class="comment-timestamp">1d ago</div>
-                                </div>
+                        <div class="post-user-container">
+                            <img src="/img/foto3.jpg" alt="Avatar de usuario" class="post-avatar" loading="lazy">
+                            <div class="post-user-info">
+                                <div class="post-username">José María</div>
+                                <div class="post-timestamp">2025-06-01</div>
                             </div>
                         </div>
-                        <div class="comment-body">
-                            <p class="comment-text">This is a sample comment. It can contain thoughts, opinions, or reactions to the post.</p>
+                        <div class="dropdown post-menu" onclick="event.stopPropagation()">
+                            <a href="#" class="nav-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones del post" onclick="event.stopPropagation()">
+                                <i class="bi bi-three-dots"></i>
+                            </a>
+                            <ul class="dropdown-menu" onclick="event.stopPropagation()">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-eye-slash"></i> Ocultar</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-share"></i> Compartir</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-flag"></i> Reportar</a></li>
+                            </ul>
                         </div>
-                        <div class="comment-actions">
-                            <div class="comment-action">
-                                <i class="bi bi-heart"></i>
-                                <span>58</span>
-                            </div>
-                            <div class="comment-action reply-action" data-comment-id="1">
-                                <i class="bi bi-chat"></i>
-                                <span>Reply</span>
-                            </div>
-                            <div class="comment-action">
-                                <i class="bi bi-share"></i>
-                                <span>Share</span>
-                            </div>
+                    </div>
+                    <h5 class="post-title">Estrategias para usar Excel</h5>
+                    <img src="/img/post3.png" alt="Imagen del post" class="post-image" loading="lazy">
+                    <div class="post-body">
+                        <p class="post-text">Lorem ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que también ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenían pasajes de Lorem ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem ipsum.</p>
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">
+                            <i class="bi bi-heart"></i>
+                            <span>50</span>
                         </div>
-                        <div class="reply-input" id="replyInput-1" data-comment-id="1">
-                            <textarea class="reply-textarea" placeholder="Escribe tu respuesta..." aria-label="Escribe tu respuesta"></textarea>
-                            <button class="cancel-reply" aria-label="Cancelar respuesta">
-                                <i class="bi bi-x"></i>
-                            </button>
-                            <button class="send-reply" aria-label="Enviar respuesta">
-                                <i class="bi bi-send"></i>
-                            </button>
+                        <div class="post-action">
+                            <i class="bi bi-chat"></i>
+                            <span>10</span>
                         </div>
-                        <!-- Reply to the first comment -->
-                        <div class="comment comment-reply" data-comment-id="2">
+                        <div class="post-action">
+                            <i class="bi bi-share"></i>
+                            <span>Compartir</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <button type="button" class="join-conversation-btn" id="joinConversationBtn">Comentar código</button>
+                    <div class="comment-input" id="commentInput">
+                        <textarea class="comment-textarea" placeholder="Escribe tu comentario..." aria-label="Escribe tu comentario"></textarea>
+                        <button class="cancel-comment" aria-label="Cancelar comentario">
+                            <i class="bi bi-x"></i>
+                        </button>
+                        <button class="send-comment" aria-label="Enviar comentario">
+                            <i class="bi bi-send"></i>
+                        </button>
+                    </div>
+                    <div class="comments-header">
+                        <div class="comments-sort">
+                            <label for="sortComments">Ordenar por:</label>
+                            <select id="sortComments" class="form-select">
+                                <option value="mejor">Mejor</option>
+                                <option value="superior">Superior</option>
+                                <option value="nuevo">Nuevo</option>
+                                <option value="controversial">Controversial</option>
+                                <option value="viejo">Viejo</option>
+                                <option value="qa">Q&A</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="comments-list">
+                        <div class="comment" data-comment-id="1">
                             <div class="comment-header">
                                 <div class="d-flex align-items-center">
-                                    <img src="/img/perfil.jpg" alt="Avatar de usuario" class="comment-avatar" loading="lazy">
+                                    <img src="/img/foto1.jpg" alt="Avatar de Juan Pérez" class="comment-avatar" loading="lazy">
                                     <div class="comment-user-info">
-                                        <div class="comment-username">User456</div>
-                                        <div class="comment-timestamp">1d ago</div>
+                                        <div class="comment-username">Juan Pérez</div>
+                                        <div class="comment-timestamp">2025-06-06</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="comment-body">
-                                <p class="comment-text">This is a reply to the comment above.</p>
+                                <p class="comment-text">Ana es una excelente monitora, explica muy claro y siempre está dispuesta a ayudar.</p>
                             </div>
                             <div class="comment-actions">
                                 <div class="comment-action">
                                     <i class="bi bi-heart"></i>
-                                    <span>10</span>
+                                    <span>45</span>
                                 </div>
-                                <div class="comment-action reply-action" data-comment-id="2">
+                                <div class="comment-action reply-action" data-comment-id="1">
                                     <i class="bi bi-chat"></i>
                                     <span>Reply</span>
                                 </div>
@@ -2001,7 +1953,119 @@ body.dark-theme .ranking-score {
                                     <span>Share</span>
                                 </div>
                             </div>
-                            <div class="reply-input" id="replyInput-2" data-comment-id="2">
+                            <div class="reply-input" id="replyInput-1" data-comment-id="1">
+                                <textarea class="reply-textarea" placeholder="Escribe tu respuesta..." aria-label="Escribe tu respuesta"></textarea>
+                                <button class="cancel-reply" aria-label="Cancelar respuesta">
+                                    <i class="bi bi-x"></i>
+                                </button>
+                                <button class="send-reply" aria-label="Enviar respuesta">
+                                    <i class="bi bi-send"></i>
+                                </button>
+                            </div>
+                            <!-- Reply -->
+                            <div class="comment comment-reply" data-comment-id="2">
+                                <div class="comment-header">
+                                    <div class="d-flex align-items-center">
+                                        <img src="/img/foto5.jpg" alt="Avatar de Carlos Ramírez" class="comment-avatar" loading="lazy">
+                                        <div class="comment-user-info">
+                                            <div class="comment-username">Carlos Ramírez</div>
+                                            <div class="comment-timestamp">2025-06-25</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comment-body">
+                                    <p class="comment-text">Totalmente de acuerdo, las explicaciones son muy claras.</p>
+                                </div>
+                                <div class="comment-actions">
+                                    <div class="comment-action">
+                                        <i class="bi bi-heart"></i>
+                                        <span>5</span>
+                                    </div>
+                                    <div class="comment-action reply-action" data-comment-id="2">
+                                        <i class="bi bi-chat"></i>
+                                        <span>Reply</span>
+                                    </div>
+                                    <div class="comment-action">
+                                        <i class="bi bi-share"></i>
+                                        <span>Share</span>
+                                    </div>
+                                </div>
+                                <div class="reply-input" id="replyInput-2" data-comment-id="2">
+                                    <textarea class="reply-textarea" placeholder="Escribe tu respuesta..." aria-label="Escribe tu respuesta"></textarea>
+                                    <button class="cancel-reply" aria-label="Cancelar respuesta">
+                                        <i class="bi bi-x"></i>
+                                    </button>
+                                    <button class="send-reply" aria-label="Enviar respuesta">
+                                        <i class="bi bi-send"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment" data-comment-id="3">
+                            <div class="comment-header">
+                                <div class="d-flex align-items-center">
+                                    <img src="/img/foto2.jpg" alt="Avatar de María González" class="comment-avatar" loading="lazy">
+                                    <div class="comment-user-info">
+                                        <div class="comment-username">María González</div>
+                                        <div class="comment-timestamp">2025-06-05</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-body">
+                                <p class="comment-text">Gracias a las asesorías de Ana, logré aprobar mi curso de algoritmos con una gran nota.</p>
+                            </div>
+                            <div class="comment-actions">
+                                <div class="comment-action">
+                                    <i class="bi bi-heart"></i>
+                                    <span>50</span>
+                                </div>
+                                <div class="comment-action reply-action" data-comment-id="3">
+                                    <i class="bi bi-chat"></i>
+                                    <span>Reply</span>
+                                </div>
+                                <div class="comment-action">
+                                    <i class="bi bi-share"></i>
+                                    <span>Share</span>
+                                </div>
+                            </div>
+                            <div class="reply-input" id="replyInput-3" data-comment-id="3">
+                                <textarea class="reply-textarea" placeholder="Escribe tu respuesta..." aria-label="Escribe tu respuesta"></textarea>
+                                <button class="cancel-reply" aria-label="Cancelar respuesta">
+                                    <i class="bi bi-x"></i>
+                                </button>
+                                <button class="send-reply" aria-label="Enviar respuesta">
+                                    <i class="bi bi-send"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="comment" data-comment-id="4">
+                            <div class="comment-header">
+                                <div class="d-flex align-items-center">
+                                    <img src="/img/foto5.jpg" alt="Avatar de Carlos Ramírez" class="comment-avatar" loading="lazy">
+                                    <div class="comment-user-info">
+                                        <div class="comment-username">Carlos Ramírez</div>
+                                        <div class="comment-timestamp">2025-06-04</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-body">
+                                <p class="comment-text">Sus talleres de desarrollo web son muy prácticos y fáciles de seguir.</p>
+                            </div>
+                            <div class="comment-actions">
+                                <div class="comment-action">
+                                    <i class="bi bi-heart"></i>
+                                    <span>30</span>
+                                </div>
+                                <div class="comment-action reply-action" data-comment-id="4">
+                                    <i class="bi bi-chat"></i>
+                                    <span>Reply</span>
+                                </div>
+                                <div class="comment-action">
+                                    <i class="bi bi-share"></i>
+                                    <span>Share</span>
+                                </div>
+                            </div>
+                            <div class="reply-input" id="replyInput-4" data-comment-id="4">
                                 <textarea class="reply-textarea" placeholder="Escribe tu respuesta..." aria-label="Escribe tu respuesta"></textarea>
                                 <button class="cancel-reply" aria-label="Cancelar respuesta">
                                     <i class="bi bi-x"></i>
@@ -2012,123 +2076,94 @@ body.dark-theme .ranking-score {
                             </div>
                         </div>
                     </div>
-                    <div class="comment" data-comment-id="3">
-                        <div class="comment-header">
-                            <div class="d-flex align-items-center">
-                                <img src="/img/perfil.jpg" alt="Avatar de usuario" class="comment-avatar" loading="lazy">
-                                <div class="comment-user-info">
-                                    <div class="comment-username">User789</div>
-                                    <div class="comment-timestamp">1d ago</div>
-                                </div>
+                </div>
+            </div>
+            <!-- Right Column: Ranking and Noticias -->
+            <div class="col-lg-4">
+                <div class="grid-item ranking-monitores">
+                    <h3><i class="bi bi-trophy"></i> Ranking Monitores</h3>
+                    <div class="ranking-list">
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">1</span>
+                                <div class="ranking-image"><img src="/img/foto2.jpg" alt="Foto de Maricela"></div>
+                                <span class="ranking-name">Maricela</span>
+                                <span class="ranking-score">500pts</span>
                             </div>
                         </div>
-                        <div class="comment-body">
-                            <p class="comment-text">Another comment on the post.</p>
-                        </div>
-                        <div class="comment-actions">
-                            <div class="comment-action">
-                                <i class="bi bi-heart"></i>
-                                <span>20</span>
-                            </div>
-                            <div class="comment-action reply-action" data-comment-id="3">
-                                <i class="bi bi-chat"></i>
-                                <span>Reply</span>
-                            </div>
-                            <div class="comment-action">
-                                <i class="bi bi-share"></i>
-                                <span>Share</span>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">2</span>
+                                <div class="ranking-image"><img src="/img/foto1.jpg" alt="Foto de Juan"></div>
+                                <span class="ranking-name">Juan</span>
+                                <span class="ranking-score">450pts</span>
                             </div>
                         </div>
-                        <div class="reply-input" id="replyInput-3" data-comment-id="3">
-                            <textarea class="reply-textarea" placeholder="Escribe tu respuesta..." aria-label="Escribe tu respuesta"></textarea>
-                            <button class="cancel-reply" aria-label="Cancelar respuesta">
-                                <i class="bi bi-x"></i>
-                            </button>
-                            <button class="send-reply" aria-label="Enviar respuesta">
-                                <i class="bi bi-send"></i>
-                            </button>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">3</span>
+                                <div class="ranking-image"><img src="/img/foto4.jpg" alt="Foto de Pedro"></div>
+                                <span class="ranking-name">Pedro</span>
+                                <span class="ranking-score">400pts</span>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">4</span>
+                                <div class="ranking-image"><img src="/img/foto3.jpg" alt="Foto de Maria"></div>
+                                <span class="ranking-name">Maria</span>
+                                <span class="ranking-score">380pts</span>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">5</span>
+                                <div class="ranking-image"><img src="/img/foto5.jpg" alt="Foto de Pablo"></div>
+                                <span class="ranking-name">Pablo</span>
+                                <span class="ranking-score">350pts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-item noticias">
+                    <h3 class="bi bi-megaphone"> Noticias</h3>
+                    <hr class="noticia-divider">
+                    <div class="noticias-list">
+                        <div class="noticia-item">
+                            <a href="/noticia/1" class="noticia-title">Lanzamiento de nuevo curso de Python</a>
+                            <span class="noticia-timestamp">06/06/2025</span>
+                            <hr class="noticia-divider"/>
+                        </div>
+                        <div class="noticia-item">
+                            <a href="/noticia/2" class="noticia-title">Hackatón Nacional 2025 anunciado</a>
+                            <span class="noticia-timestamp">05/06/2025</span>
+                            <hr class="noticia-divider"/>
+                        </div>
+                        <div class="noticia-item">
+                            <a href="/noticia/3" class="noticia-title">UniLink alcanza 10,000 usuarios</a>
+                            <span class="noticia-timestamp">04/06/2025</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Right Column: Ranking and Noticias -->
-        <div class="col-lg-4">
-            <div class="grid-item ranking-monitores">
-                <h3 class="bi bi-trophy"> Ranking Monitores</h3>
-                <div class="ranking-list">
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">1</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Maricela</span>
-                            <span class="ranking-score">500pts</span>
-                        </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">2</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Juan</span>
-                            <span class="ranking-score">450pts</span>
-                        </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">3</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Pedro</span>
-                            <span class="ranking-score">400pts</span>
-                        </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">4</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Maria</span>
-                            <span class="ranking-score">380pts</span>
-                        </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">5</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Pablo</span>
-                            <span class="ranking-score">350pts</span>
-                        </div>
-                    </div>
-                </div>
+    </main>
+    <!-- Footer -->
+    <footer class="footer_page">
+        <div class="container text-center">
+            <p class="footer-text">Copyright © UniLink 2025</p>
+            <div class="footer-links">
+                <a href="#vision-mision" class="footer-link">Mision y Vision</a> |
+                <a href="#nosotros" class="footer-link">Nosotros</a> |
+                <a href="#comentarios" class="footer-link">Comentarios</a>
             </div>
-            <div class="grid-item noticias">
-                <h3 class="bi bi-megaphone"> Noticias</h3>
-                <hr class="noticia-divider">
-                <div class="noticias-list">
-                    <div th:each="noticia, iterStat : ${noticias}" class="noticia-item">
-                        <a th:href="@{/noticia/{id}(id=${noticia.id})}" class="noticia-title" th:text="${noticia.titulo}">Título de la noticia</a>
-                        <span class="noticia-timestamp" th:text="${noticia.fechaPublicacion}">hace 5 minutos</span>
-                        <hr class="noticia-divider" th:if="${!iterStat.last}"/>
-                    </div>
-                </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
-    </div>
-</main>
-<!-- Footer -->
-<footer class="footer_page">
-    <div class="container text-center">
-        <p class="footer-text">Copyright © UniLink 2025</p>
-        <div class="footer-links">
-            <a href="#vision-mision" class="footer-link">Mision y Vision</a> |
-            <a href="#nosotros" class="footer-link">Nosotros</a> |
-            <a href="#comentarios" class="footer-link">Comentarios</a>
-        </div>
-        <div class="social-icons">
-            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-        </div>
-    </div>
-</footer>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         function toggleNotifications() {

@@ -1963,7 +1963,7 @@
                         <span class="separator">|</span>
                         <div class="dropdown">
                             <a href="#" class="nav-icon" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones de perfil de usuario">
-                                <img th:src="@{/img/perfil.jpg}" alt="Foto de perfil del usuario" class="nav-profile" loading="lazy">
+                                <img th:src="@{/img/foto1.jpg}" alt="Foto de perfil del usuario" class="nav-profile" loading="lazy">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                                 <li><a class="dropdown-item" th:href="@{/perfil}"><i class="bi bi-person"></i> Perfil</a></li>
@@ -2023,10 +2023,24 @@
                         <label class="notification-mark-read-label" for="markReadCheckbox">Marcar como leídas</label>
                     </div>
                 </div>
-                <div th:each="notif : ${notificaciones}" class="notification-body">
+                <div class="notification-body">
                     <div class="notification-text">
-                        <span th:text="${notif.mensaje}">Texto de la notificación</span><br>
-                        <span class="notification-time" th:text="${notif.fecha_notificacion}">hace 10 minutos</span><br>
+                        <span>Nueva solicitud de monitoría recibida.</span><br>
+                        <span class="notification-time">hace 5 minutos</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="notification-body">
+                    <div class="notification-text">
+                        <span>Tu post ha recibido 100 me gusta.</span><br>
+                        <span class="notification-time">hace 1 hora</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="notification-body">
+                    <div class="notification-text">
+                        <span>Evento nacional programado para mañana.</span><br>
+                        <span class="notification-time">hace 2 horas</span><br>
                         <a href="#" class="notification-link">Ver más</a>
                     </div>
                 </div>
@@ -2041,19 +2055,19 @@
             <section class="col-md-8 mb-3">
                 <div class="card mb-3 p-3">
                     <div class="user-info">
-                        <div class="user-banner" >
-                            <img src="/img/ads.jpg" alt="Perfil Banner" >
+                        <div class="user-banner">
+                            <img src="/img/ads.jpg" alt="Perfil Banner">
                         </div>
                         <div class="user-content">
                             <div class="user-photo">
                                 <div class="foto">
-                                    <img th:src="@{/img/perfil.jpg}" alt="Foto de perfil del usuario" >
+                                    <img th:src="@{/img/foto1.jpg}" alt="Foto de perfil del usuario">
                                 </div>
                             </div>
                             <div class="user-details">
-                                <h2 class="fw-bold">Nombre del Usuario</h2>
+                                <h2 class="fw-bold">Juan Pérez</h2>
                                 <p class="text-muted"><i class="bi bi-mortarboard-fill"></i> Ingeniería de Sistemas</p>
-                                <p><strong>Presentación:</strong> Apasionado por compartir conocimiento y apoyar a otros estudiantes.</p>
+                                <p><strong>Presentación:</strong> Apasionada por la programación y la enseñanza, con experiencia en guiar a estudiantes hacia el éxito académico.</p>
                                 <button class="btn btn-warning btn-sm" style="padding: 0.25rem 0.75rem;">Solicitar Monitoría</button>
                             </div>
                         </div>
@@ -2064,8 +2078,10 @@
                         <h3><i class="bi bi-tools"></i> Áreas de Apoyo</h3>
                         <hr class="apoyo-divider">
                         <div class="apoyo-list">
-                            <span th:each="area, iterStat : ${areasApoyo}" class="apoyo-item" th:text="${area.nombre}">Área</span>
-                            <span th:each="area, iterStat : ${areasApoyo}" th:if="${!iterStat.last}" class="apoyo-divider">|</span>
+                            <span class="apoyo-item">Programación en Python,</span>
+                            <span class="apoyo-item"> Bases de Datos,</span>
+                            <span class="apoyo-item"> Algoritmos,</span>
+                            <span class="apoyo-item"> Desarrollo Web</span>
                         </div>
                     </div>
                 </div>
@@ -2073,7 +2089,7 @@
                     <div class="descripcion">
                         <h3><i class="bi bi-card-text"></i> Descripción</h3>
                         <hr class="descripcion-divider">
-                        <p class="descripcion-text" th:text="${descripcion}">Monitor con experiencia en asesorías académicas personalizadas, talleres grupales y desarrollo de proyectos estudiantiles.</p>
+                        <p class="descripcion-text">Soy una monitora con más de 2 años de experiencia en asesorías personalizadas en programación y bases de datos. He liderado talleres grupales sobre algoritmos y desarrollo web, ayudando a estudiantes a desarrollar proyectos innovadores y mejorar sus habilidades técnicas.</p>
                     </div>
                 </div>
                 <div class="card mb-3 p-3">
@@ -2081,18 +2097,18 @@
                         <h3><i class="bi bi-envelope"></i> Contacto</h3>
                         <hr class="contacto-divider">
                         <div class="contacto-info">
-                            <p><i class="bi bi-whatsapp"></i> <strong>Teléfono:</strong> 000000000</p>
+                            <p><i class="bi bi-whatsapp"></i> <strong>Teléfono:</strong> +57 312 345 6789</p>
                             <span class="contacto-separator">|</span>
-                            <p><i class="bi bi-envelope"></i> <strong>Email:</strong> ejemplo@correo.com</p>
+                            <p><i class="bi bi-envelope"></i> <strong>Email:</strong> ana.lopez@unilink.com</p>
                         </div>
                         <div class="contacto-social">
-                            <a href="#" target="_blank" aria-label="Twitter">
+                            <a href="https://twitter.com/ana_lopez" target="_blank" aria-label="Twitter">
                                 <i class="bi bi-twitter-x"></i>
                             </a>
-                            <a href="#" target="_blank" aria-label="LinkedIn">
+                            <a href="https://linkedin.com/in/ana-lopez" target="_blank" aria-label="LinkedIn">
                                 <i class="bi bi-linkedin"></i>
                             </a>
-                            <a href="#" target="_blank" aria-label="Instagram">
+                            <a href="https://instagram.com/ana_lopez" target="_blank" aria-label="Instagram">
                                 <i class="bi bi-instagram"></i>
                             </a>
                         </div>
@@ -2157,58 +2173,67 @@
                     </div>
                 </div>
                 <div class="grid-item ranking-monitores">
-                    <h3 class="bi bi-trophy"> Ranking Monitores</h3>
+                    <h3><i class="bi bi-trophy"></i> Ranking Monitores</h3>
                     <div class="ranking-list">
                         <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">1</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Maricela</span>
-                            <span class="ranking-score">500pts</span>
+                            <div class="ranking-card">
+                                <span class="ranking-position">1</span>
+                                <div class="ranking-image"><img src="/img/foto2.jpg" alt="Foto de Maricela"></div>
+                                <span class="ranking-name">Maricela</span>
+                                <span class="ranking-score">500pts</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">2</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Juan</span>
-                            <span class="ranking-score">450pts</span>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">2</span>
+                                <div class="ranking-image"><img src="/img/foto1.jpg" alt="Foto de Juan"></div>
+                                <span class="ranking-name">Juan</span>
+                                <span class="ranking-score">450pts</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">3</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Pedro</span>
-                            <span class="ranking-score">400pts</span>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">3</span>
+                                <div class="ranking-image"><img src="/img/foto4.jpg" alt="Foto de Pedro"></div>
+                                <span class="ranking-name">Pedro</span>
+                                <span class="ranking-score">400pts</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">4</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Maria</span>
-                            <span class="ranking-score">380pts</span>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">4</span>
+                                <div class="ranking-image"><img src="/img/foto3.jpg" alt="Foto de Maria"></div>
+                                <span class="ranking-name">Maria</span>
+                                <span class="ranking-score">380pts</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ranking-item">
-                        <div class="ranking-card">
-                            <span class="ranking-position">5</span>
-                            <div class="ranking-image"><img src="/img/perfil.jpg" alt="Monitor photo" loading="lazy"></div>
-                            <span class="ranking-name">Pablo</span>
-                            <span class="ranking-score">350pts</span>
+                        <div class="ranking-item">
+                            <div class="ranking-card">
+                                <span class="ranking-position">5</span>
+                                <div class="ranking-image"><img src="/img/foto5.jpg" alt="Foto de Pablo"></div>
+                                <span class="ranking-name">Pablo</span>
+                                <span class="ranking-score">350pts</span>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
                 <div class="grid-item noticias">
                     <h3 class="bi bi-megaphone"> Noticias</h3>
                     <hr class="noticia-divider">
                     <div class="noticias-list">
-                        <div th:each="noticia, iterStat : ${noticias}" class="noticia-item">
-                            <a th:href="@{/noticia/{id}(id=${noticia.id})}" class="noticia-title" th:text="${noticia.titulo}">Título de la noticia</a>
-                            <span class="noticia-timestamp" th:text="${noticia.fechaPublicacion}">hace 5 minutos</span>
-                            <hr class="noticia-divider" th:if="${!iterStat.last}"/>
+                        <div class="noticia-item">
+                            <a href="/noticia/1" class="noticia-title">Lanzamiento de nuevo curso de Python</a>
+                            <span class="noticia-timestamp">06/06/2025</span>
+                            <hr class="noticia-divider"/>
+                        </div>
+                        <div class="noticia-item">
+                            <a href="/noticia/2" class="noticia-title">Hackatón Nacional 2025 anunciado</a>
+                            <span class="noticia-timestamp">05/06/2025</span>
+                            <hr class="noticia-divider"/>
+                        </div>
+                        <div class="noticia-item">
+                            <a href="/noticia/3" class="noticia-title">UniLink alcanza 10,000 usuarios</a>
+                            <span class="noticia-timestamp">04/06/2025</span>
                         </div>
                     </div>
                 </div>
@@ -2216,30 +2241,60 @@
                     <h3 class="bi bi-calendar-event"> Eventos Nacionales</h3>
                     <hr class="evento-divider">
                     <div class="eventos-list">
-                        <div th:each="evento, iterStat : ${eventos}" class="evento-item">
+                        <div class="evento-item">
                             <div class="evento-content">
-                                <h4 class="evento-nombre" th:text="${evento.nombre}">Nombre del evento</h4>
-                                <p class="evento-descripcion" th:text="${evento.descripcion}">Breve descripción del evento</p>
+                                <h4 class="evento-nombre">Hackatón Nacional 2025</h4>
+                                <p class="evento-descripcion">Competencia de programación para estudiantes de todo el país.</p>
                             </div>
-                            <span class="evento-fecha" th:text="${evento.fecha}">21/05/2025</span>
-                            <hr class="evento-divider" th:if="${!iterStat.last}"/>
+                            <span class="evento-fecha">15/07/2025</span>
+                            <hr class="evento-divider"/>
+                        </div>
+                        <div class="evento-item">
+                            <div class="evento-content">
+                                <h4 class="evento-nombre">Seminario de Inteligencia Artificial</h4>
+                                <p class="evento-descripcion">Charlas sobre avances en IA por expertos internacionales.</p>
+                            </div>
+                            <span class="evento-fecha">20/08/2025</span>
+                            <hr class="evento-divider"/>
+                        </div>
+                        <div class="evento-item">
+                            <div class="evento-content">
+                                <h4 class="evento-nombre">Feria de Proyectos Tecnológicos</h4>
+                                <p class="evento-descripcion">Exposición de proyectos innovadores creados por estudiantes.</p>
+                            </div>
+                            <span class="evento-fecha">10/09/2025</span>
                         </div>
                     </div>
                 </div>
                 <div class="grid-item opiniones">
-                    <h3 class="bi bi-chat-left-text"> Opiniones de Estudiantes</h3>
-                    <hr class="opinion-divider">
-                    <div class="opiniones-list">
-                        <div th:each="opinion, iterStat : ${opiniones}" class="opinion-item">
-                            <div class="opinion-content">
-                                <p class="opinion-texto" th:text="${opinion.comentario}">Comentario de la opinión</p>
-                                <span class="opinion-autor" th:text="${opinion.nombreEstudiante}">Nombre Estudiante</span>
-                            </div>
-                            <span class="opinion-semestre" th:text="${opinion.semestre}">Semestre 2023-1</span>
-                            <hr class="opinion-divider" th:if="${!iterStat.last}"/>
-                        </div>
-                    </div>
-                </div>
+    <h3 class="bi bi-chat-left-text"> Opiniones de Estudiantes</h3>
+    <hr class="opinion-divider">
+    <div class="opiniones-list">
+        <div class="opinion-item">
+            <div class="opinion-content">
+                <p class="opinion-texto">Ana es una excelente monitora, explica muy claro y siempre está dispuesta a ayudar.</p>
+                <span class="opinion-autor">Juan Pérez</span>
+            </div>
+            <span class="opinion-semestre">2025-1</span>
+            <hr class="opinion-divider"/>
+        </div>
+        <div class="opinion-item">
+            <div class="opinion-content">
+                <p class="opinion-texto">Gracias a las asesorías de Ana, logré aprobar mi curso de algoritmos con una gran nota.</p>
+                <span class="opinion-autor">María González</span>
+            </div>
+            <span class="opinion-semestre">2024-2</span>
+            <hr class="opinion-divider"/>
+        </div>
+        <div class="opinion-item">
+            <div class="opinion-content">
+                <p class="opinion-texto">Sus talleres de desarrollo web son muy prácticos y fáciles de seguir.</p>
+                <span class="opinion-autor">Carlos Ramírez</span>
+            </div>
+            <span class="opinion-semestre">2024-1</span>
+        </div>
+    </div>
+</div>
             </aside>
         </div>
     </main>
