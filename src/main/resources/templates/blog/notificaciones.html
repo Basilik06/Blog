@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UniLink: Explora nuestro blog con artículos interesantes y únete a la comunidad.">
+    <meta name="keywords" content="blog, artículos, comunidad, noticias, unelink">
+    <meta name="author" content="UniLink Team">
+    <meta property="og:title" content="UniLink - Blog de Contenido Interesante">
+    <meta property="og:description" content="Explora artículos sobre diversos temas y únete a la comunidad de UniLink.">
+    <meta property="og:image" content="/img/logo.png">
+    <meta property="og:url" content="https://unilink.com">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <meta property="og:type" content="website">
+    <title>UniLink</title>
+    <link rel="icon" href="/img/icono.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<style>
+    :root {
+        --primary-color: #fb9a24;
+        --text-color: #212529;
+        --bg-light: #F6F9F7;
+        --bg-dark: #121212;
+        --navbar-bg-light: #ffffff;
+        --navbar-bg-dark: #0e0e0e;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        --item-height: 380px;
+        --reduced-item-height: 175px;
+        --events-news-height: 280px;
+        --events-ranking-height: 380px;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh; /* Changed from height to min-height */
+        display: flex;
+        flex-direction: column;
+    }
+
+    body {
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-family: 'Arial', sans-serif;
+    }
+
+    body.light-theme {
+        background-color: var(--bg-light);
+        color: var(--text-color);
+    }
+
+    body.dark-theme {
+        background-color: var(--bg-dark);
+        color: #e0e0e0;
+    }
+
+    body.dark-theme .navbar {
+        background-color: var(--navbar-bg-dark);
+        box-shadow: var(--shadow);
+    }
+
+    body.dark-theme .nav-icon, body.dark-theme .search-form .input-group-text {
+        color: #e0e0e0;
+    }
+
+    body.dark-theme .nav-icon:hover {
+        color: #fb9a24;
+    }
+
+    body.dark-theme .search-form .input-group {
+        background-color: #2a2a2a;
+        border-color: #4a4a4a;
+    }
+
+    body.dark-theme .search-form .form-control {
+        color: #e0e0e0;
+        background-color: transparent;
+    }
+
+    body.dark-theme .search-form .form-control::placeholder {
+        color: #a0a0a0;
+    }
+
+    body.dark-theme .dropdown-menu {
+        background-color: #2a2a2a;
+        border-color: #4a4a4a;
+    }
+
+    body.dark-theme .dropdown-item {
+        color: #e0e0e0;
+    }
+
+    body.dark-theme .dropdown-item:hover {
+        background-color: #3a3a3a;
+        color: #fb9a24;
+    }
+
+    body.dark-theme .card {
+        background-color: #1e2a38;
+        border-color: #4a4a4a;
+    }
+
+    .navbar {
+        background-color: var(--navbar-bg-light);
+        box-shadow: var(--shadow);
+        padding: 0.75rem 1rem;
+        transition: background-color 0.3s ease;
+        position: relative;
+    }
+
+    .navbar-brand img {
+        height: 36px;
+        width: auto;
+        transition: transform 0.3s ease;
+    }
+
+    .navbar-brand img:hover {
+        transform: scale(1.1);
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    body.light-theme .logo-dark,
+    body.dark-theme .logo-light {
+        display: none;
+    }
+
+    body.light-theme .logo-light,
+    body.dark-theme .logo-dark {
+        display: inline;
+    }
+
+    #navbarContent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .search-container {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        padding: 0 0.5rem;
+        position: relative;
+    }
+
+    .search-container-mobile {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background-color: var(--navbar-bg-light);
+        box-shadow: var(--shadow);
+        padding: 0.5rem 1rem;
+        display: none;
+        transition: all 0.3s ease;
+    }
+
+    body.dark-theme .search-container-mobile {
+        background-color: var(--navbar-bg-dark);
+    }
+
+    .search-icon {
+        display: none;
+        font-size: 1.2rem;
+        color: var(--text-color);
+        cursor: pointer;
+        transition: color 0.3s ease;
+        margin: 0 0.4rem;
+    }
+
+    body.dark-theme .search-icon {
+        color: #e0e0e0;
+    }
+
+    .search-icon:hover {
+        color: var(--primary-color);
+        transform: scale(1.1);
+    }
+
+    .search-form {
+        flex-grow: 1;
+        max-width: 595px;
+        margin: 0 auto;
+        transition: all 0.3s ease;
+    }
+
+    .search-form .input-group {
+        background-color: #ffffff;
+        border-radius: 20px;
+        border: 1px solid #282d31;
+        transition: border-color 0.3s;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 0 0.25rem;
+    }
+
+    .search-form .input-group:hover {
+        border-color: #929292;
+    }
+
+    .search-form .input-group-text {
+        background-color: transparent;
+        border: none;
+        padding: 0.375rem 0.5rem;
+        color: #333;
+    }
+
+    .search-form .form-control {
+        background-color: transparent;
+        border: none;
+        color: #333;
+        padding-left: 0.5rem;
+        padding-right: 3rem;
+        width: 550px;
+        flex-grow: 0;
+        border-radius: 50px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .search-form .form-control::placeholder {
+        color: #333;
+        opacity: 0.7;
+    }
+
+    .search-form .form-control:focus {
+        background-color: transparent;
+        color: #333;
+        box-shadow: none;
+    }
+
+    body.light-theme .search-form .form-control:-webkit-autofill,
+    body.light-theme .search-form .form-control:-webkit-autofill:hover,
+    body.light-theme .search-form .form-control:-webkit-autofill:focus,
+    body.light-theme .search-form .form-control:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+        -webkit-text-fill-color: #333 !important;
+        background-color: transparent !important;
+        transition: background-color 5000s ease-in-out 0s;
+        box-shadow: inset 0 0 0 1000px #ffffff00, inset 2rem 0 0 0 #ffffff00 !important;
+    }
+
+    body.dark-theme .search-form .form-control:-webkit-autofill,
+    body.dark-theme .search-form .form-control:-webkit-autofill:hover,
+    body.dark-theme .search-form .form-control:-webkit-autofill:focus,
+    body.dark-theme .search-form .form-control:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px #2a2a2a inset !important;
+        -webkit-text-fill-color: #e0e0e0 !important;
+        background-color: transparent !important;
+        transition: background-color 5000s ease-in-out 0s;
+        box-shadow: inset 0 0 0 1000px #2a2a2a00, inset 2rem 0 0 0 #2a2a2a00 !important;
+    }
+
+    .search-form .form-control::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 16px;
+        width: 16px;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>') no-repeat center;
+        background-size: contain;
+        cursor: pointer;
+        border-radius: 50px;
+        margin-right: 0.5rem;
+        position: absolute;
+        right: 3.5rem;
+    }
+
+    body.dark-theme .search-form .input-group-text {
+        color: #f0f0f0;
+    }
+
+    body.dark-theme .search-form .form-control {
+        color: #e0e0e0;
+        background-color: transparent;
+    }
+
+    body.dark-theme .search-form .form-control::placeholder {
+        color: #a0a0a0;
+    }
+
+    body.dark-theme .search-form .form-control::-webkit-search-cancel-button {
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>') no-repeat center;
+        background-size: contain;
+        cursor: pointer;
+        margin-right: 0.5rem;
+        position: absolute;
+        right: 3.5rem;
+    }
+
+    .close-search {
+        display: none;
+        font-size: 1rem;
+        color: #333;
+        cursor: pointer;
+        margin-left: 0.5rem;
+    }
+
+    body.dark-theme .close-search {
+        color: #e0e0e0;
+    }
+
+    .close-search:hover {
+        color: var(--primary-color);
+    }
+
+    .search-submit,
+    .search-filter {
+        position: absolute;
+        font-size: 1rem;
+        color: #333;
+        cursor: pointer;
+        padding: 0.375rem 0.5rem;
+        transition: color 0.3s ease, transform 0.3s ease;
+        z-index: 1;
+    }
+
+    .search-filter {
+        right: 2rem;
+    }
+
+    .search-submit {
+        right: 0.5rem;
+    }
+
+    body.dark-theme .search-submit,
+    body.dark-theme .search-filter {
+        color: #e0e0e0;
+    }
+
+    .search-submit:hover,
+    .search-filter:hover {
+        color: var(--primary-color);
+        transform: scale(1.1);
+    }
+
+    .nav-icon {
+        font-size: 1.2rem;
+        color: var(--text-color);
+        margin: 0 0.4rem;
+        position: relative;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-icon:hover {
+        color: var(--primary-color);
+        transform: scale(1.1);
+    }
+
+    .nav-icon.notification::after {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: #dc3545;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        visibility: visible;
+    }
+
+    .nav-icon.notification[data-count="0"]::after {
+        visibility: hidden;
+    }
+
+    .nav-profile {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: none;
+        transition: transform 0.3s ease;
+    }
+
+    .nav-profile:hover {
+        transform: scale(1.1);
+    }
+
+    .separator {
+        color: #6c757d;
+        margin: 0 0.4rem;
+        font-size: 1rem;
+    }
+
+    .search-separator {
+        display: none;
+        color: #6c757d;
+        margin: 0 0.4rem;
+        font-size: 1rem;
+    }
+
+    .dropdown-menu {
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        background-color: #ffffff;
+        min-width: 160px;
+    }
+
+    .dropdown-item {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background-color 0.2s ease;
+    }
+
+    .dropdown-item i {
+        font-size: 1rem;
+    }
+
+    .dropdown-item:hover {
+        background-color: #e9ecef;
+    }
+
+    .filter-panel {
+        position: absolute;
+        top: 100%;
+        width: 300px;
+        max-height: 300px;
+        border-radius: 8px;
+        padding: 10px;
+        z-index: 1000;
+        display: none;
+        box-shadow: var(--shadow);
+        overflow-y: auto;
+        transition: all 0.3s ease;
+    }
+
+    .filter-panel::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .filter-panel::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    body.dark-theme .filter-panel::-webkit-scrollbar-track {
+        background: #2a2a2a;
+    }
+
+    .filter-panel::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+    }
+
+    .filter-panel::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    body.light-theme .filter-panel {
+        background: #ffffff;
+        border: 1px solid #ddd;
+        color: #333;
+    }
+
+    body.dark-theme .filter-panel {
+        background: #333;
+        border: 1px solid #444;
+        color: #fff;
+    }
+
+    .filter-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    body.dark-theme .filter-header {
+        border-bottom: 1px solid #444;
+    }
+
+    .filter-title {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .filter-body {
+        padding: 8px 0;
+    }
+
+    .filter-option {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .filter-option label {
+        cursor: pointer;
+    }
+
+    body.light-theme .filter-option label {
+        color: #333;
+    }
+
+    body.dark-theme .filter-option label {
+        color: #e0e0e0;
+    }
+
+    .filter-option select.form-select {
+        width: 100%;
+        margin-top: 5px;
+        font-size: 14px;
+        padding: 6px;
+        border-radius: 4px;
+    }
+
+    body.light-theme .filter-option select.form-select {
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        color: #333;
+    }
+
+    body.dark-theme .filter-option select.form-select {
+        background-color: #2a2a2a;
+        border: 1px solid #444;
+        color: #e0e0e0;
+    }
+
+    .filter-actions {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 10px;
+        border-top: 1px solid #ddd;
+    }
+
+    body.dark-theme .filter-actions {
+        border-top: 1px solid #444;
+    }
+
+    .filter-actions a {
+        color: #1da1f2;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .filter-actions a:hover {
+        text-decoration: underline;
+    }
+
+    .notification-panel {
+        position: absolute;
+        top: 100%;
+        right: 10px;
+        width: 350px;
+        max-height: 300px;
+        border-radius: 8px;
+        padding: 10px;
+        z-index: 1000;
+        display: none;
+        box-shadow: var(--shadow);
+        overflow-y: auto;
+    }
+
+    .notification-panel::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .notification-panel::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    body.dark-theme .notification-panel::-webkit-scrollbar-track {
+        background: #2a2a2a;
+    }
+
+    .notification-panel::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+    }
+
+    .notification-panel::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    body.light-theme .notification-panel {
+        background: #ffffff;
+        border: 1px solid #ddd;
+        color: #333;
+    }
+
+    body.dark-theme .notification-panel {
+        background: #333;
+        border: 1px solid #444;
+        color: #fff;
+    }
+
+    .notification-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    body.dark-theme .notification-header {
+        border-bottom: 1px solid #444;
+    }
+
+    .notification-title {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .notification-mark-read {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .notification-mark-read input[type="checkbox"] {
+        cursor: pointer;
+    }
+
+    .notification-mark-read-label {
+        font-size: 12px;
+        cursor: pointer;
+    }
+
+    body.light-theme .notification-mark-read-label {
+        color: #333;
+    }
+
+    body.dark-theme .notification-mark-read-label {
+        color: #e0e0e0;
+    }
+
+    .notification-body {
+        font-size: 14px;
+        padding: 8px 0;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    body.light-theme .notification-body {
+        border-bottom: 1px solid #ddd;
+    }
+
+    body.dark-theme .notification-body {
+        border-bottom: 1px solid #444;
+    }
+
+    .notification-body:last-child {
+        border-bottom: none;
+    }
+
+    .notification-text {
+        flex: 1;
+    }
+
+    body.light-theme .notification-time {
+        color: #666;
+        font-size: 12px;
+    }
+
+    body.dark-theme .notification-time {
+        color: #aaa;
+        font-size: 12px;
+    }
+
+    .notification-link {
+        color: #1da1f2;
+        text-decoration: none;
+        font-size: 12px;
+    }
+
+    .notification-body::before {
+        content: "📌";
+        margin-right: 5px;
+    }
+
+    .see-all {
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    .see-all a {
+        color: #1da1f2;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    /* Ensure card in main section is consistent in dark mode */
+    body.dark-theme .card {
+        background-color: #333;
+        border-color: #4a4a4a;
+        color: #e0e0e0; /* Ensure text inside card is readable */
+    }
+
+    /* Style notification-body in main for dark mode */
+    body.dark-theme .notification-body {
+        border-bottom: 1px solid #444; /* Match notification panel border */
+    }
+
+    /* Style notification-text in main for dark mode */
+    body.dark-theme .notification-text {
+        color: #e0e0e0; /* Ensure readable text */
+    }
+
+    /* Style notification-time in main for dark mode */
+    body.dark-theme .notification-time {
+        color: #aaa; /* Match notification panel's time color */
+    }
+
+    /* Style the 'no notifications' message in dark mode */
+    body.dark-theme .text-muted {
+        color: #a0a0a0 !important; /* Override Bootstrap's text-muted for dark mode */
+    }
+
+    /* Ensure card title in main is readable in dark mode */
+    body.dark-theme .card-title {
+        color: #ffffff; /* Bright color for headings */
+    }
+
+    /* Main content styles */
+    main {
+        flex: 1; /* Allow main to take up remaining space */
+        overflow-y: auto; /* Enable scrolling for main content */
+    }
+
+    .footer_page {
+        background-color: #0F0F0F;
+        color: rgba(255, 255, 255, 0.7);
+        padding: 30px 0;
+        min-height: 100px;
+        text-align: center;
+        width: 100%; /* Ensure footer spans full width */
+        position: relative; /* Keep footer at the bottom */
+    }
+
+    .footer_page .footer-text {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .footer_page .footer-links {
+        margin-bottom: 15px;
+    }
+
+    .footer_page .footer-link {
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0 10px;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .footer_page .footer-link:hover {
+        color: #ffffff;
+    }
+
+    .footer_page .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .footer_page .social-icon {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.5rem;
+        transition: color 0.3s;
+    }
+
+    .footer_page .social-icon:hover {
+        color: #ffffff;
+    }
+
+    @media (max-width: 992px) {
+        .search-container {
+            flex-grow: 0;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+        .nav-icons {
+            flex-wrap: nowrap;
+            gap: 0.3rem;
+        }
+        .separator {
+            display: none;
+        }
+        .navbar {
+            padding: 0.5rem;
+        }
+        .dropdown-menu {
+            min-width: 140px;
+        }
+    }
+
+    @media (max-width: 987px) {
+        .navbar-brand img {
+            height: 30px;
+        }
+        .nav-icon {
+            font-size: 1rem;
+            margin: 0 0.3rem;
+        }
+        .nav-profile {
+            width: 28px;
+            height: 28px;
+        }
+        .search-container {
+            display: none;
+        }
+        .search-icon {
+            display: block;
+        }
+        .close-search {
+            display: block;
+        }
+        .separator {
+            display: block;
+        }
+        .search-separator {
+            display: block;
+        }
+    }
+
+    @media (min-width: 987px) {
+        .search-icon {
+            display: none !important;
+        }
+        .search-container-mobile {
+            display: none !important;
+        }
+        .search-separator {
+            display: none !important;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .nav-icon {
+            font-size: 0.9rem;
+            margin: 0 0.2rem;
+        }
+        .nav-profile {
+            width: 24px;
+            height: 24px;
+        }
+        .navbar-brand img {
+            height: 28px;
+        }
+        .search-icon {
+            font-size: 1rem;
+        }
+        .dropdown-menu {
+            min-width: 120px;
+        }
+    }
+
+    @media (max-width: 987px) {
+        .filter-panel {
+            width: 90vw;
+            max-width: 350px;
+            left: 50% !important;
+            transform: translateX(-50%);
+        }
+
+        .filter-title {
+            font-size: 14px;
+        }
+
+        .filter-option select.form-select {
+            font-size: 13px;
+            padding: 5px;
+        }
+
+        .filter-actions a {
+            font-size: 13px;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .filter-panel {
+            width: 95vw;
+            max-width: 300px;
+            padding: 8px;
+        }
+
+        .filter-title {
+            font-size: 13px;
+        }
+
+        .filter-option {
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .filter-option label {
+            font-size: 13px;
+        }
+
+        .filter-option select.form-select {
+            font-size: 12px;
+            padding: 4px;
+        }
+
+        .filter-actions {
+            padding-top: 8px;
+        }
+
+        .filter-actions a {
+            font-size: 12px;
+        }
+    }
+
+    /* Estilos modificados para los botones Aplicar y Limpiar del filtro */
+    #applyFiltersLarge, #clearFiltersLarge, #applyFiltersMobile, #clearFiltersMobile {
+        background-color: #fb9a24;
+        color: #ffffff;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    #applyFiltersLarge:hover, #clearFiltersLarge:hover, #applyFiltersMobile:hover, #clearFiltersMobile:hover {
+        background-color: #e68a1f;
+    }
+</style>
+</head>
+<body class="light-theme">
+    <header>
+        <nav class="navbar navbar-expand" role="navigation" aria-label="Navegación principal">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/}" aria-label="Volver a la página de inicio de UniLink">
+                    <div class="logo-container">
+                        <img th:src="@{/img/logo_sf.png}" class="logo-light hidden" alt="Logo de UniLink (modo claro)" width="36" height="36" loading="lazy">
+                        <img th:src="@{/img/logo_oscuro_sf.png}" class="logo-dark hidden" alt="Logo de UniLink (modo oscuro)" width="36" height="36" loading="lazy">
+                    </div>
+                </a>
+                <div id="navbarContent">
+                    <div class="search-container">
+                        <form class="d-flex search-form my-2 my-lg-0" th:action="@{/search}" method="get" role="search" aria-label="Buscar en el blog">
+                            <div class="input-group">
+                                <span class="input-group-text" aria-hidden="true">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input class="form-control" type="search" name="q" id="searchInputLarge" placeholder="Buscar en UniLink" aria-label="Buscar artículos en UniLink" required>
+                                <span class="search-filter" id="searchFilterLarge" aria-label="Abrir filtros">
+                                    <i class="bi bi-list"></i>
+                                </span>
+                                <span class="search-submit" id="searchSubmitLarge" aria-label="Enviar búsqueda">
+                                    <i class="bi bi-arrow-right"></i>
+                                </span>
+                            </div>
+                            <div id="filterPanelLarge" class="filter-panel">
+                                <div class="filter-header">
+                                    <span class="filter-title">Filtros</span>
+                                </div>
+                                <div class="filter-body">
+                                    <div class="filter-option">
+                                        <label for="categoryFilterLarge">Categoría</label>
+                                        <select id="categoryFilterLarge" name="category" class="form-select">
+                                            <option value="">Todas</option>
+                                            <option value="ciencia">Ciencia</option>
+                                            <option value="tecnologia">Tecnología</option>
+                                            <option value="noticias">Noticias</option>
+                                            <option value="humor">Humor</option>
+                                            <option value="preguntas">Preguntas</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="filter-actions">
+                                    <button id="clearFiltersLarge" type="button">Limpiar</button>
+                                    <button id="applyFiltersLarge" type="button">Aplicar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="nav-icons d-flex align-items-center ms-auto">
+                        <span class="search-icon" id="searchIcon" aria-label="Abrir buscador">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <span class="search-separator">|</span>
+                        <a th:href="@{/cliente/inicio}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Inicio" aria-label="Ir a la página de inicio">
+                            <i class="bi bi-house-door-fill"></i>
+                        </a>
+                        <span class="separator">|</span>
+                        <a th:href="@{/nuevo_post}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Crear Post" aria-label="Crear un nuevo post">
+                            <i class="bi bi-plus-circle-fill"></i>
+                        </a>
+                        <span class="separator">|</span>
+                        <a th:href="@{/monitor}" class="nav-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Monitor" aria-label="Ver Monitores">
+                            <i class="bi bi-person-fill"></i>
+                        </a>
+                        <span class="separator">|</span>
+                        <a href="#" class="nav-icon notification" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notificaciones" aria-label="Ver notificaciones" data-count="0" onclick="toggleNotifications()">
+                            <i class="bi bi-bell-fill"></i>
+                        </a>
+                        <span class="separator">|</span>
+                        <div class="dropdown">
+                            <a href="#" class="nav-icon" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Opciones de perfil de usuario">
+                                <img th:src="@{/img/foto1.jpg}" alt="Foto de perfil del usuario" class="nav-profile" loading="lazy">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                <li><a class="dropdown-item" th:href="@{/perfil}"><i class="bi bi-person"></i> Perfil</a></li>
+                                <li><a class="dropdown-item" href="#" id="themeToggle"><i class="bi bi-moon"></i> Modo Noche</a></li>
+                                <li><a class="dropdown-item" th:href="@{/config}"><i class="bi bi-gear"></i> Configuración</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" th:href="@{/custom-logout}"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="search-container-mobile">
+                <form class="d-flex search-form my-2 my-lg-0" th:action="@{/search}" method="get" role="search" aria-label="Buscar en el blog">
+                    <div class="input-group">
+                        <span class="input-group-text" aria-hidden="true">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input class="form-control" type="search" name="q" id="searchInputMobile" placeholder="Buscar en UniLink" aria-label="Buscar artículos en UniLink" required>
+                        <span class="search-filter" id="searchFilterMobile" aria-label="Abrir filtros">
+                            <i class="bi bi-list"></i>
+                        </span>
+                        <span class="search-submit" id="searchSubmitMobile" aria-label="Enviar búsqueda">
+                            <i class="bi bi-arrow-right"></i>
+                        </span>
+                        <span class="close-search" id="closeSearch" aria-label="Cerrar buscador">
+                            <i class="bi bi-x"></i>
+                        </span>
+                    </div>
+                    <div id="filterPanelMobile" class="filter-panel">
+                        <div class="filter-header">
+                            <span class="filter-title">Filtros</span>
+                        </div>
+                        <div class="filter-body">
+                            <div class="filter-option">
+                                <label for "categoryFilterMobile">Categoría</label>
+                                <select id="categoryFilterMobile" name="category" class="form-select">
+                                    <option value="">Todas</option>
+                                    <option value="posts">Posts</option>
+                                    <option value="monitores">Moni</option>
+                                    <option value="eventos">Eventos</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="filter-actions">
+                            <button id="clearFiltersMobile" type="button">Limpiar</button>
+                            <button id="applyFiltersMobile" type="button">Aplicar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="notificationPanel" class="notification-panel">
+                <div class="notification-header">
+                    <span class="notification-title">Notificaciones</span>
+                    <div class="notification-mark-read">
+                        <input type="checkbox" id="markReadCheckbox" aria-label="Marcar todas las notificaciones como leídas">
+                        <label class="notification-mark-read-label" for="markReadCheckbox">Marcar como leídas</label>
+                    </div>
+                </div>
+                <div class="notification-body">
+                    <div class="notification-text">
+                        <span>Nueva solicitud de monitoría recibida.</span><br>
+                        <span class="notification-time">hace 5 minutos</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="notification-body">
+                    <div class="notification-text">
+                        <span>Tu post ha recibido 100 me gusta.</span><br>
+                        <span class="notification-time">hace 1 hora</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="notification-body">
+                    <div class="notification-text">
+                        <span>Evento nacional programado para mañana.</span><br>
+                        <span class="notification-time">hace 2 horas</span><br>
+                        <a href="#" class="notification-link">Ver más</a>
+                    </div>
+                </div>
+                <div class="see-all">
+                    <a th:href="@{/notificaciones}">Ver todo</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container my-5" id="main-content">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title mb-4">Historial de Notificaciones</h2>
+                        <div th:each="notif : ${notificaciones}" class="notification-body">
+                            <div class="notification-text">
+                                <span th:text="${notif.mensaje}">Texto de la notificación</span><br>
+                                <span class="notification-time" th:text="${notif.fecha_notificacion}">hace 10 minutos</span>
+                            </div>
+                        </div>
+                        <div th:if="${#lists.isEmpty(notificaciones)}" class="text-center text-muted">
+                            <p>No hay notificaciones para mostrar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="footer_page">
+        <div class="container text-center">
+            <p class="footer-text">Copyright © UniLink 2025</p>
+            <div class="footer-links">
+                <a href="#vision-mision" class="footer-link">Mision y Vision</a> |
+                <a href="#nosotros" class="footer-link">Nosotros</a> |
+                <a href="#comentarios" class="footer-link">Comentarios</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        function toggleNotifications() {
+    const panel = document.getElementById('notificationPanel');
+    panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+}
+
+function toggleFilterPanel(panelId, filterIcon) {
+    const panel = document.getElementById(panelId);
+    const isVisible = panel.style.display === 'block';
+    
+    document.querySelectorAll('.filter-panel').forEach(p => p.style.display = 'none');
+    
+    if (!isVisible) {
+        panel.style.display = 'block';
+        const iconRect = filterIcon.getBoundingClientRect();
+        const navbar = document.querySelector('.navbar');
+        const navbarRect = navbar.getBoundingClientRect();
+        
+        const panelWidth = panel.offsetWidth;
+        const iconCenterX = iconRect.left + (iconRect.width / 2);
+        const panelLeft = iconCenterX - (panelWidth / 2);
+        
+        panel.style.top = `${iconRect.bottom - navbarRect.top + 5}px`;
+        panel.style.left = `${Math.max(10, panelLeft)}px`;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
+
+    const notificationIcon = document.querySelector('.nav-icon.notification');
+    const notificationBodies = document.querySelectorAll('.notification-body');
+    const notificationCount = notificationBodies.length;
+    notificationIcon.setAttribute('data-count', notificationCount > 0 ? '1' : '0');
+
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const logoLight = document.querySelector('.logo-light');
+    const logoDark = document.querySelector('.logo-dark');
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    body.classList.remove('light-theme', 'dark-theme');
+    body.classList.add(`${savedTheme}-theme`);
+
+    if (savedTheme === 'light') {
+        logoLight.classList.remove('hidden');
+    } else {
+        logoDark.classList.remove('hidden');
+    }
+
+    themeToggle.querySelector('i').classList.add(savedTheme === 'light' ? 'bi-moon' : 'bi-sun');
+    themeToggle.querySelector('i').classList.remove(savedTheme === 'light' ? 'bi-sun' : 'bi-moon');
+    themeToggle.lastChild.nodeValue = savedTheme === 'light' ? ' Modo Noche' : ' Modo Día';
+
+    themeToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isLight = body.classList.contains('light-theme');
+        body.classList.replace(isLight ? 'light-theme' : 'dark-theme', isLight ? 'dark-theme' : 'light-theme');
+        localStorage.setItem('theme', isLight ? 'dark' : 'light');
+        themeToggle.querySelector('i').classList.replace(isLight ? 'bi-moon' : 'bi-sun', isLight ? 'bi-sun' : 'bi-moon');
+        themeToggle.lastChild.nodeValue = isLight ? ' Modo Día' : ' Modo Noche';
+        logoLight.classList.add('hidden');
+        logoDark.classList.add('hidden');
+        if (isLight) {
+            logoDark.classList.remove('hidden');
+        } else {
+            logoLight.classList.remove('hidden');
+        }
+    });
+
+    const searchInputLarge = document.getElementById('searchInputLarge');
+    const searchSubmitLarge = document.getElementById('searchSubmitLarge');
+    const searchFilterLarge = document.getElementById('searchFilterLarge');
+    const searchFormLarge = searchInputLarge.closest('form');
+    const filterPanelLarge = document.getElementById('filterPanelLarge');
+    const clearFiltersLarge = document.getElementById('clearFiltersLarge');
+    const applyFiltersLarge = document.getElementById('applyFiltersLarge');
+    const categoryFilterLarge = document.getElementById('categoryFilterLarge');
+
+    searchInputLarge.addEventListener('input', () => {
+        searchInputLarge.value = searchInputLarge.value.trimStart();
+    });
+
+    searchSubmitLarge.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (searchInputLarge.value.trim()) {
+            searchFormLarge.submit();
+        }
+    });
+
+    searchFilterLarge.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleFilterPanel('filterPanelLarge', searchFilterLarge);
+    });
+
+    clearFiltersLarge.addEventListener('click', (e) => {
+        e.preventDefault();
+        categoryFilterLarge.value = '';
+    });
+
+    applyFiltersLarge.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (searchInputLarge.value.trim()) {
+            searchFormLarge.submit();
+        }
+        filterPanelLarge.style.display = 'none';
+    });
+
+    const searchIcon = document.getElementById('searchIcon');
+    const searchFormMobile = document.querySelector('.search-container-mobile .search-form');
+    const closeSearch = document.getElementById('closeSearch');
+    const searchContainerMobile = document.querySelector('.search-container-mobile');
+    const searchInputMobile = document.getElementById('searchInputMobile');
+    const searchFilterMobile = document.getElementById('searchFilterMobile');
+    const searchSubmitMobile = document.getElementById('searchSubmitMobile');
+    const filterPanelMobile = document.getElementById('filterPanelMobile');
+    const clearFiltersMobile = document.getElementById('clearFiltersMobile');
+    const applyFiltersMobile = document.getElementById('applyFiltersMobile');
+    const categoryFilterMobile = document.getElementById('categoryFilterMobile');
+
+    searchInputMobile.addEventListener('input', () => {
+        searchInputMobile.value = searchInputMobile.value.trimStart();
+    });
+
+    searchSubmitMobile.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (searchInputMobile.value.trim()) {
+            searchFormMobile.submit();
+        }
+    });
+
+    searchFilterMobile.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleFilterPanel('filterPanelMobile', searchFilterMobile);
+    });
+
+    clearFiltersMobile.addEventListener('click', (e) => {
+        e.preventDefault();
+        categoryFilterMobile.value = '';
+    });
+
+    applyFiltersMobile.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (searchInputMobile.value.trim()) {
+            searchFormMobile.submit();
+        }
+        filterPanelMobile.style.display = 'none';
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!filterPanelLarge.contains(e.target) && !searchFilterLarge.contains(e.target)) {
+            filterPanelLarge.style.display = 'none';
+        }
+        if (!filterPanelMobile.contains(e.target) && !searchFilterMobile.contains(e.target)) {
+            filterPanelMobile.style.display = 'none';
+        }
+        const notificationPanel = document.getElementById('notificationPanel');
+        if (!notificationPanel.contains(e.target) && !notificationIcon.contains(e.target)) {
+            notificationPanel.style.display = 'none';
+        }
+    });
+
+    const searchContainer = document.querySelector('.search-container');
+    const updateSearchState = () => {
+        const windowWidth = window.innerWidth;
+        const breakpoint = 987;
+        if (windowWidth < breakpoint) {
+            searchContainer.style.display = 'none';
+            searchIcon.style.display = 'block';
+            searchContainerMobile.style.display = searchContainerMobile.style.display === 'block' ? 'block' : 'none';
+        } else {
+            searchContainer.style.display = 'flex';
+            searchIcon.style.display = 'none';
+            searchContainerMobile.style.display = 'none';
+        }
+    };
+
+    searchIcon.addEventListener('click', () => {
+        searchContainerMobile.style.display = 'block';
+        searchInputMobile.focus();
+    });
+
+    closeSearch.addEventListener('click', () => {
+        searchContainerMobile.style.display = 'none';
+        searchInputMobile.value = '';
+    });
+
+    window.addEventListener('resize', updateSearchState);
+    updateSearchState();
+});
+    </script>
+</body>
+</html>
